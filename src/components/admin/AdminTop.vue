@@ -63,6 +63,15 @@
   align-items: center;
 }
 
+.el-dropdown {
+  color: rgb(255, 255, 255) !important;
+  padding-top: 25px !important;
+  padding-right: 233px !important;
+  float: right !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
 .TAG_top_img {
   z-index: -1;
   float: right;

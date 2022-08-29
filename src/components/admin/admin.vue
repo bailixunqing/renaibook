@@ -854,16 +854,15 @@ import AdminTop from '@/components/admin/AdminTop.vue'
 import AdminBottom from '@/components/admin/AdminBottom.vue'
 //引入富文本
 import TEditor from '@/components/TEditor.vue'
-
-
+//引入element依赖
 import { ArrowDown } from '@element-plus/icons-vue'
+
 const axios = require("axios")
 
 
 export default {
     name:'admin',
-    components: 
-    {AdminTop,TEditor},
+    components: {AdminTop,TEditor},
     data() {
       let activeName= '1';//左边菜单栏
       let current=11; //其实菜单栏
@@ -1154,12 +1153,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.example-showcase .el-dropdown-link {
-  cursor: pointer;
-  color: var(--el-color-primary);
-  display: flex;
-  align-items: center;
-}
+
 
 :deep(.el-overlay.is-message-box .el-overlay-message-box) {
   background-color: #1a1a1a2b !important;
@@ -1215,14 +1209,7 @@ export default {
   float: right;
 }
 
-.el-dropdown {
-  color: rgb(255, 255, 255);
-  padding-top: 25px;
-  padding-right: 233px;
-  float: right;
-  font-weight: bold;
-  font-size: 18px;
-}
+
 
 .TAG {
   width: 1240px;
