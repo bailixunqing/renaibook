@@ -54,19 +54,19 @@
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
                 <el-row>
-                  <el-button
+                   <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
                     @click="select(21)"
-                    >目录编辑</el-button
+                    >编辑文章</el-button
                   >
                   <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
                     @click="select(22)"
-                    >推送内容</el-button
+                    >推送文章</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -354,29 +354,11 @@
             </div>
           </div>
 
-          <!-- 右:图书指南-->
-          <!-- 右:编辑导航-->
+           <!-- 右:图书指南-->
+          <!-- 右:编辑文章-->
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">编辑导航</div>
-            </div>
-
-            <el-divider></el-divider>
-
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button type="success" round class="TAG_right_on"
-                >保存并返回</el-button
-              >
-            </div>
-          </div>
-          <!-- 右:图书指南-->
-          <!-- 右:推送文章-->
-          <div class="TAG_rght_2" v-if="show(22)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">推送文章</div>
+              <div class="TAG_right_admin_left">编辑文章</div>
             </div>
             <el-divider></el-divider>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -386,9 +368,62 @@
               <el-cascader
                 v-model="value"
                 :options="options"
-                @change="handleChange"
+                clearable
               ></el-cascader>
             </div>
+
+            <div style="color: black; font-size: large; font-weight: bold">
+              编辑内容
+            </div>
+            <div class="TAG_main_write">
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                @input="content_value_change"
+                v-model="value"
+              />
+            </div>
+
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="notice_sub(value)"
+                >保存并返回</el-button
+              >
+            </div>
+          </div>
+
+          <!-- 右:图书指南-->
+          <!-- 右:新建文章-->
+          <div class="TAG_rght_2" v-if="show(22)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">新建文章</div>
+            </div>
+            <el-divider></el-divider>
+            <div style="color: black; font-size: large; font-weight: bold">
+              创建目录
+            </div>
+            <el-select
+              v-model="value"
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              :reserve-keyword="false"
+              placeholder="输入创建目录"
+            >
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
 
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
@@ -439,10 +474,7 @@
                   label="#"
                 ></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
-                <el-table-column
-                  prop="uid"
-                  label="作者"
-                ></el-table-column>
+                <el-table-column prop="uid" label="作者"></el-table-column>
                 <el-table-column
                   prop="gmtCreate"
                   label="发布时间"
@@ -526,7 +558,12 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+              />
             </div>
 
             <div class="TAG_right_buttom">
@@ -874,8 +911,8 @@ export default {
       let dialogVisible= false;
       let value="";//富文本
       let form= {
-          name: 'adasd',
-          title:'asdasd'
+          name: '这是名字',
+          title:'这是标题'
         };
       let tableData= [
         {
@@ -1282,6 +1319,16 @@ export default {
   margin-top: 2px;
   margin-right: 27px;
   text-align: right;
+}
+
+:deep(.el-cascader){
+  width: 33%;
+}
+
+:deep(.el-select){
+  width: 33%;
+  margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .TAG_main_write {
