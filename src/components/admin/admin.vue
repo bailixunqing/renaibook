@@ -1,33 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <div class="TAG_top">
-        <div class="TAG_a" @click="$router.push({ name: 'home' })">
-          天津仁爱学院图书馆首页
-        </div>
-        <div class="head">
-          <img src="../../assets/images/reaai.svg" />
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              欢迎超级用户
-              <el-icon class="el-icon--right">
-                <arrow-down style="color: white" />
-              </el-icon>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item @click="select(999)">
-                  修改密码</el-dropdown-item
-                >
-                <el-dropdown-item>退出</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </div>
-        <div class="TAG_top_img">
-          <img src="../../assets/images/setting.svg" />
-        </div>
-      </div>
+      <AdminTop />
       <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
@@ -874,19 +848,22 @@
 
 
 <script setup lang="lass"  >
-
+//引入头部
+import AdminTop from '@/components/admin/AdminTop.vue'
 //引入底部
 import AdminBottom from '@/components/admin/AdminBottom.vue'
+//引入富文本
+import TEditor from '@/components/TEditor.vue'
 
 
 import { ArrowDown } from '@element-plus/icons-vue'
-import TEditor from '@/components/TEditor.vue'
 const axios = require("axios")
 
 
 export default {
     name:'admin',
-    components: {TEditor},
+    components: 
+    {AdminTop,TEditor},
     data() {
       let activeName= '1';//左边菜单栏
       let current=11; //其实菜单栏
