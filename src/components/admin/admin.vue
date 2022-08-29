@@ -866,27 +866,7 @@
       </div>
 
       <!-- admin-->
-
-      <div class="TAG_buttom">
-        <div class="TAG_buttom_size">
-          <div class="TAG_buttom_left">
-            <div class="TAG_buttom_img">
-              <img class="school" src="../../assets/images/school.svg" />
-              <img class="ArtFont" src="../../assets/images/Artfont.svg" />
-            </div>
-            <div class="TAG_link">相关链接</div>
-            <div class="TAG_link">相关链接</div>
-            <div class="TAG_link">相关链接</div>
-            <div class="TAG_renai">
-              版权所有@2015 天津仁爱学院 津ICP备19010746号
-            </div>
-          </div>
-          <div class="TAG_buttom_right">
-            <div class="QRcode"></div>
-            <div class="QRcode"></div>
-          </div>
-        </div>
-      </div>
+      <AdminBottom />
     </div>
   </div>
 </template>
@@ -894,6 +874,10 @@
 
 
 <script setup lang="lass"  >
+
+//引入底部
+import AdminBottom from '@/components/admin/AdminBottom.vue'
+
 
 import { ArrowDown } from '@element-plus/icons-vue'
 import TEditor from '@/components/TEditor.vue'
