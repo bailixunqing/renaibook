@@ -575,7 +575,7 @@
                   type="index"
                   style="width: 83px"
                   label="#"
-                ></el-table-column>
+                ></el-table-column>5
                 <el-table-column prop="user_id" label="标题"></el-table-column>
                 <el-table-column
                   prop="user_name"
@@ -747,17 +747,20 @@
             <el-form-item label="作者">
               <el-input v-model="form.name"></el-input>
             </el-form-item>
+            
+            <div style="color: black; font-size: large; font-weight: bold">
+              报道概述
+            </div>
+            <div class="TAG_main_write">
+              <div style="margin-right: 18px !important;box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);    border-radius: 20px;">
+             <el-input   v-model="textarea"  clearable />
+              </div>
+            </div>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
               <TEditor style="height: 400px" ref="editor" v-model="value" />
-            </div>
-            <div style="color: black; font-size: large; font-weight: bold">
-              活动概述
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 200px" ref="editor" v-model="value" />
             </div>
             <div style="text-align: left">
               <el-upload
@@ -799,16 +802,18 @@
               <el-input v-model="form.name"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
+              报道概述
+            </div>
+            <div class="TAG_main_write">
+              <div style="margin-right: 18px !important;box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);    border-radius: 20px;">
+             <el-input   v-model="textarea"  clearable />
+              </div>
+            </div>
+            <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
               <TEditor style="height: 400px" ref="editor" v-model="value" />
-            </div>
-            <div style="color: black; font-size: large; font-weight: bold">
-              活动概述
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 200px" ref="editor" v-model="value" />
             </div>
             <el-checkbox
               label="显示图片"
@@ -1024,7 +1029,7 @@ const axios = require("axios")
 
 export default {
     name:'admin',
-    components: {TEditor},
+    components: {TEditor,AdminTop},
     data() {
       let activeName= '1';//左边菜单栏
       let current=11; //其实菜单栏
@@ -1084,6 +1089,7 @@ export default {
         author_title:"adsadsa",
         activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
          form,value_1:"",
+         textarea:"",
         search: '',//搜索
        
         options: [{
@@ -1500,8 +1506,10 @@ export default {
   backdrop-filter: blur(14px) !important;
 }
 
+
 :deep(.el-table__inner-wrapper::before) {
   background-color: rgb(255, 255, 255);
+  border-radius: 20px;
 }
 
 :deep(.el-textarea__inner) {
@@ -1636,6 +1644,7 @@ export default {
 :deep(.el-form-item__content) {
   margin-left: 20px;
   background-color: #f7fafc;
+  box-shadow: 0 0 0 1px #0d52a17d inset;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
