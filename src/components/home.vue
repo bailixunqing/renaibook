@@ -393,14 +393,16 @@ export default {
   background-color: #e5e5e5;
   height: 1116px;
   width: 100%;
+
   top: 750px;
 }
 .block_1 {
-  position: absolute;
+  position: relative;
   width: 502px;
   height: 553px;
-  left: 360px;
-  top: 61px;
+  margin-top:61px ;
+  margin-left:360px ;
+ 
 
   background: #ffffff;
   /* 大块投影 */
@@ -413,6 +415,8 @@ export default {
   cursor: pointer;
   display: block;
   position: absolute;
+  margin-top:28px;
+  margin-left:33px;
   width: 80px;
   height: 28px;
   left: 33px;
@@ -694,11 +698,11 @@ export default {
   background: #eaeaea;
 }
 .block_3 {
-  position: absolute;
+  position: relative;
   width: 1201px;
   height: 341px;
   left: 359px;
-  top: 679px;
+  top: 50px;
 
   background: #ffffff;
   /* 基础投影 */

@@ -73,7 +73,7 @@ export default {
   position: absolute;
   width: 270px;
   height: 50px;
-  margin: 28px 0 0 337px;
+  margin: 15px 0 0 100px;
 }
 
 .nav {

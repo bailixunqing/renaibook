@@ -1,33 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <div class="TAG_top">
-        <div class="TAG_a" @click="$router.push({ name: 'home' })">
-          天津仁爱学院图书馆首页
-        </div>
-        <div class="head">
-          <img src="../../assets/images/reaai.svg" />
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              欢迎超级用户
-              <el-icon class="el-icon--right">
-                <arrow-down style="color: white" />
-              </el-icon>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item @click="select(999)">
-                  修改密码</el-dropdown-item
-                >
-                <el-dropdown-item>退出</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </div>
-        <div class="TAG_top_img">
-          <img src="../../assets/images/setting.svg" />
-        </div>
-      </div>
+      <AdminTop />
       <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
@@ -59,14 +33,14 @@
                     round
                     class="TAG_left_button"
                     @click="select(21)"
-                    >目录编辑</el-button
+                    >编辑文章</el-button
                   >
                   <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
                     @click="select(22)"
-                    >推送内容</el-button
+                    >推送文章</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -173,7 +147,7 @@
                     type="primary"
                     round
                     class="TAG_left_button"
-                    @click="select()"
+                    @click="select(82)"
                     >新建服务</el-button
                   >
                 </el-row>
@@ -355,28 +329,10 @@
           </div>
 
           <!-- 右:图书指南-->
-          <!-- 右:编辑导航-->
+          <!-- 右:编辑文章-->
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">编辑导航</div>
-            </div>
-
-            <el-divider></el-divider>
-
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button type="success" round class="TAG_right_on"
-                >保存并返回</el-button
-              >
-            </div>
-          </div>
-          <!-- 右:图书指南-->
-          <!-- 右:推送文章-->
-          <div class="TAG_rght_2" v-if="show(22)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">推送文章</div>
+              <div class="TAG_right_admin_left">编辑文章</div>
             </div>
             <el-divider></el-divider>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -386,9 +342,62 @@
               <el-cascader
                 v-model="value"
                 :options="options"
-                @change="handleChange"
+                clearable
               ></el-cascader>
             </div>
+
+            <div style="color: black; font-size: large; font-weight: bold">
+              编辑内容
+            </div>
+            <div class="TAG_main_write">
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                @input="content_value_change"
+                v-model="value"
+              />
+            </div>
+
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="notice_sub(value)"
+                >保存并返回</el-button
+              >
+            </div>
+          </div>
+
+          <!-- 右:图书指南-->
+          <!-- 右:新建文章-->
+          <div class="TAG_rght_2" v-if="show(22)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">新建文章</div>
+            </div>
+            <el-divider></el-divider>
+            <div style="color: black; font-size: large; font-weight: bold">
+              创建目录
+            </div>
+            <el-select
+              v-model="value"
+              multiple
+              filterable
+              allow-create
+              default-first-option
+              :reserve-keyword="false"
+              placeholder="输入创建目录"
+            >
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
 
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
@@ -465,7 +474,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open(0, scope)"
+                      @click="open"
                       >删除</el-button
                     >
                   </template>
@@ -827,31 +836,173 @@
               >
             </div>
           </div>
+          <!-- 右：合作数据库-->
+          <!-- 右:中文数据库-->
+          <div class="TAG_rght_2" v-if="show(61)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">中文数据库</div>
+            </div>
+            <el-divider></el-divider>
+          </div>
+
+          <!-- 右：合作数据库-->
+          <!-- 右:外文数据库-->
+
+          <div class="TAG_rght_2" v-if="show(62)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">外文数据库</div>
+            </div>
+            <el-divider></el-divider>
+          </div>
+          <!-- 右：合作数据库-->
+          <!-- 右:试用数据库-->
+          <div class="TAG_rght_2" v-if="show(63)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">试用数据库</div>
+            </div>
+            <el-divider></el-divider>
+          </div>
+          <!-- 右：馆藏资源-->
+          <!-- 右: 资源管理-->
+          <div class="TAG_rght_2" v-if="show(71)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">资源管理</div>
+            </div>
+            <el-divider></el-divider>
+          </div>
+
+          <!-- 右：馆内服务-->
+          <!-- 右: 服务管理-->
+          <div class="TAG_rght_2" v-if="show(81)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">服务管理</div>
+            </div>
+            <el-divider></el-divider>
+            <el-row>
+              <el-form-item label="主题">
+                <el-input
+                  v-model="search"
+                  placeholder="请输入关键字"
+                ></el-input>
+              </el-form-item>
+            </el-row>
+            <div class="TAG_right_admin_table">
+              <el-table
+                :data="
+                  tableData.filter(
+                    (data) =>
+                      !search ||
+                      data.name.toLowerCase().includes(search.toLowerCase())
+                  )
+                "
+              >
+                <el-table-column
+                  type="index"
+                  label="#"
+                  style="width: 83px"
+                ></el-table-column>
+                <el-table-column prop="id" label="ID工号"></el-table-column>
+                <el-table-column prop="name" label="姓名"></el-table-column>
+                <el-table-column label="操作">
+                  <template #default="scope">
+                    {{ scope.row.date }}
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 76px"
+                      @click="select(811)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
+                        width: 76px;
+                        background-color: #e27172;
+                        margin-left: 26px;
+                        font-size: 15px;
+                      "
+                      @click="open"
+                      >删除</el-button
+                    >
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
+          <!-- 右：馆内服务-->
+          <!-- 右: 修改服务-->
+          <div class="TAG_rght_2" v-if="show(811)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">修改服务</div>
+            </div>
+            <el-divider></el-divider>
+            <el-form-item label="类型">
+              <el-input v-model="form.title"></el-input>
+            </el-form-item>
+            <el-form-item label="姓名">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="create_notice()"
+                >保存并返回</el-button
+              >
+            </div>
+          </div>
+
+          <!-- 右：馆内服务-->
+          <!-- 右: 新建服务-->
+          <div class="TAG_rght_2" v-if="show(82)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">新建服务</div>
+            </div>
+            <el-divider></el-divider>
+            <el-form-item label="服务">
+              <el-input v-model="form.title"></el-input>
+            </el-form-item>
+            <el-form-item label="姓名">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <div style="color: black; font-size: large; font-weight: bold">
+              编辑内容
+            </div>
+            <div class="TAG_main_write">
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+              />
+            </div>
+
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="create_notice()"
+                >保存并返回</el-button
+              >
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- admin-->
-
-      <div class="TAG_buttom">
-        <div class="TAG_buttom_size">
-          <div class="TAG_buttom_left">
-            <div class="TAG_buttom_img">
-              <img class="school" src="../../assets/images/school.svg" />
-              <img class="ArtFont" src="../../assets/images/Artfont.svg" />
-            </div>
-            <div class="TAG_link">相关链接</div>
-            <div class="TAG_link">相关链接</div>
-            <div class="TAG_link">相关链接</div>
-            <div class="TAG_renai">
-              版权所有@2015 天津仁爱学院 津ICP备19010746号
-            </div>
-          </div>
-          <div class="TAG_buttom_right">
-            <div class="QRcode"></div>
-            <div class="QRcode"></div>
-          </div>
-        </div>
-      </div>
+      <AdminBottom />
     </div>
   </div>
 </template>
@@ -859,9 +1010,15 @@
 
 
 <script setup lang="lass"  >
-
-import { ArrowDown } from '@element-plus/icons-vue'
+//引入头部
+import AdminTop from '@/components/admin/AdminTop.vue'
+//引入底部
+import AdminBottom from '@/components/admin/AdminBottom.vue'
+//引入富文本
 import TEditor from '@/components/TEditor.vue'
+//引入element依赖
+import { ArrowDown } from '@element-plus/icons-vue'
+
 const axios = require("axios")
 
 
@@ -1178,13 +1335,6 @@ export default {
   margin-bottom: 20px;
 }
 
-.example-showcase .el-dropdown-link {
-  cursor: pointer;
-  color: var(--el-color-primary);
-  display: flex;
-  align-items: center;
-}
-
 :deep(.el-overlay.is-message-box .el-overlay-message-box) {
   background-color: #1a1a1a2b !important;
   backdrop-filter: blur(14px) !important;
@@ -1237,15 +1387,6 @@ export default {
 .TAG_top_img {
   z-index: -1;
   float: right;
-}
-
-.el-dropdown {
-  color: rgb(255, 255, 255);
-  padding-top: 25px;
-  padding-right: 233px;
-  float: right;
-  font-weight: bold;
-  font-size: 18px;
 }
 
 .TAG {
@@ -1304,6 +1445,16 @@ export default {
   margin-top: 2px;
   margin-right: 27px;
   text-align: right;
+}
+
+:deep(.el-cascader) {
+  width: 39%;
+}
+
+:deep(.el-select) {
+  width: 39%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .TAG_main_write {
