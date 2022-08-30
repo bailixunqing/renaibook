@@ -53,7 +53,8 @@ export default {
     this.Notice.author = "Admin";
     this.Notice.date = data.gmtCreate.replace(/-/g, ".");
     this.Notice.text = data.content;
-    this.Notice.text = data.content.replace(/\n/g, "<br>");
+    // this.Notice.text = data.content.replace(/\n/g, "<br>");
+    this.Notice.text = data.content.replace(/"/g, "\"");
     console.log(this.Notice);
   },
 };
@@ -199,11 +200,11 @@ export default {
   background: #eaeaea;
 }
 .text {
-  white-space: pre-wrap;
+  /* white-space: pre-wrap;
   word-break: break-all;
   overflow: hidden;
   display: flex;
-  text-align: justify;
+  text-align: justify; */
   margin: 0 auto;
   padding-top: 40px;
   width: 1099px;

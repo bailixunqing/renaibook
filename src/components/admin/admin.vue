@@ -1,7 +1,33 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop />
+      <div class="TAG_top">
+        <div class="TAG_a" @click="$router.push({ name: 'home' })">
+          天津仁爱学院图书馆首页
+        </div>
+        <div class="head">
+          <img src="../../assets/images/reaai.svg" />
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              欢迎超级用户
+              <el-icon class="el-icon--right">
+                <arrow-down style="color: white" />
+              </el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="select(999)">
+                  修改密码</el-dropdown-item
+                >
+                <el-dropdown-item>退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+        <div class="TAG_top_img">
+          <img src="../../assets/images/setting.svg" />
+        </div>
+      </div>
       <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
@@ -28,19 +54,19 @@
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
                 <el-row>
-                   <el-button
+                  <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
                     @click="select(21)"
-                    >编辑文章</el-button
+                    >目录编辑</el-button
                   >
                   <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
                     @click="select(22)"
-                    >推送文章</el-button
+                    >推送内容</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -328,11 +354,29 @@
             </div>
           </div>
 
-           <!-- 右:图书指南-->
-          <!-- 右:编辑文章-->
+          <!-- 右:图书指南-->
+          <!-- 右:编辑导航-->
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">编辑文章</div>
+              <div class="TAG_right_admin_left">编辑导航</div>
+            </div>
+
+            <el-divider></el-divider>
+
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button type="success" round class="TAG_right_on"
+                >保存并返回</el-button
+              >
+            </div>
+          </div>
+          <!-- 右:图书指南-->
+          <!-- 右:推送文章-->
+          <div class="TAG_rght_2" v-if="show(22)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">推送文章</div>
             </div>
             <el-divider></el-divider>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -342,62 +386,9 @@
               <el-cascader
                 v-model="value"
                 :options="options"
-                clearable
+                @change="handleChange"
               ></el-cascader>
             </div>
-
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                @input="content_value_change"
-                v-model="value"
-              />
-            </div>
-
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="notice_sub(value)"
-                >保存并返回</el-button
-              >
-            </div>
-          </div>
-
-          <!-- 右:图书指南-->
-          <!-- 右:新建文章-->
-          <div class="TAG_rght_2" v-if="show(22)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">新建文章</div>
-            </div>
-            <el-divider></el-divider>
-            <div style="color: black; font-size: large; font-weight: bold">
-              创建目录
-            </div>
-            <el-select
-              v-model="value"
-              multiple
-              filterable
-              allow-create
-              default-first-option
-              :reserve-keyword="false"
-              placeholder="输入创建目录"
-            >
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
 
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
@@ -474,7 +465,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open"
+                      @click="open(0, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -840,7 +831,27 @@
       </div>
 
       <!-- admin-->
-      <AdminBottom />
+
+      <div class="TAG_buttom">
+        <div class="TAG_buttom_size">
+          <div class="TAG_buttom_left">
+            <div class="TAG_buttom_img">
+              <img class="school" src="../../assets/images/school.svg" />
+              <img class="ArtFont" src="../../assets/images/Artfont.svg" />
+            </div>
+            <div class="TAG_link">相关链接</div>
+            <div class="TAG_link">相关链接</div>
+            <div class="TAG_link">相关链接</div>
+            <div class="TAG_renai">
+              版权所有@2015 天津仁爱学院 津ICP备19010746号
+            </div>
+          </div>
+          <div class="TAG_buttom_right">
+            <div class="QRcode"></div>
+            <div class="QRcode"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -848,21 +859,15 @@
 
 
 <script setup lang="lass"  >
-//引入头部
-import AdminTop from '@/components/admin/AdminTop.vue'
-//引入底部
-import AdminBottom from '@/components/admin/AdminBottom.vue'
-//引入富文本
-import TEditor from '@/components/TEditor.vue'
-//引入element依赖
-import { ArrowDown } from '@element-plus/icons-vue'
 
+import { ArrowDown } from '@element-plus/icons-vue'
+import TEditor from '@/components/TEditor.vue'
 const axios = require("axios")
 
 
 export default {
     name:'admin',
-    components: {AdminTop,TEditor},
+    components: {TEditor},
     data() {
       let activeName= '1';//左边菜单栏
       let current=11; //其实菜单栏
@@ -871,8 +876,8 @@ export default {
       let dialogVisible= false;
       let value="";//富文本
       let form= {
-          name: '这是名字',
-          title:'这是标题'
+          name: '',
+          title:''
         };
       let tableData= [
         {
@@ -979,16 +984,31 @@ export default {
         console.log(this.value);
       },
       //删除按钮
-       open() {
+       open(i,e) {
+        console.log(i+"    "+e.row);
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           center: true
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
+          if(i==0)
+          {
+            this.Delete_Notice(e.row)
+            
+           setTimeout(() => {
+              this.notice_init();
+         }, 1000);
+            
+
+              this.$message({
+              type: 'success',
+              message: '删除成功!'
+              });
+              
+            
+
+          }
+           
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -1005,6 +1025,18 @@ export default {
       select(i) {
         this.current=i;
       },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
+      //<=============================================公告===================================================>
+      //<=============================================公告===================================================>
+      //<=============================================公告===================================================>
+      //<=============================================公告===================================================>
+      
       notice_init()
       {
         let string1;
@@ -1028,32 +1060,24 @@ export default {
           console.log(err);
         });
       },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      },
-      //公告
       create_notice(){
-        let params={
-              title: this.form.title,
-              content:"12312312312",
-              uid:this.form.name
-            };
-          console.log("文件",params)
+        
          axios
           .post("/api" + "/notice/insert", null, {
             params: {
               title: this.form.title,
               content:this.value,
-              uid:this.form.name
+              uid:this.form.name,
+              token:sessionStorage.getItem("token")
             },
           })
           .then((res) => {
             alert("添加成功");
-            this.value=""
+            this.$refs.editor.$data.contentValue=""
+            
+            this.form.title="";
+            this.form.name="";
+            this.notice_init();
           })
           .catch((err) => {
             console.log(err);
@@ -1062,37 +1086,38 @@ export default {
         
       },
       //
-      delete_notice(e)
+      Delete_Notice(e)
       {
-
-        console.log(e.id)
         axios
           .post("/api" + "/notice/delete", null, {
             params: {
-              id:e.id
+              id:e.id,
+              token:sessionStorage.getItem("token")
             },
           })
           .then((res) => {
-            alert("删除成功");
-            this.notice_init()
-      
+            console.log("delete_success")
+            return true;
+            
+            //this.notice_init()
+
           })
           .catch((err) => {
             console.log(err);
-            alert("删除失败");
-
-
+            return false;
+            
           });
       },
-      notice_sub(e)
-      {
-        console.log(e);
-      }
-     
+      //<=============================================公告===================================================>
+      //<=============================================公告===================================================>
+      //<=============================================公告===================================================>
+      //<=============================================公告===================================================>
+      
     },
     mounted:function ()
     {
-      this.notice_init()
+      this.notice_init();
+
     },
 }
 
@@ -1153,7 +1178,12 @@ export default {
   margin-bottom: 20px;
 }
 
-
+.example-showcase .el-dropdown-link {
+  cursor: pointer;
+  color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
+}
 
 :deep(.el-overlay.is-message-box .el-overlay-message-box) {
   background-color: #1a1a1a2b !important;
@@ -1209,7 +1239,14 @@ export default {
   float: right;
 }
 
-
+.el-dropdown {
+  color: rgb(255, 255, 255);
+  padding-top: 25px;
+  padding-right: 233px;
+  float: right;
+  font-weight: bold;
+  font-size: 18px;
+}
 
 .TAG {
   width: 1240px;
@@ -1267,16 +1304,6 @@ export default {
   margin-top: 2px;
   margin-right: 27px;
   text-align: right;
-}
-
-:deep(.el-cascader){
-  width: 33%;
-}
-
-:deep(.el-select){
-  width: 33%;
-  margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .TAG_main_write {

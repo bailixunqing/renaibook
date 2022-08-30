@@ -135,15 +135,15 @@ export default {
         return false;
       } else {
         axios
-          .post("/api" + "/user/search", null, {
+          .post("/api" + "/user/submit", null, {
             params: {
-              id: this.account,
+              idCard: this.account,
+              password:this.password
             },
           })
           .then((res) => {
-            if (res.data.data[0].password == this.password)
-              console.log(res.data.data[0].password);
-
+            console.log(res.data.token);
+            sessionStorage.setItem("token", res.data.token);
             console.log("success");
             sessionStorage.setItem("adminlogin", true);
 
