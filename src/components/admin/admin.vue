@@ -340,7 +340,7 @@
             </div>
             <div class="block">
               <el-cascader
-                v-model="value"
+                v-model="menu_number"
                 :options="options"
                 clearable
               ></el-cascader>
@@ -366,7 +366,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="notice_sub(value)"
+                @click="total_menu(menu_number,value)"
                 >保存并返回</el-button
               >
             </div>
@@ -397,9 +397,9 @@
                 :label="item.label"
                 :value="item.value"
               />
+             
             </el-select>
-
-            <div style="color: black; font-size: large; font-weight: bold">
+             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
@@ -419,10 +419,11 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="notice_sub(value)"
+                @click="total_menu(item,value)"
                 >保存并返回</el-button
               >
             </div>
+            
           </div>
 
           <!-- 右：通知公告-->
@@ -1041,6 +1042,7 @@ export default {
           name: '',
           title:''
         };
+        var author_title;
       let tableData= [
         {
             id: '50132125664',
@@ -1085,14 +1087,8 @@ export default {
             name: '七大姑',
        },
        ];
-      return {
-        author_title:"adsadsa",
-        activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
-         form,value_1:"",
-         textarea:"",
-        search: '',//搜索
        
-        options: [{
+        let options= [{
           value: 'jiyu',
           label: '馆长寄语',
           children: [{
@@ -1119,7 +1115,14 @@ export default {
             value: 'wenzhong',
             label: '文中馆'
           }]
-        }],
+        }];
+      return {
+        author_title,
+        activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
+         form,value_1:"",
+         textarea:"",
+        search: '',//搜索
+       options,
         tableData,
         value
       };
@@ -1195,6 +1198,38 @@ export default {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
+
+
+
+
+
+
+    total_menu(menu_number,value)
+    {
+      console.log(menu_number+"    "+value);
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
