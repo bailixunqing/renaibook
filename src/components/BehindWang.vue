@@ -15,17 +15,19 @@
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
           <el-collapse-item title="馆长寄语" @click="select(1)" name="1">
           </el-collapse-item>
-          <el-collapse-item title="本馆简介" name="2"> </el-collapse-item>
-          <el-collapse-item title="馆藏分布" name="3"> </el-collapse-item>
-          <el-collapse-item title="开放时间" name="4"> </el-collapse-item>
-          <el-collapse-item title="入馆须知" name="5"> </el-collapse-item>
-          <el-collapse-item title="组织机构" name="6"> </el-collapse-item>
-          <el-collapse-item title="联系我们" name="7"> </el-collapse-item>
-          <el-collapse-item title="馆内服务" name="8"> </el-collapse-item>
+          <el-collapse-item title="本馆简介" @click="select(2)" name="2"> </el-collapse-item>
+          <el-collapse-item title="馆藏分布" @click="select(3)" name="3"> </el-collapse-item>
+          <el-collapse-item title="开放时间" @click="select(4)" name="4"> </el-collapse-item>
+          <el-collapse-item title="入馆须知" @click="select(5)" name="5"> </el-collapse-item>
+          <el-collapse-item title="组织机构" @click="select(6)" name="6"> </el-collapse-item>
+          <el-collapse-item title="联系我们" @click="select(7)" name="7"> </el-collapse-item>
+          <el-collapse-item title="馆内服务" @click="select(8)" name="8"> </el-collapse-item>
         </el-collapse>
       </div>
       <div class="right">
         <div class="text" v-html="value" v-if="show(1)"></div>
+        <div class="text" v-html="value_2" v-if="show(2)"></div>
+        <div class="text" v-html="value_3" v-if="show(3)"></div>
       </div>
     </div>
     <!-- 页面底 -->
@@ -45,8 +47,7 @@ export default {
   data() {
   
     let current = 0;
-    var value =
-      '<p style="margin: 0px; padding: 0px; font-family: \'Microsoft YaHei\'; background-color: #ffffff; text-align: center;"><span style="margin: 0px; padding: 0px; font-size: 16px;">你好啊世界</span></p><p style="margin: 0px; padding: 0px; font-family: \'Microsoft YaHei\'; background-color: #ffffff;"><span style="margin: 0px; padding: 0px; font-size: 16px;">&nbsp; &nbsp; &nbsp; <span style="color: #e03e2d;">&nbsp;i喜喜喜喜喜喜休息撒迪啊上帝萨蒂阿斯蒂萨达萨达萨达萨达萨达阿斯顿阿萨大赛的撒的阿萨大赛大苏打啊实打实大苏打阿斯顿阿斯顿阿萨的阿萨大赛的阿<span style="margin: 0px; padding: 0px;">。<span style="margin: 0px; padding: 0px; text-align: justify; text-indent: 32px;">学生会退会，发生了会如何，不发生又会如何。 这是不可避免的。 了解清楚学生会退会到底是一种怎么样的存在，是解决一切问题的关键。这样看来，可是，即使是这样，学生会退会的出现仍然代表了一定的意义。 本人也是经过了深思熟虑，在每个日日夜夜思考这个问题。 马云曾经提到过，最大的挑战和突破在于用人，而用人最大的突破在于信任人。这启发了我。学生会退会因何而发生？白哲特曾经说过，坚强的信念能赢得强者的心，并使他们变得更坚强。这句话把我们带到了一个新的维度去思考这个问题：那么，要想清楚，学生会退会，到底是一种怎么样的存在。</span></span></span></span></p><p style="margin: 0px; padding: 0px; font-family: \'Microsoft YaHei\'; background-color: #ffffff;"><span style="margin: 0px; padding: 0px; font-size: 16px;"><span style="margin: 0px; padding: 0px;"><span style="margin: 0px; padding: 0px; text-align: justify; text-indent: 32px;">&nbsp; &nbsp; &nbsp; &nbsp; 在这种不可避免的冲突下，我们必须解决这个问题。 一般来讲，我们都必须务必慎重的考虑考虑。 生活中，若学生会退会出现了，我们就不得不考虑它出现了的事实。 问题的关键究竟为何？ 经过上述讨论，在这种不可避免的冲突下，我们必须解决这个问题。 一般来讲，我们都必须务必慎重的考虑考虑。 总结的来说，学生会退会，发生了会如何，不发生又会如何。 既然如此，学生会退会似乎是一种巧合，但如果我们从一个更大的角度看待问题，这似乎是一种不可避免的事实。 黑格尔曾经提到过，只有永远躺在泥坑里的人，才不会再掉进坑里。带着这句话，我们还要更加慎重的审视这个问题： 吉姆&middot;罗恩说过一句著名的话，要么你主宰生活，要么你被生活主宰。这句话把我们带到了一个新的维度去思考这个问题：现在，解决学生会退会的问题，是非常非常重要的。 所以，问题的关键究竟为何？ 查尔斯&middot;史考伯曾经提到过，一个人几乎可以在任何他怀有无限热忱的事情上成功。 这启发了我。</span></span></span></p>';
+    var value=0;
     const Notice = [];
     const activities = [
       {
@@ -68,7 +69,7 @@ export default {
         img: "",
       },
     ];
-    return { Notice, activities, value, current };
+    return { Notice, activities,value, value_1:"", current,value_2:"",value_3:"" };
   },
   methods: {
     show(i)

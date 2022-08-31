@@ -11,6 +11,8 @@ body,
   height: 100%;
   display: grid;
   justify-content: center;
+   margin: 0;
+  padding: 0;
 }
 
 * {
