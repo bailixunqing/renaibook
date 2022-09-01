@@ -312,11 +312,7 @@
               <el-checkbox label="活动报道" name="type"></el-checkbox>
               <el-checkbox label="合作数据库" name="type"></el-checkbox>
               <el-checkbox label="馆藏资源" name="type"></el-checkbox>
-              <el-checkbox
-                label="馆内服务"
-                name="type"
-               
-              ></el-checkbox>
+              <el-checkbox label="馆内服务" name="type"></el-checkbox>
             </el-form-item>
             <div class="TAG_right_buttom">
               <el-button type="success" round class="TAG_right_back"
@@ -473,7 +469,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open(1,scope)"
+                      @click="open(1, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -1081,12 +1077,12 @@ export default {
        
         let options= [
           {
-          value: '11',
+          value: '1-1-馆长寄语',
           label: '馆长寄语',
           
         }, {
-          value: '1-2-本馆介绍',
-          label: '本馆介绍',
+          value: '1-2-本馆简介',
+          label: '本馆简介',
           
         }, {
           value: '1-3-馆藏分布',
@@ -1101,26 +1097,19 @@ export default {
           value: '1-5-入馆须知',
           label: '入馆须知',
           
+        },
+        {
+          value: '1-6-组织机构',
+          label: '组织机构',
+          
         }, {
-          value: '1-6-联系我们',
+          value: '1-7-联系我们',
           label: '联系我们',
-          children: [{
-            value: 'basic',
-            label: '联系方式'
-          }, {
-            value: '2-2',
-            label: '来访预约'
-          }]
+          
         }, {
-          value: 'gaungshefengmao',
-          label: '馆舍风貌',
-          children: [{
-            value: 'zhognxin',
-            label: '中心馆'
-          }, {
-            value: 'wenzhong',
-            label: '文中馆'
-          }]
+          value: '1-8-馆内服务',
+          label: '馆内服务',
+          
         }];
       return {
         author_title,

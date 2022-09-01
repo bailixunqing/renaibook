@@ -25,9 +25,14 @@
         </el-collapse>
       </div>
       <div class="right">
-        <div class="text" v-html="value" v-if="show(1)"></div>
-        <div class="text" v-html="value_2" v-if="show(2)"></div>
-        <div class="text" v-html="value_3" v-if="show(3)"></div>
+        <div class="text" v-html="Menu[0]" v-if="show(1)"></div>
+        <div class="text" v-html="Menu[1]" v-if="show(2)"></div>
+        <div class="text" v-html="Menu[2]" v-if="show(3)"></div>
+        <div class="text" v-html="Menu[3]" v-if="show(4)"></div>
+        <div class="text" v-html="Menu[4]" v-if="show(5)"></div>
+        <div class="text" v-html="Menu[5]" v-if="show(6)"></div>
+        <div class="text" v-html="Menu[6]" v-if="show(7)"></div>
+        <div class="text" v-html="Menu[7]" v-if="show(8)"></div>
       </div>
     </div>
     <!-- 页面底 -->
@@ -48,28 +53,10 @@ export default {
   
     let current = 0;
     var value=0;
-    const Notice = [];
-    const activities = [
-      {
-        title: "2022年度ProQuest博硕士学位论文订购通知",
-        content:
-          "活动详细描述活动详细描述活动详细描述活动详细描述活动详细描述活动详细描述活",
-        img: "",
-      },
-      {
-        title: "2022年度ProQuest博硕士学位论文订购通知",
-        content:
-          "活动详细描述活动详细描述活动详细描述活动详细描述活动详细描述活动详细描述活",
-        img: "",
-      },
-      {
-        title: "2022年度ProQuest博硕士学位论文订购通知",
-        content:
-          "活动详细描述活动详细描述活动详细描述活动详细描述活动详细描述活动详细描述活",
-        img: "",
-      },
-    ];
-    return { Notice, activities,value, value_1:"", current,value_2:"",value_3:"" };
+   
+    const Menu=[];
+    
+    return { value,current ,Menu};
   },
   methods: {
     show(i)
@@ -87,31 +74,59 @@ export default {
       let data;
       let i = 0;
       axios
-        .get("/api" + "/activity/searchAll")
-        .then((res) => {
-          this.activities = res.data.data;
-          console.log(res.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-      axios
-        .get("/api" + "/notice/searchAll")
+        .get("/api" + "/title/searchAll")
         .then((res) => {
           data = res.data.data;
-          for (i = 0; i < data.length; i++) {
-            data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-            data[i].time = data[i].gmtCreate.substring(0, 7);
-            data[i].time = data[i].time.replace("-", ".");
-            data[i].day = data[i].gmtCreate.substring(8, 10);
+          for(i=0;i<data.length;i++)
+          {
+            if(data[i].insideId=="1-1-馆长寄语")
+            {
+              this.Menu[0]=data[i].content;
+   
+            }
+            if(data[i].insideId=="1-2-本馆简介")
+            {
+              this.Menu[1]=data[i].content;
+
+            }
+            if(data[i].insideId=="1-3-馆藏分布")
+            {
+              this.Menu[2]=data[i].content;
+
+            }
+            if(data[i].insideId=="1-4-开放时间")
+            {
+              this.Menu[3]=data[i].content;
+
+            }
+            if(data[i].insideId=="1-5-入馆须知")
+            {
+              this.Menu[4]=data[i].content;
+
+            }
+            if(data[i].insideId=="1-6-组织机构")
+            {
+              this.Menu[5]=data[i].content;
+
+            }
+            if(data[i].insideId=="1-7-联系我们")
+            {
+              this.Menu[6]=data[i].content;
+         
+            }
+            if(data[i].insideId=="1-8-馆内服务")
+            {
+              this.Menu[7]=data[i].content;
+         
+            }
           }
-          this.Notice = data;
-          console.log(res.data.data);
+          console.log(this.Menu[0]);
+          
         })
         .catch((err) => {
           console.log(err);
         });
+ 
     },
     jump_notice(e) {
       this.$router.push({
@@ -569,7 +584,6 @@ export default {
   margin: 30px 30px 30px 30px;
   margin-bottom: 40px;
 
-  background: black;
 }
 .TAG_5 {
   position: absolute;
