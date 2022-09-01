@@ -264,8 +264,9 @@ export default {
       console.log(this.show);
     },
     init() {
-      let data;
+      let data=[];
       let i=0;
+      let j=0;
       axios
         .get("/api" + "/activity/searchAll")
         .then((res) => {
@@ -279,8 +280,9 @@ export default {
         axios
         .get("/api" + "/notice/searchAll")
         .then((res) => {
+          console.log(res.data.data);
+           data=res.data.data.slice(0,6);
           
-          data=res.data.data;
           for( i=0;i<data.length;i++)
           {
             data[i].gmtCreate=data[i].gmtCreate.substring(0,10)

@@ -21,8 +21,9 @@
         <hr class="line" />
       </div>
       <div class="text" v-html="Notice.text"></div>
+      
     </section>
-
+  <div style="height:300px; margin-top:-1px;clear: both;overflow:hidden;"></div>
     <!-- 页面底 -->
 
     <!-- 页面底 -->
@@ -138,7 +139,7 @@ export default {
 .main {
   margin: 370px;
   width: 1200px;
-  height: 1394px;
+  height: 100%;
   left: 359px;
 
   background: #ffffff;
@@ -208,7 +209,7 @@ export default {
   margin: 0 auto;
   padding-top: 40px;
   width: 1099px;
-  height: 1523px;
+  height: 100%;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;

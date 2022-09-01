@@ -197,7 +197,7 @@
             <div class="TAG_right_admin_table">
               <el-table
                 :data="
-                  tableData.filter(
+                  UserData.filter(
                     (data) =>
                       !search ||
                       data.name.toLowerCase().includes(search.toLowerCase())
@@ -209,8 +209,8 @@
                   label="#"
                   style="width: 83px"
                 ></el-table-column>
-                <el-table-column prop="id" label="ID工号"></el-table-column>
-                <el-table-column prop="name" label="姓名"></el-table-column>
+                <el-table-column prop="idCard" label="ID工号"></el-table-column>
+                <el-table-column prop="username" label="姓名"></el-table-column>
                 <el-table-column label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
@@ -315,7 +315,7 @@
               <el-checkbox
                 label="馆内服务"
                 name="type"
-                class="TAG_right_adminpower_bottom"
+               
               ></el-checkbox>
             </el-form-item>
             <div class="TAG_right_buttom">
@@ -366,7 +366,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="total_menu(menu_number,value)"
+                @click="Total_Menu_Create(menu_number, value)"
                 >保存并返回</el-button
               >
             </div>
@@ -397,9 +397,8 @@
                 :label="item.label"
                 :value="item.value"
               />
-             
             </el-select>
-             <div style="color: black; font-size: large; font-weight: bold">
+            <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
@@ -419,11 +418,10 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="total_menu(item,value)"
+                @click="total_menu(item, value)"
                 >保存并返回</el-button
               >
             </div>
-            
           </div>
 
           <!-- 右：通知公告-->
@@ -475,7 +473,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open"
+                      @click="open(1,scope)"
                       >删除</el-button
                     >
                   </template>
@@ -576,7 +574,8 @@
                   type="index"
                   style="width: 83px"
                   label="#"
-                ></el-table-column>5
+                ></el-table-column
+                >5
                 <el-table-column prop="user_id" label="标题"></el-table-column>
                 <el-table-column
                   prop="user_name"
@@ -748,13 +747,19 @@
             <el-form-item label="作者">
               <el-input v-model="form.name"></el-input>
             </el-form-item>
-            
+
             <div style="color: black; font-size: large; font-weight: bold">
               报道概述
             </div>
             <div class="TAG_main_write">
-              <div style="margin-right: 18px !important;box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);    border-radius: 20px;">
-             <el-input   v-model="textarea"  clearable />
+              <div
+                style="
+                  margin-right: 18px !important;
+                  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+                  border-radius: 20px;
+                "
+              >
+                <el-input v-model="textarea" clearable />
               </div>
             </div>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -806,8 +811,14 @@
               报道概述
             </div>
             <div class="TAG_main_write">
-              <div style="margin-right: 18px !important;box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);    border-radius: 20px;">
-             <el-input   v-model="textarea"  clearable />
+              <div
+                style="
+                  margin-right: 18px !important;
+                  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+                  border-radius: 20px;
+                "
+              >
+                <el-input v-model="textarea" clearable />
               </div>
             </div>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -895,7 +906,7 @@
             <div class="TAG_right_admin_table">
               <el-table
                 :data="
-                  tableData.filter(
+                  UserData.filter(
                     (data) =>
                       !search ||
                       data.name.toLowerCase().includes(search.toLowerCase())
@@ -1043,7 +1054,7 @@ export default {
           title:''
         };
         var author_title;
-      let tableData= [
+      let UserData= [
         {
             id: '50132125664',
             name: '张大三',
@@ -1066,43 +1077,38 @@ export default {
        },
        ];
       let NoticeData= [
-        {
-            id: '50132125664',
-            name: '张大三',
-       },
-        {
-            id: '50132125664',
-            name: '李小四',
-       },
-       {
-            id: '50132125664',
-            name: '王老五',
-        },
-       {
-            id: '50132125664',
-            name: '郭老六',
-       },
-       {
-            id: '50132125664',
-            name: '七大姑',
-       },
        ];
        
-        let options= [{
-          value: 'jiyu',
+        let options= [
+          {
+          value: '11',
           label: '馆长寄语',
-          children: [{
-            value: 'jiyujiyu',
-            label: '馆长寄语',
-          }]
+          
         }, {
-          value: 'lianxi',
+          value: '1-2-本馆介绍',
+          label: '本馆介绍',
+          
+        }, {
+          value: '1-3-馆藏分布',
+          label: '馆藏分布',
+          
+        },  {
+          value: '1-4-开放时间',
+          label: '开放时间',
+          
+        },  
+        {
+          value: '1-5-入馆须知',
+          label: '入馆须知',
+          
+        }, {
+          value: '1-6-联系我们',
           label: '联系我们',
           children: [{
             value: 'basic',
             label: '联系方式'
           }, {
-            value: 'form',
+            value: '2-2',
             label: '来访预约'
           }]
         }, {
@@ -1123,7 +1129,7 @@ export default {
          textarea:"",
         search: '',//搜索
        options,
-        tableData,
+        UserData,
         value
       };
     },
@@ -1157,7 +1163,26 @@ export default {
           cancelButtonText: '取消',
           center: true
         }).then(() => {
+
           if(i==0)
+          {
+            this.Delete_Notice(e.row)
+            
+           setTimeout(() => {
+              this.notice_init();
+         }, 1000);
+            
+
+              this.$message({
+              type: 'success',
+              message: '删除成功!'
+              });
+              
+            
+
+          }
+
+          if(i==1)
           {
             this.Delete_Notice(e.row)
             
@@ -1204,13 +1229,51 @@ export default {
 
 
 
-    total_menu(menu_number,value)
+    Total_Menu_Create(menu_number,value)
     {
-      console.log(menu_number+"    "+value);
+      var insideId=menu_number.toString()
+      console.log(typeof menu_number+"aaa"+value);
+      axios
+          .post("/api" + "/title/insert", null, {
+            params: {
+              insideId:insideId,
+              content:this.value,
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+            alert("添加成功");
+            this.$refs.editor.$data.contentValue=""
+            
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("添加失败");
+          });
     },
 
-
-
+//<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      User_init()
+      {
+        axios
+          .post("/api" + "/user/searchAll", null, {
+            params: {
+              
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+           console.log(res.data.data)
+           this.UserData=res.data.data;
+            
+          })
+          .catch((err) => {
+           
+          });
+      },
 
 
 
@@ -1315,7 +1378,7 @@ export default {
     mounted:function ()
     {
       this.notice_init();
-
+      this.User_init();
     },
 }
 
@@ -1540,7 +1603,6 @@ export default {
   background-color: #1a1a1a2b !important;
   backdrop-filter: blur(14px) !important;
 }
-
 
 :deep(.el-table__inner-wrapper::before) {
   background-color: rgb(255, 255, 255);
