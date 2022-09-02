@@ -128,13 +128,7 @@ export default {
         });
  
     },
-    jump_notice(e) {
-      this.$router.push({
-        name: "Curator_note",
-        params: { Notice: JSON.stringify(e) },
-      });
-      console.log(e);
-    },
+
   },
 
   mounted: function () {

@@ -1,4 +1,4 @@
-<template>
+<template s>
   <div class="body">
     <img class="renai" src="../assets/images/reaai.svg" alt="" />
     <div class="all">
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <div v-if="show">
+  <div v-if="show" class="code_tag">
     <div class="code-back">
       <input type="button" id="checkCode" @click="createCode()" />
       <input type="text" id="input1" />
@@ -58,22 +58,25 @@
   </div>
 </template>
 <script>
+const axios = require("axios");
 export default {
-  name: "login_1",
+  name: "login",
   data() {
     var show = false;
-    var code;
+    var code = "";
     var account = "";
     var password = "";
-    return { code, account, password, show}
+    return { code, account, password, show };
   },
   methods: {
     submitForm(e) {
       console.log(this.account, this.password);
       this.show = !this.show;
-      console.log(this.show);
+
+      this.createCode();
     },
     createCode() {
+      console.log("生成");
       this.code = new Array();
       var codeLength = 4; //验证码的长度
       var checkCode = document.getElementById("checkCode");
@@ -131,14 +134,34 @@ export default {
         createCode();
         return false;
       } else {
-        alert("成功！");
+        axios
+          .post("/api" + "/user/submit", null, {
+            params: {
+              idCard: this.account,
+              password:this.password
+            },
+          })
+          .then((res) => {
+            console.log(res.data.token);
+            sessionStorage.setItem("token", res.data.token);
+            console.log("success");
+            sessionStorage.setItem("adminlogin", true);
+
+            this.$router.push({ name: "admin" });
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("密码输入错误！");
+              this.show = !this.show;
+
+
+          });
+
         return true;
       }
     },
   },
-  mounted: function () {
-    this.createCode();
-  },
+  mounted: function () {},
 };
 </script>
 <style  scoped>

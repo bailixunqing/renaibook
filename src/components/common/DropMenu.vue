@@ -9,17 +9,15 @@
           <li @click="$router.push({ name: 'home' })" class="btli">
             <a href="">首页</a>
           </li>
-          <li class="btli">
+          <li class="btli" @click="$router.push({ name: 'behind' })">
             <a href="">图书馆指南</a>
             <ul class="droplist">
-              <li @click="$router.push({ name: 'Curator_note' })">
-                <a href="">馆长寄语</a>
-              </li>
-              <li><a href="#">本馆介绍</a></li>
-              <li><a href="#">馆藏分布</a></li>
-              <li><a href="#">开放时间</a></li>
-              <li><a href="#">入馆须知</a></li>
-              <li><a href="#">组织机构</a></li>
+              <li  @click="$router.push({ name: 'behind' })"><a href="">馆长寄语</a></li>
+              <li  @click="$router.push({ name: 'behind' })"><a href="">本馆介绍</a></li>
+              <li  @click="$router.push({ name: 'behind' })"><a href="">馆藏分布</a></li>
+              <li  @click="$router.push({ name: 'behind' })"><a href="">开放时间</a></li>
+              <li  @click="$router.push({ name: 'behind' })"><a href="">入馆须知</a></li>
+              <li  @click="$router.push({ name: 'behind' })"><a href="">组织机构</a></li>
             </ul>
           </li>
           <li class="btli"><a href="#">资源</a></li>

@@ -193,23 +193,23 @@
     <div class="TAG_4">
       <div class="library_guide">图书馆指南</div>
       <div class="library_guide_en">Library Guide</div>
-      <div class="tap_1" @click="$router.push({ name: 'Curator_note' })">
+      <div class="tap_1" @click="$router.push({ name: 'behind' })">
         <img class="tap_icon" src="../assets/images/icon5.svg" />
         <h1 class="tap_txt">馆长寄语</h1>
       </div>
-      <div class="tap_2" @click="$router.push({ name: 'Curator_note' })">
+      <div class="tap_2" @click="$router.push({ name: 'behind' })">
         <img class="tap_icon" src="../assets/images/icon6.svg" />
         <h1 class="tap_txt">本馆简介</h1>
       </div>
-      <div class="tap_3" @click="$router.push({ name: 'Curator_note' })">
+      <div class="tap_3" @click="$router.push({ name: 'behind' })">
         <img class="tap_icon" src="../assets/images/icon7.svg" />
         <h1 class="tap_txt">馆藏分布</h1>
       </div>
-      <div class="tap_4" @click="$router.push({ name: 'Curator_note' })">
+      <div class="tap_4" @click="$router.push({ name: 'behind' })">
         <img class="tap_icon" src="../assets/images/icon8.svg" />
         <h1 class="tap_txt">开放时间</h1>
       </div>
-      <div class="tap_5" @click="$router.push({ name: 'Curator_note' })">
+      <div class="tap_5" @click="$router.push({ name: 'behind' })">
         <img class="tap_icon" src="../assets/images/icon9.svg" />
         <h1 class="tap_txt">入馆须知</h1>
       </div>
@@ -280,7 +280,6 @@ export default {
         axios
         .get("/api" + "/notice/searchAll")
         .then((res) => {
-          console.log(res.data.data);
            data=res.data.data.slice(0,6);
           
           for( i=0;i<data.length;i++)
