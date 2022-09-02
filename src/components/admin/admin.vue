@@ -232,7 +232,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open"
+                      @click="open(0,scope)"
                       >删除</el-button
                     >
                   </template>
@@ -291,16 +291,16 @@
             </div>
             <el-divider></el-divider>
             <el-form-item label="工号ID&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.uers_id"></el-input>
+              <el-input type="number" v-model="User_Form.idCard"></el-input>
             </el-form-item>
             <el-form-item label="姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.user_name"></el-input>
+              <el-input v-model="User_Form.username"></el-input>
             </el-form-item>
             <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.user_password"></el-input>
+              <el-input v-model="User_Form.password"></el-input>
             </el-form-item>
             <el-form-item label=""> </el-form-item>
-            <el-form-item label="用户权限">
+            <el-form-item label="用户权限" v-model="User_Form.userPres">
               <el-checkbox
                 label="系统管理"
                 name="type"
@@ -315,10 +315,7 @@
               <el-checkbox label="馆内服务" name="type"></el-checkbox>
             </el-form-item>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button type="success" round class="TAG_right_on"
+              <el-button type="success" round class="TAG_right_on" @click="User_Create()"
                 >保存并返回</el-button
               >
             </div>
@@ -543,7 +540,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="create_notice()"
+                @click="Create_Notice()"
                 >保存并返回</el-button
               >
             </div>
@@ -565,20 +562,20 @@
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
-              <el-table :data="UersData">
+              <el-table :data="ResourceData">
                 <el-table-column
                   type="index"
                   style="width: 83px"
                   label="#"
                 ></el-table-column
                 >5
-                <el-table-column prop="user_id" label="标题"></el-table-column>
+                <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column
-                  prop="user_name"
+                  prop="author"
                   label="作者"
                 ></el-table-column>
                 <el-table-column
-                  prop="user_name"
+                  prop="gmtCreate"
                   label="发布时间"
                 ></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
@@ -602,7 +599,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open"
+                      @click="open(2,scope)"
                       >删除</el-button
                     >
                   </template>
@@ -663,7 +660,7 @@
               <el-button type="success" round class="TAG_right_back"
                 >返回</el-button
               >
-              <el-button type="success" round class="TAG_right_on"
+              <el-button type="success" round class="TAG_right_on" @click="Create_Resource()"
                 >保存并返回</el-button
               >
             </div>
@@ -967,7 +964,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="create_notice()"
+                @click="Create_Notice()"
                 >保存并返回</el-button
               >
             </div>
@@ -1006,7 +1003,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="create_notice()"
+                @click="Create_Notice()"
                 >保存并返回</el-button
               >
             </div>
@@ -1039,6 +1036,12 @@ export default {
     name:'admin',
     components: {TEditor,AdminTop},
     data() {
+      let User_Form={
+        idCard:"",
+        username:"",
+        password:"",
+        userPres:[],
+      }
       let activeName= '1';//左边菜单栏
       let current=11; //其实菜单栏
       let imageUrl= '';
@@ -1072,9 +1075,8 @@ export default {
             name: '七大姑',
        },
        ];
-      let NoticeData= [
-       ];
-       
+      let NoticeData= [];
+      let ResourceData=[];
         let options= [
           {
           value: '1-1-馆长寄语',
@@ -1119,7 +1121,9 @@ export default {
         search: '',//搜索
        options,
         UserData,
-        value
+        value,
+        User_Form,
+        ResourceData
       };
     },
     
@@ -1146,47 +1150,40 @@ export default {
       },
       //删除按钮
        open(i,e) {
-        console.log(i+"    "+e.row);
+        
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           center: true
         }).then(() => {
 
-          if(i==0)
+          if(i==0) //删除用户
           {
-            this.Delete_Notice(e.row)
+            this.Delete_User(e.row)
             
-           setTimeout(() => {
-              this.notice_init();
-         }, 1000);
-            
-
               this.$message({
               type: 'success',
               message: '删除成功!'
               });
-              
             
-
           }
 
           if(i==1)
           {
             this.Delete_Notice(e.row)
-            
-           setTimeout(() => {
-              this.notice_init();
-         }, 1000);
-            
-
+          
               this.$message({
               type: 'success',
               message: '删除成功!'
               });
-              
-            
-
+          }
+          if(i==2)
+          {
+            this.Delete_Resource(e.row)
+              this.$message({
+              type: 'success',
+              message: '删除成功!'
+              });
           }
            
         }).catch(() => {
@@ -1218,7 +1215,104 @@ export default {
 
 
 
-    Total_Menu_Create(menu_number,value)
+   
+
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      User_init()
+      {
+        axios
+          .post("/api" + "/user/searchAll", null, {
+            params: {
+              
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+           console.log(res.data.data)
+           this.UserData=res.data.data;
+            
+          })
+          .catch((err) => {
+           
+          });
+      },
+      User_Create()
+      {
+        console.log(this.User_Form)
+        axios
+          .post("/api" + "/user/insert", null, {
+            params: {
+              idCard:this.User_Form.idCard,
+              username:this.User_Form.username,
+              password:this.User_Form.password,
+              userPres:this.User_Form.userPres,
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+           console.log(res)
+           this.User_Form={
+            idCard:"",
+              username:"",
+              password:"",
+              userPres:[],
+           }
+            alert("创建成功");
+          })
+          .catch((err) => {
+           
+          });
+      },
+
+      Delete_User(e)
+      {
+        axios
+          .post("/api" + "/user/delete", null, {
+            params: {
+              idCard:e.idCard,
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+           location.reload()
+           
+            
+          })
+          .catch((err) => {
+           
+          });
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+      //<=============================================用户===================================================>
+
+
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      
+
+       Total_Menu_Create(menu_number,value)
     {
       var insideId=menu_number.toString()
       console.log(typeof menu_number+"aaa"+value);
@@ -1241,53 +1335,19 @@ export default {
           });
     },
 
-//<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      User_init()
-      {
-        axios
-          .post("/api" + "/user/searchAll", null, {
-            params: {
-              
-              token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-           console.log(res.data.data)
-           this.UserData=res.data.data;
-            
-          })
-          .catch((err) => {
-           
-          });
-      },
+
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
       
-      notice_init()
+      Notice_init()
       {
         let string1;
         let data;
@@ -1310,14 +1370,14 @@ export default {
           console.log(err);
         });
       },
-      create_notice(){
+      Create_Notice(){
         
          axios
           .post("/api" + "/notice/insert", null, {
             params: {
               title: this.form.title,
               content:this.value,
-              uid:this.form.name,
+              author:this.form.name,
               token:sessionStorage.getItem("token")
             },
           })
@@ -1327,7 +1387,7 @@ export default {
             
             this.form.title="";
             this.form.name="";
-            this.notice_init();
+            this.Notice_init();
           })
           .catch((err) => {
             console.log(err);
@@ -1346,15 +1406,16 @@ export default {
             },
           })
           .then((res) => {
-            console.log("delete_success")
-            return true;
+           
+            location.reload()
+           
             
-            //this.notice_init()
+            //this.Notice_init()
 
           })
           .catch((err) => {
             console.log(err);
-            return false;
+          
             
           });
       },
@@ -1362,11 +1423,94 @@ export default {
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
+
+       //<=============================================资源===================================================>
+      //<=============================================资源===================================================>
+      //<=============================================资源===================================================>
+      //<=============================================资源===================================================>
+      
+      Resource_init()
+      {
+        let string1;
+        let data;
+        let i=0;
+         axios
+        .get("/api" + "/resource/searchAll")
+        .then((res) => {
+
+          data=res.data.data;
+          for( i=0;i<data.length;i++)
+          {
+            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
+            
+
+          }
+          this.ResourceData=data
+          console.log(this.ResourceData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      },
+      Create_Resource(){
+        
+         axios
+          .post("/api" + "/resource/insert", null, {
+            params: {
+              title: this.form.title,
+              content:this.value,
+              author:this.form.name,
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+            alert("添加成功");
+            this.$refs.editor.$data.contentValue=""
+            
+            this.form.title="";
+            this.form.name="";
+            this.Resource_init();
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("添加失败");
+          });
+        
+      },
+      //
+      Delete_Resource(e)
+      {
+        axios
+          .post("/api" + "/resource/delete", null, {
+            params: {
+              id:e.id,
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+           
+            location.reload()
+           
+            
+            //this.Notice_init()
+
+          })
+          .catch((err) => {
+            console.log(err);
+          
+            
+          });
+      },
+      //<=============================================资源===================================================>
+      //<=============================================资源===================================================>
+      //<=============================================资源===================================================>
+      //<=============================================资源===================================================>
       
     },
     mounted:function ()
     {
-      this.notice_init();
+      this.Resource_init();
+      this.Notice_init();
       this.User_init();
     },
 }

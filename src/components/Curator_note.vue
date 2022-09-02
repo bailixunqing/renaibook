@@ -51,7 +51,7 @@ export default {
   mounted: function () {
     let data = JSON.parse(this.$route.params.Notice);
     this.Notice.title = data.title;
-    this.Notice.author = "Admin";
+    this.Notice.author = data.author;
     this.Notice.date = data.gmtCreate.replace(/-/g, ".");
     this.Notice.text = data.content;
     // this.Notice.text = data.content.replace(/\n/g, "<br>");
