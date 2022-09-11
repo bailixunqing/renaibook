@@ -61,9 +61,12 @@ import "tinymce/plugins/toc"; //目录生成器
 import "tinymce/plugins/visualblocks"; //显示元素范围
 import "tinymce/plugins/visualchars"; //显示不可见字符
 import "tinymce/plugins/wordcount"; //字数统计
-
+  const axios = require("axios");
 export default {
+
   name: "TEditor",
+  
+
   components: {
     Editor,
   },
@@ -90,7 +93,8 @@ export default {
     },
   },
   data() {
-      var contentValue="";
+    
+    var contentValue="";
     return {
       init: {
         language_url: "/tinymce/langs/zh_CN.js", //引入语言包文件
@@ -133,7 +137,7 @@ export default {
                 "Content-Type": "multipart/form-data",
               },
             };
-            this.$axios
+            axios
               .post(`api/fileTemp`, params, config)
               .then((res) => {
                 if (res.data.code == 200) {
@@ -155,7 +159,6 @@ export default {
     contentValue(newValue) {
       this.contentValue = newValue;
       // console.log(newValue);
-      console.log("change");
       this.$emit("input",this.contentValue);
     },
    
@@ -163,6 +166,7 @@ export default {
   created() {},
   mounted() {
     tinymce.init({});
+    this.contentValue=this.value;
   },
   methods: {
     // 添加相关的事件，可用的事件参照文档=> https://github.com/tinymce/tinymce-vue => All available events

@@ -1,7 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop   @usershow="usershow"   />
+      <AdminTop @usershow="usershow" />
       <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
@@ -158,7 +158,7 @@
 
         <!--右边内容-->
         <div class="TAG_right">
-          <div class="TAG_rght_2" v-if="show(999)" >
+          <div class="TAG_rght_2" v-if="show(999)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">修改密码</div>
             </div>
@@ -377,7 +377,7 @@
             </div>
             <el-divider></el-divider>
 
- <!--被干掉了
+            <!--被干掉了
 
             <div style="color: black; font-size: large; font-weight: bold">
               创建目录
@@ -404,22 +404,13 @@
            -->
 
             <div class="TAG_right_admin_table">
-              <el-table
-                :data="
-                  UserData.filter(
-                    (data) =>
-                      !search ||
-                      data.name.toLowerCase().includes(search.toLowerCase())
-                  )
-                "
-              >
+              <el-table :data="options">
                 <el-table-column
                   type="index"
                   label="#"
                   style="width: 83px"
                 ></el-table-column>
-                <el-table-column prop="idCard" label="目录名"></el-table-column>
-                
+                <el-table-column prop="label" label="目录名"></el-table-column>
 
                 <el-table-column label="操作">
                   <template #default="scope">
@@ -507,7 +498,7 @@
                   label="#"
                 ></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
-                <el-table-column prop="uid" label="作者"></el-table-column>
+                <el-table-column prop="author" label="作者"></el-table-column>
                 <el-table-column
                   prop="gmtCreate"
                   label="发布时间"
@@ -520,7 +511,7 @@
                       type="success"
                       round
                       style="width: 76px"
-                      @click="select(311)"
+                      @click="Notice_update(0, scope)"
                       >修改</el-button
                     >
                     <el-button
@@ -549,10 +540,10 @@
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="author_title"></el-input>
+              <el-input v-model="form.title"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.author_name"></el-input>
+              <el-input v-model="form.name"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
@@ -562,14 +553,23 @@
                 style="height: 400px"
                 @input="content_value_change"
                 v-model="value"
+                :value="value"
               />
             </div>
 
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_back"
+                @click="select(31)"
                 >返回</el-button
               >
-              <el-button type="success" round class="TAG_right_on"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Notice_update(1, 1)"
                 >保存并返回</el-button
               >
             </div>
@@ -1117,6 +1117,7 @@ export default {
       let dialogVisible= false;
       let value="";//富文本
       let form= {
+
           name: '',
           title:''
         };
@@ -1145,7 +1146,8 @@ export default {
        ];
       let NoticeData= [];
       let ResourceData=[];
-        let options= [
+      
+      let options= [
           {
           value: '1-1-馆长寄语',
           label: '馆长寄语',
@@ -1214,7 +1216,7 @@ export default {
       content_value_change(e)
       {
         this.value=e;
-        console.log(this.value);
+       
       },
       //删除按钮
        open(i,e) {
@@ -1239,11 +1241,19 @@ export default {
           if(i==1)
           {
             this.Delete_Notice(e.row)
-          
-              this.$message({
+            this.$message({
               type: 'success',
               message: '删除成功!'
               });
+            location.reload()
+        
+            
+              
+       
+
+
+              
+             
           }
           if(i==2)
           {
@@ -1303,7 +1313,7 @@ export default {
             },
           })
           .then((res) => {
-           console.log(res.data.data)
+           
            this.UserData=res.data.data;
             
           })
@@ -1313,7 +1323,8 @@ export default {
       },
       User_Create()
       {
-        console.log(this.User_Form)
+        
+
         axios
           .post("/api" + "/user/insert", null, {
             params: {
@@ -1325,7 +1336,7 @@ export default {
             },
           })
           .then((res) => {
-           console.log(res)
+    
            this.User_Form={
             idCard:"",
               username:"",
@@ -1387,7 +1398,7 @@ export default {
        Total_Menu_Create(menu_number,value)
     {
       var insideId=menu_number.toString()
-      console.log(typeof menu_number+"aaa"+value);
+    
       axios
           .post("/api" + "/title/insert", null, {
             params: {
@@ -1402,7 +1413,7 @@ export default {
             
           })
           .catch((err) => {
-            console.log(err);
+          
             alert("添加失败");
           });
     },
@@ -1432,89 +1443,111 @@ export default {
           for( i=0;i<data.length;i++)
           {
             data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
-            
-
           }
           this.NoticeData=data
-          console.log(this.NoticeData);
+          console.log("刷新成功")
+       
         })
         .catch((err) => {
-          console.log(err);
+       
         });
       },
       Create_Notice(){
-        //let params = new FormData();
         let params= {
               title: this.form.title,
               content:this.value,
               author:this.form.name,
               token:sessionStorage.getItem("token")
             };
-           // params.append("title", blobInfo.blob());
             let config = {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
             };
             axios
-              .post("/api" + "/notice/insert", params, config)
-              .then((res) => {
-               alert("添加成功");
-            this.$refs.editor.$data.contentValue=""
-            
-            this.form.title="";
-            this.form.name="";
-            this.Notice_init();
-              })
-              .catch(() => {
+                .post("/api" + "/notice/insert", params, config)
+                 .then((res) => {
+                                alert("添加成功");
+                                this.$refs.editor.$data.contentValue=""
+                                this.form.title="";
+                                this.form.name="";
+                                this.Notice_init();
+                        })
+                  .catch(() => {
                 alert("添加失败");
               });
-        //  axios
-        //   .post("/api" + "/notice/insert", null, {
-        //     params: {
-        //       title: this.form.title,
-        //       content:this.value,
-        //       author:this.form.name,
-        //       token:sessionStorage.getItem("token")
-        //     },
-        //   })
-        //   .then((res) => {
-        //     alert("添加成功");
-        //     this.$refs.editor.$data.contentValue=""
-            
-        //     this.form.title="";
-        //     this.form.name="";
-        //     this.Notice_init();
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //     alert("添加失败");
-        //   });
-        
       },
       //
+      Notice_update(i,e)
+      {
+        var that=this
+
+        if(i==0)
+        {
+          console.log(e)
+        this.select(311),
+        this.form.id=e.row.id;
+        this.form.title=e.row.title;
+        this.form.name=e.row.author;
+        this.value=e.row.content;
+      
+        }
+        else if(i==1)
+        {
+         console.log("notice_update_id:")
+         console.log(this.form.id)
+         let params= {
+              id:this.form.id,
+              title: this.form.title,
+              content:this.value,
+              author:this.form.name,
+              token:sessionStorage.getItem("token")
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/notice/update", params, config)
+                 .then((res) => {
+                          this.Notice_init();
+                          this.value=""
+                          this.form.title="";
+                          this.form.name="";
+                          setTimeout(() => {
+                            this.select(31)
+                          }, 1000);
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+        }
+        
+      },
       Delete_Notice(e)
       {
-        axios
-          .post("/api" + "/notice/delete", null, {
-            params: {
+        var that=this;
+         let params= {
               id:e.id,
               token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-           
-            location.reload()
-           
-            
-            //this.Notice_init()
-
-          })
-          .catch((err) => {
-            console.log(err);
-          
-            
-          });
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/notice/delete", params, config)
+                 .then((res) => {
+                        this.Notice_init();
+                        console.log("success")
+                        })
+                  .catch(() => {
+                alert("添加失败");
+                 console.log(err);
+              });
       },
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>

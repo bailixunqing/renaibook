@@ -25,15 +25,18 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 app.mount('#app')
 
-/** 
- * 
-
- 
 
 router.beforeEach((to, from, next) => {
+
     const isLogin = sessionStorage.getItem('adminlogin');
     console.log(isLogin)
-    if (to.name == "admin" && from.name != "login") {
+    const token=sessionStorage.getItem("token");
+    console.log(token);
+    if(token!=null)
+    {
+        next()
+    }
+    else if (to.name == "admin" && from.name != "login") {
         next('/login')
     }
     else
@@ -43,9 +46,7 @@ router.beforeEach((to, from, next) => {
 
  });
 
- 
- * 
-*/
+
 
 
 
