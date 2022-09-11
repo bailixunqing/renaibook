@@ -217,7 +217,10 @@ export default {
   line-height: 218.52%;
   color: #000000;
 }
-
+.text >>>img{
+  width:100% !important;
+  height:100%;
+}
 .TAG_5 {
   position: absolute;
   width: 100%;

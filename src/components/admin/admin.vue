@@ -1443,28 +1443,53 @@ export default {
         });
       },
       Create_Notice(){
-        
-         axios
-          .post("/api" + "/notice/insert", null, {
-            params: {
+        //let params = new FormData();
+        let params= {
               title: this.form.title,
               content:this.value,
               author:this.form.name,
               token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-            alert("添加成功");
+            };
+           // params.append("title", blobInfo.blob());
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+              .post("/api" + "/notice/insert", params, config)
+              .then((res) => {
+               alert("添加成功");
             this.$refs.editor.$data.contentValue=""
             
             this.form.title="";
             this.form.name="";
             this.Notice_init();
-          })
-          .catch((err) => {
-            console.log(err);
-            alert("添加失败");
-          });
+              })
+              .catch(() => {
+                alert("添加失败");
+              });
+        //  axios
+        //   .post("/api" + "/notice/insert", null, {
+        //     params: {
+        //       title: this.form.title,
+        //       content:this.value,
+        //       author:this.form.name,
+        //       token:sessionStorage.getItem("token")
+        //     },
+        //   })
+        //   .then((res) => {
+        //     alert("添加成功");
+        //     this.$refs.editor.$data.contentValue=""
+            
+        //     this.form.title="";
+        //     this.form.name="";
+        //     this.Notice_init();
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //     alert("添加失败");
+        //   });
         
       },
       //
