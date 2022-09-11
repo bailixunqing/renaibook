@@ -1,7 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop />
+      <AdminTop   @usershow="usershow"   />
       <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
@@ -32,15 +32,15 @@
                     type="primary"
                     round
                     class="TAG_left_button"
-                    @click="select(21)"
-                    >编辑文章</el-button
+                    @click="select(22)"
+                    >文章管理</el-button
                   >
                   <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
-                    @click="select(22)"
-                    >推送文章</el-button
+                    @click="select(21)"
+                    >创建文章</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -158,7 +158,7 @@
 
         <!--右边内容-->
         <div class="TAG_right">
-          <div class="TAG_rght_2" v-if="show(999)">
+          <div class="TAG_rght_2" v-if="show(999)" >
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">修改密码</div>
             </div>
@@ -232,7 +232,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open(0,scope)"
+                      @click="open(0, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -315,7 +315,11 @@
               <el-checkbox label="馆内服务" name="type"></el-checkbox>
             </el-form-item>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_on" @click="User_Create()"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="User_Create()"
                 >保存并返回</el-button
               >
             </div>
@@ -325,7 +329,7 @@
           <!-- 右:编辑文章-->
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">编辑文章</div>
+              <div class="TAG_right_admin_left">创建文章</div>
             </div>
             <el-divider></el-divider>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -366,15 +370,19 @@
           </div>
 
           <!-- 右:图书指南-->
-          <!-- 右:新建文章-->
+          <!-- 右:文章管理-->
           <div class="TAG_rght_2" v-if="show(22)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">新建文章</div>
+              <div class="TAG_right_admin_left">文章管理</div>
             </div>
             <el-divider></el-divider>
+
+ <!--被干掉了
+
             <div style="color: black; font-size: large; font-weight: bold">
               创建目录
             </div>
+
             <el-select
               v-model="value"
               multiple
@@ -391,6 +399,63 @@
                 :value="item.value"
               />
             </el-select>
+
+
+           -->
+
+            <div class="TAG_right_admin_table">
+              <el-table
+                :data="
+                  UserData.filter(
+                    (data) =>
+                      !search ||
+                      data.name.toLowerCase().includes(search.toLowerCase())
+                  )
+                "
+              >
+                <el-table-column
+                  type="index"
+                  label="#"
+                  style="width: 83px"
+                ></el-table-column>
+                <el-table-column prop="idCard" label="目录名"></el-table-column>
+                
+
+                <el-table-column label="操作">
+                  <template #default="scope">
+                    {{ scope.row.date }}
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 76px"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
+                        width: 76px;
+                        background-color: #e27172;
+                        margin-left: 26px;
+                        font-size: 15px;
+                      "
+                      >删除</el-button
+                    >
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+
+            <!--被干掉了
+
+
+
+
+
+
+
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
@@ -415,6 +480,8 @@
                 >保存并返回</el-button
               >
             </div>
+
+-->
           </div>
 
           <!-- 右：通知公告-->
@@ -570,10 +637,7 @@
                 ></el-table-column
                 >5
                 <el-table-column prop="title" label="标题"></el-table-column>
-                <el-table-column
-                  prop="author"
-                  label="作者"
-                ></el-table-column>
+                <el-table-column prop="author" label="作者"></el-table-column>
                 <el-table-column
                   prop="gmtCreate"
                   label="发布时间"
@@ -599,7 +663,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open(2,scope)"
+                      @click="open(2, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -660,7 +724,11 @@
               <el-button type="success" round class="TAG_right_back"
                 >返回</el-button
               >
-              <el-button type="success" round class="TAG_right_on" @click="Create_Resource()"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Create_Resource()"
                 >保存并返回</el-button
               >
             </div>
@@ -1192,6 +1260,10 @@ export default {
             message: '已取消删除'
           });
         });
+      },
+      usershow(i){
+        this.current=i;
+        this.show(i);
       },
       show(i){
         if(this.current==i){

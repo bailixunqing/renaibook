@@ -26,6 +26,20 @@
   </div>
 </template>
 
+
+
+<script>
+export default {
+        name: "Son",
+        methods:{
+            select(i){
+                this.$emit("usershow",i);
+            }
+        }
+    }
+</script>
+
+
 <style>
 .TAG_top {
   width: 1660px;
