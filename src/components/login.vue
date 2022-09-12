@@ -34,28 +34,30 @@
             </div>
           </div>
           <div class="finally">
-            <div>
-              <form>
-                <input type="checkbox" id="cbox" value="" checked="checked" />
-                <label for="cbox">自动登录</label>
-              </form>
-              <span>忘记密码</span>
+           
+              <div class="code-back">
+                <input type="button" id="checkCode" @click="createCode()" />
+                <input type="text" id="input1" />
+                <a href="#" style="margin: 20px auto" @click="createCode()"
+                  >看不清楚</a
+                >
+                <!-- <input
+                  id="Button1"
+                  @click="validate()"
+                  type="button"
+                  value="确定"
+                /> -->
             </div>
+            <div style="margin-top:40px;">
             <button @click="submitForm()">登录</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div v-if="show" class="code_tag">
-    <div class="code-back">
-      <input type="button" id="checkCode" @click="createCode()" />
-      <input type="text" id="input1" />
-      <a href="#" style="margin: 0 auto" @click="createCode()">看不清楚</a>
-      <input id="Button1" @click="validate()" type="button" value="确定" />
-    </div>
-  </div>
+  <div v-if="show" class="code_tag"></div>
 </template>
 <script>
 const axios = require("axios");
@@ -70,10 +72,7 @@ export default {
   },
   methods: {
     submitForm(e) {
-      console.log(this.account, this.password);
-      this.show = !this.show;
-
-      this.createCode();
+this.validate();
     },
     createCode() {
       console.log("生成");
@@ -138,7 +137,7 @@ export default {
           .post("/api" + "/user/submit", null, {
             params: {
               idCard: this.account,
-              password:this.password
+              password: this.password,
             },
           })
           .then((res) => {
@@ -152,27 +151,27 @@ export default {
           .catch((err) => {
             console.log(err);
             alert("密码输入错误！");
-              this.show = !this.show;
-
-
+            this.show = !this.show;
           });
 
         return true;
       }
     },
   },
-  mounted: function () {},
+  mounted: function () {
+    this.createCode();
+  },
 };
 </script>
 <style  scoped>
 .body {
   background: url("../assets/images/index2.png");
-  background-size: 100% 100%;
+
   background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1920px;
+  width: 1940px;
   background-size: cover;
   background-position: center;
 }
@@ -243,7 +242,7 @@ export default {
 }
 
 .middle .right .second {
-  height: 250px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -357,21 +356,19 @@ export default {
   justify-content: center;
 
   display: flex;
-  flex-flow: column;
-  flex-wrap: wrap;
-  width: 400px;
-  height: 200px;
-  position: absolute;
-  top: 400px;
-  left: 754px;
+
+  width: 100%;
+  height: 50px;
+
   background: #ffffff;
   border-radius: 26px;
 }
 #input1 {
   height: 50px;
+
   font-size: 40px;
   margin: 0 auto;
-  width: 90px;
+  width: 150px;
   border-radius: 10px;
 }
 #checkCode {
@@ -379,7 +376,7 @@ export default {
   font-style: italic;
   color: green;
   border: 0;
-  width: 200px;
+  width: 150px;
   height: 50px;
   font-size: 40px;
   letter-spacing: 3px;
