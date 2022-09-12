@@ -404,13 +404,13 @@
            -->
 
             <div class="TAG_right_admin_table">
-              <el-table :data="options">
+              <el-table :data="title">
                 <el-table-column
                   type="index"
                   label="#"
                   style="width: 83px"
                 ></el-table-column>
-                <el-table-column prop="label" label="目录名"></el-table-column>
+                <el-table-column prop="insideId" label="目录名"></el-table-column>
 
                 <el-table-column label="操作">
                   <template #default="scope">
@@ -420,6 +420,7 @@
                       type="success"
                       round
                       style="width: 76px"
+                      @click="select(23)"
                       >修改</el-button
                     >
                     <el-button
@@ -439,6 +440,7 @@
               </el-table>
             </div>
 
+           
             <!--被干掉了
 
 
@@ -473,6 +475,36 @@
             </div>
 
 -->
+          </div>
+           <div class="TAG_rght_2" v-if="show(23)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">修改文章</div>
+            </div>
+
+            <div style="color: black; font-size: large; font-weight: bold">
+              编辑内容
+            </div>
+            <div class="TAG_main_write">
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                @input="content_value_change"
+                v-model="value"
+              />
+            </div>
+
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Total_Menu_Update()"
+                >保存并返回</el-button
+              >
+            </div>
           </div>
 
           <!-- 右：通知公告-->
@@ -650,7 +682,7 @@
                       type="success"
                       round
                       style="width: 76px"
-                      @click="select(411)"
+                      @click="Resource_update(0, scope)"
                       >修改</el-button
                     >
                     <el-button
@@ -688,13 +720,26 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                :value="value"
+              />
             </div>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_back"
+                @click="select(41)"
                 >返回</el-button
               >
-              <el-button type="success" round class="TAG_right_on"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Resource_update(1, 0)"
                 >保存并返回</el-button
               >
             </div>
@@ -1117,37 +1162,16 @@ export default {
       let dialogVisible= false;
       let value="";//富文本
       let form= {
-
           name: '',
           title:''
         };
-        var author_title;
-      let UserData= [
-        {
-            id: '50132125664',
-            name: '张大三',
-       },
-        {
-            id: '50132125664',
-            name: '李小四',
-       },
-       {
-            id: '50132125664',
-            name: '王老五',
-        },
-       {
-            id: '50132125664',
-            name: '郭老六',
-       },
-       {
-            id: '50132125664',
-            name: '七大姑',
-       },
-       ];
+      let update_form={};//更新专用
+      var author_title;
+      let UserData= [];
       let NoticeData= [];
       let ResourceData=[];
-      
-      let options= [
+      let title=[];
+      const options= [
           {
           value: '1-1-馆长寄语',
           label: '馆长寄语',
@@ -1184,6 +1208,7 @@ export default {
           
         }];
       return {
+        update_form,
         author_title,
         activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
          form,value_1:"",
@@ -1245,15 +1270,7 @@ export default {
               type: 'success',
               message: '删除成功!'
               });
-            location.reload()
-        
-            
-              
-       
-
-
-              
-             
+            location.reload() 
           }
           if(i==2)
           {
@@ -1395,11 +1412,26 @@ export default {
       //<=============================================指南===================================================>
       
 
+      Total_Menu_init()
+      {
+        axios
+        .get("/api" + "/title/searchAll")
+        .then((res) => {
+           
+          this.title=res.data.data
+           console.log(this.title)
+      
+       
+        })
+        .catch((err) => {
+       
+        });
+      },
        Total_Menu_Create(menu_number,value)
-    {
-      var insideId=menu_number.toString()
+     {
+        var insideId=menu_number.toString()
     
-      axios
+        axios
           .post("/api" + "/title/insert", null, {
             params: {
               insideId:insideId,
@@ -1631,6 +1663,55 @@ export default {
             
           });
       },
+      
+      Resource_update(i,e)
+      {
+         var that=this
+
+        if(i==0)
+        {
+          console.log(e)
+        this.select(311),
+        this.form.id=e.row.id;
+        this.form.title=e.row.title;
+        this.form.name=e.row.author;
+        this.value=e.row.content;
+      
+        }
+        else if(i==1)
+        {
+         let params= {
+              id:this.form.id,
+              title: this.form.title,
+              content:this.value,
+              author:this.form.name,
+              token:sessionStorage.getItem("token")
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/resource/update", params, config)
+                 .then((res) => {
+                          this.Resource_init()
+                          this.value=""
+                          this.form.title="";
+                          this.form.name="";
+                          setTimeout(() => {
+                            this.select(31)
+                          }, 1000);
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+        }
+
+
+
+      }
       //<=============================================资源===================================================>
       //<=============================================资源===================================================>
       //<=============================================资源===================================================>
@@ -1639,6 +1720,7 @@ export default {
     },
     mounted:function ()
     {
+      this.Total_Menu_init();
       this.Resource_init();
       this.Notice_init();
       this.User_init();

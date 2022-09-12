@@ -9,6 +9,15 @@
     </div>
 <!--    标题栏-->
    <drop-menu/>
+<!-- //啦啦啦啦 -->
+   <div class="TAG_0">
+      <div class="ArtFont">
+        <img src="../assets/images/Artfont.svg" />
+      </div>
+      <div class="search_home">
+        <div class="search"></div>
+      </div>
+    </div>
     <!-- 通知公告 -->
     <div class="TAG_1">
       <div class="block_1">
@@ -36,10 +45,10 @@
             </div>
           </span>
           <span v-else>
-            <div v-for="item in Notice" :key="item.index">
+            <div v-for="item in Resource" :key="item.index" @click="jump_notice(item)">
               <div class="notice_tag">
                 <div class="date">
-                  <div class="day">lalalala</div>
+                  <div class="day">{{item.day}}</div>
                   <div class="time">{{ item.time }}</div>
                 </div>
 
@@ -234,6 +243,7 @@ export default {
   components: {DropMenu,BottomFooter},
   data() {
     var show = false;
+    const Resource=[];
     const Notice = [
     ];
     const activities = [
@@ -256,13 +266,14 @@ export default {
         img: "",
       },
     ];
-    return { Notice, activities, show };
+    return { Notice, activities, show ,Resource};
   },
   methods: {
     change() {
       this.show = !this.show;
       console.log(this.show);
     },
+
     init() {
       let data=[];
       let i=0;
@@ -292,6 +303,26 @@ export default {
           }
           this.Notice=data
           console.log(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+         axios
+        .get("/api" + "/resource/searchAll")
+        .then((res) => {
+
+          data=res.data.data;
+          for( i=0;i<data.length;i++)
+          {
+            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
+             data[i].time=data[i].gmtCreate.substring(0,7)
+            data[i].time=data[i].time.replace("-",".")
+            data[i].day=data[i].gmtCreate.substring(8,10)
+
+          }
+          this.Resource=data
+          console.log(this.Resource);
         })
         .catch((err) => {
           console.log(err);

@@ -51,7 +51,7 @@ export default {
   components: { DropMenu, BehindMenu, BottomFooter },
   data() {
   
-    let current = 0;
+    let current = 1;
     var value=0;
    
     const Menu=[];

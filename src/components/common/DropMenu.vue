@@ -3,6 +3,7 @@
     <div class="head">
       <div class="icon">
         <img src="../../assets/images/icon.svg" />
+        
       </div>
       <div class="nav">
         <ul class="navlist">

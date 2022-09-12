@@ -137,18 +137,21 @@ export default {
                 "Content-Type": "multipart/form-data",
               },
             };
-            axios
-              .post(`api/fileTemp`, params, config)
-              .then((res) => {
-                if (res.data.code == 200) {
-                  success(res.data.msg); //上传成功，在成功函数里填入图片路径
-                } else {
-                  failure("上传失败");
-                }
-              })
-              .catch(() => {
-                failure("上传出错，服务器开小差了呢");
-              });
+            // axios
+            //   .post(`api/fileTemp`, params, config)
+            //   .then((res) => {
+            //     console.log(res)
+            //     if (res.data.code == 200) {
+            //       console.log(res.data)
+            //       success(res.data.msg); //上传成功，在成功函数里填入图片路径
+                  
+            //     } else {
+            //       failure("上传失败");
+            //     }
+            //   })
+            //   .catch(() => {
+            //     failure("上传出错，服务器开小差了呢");
+            //   });
           }
         },
       },
