@@ -144,7 +144,7 @@ this.validate();
             console.log(res.data.token);
             sessionStorage.setItem("token", res.data.token);
             console.log("success");
-            sessionStorage.setItem("adminlogin", true);
+
 
             this.$router.push({ name: "admin" });
           })

@@ -287,7 +287,7 @@ export default {
         img: "",
       },
     ];
-    return { Notice, activities, show, Resource };
+    return { Notice, activities, show, Resource, value: "" };
   },
   methods: {
     change() {
@@ -295,58 +295,135 @@ export default {
       console.log(this.show);
     },
 
+    // init() {
+    //   let data = [];
+    //   let i = 0;
+    //   let j = 0;
+    //   axios
+    //     .get("/api" + "/activity/searchAll")
+    //     .then((res) => {
+    //       data = res.data.data.slice(0, 3);
+    //       data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+    //       data[i].time = data[i].gmtCreate.substring(0, 7);
+    //       data[i].time = data[i].time.replace("-", ".");
+    //       data[i].day = data[i].gmtCreate.substring(8, 10);
+    //       this.activities = data;
+    //       console.log(data);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+
+    //   axios
+    //     .get("/api" + "/notice/searchAll")
+    //     .then((res) => {
+    //       data = res.data.data.slice(0, 6);
+    //       for (i = 0; i < data.length; i++) {
+    //         data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+    //         data[i].time = data[i].gmtCreate.substring(0, 7);
+    //         data[i].time = data[i].time.replace("-", ".");
+    //         data[i].day = data[i].gmtCreate.substring(8, 10);
+    //       }
+    //       this.Notice = data;
+    //       console.log(res.data.data);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+
+    //   axios
+    //     .get("/api" + "/resource/searchAll")
+    //     .then((res) => {
+    //       data = res.data.data;
+    //       for (i = 0; i < data.length; i++) {
+    //         data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+    //         data[i].time = data[i].gmtCreate.substring(0, 7);
+    //         data[i].time = data[i].time.replace("-", ".");
+    //         data[i].day = data[i].gmtCreate.substring(8, 10);
+    //       }
+    //       this.Resource = data;
+    //       console.log(this.Resource);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
     init() {
       let data = [];
       let i = 0;
       let j = 0;
-      axios
-        .get("/api" + "/activity/searchAll")
-        .then((res) => {
-          data = res.data.data.slice(0, 3);
-          data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-          data[i].time = data[i].gmtCreate.substring(0, 7);
-          data[i].time = data[i].time.replace("-", ".");
-          data[i].day = data[i].gmtCreate.substring(8, 10);
-          this.activities = data;
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
 
-      axios
-        .get("/api" + "/notice/searchAll")
-        .then((res) => {
-          data = res.data.data.slice(0, 6);
-          for (i = 0; i < data.length; i++) {
-            data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-            data[i].time = data[i].gmtCreate.substring(0, 7);
-            data[i].time = data[i].time.replace("-", ".");
-            data[i].day = data[i].gmtCreate.substring(8, 10);
-          }
-          this.Notice = data;
-          console.log(res.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (sessionStorage.getItem("activities") != null) {
+        this.activities = JSON.parse(sessionStorage.getItem("activities"));
+        console.log(this.activities);
+      } else {
+        axios
+          .get("/api" + "/activity/searchAll")
+          .then((res) => {
+            data = res.data.data.slice(0, 3);
+            for (i = 0; i < data.length; i++) {
+              data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+              data[i].time = data[i].gmtCreate.substring(0, 7);
+              data[i].time = data[i].time.replace("-", ".");
+              data[i].day = data[i].gmtCreate.substring(8, 10);
+            }
 
-      axios
-        .get("/api" + "/resource/searchAll")
-        .then((res) => {
-          data = res.data.data;
-          for (i = 0; i < data.length; i++) {
-            data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-            data[i].time = data[i].gmtCreate.substring(0, 7);
-            data[i].time = data[i].time.replace("-", ".");
-            data[i].day = data[i].gmtCreate.substring(8, 10);
-          }
-          this.Resource = data;
-          console.log(this.Resource);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+            this.activities = data;
+            console.log(data);
+
+            sessionStorage.setItem(
+              "activities",
+              JSON.stringify(this.activities)
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      if (sessionStorage.getItem("Notice") != null) {
+        this.Notice = JSON.parse(sessionStorage.getItem("Notice"));
+      } else {
+        axios
+          .get("/api" + "/notice/searchAll")
+          .then((res) => {
+            data = res.data.data.slice(0, 6);
+            for (i = 0; i < data.length; i++) {
+              data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+              data[i].time = data[i].gmtCreate.substring(0, 7);
+              data[i].time = data[i].time.replace("-", ".");
+              data[i].day = data[i].gmtCreate.substring(8, 10);
+            }
+            this.Notice = data;
+            sessionStorage.setItem("Notice", JSON.stringify(this.Notice));
+            console.log(this.Notice);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      if (sessionStorage.getItem("Resource") != null) {
+        this.Resource = JSON.parse(sessionStorage.getItem("Resource"));
+      } else {
+        axios
+          .get("/api" + "/resource/searchAll")
+          .then((res) => {
+            data = res.data.data;
+            for (i = 0; i < data.length; i++) {
+              data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+              data[i].time = data[i].gmtCreate.substring(0, 7);
+              data[i].time = data[i].time.replace("-", ".");
+              data[i].day = data[i].gmtCreate.substring(8, 10);
+            }
+            this.Resource = data;
+            sessionStorage.setItem("Resource", JSON.stringify(this.Resource));
+            console.log(this.Resource);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
     jump_notice(e) {
       this.$router.push({
@@ -376,6 +453,9 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style: none;
+}
+.screen {
+  z-index: 0;
 }
 .top_text1 {
   position: absolute;
@@ -411,13 +491,13 @@ export default {
 }
 .background {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   width: 1920px;
   margin: -27px 0 0 0;
 }
 .background img {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   top: -27px;
   width: 1920px;
 }
@@ -456,7 +536,6 @@ export default {
 }
 .search_text span {
   margin-top: 60px;
-
 }
 .search {
   cursor: pointer;
