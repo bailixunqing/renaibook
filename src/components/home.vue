@@ -7,15 +7,25 @@
       <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
       <a class="top_text2">English</a>
     </div>
-<!--    标题栏-->
-   <drop-menu/>
-<!-- //啦啦啦啦 -->
-   <div class="TAG_0">
+    <!--    标题栏-->
+    <drop-menu />
+    <!-- //啦啦啦啦 -->
+    <div class="TAG_0">
       <div class="ArtFont">
         <img src="../assets/images/Artfont.svg" />
       </div>
-      <div class="search_home">
-        <div class="search"></div>
+      <div class="Search_TAG">
+        <div class="search_text"><span>仁爱搜索</span></div>
+        <div class="search">
+          <div class="key_word"><span style="color: white">关键字</span></div>
+
+          <input
+            class="input"
+            placeholder="在此输入需要搜索的内容"
+            v-model="value"
+          />
+          <img src="../assets/images/search.svg" @click="search()" />
+        </div>
       </div>
     </div>
     <!-- 通知公告 -->
@@ -32,7 +42,11 @@
         <div class="line_2"></div>
         <div class="notice">
           <span v-if="!show">
-            <div v-for="item in Notice" :key="item.index" @click="jump_notice(item)">
+            <div
+              v-for="item in Notice"
+              :key="item.index"
+              @click="jump_notice(item)"
+            >
               <div class="notice_tag">
                 <div class="date">
                   <div class="day">{{ item.day }}</div>
@@ -45,10 +59,14 @@
             </div>
           </span>
           <span v-else>
-            <div v-for="item in Resource" :key="item.index" @click="jump_notice(item)">
+            <div
+              v-for="item in Resource"
+              :key="item.index"
+              @click="jump_notice(item)"
+            >
               <div class="notice_tag">
                 <div class="date">
-                  <div class="day">{{item.day}}</div>
+                  <div class="day">{{ item.day }}</div>
                   <div class="time">{{ item.time }}</div>
                 </div>
 
@@ -67,7 +85,11 @@
         <h3>Activity reports</h3>
         <div class="line_2"></div>
         <div class="activity">
-          <div v-for="item in activities" :key="item.index">
+          <div
+            v-for="item in activities"
+            :key="item.index"
+            @click="jump_notice(item)"
+          >
             <div class="activity_tag">
               <div class="activity_image">
                 <!-- 这里应该放图片 -->
@@ -230,7 +252,7 @@
 
     <!-- 页面底 -->
     <div class="TAG_5">
-      <bottom-footer/>
+      <bottom-footer />
     </div>
   </div>
 </template>
@@ -240,12 +262,11 @@ import BottomFooter from "@/components/common/BottomFooter";
 const axios = require("axios");
 export default {
   name: "home",
-  components: {DropMenu,BottomFooter},
+  components: { DropMenu, BottomFooter },
   data() {
     var show = false;
-    const Resource=[];
-    const Notice = [
-    ];
+    const Resource = [];
+    const Notice = [];
     const activities = [
       {
         title: "2022年度ProQuest博硕士学位论文订购通知",
@@ -266,7 +287,7 @@ export default {
         img: "",
       },
     ];
-    return { Notice, activities, show ,Resource};
+    return { Notice, activities, show, Resource };
   },
   methods: {
     change() {
@@ -275,66 +296,72 @@ export default {
     },
 
     init() {
-      let data=[];
-      let i=0;
-      let j=0;
+      let data = [];
+      let i = 0;
+      let j = 0;
       axios
         .get("/api" + "/activity/searchAll")
         .then((res) => {
-          this.activities=res.data.data
-          console.log(res.data.data);
+          data = res.data.data.slice(0, 3);
+          data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+          data[i].time = data[i].gmtCreate.substring(0, 7);
+          data[i].time = data[i].time.replace("-", ".");
+          data[i].day = data[i].gmtCreate.substring(8, 10);
+          this.activities = data;
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
         });
 
-        axios
+      axios
         .get("/api" + "/notice/searchAll")
         .then((res) => {
-           data=res.data.data.slice(0,6);
-          
-          for( i=0;i<data.length;i++)
-          {
-            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
-            data[i].time=data[i].gmtCreate.substring(0,7)
-            data[i].time=data[i].time.replace("-",".")
-            data[i].day=data[i].gmtCreate.substring(8,10)
-            
+          data = res.data.data.slice(0, 6);
+          for (i = 0; i < data.length; i++) {
+            data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+            data[i].time = data[i].gmtCreate.substring(0, 7);
+            data[i].time = data[i].time.replace("-", ".");
+            data[i].day = data[i].gmtCreate.substring(8, 10);
           }
-          this.Notice=data
+          this.Notice = data;
           console.log(res.data.data);
         })
         .catch((err) => {
           console.log(err);
         });
 
-         axios
+      axios
         .get("/api" + "/resource/searchAll")
         .then((res) => {
-
-          data=res.data.data;
-          for( i=0;i<data.length;i++)
-          {
-            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
-             data[i].time=data[i].gmtCreate.substring(0,7)
-            data[i].time=data[i].time.replace("-",".")
-            data[i].day=data[i].gmtCreate.substring(8,10)
-
+          data = res.data.data;
+          for (i = 0; i < data.length; i++) {
+            data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
+            data[i].time = data[i].gmtCreate.substring(0, 7);
+            data[i].time = data[i].time.replace("-", ".");
+            data[i].day = data[i].gmtCreate.substring(8, 10);
           }
-          this.Resource=data
+          this.Resource = data;
           console.log(this.Resource);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-     jump_notice(e)
-     {
-      this.$router.push({ name: "Curator_note",params: {Notice:JSON.stringify(e)}});
-      console.log(e)
-     }
+    jump_notice(e) {
+      this.$router.push({
+        name: "Curator_note",
+        params: { Notice: JSON.stringify(e) },
+      });
+      console.log(e);
+    },
+    search() {
+      window.location.href =
+        "https://opac.nankai.edu.cn/opac/ajax_adv_jump.php?sType0=any&q0=" +
+        encodeURIComponent(this.value);
+    },
   },
- 
+
   mounted: function () {
     this.init();
   },
@@ -344,7 +371,12 @@ export default {
 
 
 <style scoped>
-
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
 .top_text1 {
   position: absolute;
   width: 96px;
@@ -374,51 +406,107 @@ export default {
   margin: 0 0 0 0;
   color: #ffffff;
 }
+.TAG_0 {
+  position: absolute;
+}
 .background {
   position: absolute;
-  width: 100%;
+  z-index: -1;
+  width: 1920px;
   margin: -27px 0 0 0;
-  z-index: -999;
 }
 .background img {
   position: absolute;
+  z-index: -1;
   top: -27px;
-  width: 100%;
-  overflow: hidden;
+  width: 1920px;
 }
+.Search_TAG {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  z-index: -1;
+  align-items: center;
+  margin-left: 610px;
+  margin-top: 117px;
+  width: 699px;
+  height: 170px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
 
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
+  border-radius: 28px;
 }
-.navlist a {
+.search_text {
+  width: 680px;
+  margin-top: 35px;
+  margin-left: 200px;
+  height: 25px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+
+  text-decoration-line: underline;
+
+  color: #0d52a1;
+}
+.search_text span {
+  margin-top: 60px;
+
+}
+.search {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 584px;
+  height: 58px;
+
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 100px;
+}
+.key_word {
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-left: 22px;
+  width: 98px;
+  height: 39px;
+  background: #0d52a1;
+  border-radius: 16px;
+}
+.input {
+  margin-left: 20px;
+  outline-style: none;
+  border: none;
+  width: 395px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0);
+  z-index: 2;
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 60px;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
 
-  text-align: center;
-  color: #00478b;
-  display: block;
+  color: black;
 }
-.navlist a:hover {
-  background: #e7e7e7;
-  /* 大块投影 */
-  background: rgba(255, 255, 255, 1);
+.input::input-placeholder {
+  color: #aeaeae;
 }
-
 /* //////////////////////////// */
 .btli:hover .droplist {
   display: block;
-  z-index: -1;
 }
 .ArtFont img {
   margin-top: 125px;
   margin-left: 811px;
-  z-index: -1;
+  z-index: 1;
 }
 .TAG_1 {
   position: absolute;
@@ -432,9 +520,8 @@ export default {
   position: relative;
   width: 502px;
   height: 553px;
-  margin-top:61px ;
-  margin-left:360px ;
- 
+  margin-top: 61px;
+  margin-left: 360px;
 
   background: #ffffff;
   /* 大块投影 */
@@ -447,8 +534,8 @@ export default {
   cursor: pointer;
   display: block;
   position: absolute;
-  margin-top:28px;
-  margin-left:33px;
+  margin-top: 28px;
+  margin-left: 33px;
   width: 80px;
   height: 28px;
   left: 33px;
@@ -542,7 +629,7 @@ export default {
   height: 374px;
   width: 434px;
   cursor: pointer;
- 
+
   left: 33px;
   top: 100px;
 }
@@ -673,6 +760,7 @@ export default {
   width: 610px;
 }
 .activity {
+  cursor: pointer;
   position: absolute;
   height: 374px;
   width: 610px;
@@ -1497,7 +1585,6 @@ export default {
   background: #0d52a1;
 }
 .screen {
-
   overflow: hidden;
 }
 /*开片样式*/
@@ -1509,8 +1596,6 @@ export default {
   margin: 0;
   text-align: center;
 }
-
-
 </style>
 
 

@@ -6,6 +6,7 @@
 html,
 body,
 #app {
+
   position: relative;
   width: 100%;
   height: 100%;
@@ -13,6 +14,10 @@ body,
   justify-content: center;
    margin: 0;
   padding: 0;
+
+
+
+
 }
 
 * {

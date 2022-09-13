@@ -108,18 +108,18 @@ export default {
 .droplist {
   background: rgba(255, 255, 255, 1);
   display: none;
-  z-index: -1;
+  z-index: 2;
 }
 /* //////////////////////////// */
 .btli:hover .droplist {
   display: block;
-  z-index: -1;
+  z-index: 2;
 }
 
 .ArtFont img {
   margin-top: 125px;
   margin-left: 811px;
-  z-index: -1;
+  z-index: 2;
 }
 
 
