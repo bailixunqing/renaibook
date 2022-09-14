@@ -132,6 +132,7 @@ export default {
           } else {
             let params = new FormData();
             params.append("file", blobInfo.blob());
+            console.log(blobInfo.blob())
             let config = {
               headers: {
                 "Content-Type": "multipart/form-data",

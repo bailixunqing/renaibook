@@ -410,7 +410,10 @@
                   label="#"
                   style="width: 83px"
                 ></el-table-column>
-                <el-table-column prop="insideId" label="目录名"></el-table-column>
+                <el-table-column
+                  prop="insideId"
+                  label="目录名"
+                ></el-table-column>
 
                 <el-table-column label="操作">
                   <template #default="scope">
@@ -440,7 +443,6 @@
               </el-table>
             </div>
 
-           
             <!--被干掉了
 
 
@@ -476,7 +478,7 @@
 
 -->
           </div>
-           <div class="TAG_rght_2" v-if="show(23)">
+          <div class="TAG_rght_2" v-if="show(23)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">修改文章</div>
             </div>
@@ -789,25 +791,22 @@
             <el-row>
               <el-form-item label="标题">
                 <el-input
-                  v-model="form.uers_name"
+                  v-model="form.title"
                   placeholder="请输入关键字"
                 ></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
-              <el-table :data="UersData">
+              <el-table :data="ActivitiesData" :key="itemKey">
                 <el-table-column
                   type="index"
                   style="width: 83px"
                   label="#"
                 ></el-table-column>
-                <el-table-column prop="user_id" label="标题"></el-table-column>
+                <el-table-column prop="title" label="标题"></el-table-column>
+                <el-table-column prop="author" label="作者"></el-table-column>
                 <el-table-column
-                  prop="user_name"
-                  label="作者"
-                ></el-table-column>
-                <el-table-column
-                  prop="user_name"
+                  prop="gmtCreate"
                   label="发布时间"
                 ></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
@@ -831,7 +830,7 @@
                         margin-left: 26px;
                         font-size: 15px;
                       "
-                      @click="open"
+                      @click="open(3, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -865,7 +864,7 @@
                   border-radius: 20px;
                 "
               >
-                <el-input v-model="textarea" clearable />
+                <el-input v-model="form.summary" clearable />
               </div>
             </div>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -877,8 +876,9 @@
             <div style="text-align: left">
               <el-upload
                 class="avatar-uploader"
-                action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-                :show-file-list="false"
+                action
+                :http-request="uploadFile"
+                :show-file-list="true"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
               >
@@ -924,7 +924,7 @@
                   border-radius: 20px;
                 "
               >
-                <el-input v-model="textarea" clearable />
+                <el-input v-model="form.summary" clearable />
               </div>
             </div>
             <div style="color: black; font-size: large; font-weight: bold">
@@ -941,8 +941,9 @@
             <div style="text-align: left">
               <el-upload
                 class="avatar-uploader"
-                action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-                :show-file-list="false"
+                action
+                :http-request="uploadFile"
+                :show-file-list="true"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
               >
@@ -954,7 +955,11 @@
               <el-button type="success" round class="TAG_right_back"
                 >返回</el-button
               >
-              <el-button type="success" round class="TAG_right_on"
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Create_Activities()"
                 >保存并返回</el-button
               >
             </div>
@@ -1162,14 +1167,13 @@ export default {
       let dialogVisible= false;
       let value="";//富文本
       let form= {
-          name: '',
-          title:''
         };
       let update_form={};//更新专用
       var author_title;
       let UserData= [];
       let NoticeData= [];
       let ResourceData=[];
+      let ActivitiesData=[];
       let title=[];
       let itemKey=0;
       const options= [
@@ -1266,12 +1270,7 @@ export default {
         //     //     failure("上传出错，服务器开小差了呢");
         //     //   });
         // }
-        var reader = new FileReader();
-    reader.readAsDataURL(file.raw);
-    console.log(file.raw)
-    reader.onload = function(e){
-        console.log(this.result)//图片的base64数据
-    }
+      
         return isJPG && isLt2M;
       },
       content_value_change(e)
@@ -1309,10 +1308,18 @@ export default {
               });
             // location.reload() 
           }
-          if(i==2)
+          if(i==2) //删除资源
           {
             this.Delete_Resource(e)
               this.$message({
+              type: 'success',
+              message: '删除成功!'
+              });
+          }
+          if(i==3)
+          {
+            this.Delete_Activities(e)
+             this.$message({
               type: 'success',
               message: '删除成功!'
               });
@@ -1345,7 +1352,17 @@ export default {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
+      uploadFile(item)
+      {
+	          //上传文件的需要formdata类型;所以要转
+            let FormDatas = new FormData()
+    FormDatas.append('file',item.file);
+    console.log("123213123:")
+    console.log(FormDatas.file)
+        this.form.file=item.file;
 
+     
+      },
 
 
 
@@ -1536,7 +1553,10 @@ export default {
             axios
                 .post("/api" + "/notice/insert", params, config)
                  .then((res) => {
-                                alert("添加成功");
+                                 this.$message({
+                                type: 'success',
+                                message: '添加成功!'
+                                });
                                 this.$refs.editor.$data.contentValue=""
                                 this.form.title="";
                                 this.form.name="";
@@ -1692,8 +1712,7 @@ export default {
            this.ResourceData.splice(e.$index,1);
                         this.itemKey = Math.random()
 
-           
-            
+      
             //this.Notice_init()
 
           })
@@ -1751,11 +1770,126 @@ export default {
 
 
 
-      }
+      },
       //<=============================================资源===================================================>
       //<=============================================资源===================================================>
       //<=============================================资源===================================================>
       //<=============================================资源===================================================>
+      
+      //<=============================================活动报道===================================================>
+      //<=============================================活动报道===================================================>
+      //<=============================================活动报道===================================================>
+      //<=============================================活动报道===================================================>
+      
+   Activities_init()
+      {
+        let string1;
+        let data;
+        let i=0;
+         axios
+        .get("/api" + "/activity/searchAll")
+        .then((res) => {
+
+          data=res.data.data;
+          for( i=0;i<data.length;i++)
+          {
+            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
+            
+
+          }
+          this.ActivitiesData=data
+          console.log(this.ActivitiesData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      },
+    Create_Activities()
+    {
+          let params={
+              title: this.form.title,
+              content:this.value,
+              author:this.form.name,
+              fileTmp:this.form.file,
+              summary:this.form.summary,
+              token:sessionStorage.getItem("token")
+            }
+        
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/activity/insert", params, config)
+                 .then((res) => {
+                          this.$message({
+                          type: 'success',
+                          message: '添加成功!'
+                          });
+                          this.$refs.editor.$data.contentValue="";
+            
+                          this.form={}
+                          this.Activities_init();
+                          
+                          
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+    },
+
+
+
+
+
+
+
+
+      Delete_Activities(e)
+      {
+        axios
+          .post("/api" + "/activity/delete", null, {
+            params: {
+              id:e.row.id,
+              token:sessionStorage.getItem("token")
+            },
+          })
+          .then((res) => {
+           this.ActivitiesData.splice(e.$index,1);
+            this.itemKey = Math.random()
+
+      
+            //this.Notice_init()
+
+          })
+          .catch((err) => {
+            console.log(err);
+          
+            
+          });
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //<=============================================活动报道===================================================>
+      //<=============================================活动报道===================================================>
+      //<=============================================活动报道===================================================>
+      //<=============================================活动报道===================================================>
       
     },
     mounted:function ()
@@ -1764,6 +1898,7 @@ export default {
       this.Resource_init();
       this.Notice_init();
       this.User_init();
+      this.Activities_init();
     },
 }
 

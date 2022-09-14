@@ -94,10 +94,11 @@
             <div class="activity_tag">
               <div class="activity_image">
                 <!-- 这里应该放图片 -->
+                <img :src="item.picture" />
               </div>
               <div class="describe">
                 <div class="activity_title">{{ item.title }}</div>
-                <div class="activity_content">{{ item.content }}</div>
+                <div class="activity_content">{{ item.summary }}</div>
 
                 <div class="line_3"></div>
               </div>
@@ -349,11 +350,19 @@ export default {
     //       console.log(err);
     //     });
     // },
+    imageUrl(item)
+    {
+      // console.log(item)
+      // let iconStr = '';
+      // iconStr = require(`@/assets/source_images/${item.picture}`);
+
+      // return '@/assets/source_images/${data[i].picture};
+    },
     init() {
       let data = [];
       let i = 0;
       let j = 0;
-
+      let string=''
       if (sessionStorage.getItem("activities") != null) {
         this.activities = JSON.parse(sessionStorage.getItem("activities"));
         console.log("非空", JSON.stringify(this.activities));
@@ -367,10 +376,13 @@ export default {
               data[i].time = data[i].gmtCreate.substring(0, 7);
               data[i].time = data[i].time.replace("-", ".");
               data[i].day = data[i].gmtCreate.substring(8, 10);
+              data[i].picture=data[i].picture.substring(7);
+              string=data[i].picture;
+              data[i].picture=require('@/assets/source_images/'+string);
             }
 
             this.activities = data;
-
+            console.log(this.activities)
             sessionStorage.setItem(
               "activities",
               JSON.stringify(this.activities)
@@ -719,7 +731,7 @@ sessionStorage.clear();
   position: absolute;
   height: 374px;
   width: 434px;
-  cursor: pointer;
+
 
   left: 33px;
   top: 100px;
@@ -728,6 +740,7 @@ sessionStorage.clear();
   display: flex;
   width: 434px;
   height: 74px;
+    cursor: pointer;
 
   /* background: blue; */
 }
@@ -870,6 +883,10 @@ sessionStorage.clear();
 
   background: #ededed;
   border-radius: 14px;
+}
+.activity_image img
+{
+   width: 100%;
 }
 .activity_title {
   margin-left: 18px;
