@@ -1,5 +1,6 @@
 <template>
   <div class="screen">
+
     <div class="background">
       <img src="../assets/images/index.png" />
     </div>
@@ -355,7 +356,7 @@ export default {
 
       if (sessionStorage.getItem("activities") != null) {
         this.activities = JSON.parse(sessionStorage.getItem("activities"));
-        console.log(this.activities);
+        console.log("非空", JSON.stringify(this.activities));
       } else {
         axios
           .get("/api" + "/activity/searchAll")
@@ -369,7 +370,6 @@ export default {
             }
 
             this.activities = data;
-            console.log(data);
 
             sessionStorage.setItem(
               "activities",
@@ -441,6 +441,17 @@ export default {
 
   mounted: function () {
     this.init();
+    window.onbeforeunload = function (e) {
+          e = e || window.event;
+          if (e) {
+            
+sessionStorage.clear();
+            console.log("clear")
+            e.returnValue = '关闭提示';
+          }
+          return '关闭提示';
+        };
+
   },
   message() {},
 };
@@ -456,6 +467,7 @@ export default {
 }
 .screen {
   z-index: 0;
+ 
 }
 .top_text1 {
   position: absolute;
@@ -748,13 +760,13 @@ export default {
 }
 .notice_title {
   margin-top: 25px;
-  width: 316px;
+  width: 340px;
   height: 36px;
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 227%;
+  line-height: 20px;
   /* or 36px */
 
   color: #000000;

@@ -6,13 +6,13 @@
 html,
 body,
 #app {
-
+display: flex;
   position: relative;
   width: 100%;
   height: 100%;
   display: grid;
   justify-content: center;
-   margin: 0;
+   margin: 0 auto;
   padding: 0;
 
 

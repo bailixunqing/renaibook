@@ -523,7 +523,7 @@
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
-              <el-table :data="NoticeData">
+              <el-table :data="NoticeData" :key="itemKey">
                 <el-table-column
                   type="index"
                   style="width: 83px"
@@ -661,7 +661,7 @@
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
-              <el-table :data="ResourceData">
+              <el-table :data="ResourceData" :key="itemKey">
                 <el-table-column
                   type="index"
                   style="width: 83px"
@@ -1171,6 +1171,7 @@ export default {
       let NoticeData= [];
       let ResourceData=[];
       let title=[];
+      let itemKey=0;
       const options= [
           {
           value: '1-1-馆长寄语',
@@ -1218,13 +1219,15 @@ export default {
         UserData,
         value,
         User_Form,
-        ResourceData
+        ResourceData,
+        itemKey
       };
     },
     
     methods:{
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
+        console.log(file.blob());
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
@@ -1233,9 +1236,42 @@ export default {
         if (!isJPG) {
           this.$message.error('上传头像图片只能是 JPG 格式!');
         }
+        else
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
+        // else 
+        // {
+        //   // console.log(file.blob());
+        //     // let params = new FormData();
+        //     // params.append("file", blobInfo.blob());
+        //     // let config = {
+        //     //   headers: {
+        //     //     "Content-Type": "multipart/form-data",
+        //     //   },
+        //     // };
+        //     // axios
+        //     //   .post(`api/fileTemp`, params, config)
+        //     //   .then((res) => {
+        //     //     console.log(res)
+        //     //     if (res.data.code == 200) {
+        //     //       console.log(res.data)
+        //     //       success(res.data.msg); //上传成功，在成功函数里填入图片路径
+                  
+        //     //     } else {
+        //     //       failure("上传失败");
+        //     //     }
+        //     //   })
+        //     //   .catch(() => {
+        //     //     failure("上传出错，服务器开小差了呢");
+        //     //   });
+        // }
+        var reader = new FileReader();
+    reader.readAsDataURL(file.raw);
+    console.log(file.raw)
+    reader.onload = function(e){
+        console.log(this.result)//图片的base64数据
+    }
         return isJPG && isLt2M;
       },
       content_value_change(e)
@@ -1263,18 +1299,19 @@ export default {
             
           }
 
-          if(i==1)
+          if(i==1) //删除公告
           {
-            this.Delete_Notice(e.row)
+            
+            this.Delete_Notice(e)
             this.$message({
               type: 'success',
               message: '删除成功!'
               });
-            location.reload() 
+            // location.reload() 
           }
           if(i==2)
           {
-            this.Delete_Resource(e.row)
+            this.Delete_Resource(e)
               this.$message({
               type: 'success',
               message: '删除成功!'
@@ -1514,6 +1551,7 @@ export default {
       {
         var that=this
 
+
         if(i==0)
         {
           console.log(e)
@@ -1562,7 +1600,7 @@ export default {
       {
         var that=this;
          let params= {
-              id:e.id,
+              id:e.row.id,
               token:sessionStorage.getItem("token")
             };
             let config = {
@@ -1573,11 +1611,12 @@ export default {
             axios
                 .post("/api" + "/notice/delete", params, config)
                  .then((res) => {
-                        this.Notice_init();
-                        console.log("success")
+                        
+                        this.NoticeData.splice(e.$index,1);
+                        this.itemKey = Math.random()
                         })
                   .catch(() => {
-                alert("添加失败");
+                alert("删除失败");
                  console.log(err);
               });
       },
@@ -1645,13 +1684,14 @@ export default {
         axios
           .post("/api" + "/resource/delete", null, {
             params: {
-              id:e.id,
+              id:e.row.id,
               token:sessionStorage.getItem("token")
             },
           })
           .then((res) => {
-           
-            location.reload()
+           this.ResourceData.splice(e.$index,1);
+                        this.itemKey = Math.random()
+
            
             
             //this.Notice_init()

@@ -56,6 +56,7 @@ export default {
     this.Notice.text = data.content;
     // this.Notice.text = data.content.replace(/\n/g, "<br>");
     this.Notice.text = data.content.replace(/"/g, "\"");
+  //  this.Notice.text =this.Notice.text.replace(/\<img/gi, '<img style="width: 100%;height:auto"');
     console.log(this.Notice);
   },
 };
@@ -149,13 +150,15 @@ export default {
 
 .main .top h2 {
   margin: auto;
-  width: 300px;
+  margin-top:40px;
+  width: 1000px;
+  padding-top: 20px;
   height: 100px;
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
-  line-height: 100px;
+  line-height: 50px;
   color: #0d52a1;
 }
 .main .top p {
@@ -206,6 +209,7 @@ export default {
   overflow: hidden;
   display: flex;
   text-align: justify; */
+  display: block;
   margin: 0 auto;
   padding-top: 40px;
   width: 1099px;
@@ -218,7 +222,7 @@ export default {
   color: #000000;
 }
 .text >>>img{
-  width:100% !important;
+  width:auto !important;
   height:100%;
 }
 .TAG_5 {
