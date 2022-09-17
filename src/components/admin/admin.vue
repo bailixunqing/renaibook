@@ -971,7 +971,36 @@
               <div class="TAG_right_admin_left">中文数据库</div>
             </div>
             <el-divider></el-divider>
+            <div>
+              <el-scrollbar>
+                  <div
+                    v-for="item in count"
+                    :key="item" 
+                    class="scrollbar-demo-item">
+
+                    <div style="color:#0D52A1;font-size:30px">{{ item }}</div>
+
+                    <el-divider direction="vertical" style="height: 100px;color:#0C57AD;" />
+
+                    <el-avatar shape="square" style="width:180px;height:100px" src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"></el-avatar>
+                    
+                    <div style="display: grid;justify-items: end;">
+
+                      <el-button style="width: 80px;background-color:#0C57AD;color: white;" >修改内容</el-button>
+                      <el-button style="width: 80px;background-color:#0C57AD;color: white;">修改图片</el-button>
+                      <el-button @click="onDelete" style="width: 80px;background-color:#E27172;color: white;"
+                        >删除</el-button>
+
+                    </div>
+                  </div>
+                  <div class="scrollbar-demo-item">
+                    <el-button @click="add" style="background-color:#0C57AD;color: white;">添加数据库显示</el-button>
+                  </div>
+                </el-scrollbar>
+            </div>
           </div>
+
+
 
           <!-- 右：合作数据库-->
           <!-- 右:外文数据库-->
@@ -1213,6 +1242,7 @@ export default {
           
         }];
       return {
+        count: 3,
         update_form,
         author_title,
         activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
@@ -1229,6 +1259,17 @@ export default {
     },
     
     methods:{
+      load () {
+        this.count += 2
+      },
+      add(){
+       this.count++;
+       },
+      onDelete() {
+        if (this.count> 0) {
+           this.count--;
+      }
+      },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
         console.log(file.blob());
@@ -2393,5 +2434,23 @@ export default {
   border-radius: 10px;
   margin: 50px;
   float: right;
+}
+
+.scrollbar-demo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 50%;
+  margin: 50px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+}
+
+:deep(.el-scrollbar__wrap--hidden-default) {
+  max-height: 100% !important;
+}
+:deep(.scrollbar-demo-item) {
+  margin: 20px;
 }
 </style>
