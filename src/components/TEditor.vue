@@ -37,12 +37,12 @@ import "tinymce/plugins/fullpage"; //文档属性
 import "tinymce/plugins/fullscreen"; //全屏
 import "tinymce/plugins/help"; //帮助
 import "tinymce/plugins/hr"; //水平分割线
-import "tinymce/plugins/image"; //插入编辑图片
+// import "tinymce/plugins/image"; //插入编辑图片
 import "tinymce/plugins/importcss"; //引入css
 import "tinymce/plugins/insertdatetime"; //插入日期时间
 import "tinymce/plugins/link"; //超链接
 import "tinymce/plugins/lists"; //列表插件
-import "tinymce/plugins/media"; //插入编辑媒体
+// import "tinymce/plugins/media"; //插入编辑媒体
 import "tinymce/plugins/nonbreaking"; //插入不间断空格
 import "tinymce/plugins/pagebreak"; //插入分页符
 import "tinymce/plugins/paste"; //粘贴插件

@@ -5,7 +5,7 @@
     </div>
     <div class="head">
       <img src="../../assets/images/reaai.svg" />
-      <el-dropdown>
+      <el-dropdown style="display:block;cursor: pointer;">
         <span class="el-dropdown-link">
           欢迎超级用户
           <el-icon class="el-icon--right">
@@ -15,7 +15,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="select(999)"> 修改密码</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click="exit()">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -34,6 +34,11 @@ export default {
         methods:{
             select(i){
                 this.$emit("usershow",i);
+            },
+            exit()
+            {
+              sessionStorage.clear()
+              location.reload()
             }
         }
     }

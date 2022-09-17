@@ -1,5 +1,11 @@
 <template>
-  <TEditor style="height: 400px" @input="test" ref="editor" v-model="value" />
+    <div class="screen">
+    <div class="background">
+        <img src="../assets/images/index.png" />
+      </div>
+
+
+    </div>
 </template>
 <script>
 export default {
@@ -28,4 +34,11 @@ export default {
 };
 </script>
 <style  scoped>
+.screen{
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  width: 100%;
+  height:100%;
+}
 </style>

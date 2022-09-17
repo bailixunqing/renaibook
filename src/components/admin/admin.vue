@@ -163,7 +163,7 @@
               <div class="TAG_right_admin_left">修改密码</div>
             </div>
             <el-divider></el-divider>
-            <el-form-item label="姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+            <el-form-item label="旧密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
               <el-input v-model="form.user_name"></el-input>
             </el-form-item>
             <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
@@ -218,7 +218,7 @@
                       class="button_on"
                       type="success"
                       round
-                      style="width: 76px"
+                      style="width: 60px"
                       @click="select(111)"
                       >修改</el-button
                     >
@@ -227,9 +227,9 @@
                       type="success"
                       round
                       style="
-                        width: 76px;
+                        width: 60px;
                         background-color: #e27172;
-                        margin-left: 26px;
+                        margin-left: 4px;
                         font-size: 15px;
                       "
                       @click="open(0, scope)"
@@ -422,7 +422,7 @@
                       class="button_on"
                       type="success"
                       round
-                      style="width: 76px"
+                      style="width: 60px"
                       @click="select(23)"
                       >修改</el-button
                     >
@@ -431,9 +431,9 @@
                       type="success"
                       round
                       style="
-                        width: 76px;
+                        width: 60px;
                         background-color: #e27172;
-                        margin-left: 26px;
+                        margin-left: 4px;
                         font-size: 15px;
                       "
                       >删除</el-button
@@ -544,7 +544,7 @@
                       class="button_on"
                       type="success"
                       round
-                      style="width: 76px"
+                      style="width: 60px"
                       @click="Notice_update(0, scope)"
                       >修改</el-button
                     >
@@ -553,9 +553,9 @@
                       type="success"
                       round
                       style="
-                        width: 76px;
+                        width: 60px;
                         background-color: #e27172;
-                        margin-left: 26px;
+                        margin-left: 4px;
                         font-size: 15px;
                       "
                       @click="open(1, scope)"
@@ -683,7 +683,7 @@
                       class="button_on"
                       type="success"
                       round
-                      style="width: 76px"
+                      style="width: 60px"
                       @click="Resource_update(0, scope)"
                       >修改</el-button
                     >
@@ -692,9 +692,9 @@
                       type="success"
                       round
                       style="
-                        width: 76px;
+                        width: 60px;
                         background-color: #e27172;
-                        margin-left: 26px;
+                        margin-left: 4px;
                         font-size: 15px;
                       "
                       @click="open(2, scope)"
@@ -816,7 +816,7 @@
                       class="button_on"
                       type="success"
                       round
-                      style="width: 76px"
+                      style="width: 40px"
                       @click="select(511)"
                       >修改</el-button
                     >
@@ -825,9 +825,9 @@
                       type="success"
                       round
                       style="
-                        width: 76px;
+                        width: 40px;
                         background-color: #e27172;
-                        margin-left: 26px;
+                        margin-left: 4px;
                         font-size: 15px;
                       "
                       @click="open(3, scope)"
@@ -1038,7 +1038,7 @@
                       class="button_on"
                       type="success"
                       round
-                      style="width: 76px"
+                      style="width: 60px"
                       @click="select(811)"
                       >修改</el-button
                     >
@@ -1047,9 +1047,9 @@
                       type="success"
                       round
                       style="
-                        width: 76px;
+                        width: 60px;
                         background-color: #e27172;
-                        margin-left: 26px;
+                        margin-left: 4px;
                         font-size: 15px;
                       "
                       @click="open"
@@ -1710,7 +1710,7 @@ export default {
           })
           .then((res) => {
            this.ResourceData.splice(e.$index,1);
-                        this.itemKey = Math.random()
+           this.itemKey = Math.random()
 
       
             //this.Notice_init()
@@ -1947,7 +1947,7 @@ export default {
 }
 
 .TAG_top {
-  width: 1660px;
+  width: 1400px;
   margin: 0 auto;
 }
 
@@ -2014,7 +2014,7 @@ export default {
 }
 
 .TAG {
-  width: 1240px;
+  width: 1000px;
   height: 1400px;
   margin: 0 auto;
 }

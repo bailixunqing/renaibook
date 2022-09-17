@@ -45,20 +45,13 @@ export default {
 }
 
 
-.background img {
-  width: 1920px;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  border: none;
-}
 .head {
+  display: flex;
   /* position: absolute; */
   width: 1860px;
   height: 100px;
   margin: 50px 30px 0px 30px;
-
+  z-index: 999;
   /* top:50px;
   left:30px; */
   background: rgba(255, 255, 255, 0.6);
@@ -69,25 +62,28 @@ export default {
   border-radius: 30px;
 }
 .icon {
-  position: absolute;
+  
   width: 270px;
   height: 50px;
   margin: 15px 0 0 100px;
 }
+.ArtFont img {
 
+  z-index: 10;
+}
 .nav {
   position: absolute;
-  width: 920px;
+  width: 780px;
   height: 100px;
   margin-left: 930px;
   margin-top: 20px;
-  z-index: 10;
+  z-index: 999;
 }
 
 .btli {
   float: left;
   width: 170px;
-  z-index: -1;
+  z-index: 999;
 }
 .navlist a {
   font-family: "PingFang SC";
@@ -108,19 +104,15 @@ export default {
 .droplist {
   background: rgba(255, 255, 255, 1);
   display: none;
-  z-index: -1;
+  z-index: 999;
 }
 /* //////////////////////////// */
 .btli:hover .droplist {
   display: block;
-  z-index: -1;
+  z-index: 999;
 }
 
-.ArtFont img {
-  margin-top: 125px;
-  margin-left: 811px;
-  z-index: 10;
-}
+
 
 
 </style>

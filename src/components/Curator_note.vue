@@ -13,7 +13,7 @@
     <section class="main">
       <div class="top">
         <h2 align="center">{{ Notice.title }}</h2>
-        <p>book lending</p>
+    
         <p>
           <span class="left">{{ Notice.author }}</span>
           <span class="right">{{ Notice.date }}</span>
@@ -150,15 +150,15 @@ export default {
 
 .main .top h2 {
   margin: auto;
-  margin-top:40px;
+  margin-top:60px;
   width: 1000px;
-  padding-top: 20px;
+  padding-top: 30px;
   height: 100px;
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
-  line-height: 50px;
+  line-height: 40px;
   color: #0d52a1;
 }
 .main .top p {
