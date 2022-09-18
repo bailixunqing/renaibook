@@ -1,10 +1,6 @@
 <template>
   <div class="screen">
     <div class="background">
-      <div style="height: 5px">
-        <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
-        <a class="top_text2">English</a>
-      </div>
 
       <!--    标题栏-->
       <drop-menu />
@@ -561,36 +557,7 @@ export default {
   justify-content: center;
 }
 
-.top_text1 {
-  padding-left: 1386px;
-  width: 96px;
-  height: 22px;
 
-  margin-top: 18px;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  margin: 0 0 0 0;
-  color: #ffffff;
-}
-.top_text2 {
-  position: absolute;
-  width: 96px;
-  height: 22px;
-
-  padding-left:20px ;
-  margin-top: 18px;
-
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  margin: 0 0 0 0;
-  color: #ffffff;
-}
 .background {
   background-image: url("../assets/images/index.png");
   background-size: 100%;
@@ -805,7 +772,7 @@ export default {
   color: rgba(13, 82, 161, 0.18);
 }
 .line_2 {
-  width: 461px;
+  width: 700px;
   height: 1px;
   left: 22px;
   top: 74px;
@@ -857,7 +824,7 @@ export default {
 }
 .notice_title {
   margin-top: 25px;
-  width: 340px;
+  width: 500px;
   height: 36px;
   font-family: "PingFang SC";
   font-style: normal;
@@ -869,9 +836,9 @@ export default {
   color: #000000;
 }
 .line_3 {
-  margin: 0 0 0 0;
 
-  width: 434px;
+
+  width: 660px;
   height: 1px;
 
   background: #eaeaea;
@@ -945,13 +912,14 @@ export default {
   margin-left: 20px;
 }
 .block_2 .line_2 {
-  width: 610px;
+  width: 850px;
 }
+
 .activity {
   cursor: pointer;
 
   height: 374px;
-  width: 610px;
+  width: 850px;
   /* background: violet; */
   margin-left: 28px;
   margin-top: 100px;
@@ -973,7 +941,7 @@ export default {
 }
 .activity_title {
   margin-left: 18px;
-  width: 316px;
+  width: 500px;
   height: 36px;
 
   font-family: "PingFang SC";
@@ -988,7 +956,7 @@ export default {
 .activity_content {
   margin-left: 18px;
   margin-top: 10px;
-  width: 413px;
+  width: 500px;
   height: 64px;
 
   font-family: "PingFang SC";
@@ -1001,7 +969,7 @@ export default {
   color: #9b9b9b;
 }
 .describe .line_3 {
-  width: 422px;
+  width: 650px;
   height: 1px;
   margin-top: 10px;
   margin-left: 20px;

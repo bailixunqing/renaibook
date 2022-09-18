@@ -1,34 +1,40 @@
 <template >
   <div class="screen">
     <div class="background">
-      <img src="../assets/images/background_2.png" />
+      <drop-menu />
+      <div style></div>
     </div>
-    <div style="height: 5px">
-      <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
-      <h1 class="top_text2">English</h1>
-    </div>
-<!--    标题栏-->
-    <drop-menu/>
 
-    <section class="main">
-      <div class="top">
-        <h2 align="center">{{ Notice.title }}</h2>
-    
-        <p>
-          <span class="left">{{ Notice.author }}</span>
-          <span class="right">{{ Notice.date }}</span>
-        </p>
-        <hr class="line" />
-      </div>
-      <div class="text" v-html="Notice.text"></div>
-      
-    </section>
-  <div style="height:300px; margin-top:-1px;clear: both;overflow:hidden;"></div>
+    <!--    标题栏-->
+    <div
+      style="
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <section class="main">
+        <div class="top">
+          <h2 align="center">{{ Notice.title }}</h2>
+
+          <p>
+            <span class="left">{{ Notice.author }}</span>
+            <span class="right">{{ Notice.date }}</span>
+          </p>
+          <hr class="line" />
+        </div>
+        <div class="text" v-html="Notice.text"></div>
+      </section>
+    </div>
+    <div
+      style="height: 300px; margin-top: -1px; clear: both; overflow: hidden"
+    ></div>
     <!-- 页面底 -->
 
     <!-- 页面底 -->
     <div class="TAG_5">
-      <bottom-footer/>
+      <bottom-footer />
     </div>
   </div>
 </template>
@@ -37,7 +43,7 @@ import DropMenu from "@/components/common/DropMenu";
 import BottomFooter from "@/components/common/BottomFooter";
 export default {
   name: "Curator_note",
-  components: {BottomFooter, DropMenu},
+  components: { BottomFooter, DropMenu },
   data() {
     const Notice = {
       title: "标题",
@@ -55,8 +61,8 @@ export default {
     this.Notice.date = data.gmtCreate.replace(/-/g, ".");
     this.Notice.text = data.content;
     // this.Notice.text = data.content.replace(/\n/g, "<br>");
-    this.Notice.text = data.content.replace(/"/g, "\"");
-  //  this.Notice.text =this.Notice.text.replace(/\<img/gi, '<img style="width: 100%;height:auto"');
+    this.Notice.text = data.content.replace(/"/g, '"');
+    //  this.Notice.text =this.Notice.text.replace(/\<img/gi, '<img style="width: 100%;height:auto"');
     console.log(this.Notice);
   },
 };
@@ -65,46 +71,17 @@ export default {
 </style>
 
 <style scoped>
-.top_text1 {
-  position: absolute;
-  width: 96px;
-  height: 22px;
-  left: 1386px;
-  top: 18px;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  margin: 0 0 0 0;
-  color: #ffffff;
-}
-.top_text2 {
-  position: absolute;
-  width: 96px;
-  height: 22px;
-  left: 1506px;
-  top: 18px;
-
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  margin: 0 0 0 0;
-  color: #ffffff;
-}
-.background {
-  position: absolute;
-  width: 100%;
-  margin: -27px 0 0 0;
-  z-index: -999;
-}
-.background img {
-  position: absolute;
-  top: -27px;
+.screen {
   width: 100%;
   overflow: hidden;
+}
+.background {
+  background-image: url("../assets/images/background_2.png");
+  background-size: 100%;
+  height: 520px;
+  z-index: 0;
+
+  width: 100%;
 }
 
 * {
@@ -113,36 +90,12 @@ export default {
   text-decoration: none;
   list-style: none;
 }
-.navlist a {
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 60px;
-
-  text-align: center;
-  color: #00478b;
-  display: block;
-}
-.navlist a:hover {
-  background: #ffffff;
-  /* 大块投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 11px 11px 11px 11px;
-}
-
-.btli:hover .droplist {
-  display: block;
-  z-index: -1;
-}
 
 .main {
-  margin: 370px;
+  margin: -150px;
   width: 1200px;
   height: 100%;
   left: 359px;
-
   background: #ffffff;
   box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
   border-radius: 26px;
@@ -150,7 +103,7 @@ export default {
 
 .main .top h2 {
   margin: auto;
-  margin-top:60px;
+  margin-top: 60px;
   width: 1000px;
   padding-top: 30px;
   height: 100px;
@@ -221,9 +174,9 @@ export default {
   line-height: 218.52%;
   color: #000000;
 }
-.text >>>img{
-  width:auto !important;
-  height:100%;
+.text >>> img {
+  width: auto !important;
+  height: 100%;
 }
 .TAG_5 {
   position: absolute;
@@ -233,10 +186,6 @@ export default {
   bottom: 0px;
 
   background: #0d52a1;
-}
-.screen {
-  width: 100%;
-  overflow: hidden;
 }
 </style>
 

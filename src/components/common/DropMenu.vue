@@ -1,8 +1,13 @@
 <template>
+  <div style="display:flex;flex-flow:column;align-items: center;
+  ">
+    <div style="height:50px;paddding-top:10px;">
+        <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
+        <a class="top_text2">English</a>
+      </div>
   <slot >
     <div class="head">
       <div class="icon">
-        <img src="../../assets/images/icon.svg" />
         
       </div>
       <div class="nav">
@@ -27,6 +32,7 @@
       </div>
     </div>
   </slot>
+  </div>
 </template>
 
 <script>
@@ -43,34 +49,58 @@ export default {
   text-decoration: none;
   list-style: none;
 }
+.top_text1 {
+  padding-left: 1386px;
+  width: 96px;
+  height: 22px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 50px;
 
+  color: #ffffff;
+}
+.top_text2 {
+  position: absolute;
+  width: 96px;
+  height: 22px;
+
+  padding-left:20px ;
+
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 50px;
+
+  color: #ffffff;
+}
 
 .head {
   display: flex;
   /* position: absolute; */
   width: 1860px;
   height: 100px;
-  margin: 50px 30px 0px 30px;
+  margin: 0px 30px 0px 30px;
   z-index: 999;
-  /* top:50px;
-  left:30px; */
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 61px 17px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(61px);
   /* Note: backdrop-filter has minimal browser support */
-
   border-radius: 30px;
 }
-.icon {
-  
-  width: 270px;
-  height: 50px;
-  margin: 15px 0 0 100px;
-}
-.ArtFont img {
 
-  z-index: 10;
+.icon {
+  background-image: url("../../assets/images/icon.svg");
+  background-size:100% ;
+  width: 270px;
+  height: 43px;
+  margin: 34px 0 0 100px;
 }
+
+
 .nav {
   position: absolute;
   width: 780px;
