@@ -141,14 +141,14 @@
                     round
                     class="TAG_left_button"
                     @click="select(81)"
-                    >服务管理</el-button
+                    >文章管理</el-button
                   >
                   <el-button
                     type="primary"
                     round
                     class="TAG_left_button"
                     @click="select(82)"
-                    >新建服务</el-button
+                    >创建文章</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -971,32 +971,25 @@
               <div class="TAG_right_admin_left">中文数据库</div>
             </div>
             <el-divider></el-divider>
-            <div>
-              <el-scrollbar>
-                  <div
+            <div class="database-1">
+                   <div
                     v-for="item in count"
                     :key="item" 
-                    class="scrollbar-demo-item">
-
-                    <div style="color:#0D52A1;font-size:30px">{{ item }}</div>
-
+                    class="database-css">
+                    <div style="color:#0D52A1;font-size:30px">{{ item }}
+                    </div>
                     <el-divider direction="vertical" style="height: 100px;color:#0C57AD;" />
-
                     <el-avatar shape="square" style="width:180px;height:100px" src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"></el-avatar>
-                    
                     <div style="display: grid;justify-items: end;">
-
-                      <el-button style="width: 80px;background-color:#0C57AD;color: white;" >修改内容</el-button>
-                      <el-button style="width: 80px;background-color:#0C57AD;color: white;">修改图片</el-button>
-                      <el-button @click="onDelete" style="width: 80px;background-color:#E27172;color: white;"
+                      <el-button class="database-button" >修改内容</el-button>
+                      <el-button class="database-button"  >修改图片</el-button>
+                      <el-button @click="onDelete" class="database-button"  style="background-color:#E27172;"
                         >删除</el-button>
-
                     </div>
                   </div>
-                  <div class="scrollbar-demo-item">
-                    <el-button @click="add" style="background-color:#0C57AD;color: white;">添加数据库显示</el-button>
+                  <div class="database-css">
+                    <el-button @click="add" class="database-button"   style=" width: 160px;">添加数据库显示</el-button>
                   </div>
-                </el-scrollbar>
             </div>
           </div>
 
@@ -1010,6 +1003,26 @@
               <div class="TAG_right_admin_left">外文数据库</div>
             </div>
             <el-divider></el-divider>
+              <div class="database-1">
+                   <div
+                    v-for="item in count"
+                    :key="item" 
+                    class="database-css">
+                    <div style="color:#0D52A1;font-size:30px">{{ item }}
+                    </div>
+                    <el-divider direction="vertical" style="height: 100px;color:#0C57AD;" />
+                    <el-avatar shape="square" style="width:180px;height:100px" src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"></el-avatar>
+                    <div style="display: grid;justify-items: end;">
+                      <el-button class="database-button" >修改内容</el-button>
+                      <el-button class="database-button"  >修改图片</el-button>
+                      <el-button @click="onDelete" class="database-button"  style="background-color:#E27172;"
+                        >删除</el-button>
+                    </div>
+                  </div>
+                  <div class="database-css">
+                    <el-button @click="add" class="database-button"   style=" width: 160px;">添加数据库显示</el-button>
+                  </div>
+            </div>
           </div>
           <!-- 右：合作数据库-->
           <!-- 右:试用数据库-->
@@ -1018,6 +1031,26 @@
               <div class="TAG_right_admin_left">试用数据库</div>
             </div>
             <el-divider></el-divider>
+              <div class="database-1">
+                   <div
+                    v-for="item in count"
+                    :key="item" 
+                    class="database-css">
+                    <div style="color:#0D52A1;font-size:30px">{{ item }}
+                    </div>
+                    <el-divider direction="vertical" style="height: 100px;color:#0C57AD;" />
+                    <el-avatar shape="square" style="width:180px;height:100px" src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"></el-avatar>
+                    <div style="display: grid;justify-items: end;">
+                      <el-button class="database-button" >修改内容</el-button>
+                      <el-button class="database-button"  >修改图片</el-button>
+                      <el-button @click="onDelete" class="database-button"  style="background-color:#E27172;"
+                        >删除</el-button>
+                    </div>
+                  </div>
+                  <div class="database-css">
+                    <el-button @click="add" class="database-button"   style=" width: 160px;">添加数据库显示</el-button>
+                  </div>
+            </div>
           </div>
           <!-- 右：馆藏资源-->
           <!-- 右: 资源管理-->
@@ -1029,37 +1062,25 @@
           </div>
 
           <!-- 右：馆内服务-->
-          <!-- 右: 服务管理-->
+          <!-- 右: 文章管理-->
           <div class="TAG_rght_2" v-if="show(81)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">服务管理</div>
+              <div class="TAG_right_admin_left">文章管理</div>
             </div>
             <el-divider></el-divider>
-            <el-row>
-              <el-form-item label="主题">
-                <el-input
-                  v-model="search"
-                  placeholder="请输入关键字"
-                ></el-input>
-              </el-form-item>
-            </el-row>
-            <div class="TAG_right_admin_table">
-              <el-table
-                :data="
-                  UserData.filter(
-                    (data) =>
-                      !search ||
-                      data.name.toLowerCase().includes(search.toLowerCase())
-                  )
-                "
-              >
+          
+           <div class="TAG_right_admin_table">
+              <el-table :data="title">
                 <el-table-column
                   type="index"
                   label="#"
                   style="width: 83px"
                 ></el-table-column>
-                <el-table-column prop="id" label="ID工号"></el-table-column>
-                <el-table-column prop="name" label="姓名"></el-table-column>
+                <el-table-column
+                  prop="insideId"
+                  label="目录名"
+                ></el-table-column>
+
                 <el-table-column label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
@@ -1068,7 +1089,7 @@
                       type="success"
                       round
                       style="width: 60px"
-                      @click="select(811)"
+                      @click="select(23)"
                       >修改</el-button
                     >
                     <el-button
@@ -1081,7 +1102,6 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
-                      @click="open"
                       >删除</el-button
                     >
                   </template>
@@ -1090,46 +1110,26 @@
             </div>
           </div>
 
-          <!-- 右：馆内服务-->
-          <!-- 右: 修改服务-->
-          <div class="TAG_rght_2" v-if="show(811)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">修改服务</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="类型">
-              <el-input v-model="form.title"></el-input>
-            </el-form-item>
-            <el-form-item label="姓名">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Create_Notice()"
-                >保存并返回</el-button
-              >
-            </div>
-          </div>
 
           <!-- 右：馆内服务-->
-          <!-- 右: 新建服务-->
+          <!-- 右: 创建文章-->
           <div class="TAG_rght_2" v-if="show(82)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">新建服务</div>
+              <div class="TAG_right_admin_left">创建文章</div>
             </div>
             <el-divider></el-divider>
-            <el-form-item label="服务">
-              <el-input v-model="form.title"></el-input>
-            </el-form-item>
-            <el-form-item label="姓名">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
+        
+            <div style="color: black; font-size: large; font-weight: bold">
+              选择目录
+            </div>
+            <div class="block">
+              <el-cascader
+                v-model="menu_number"
+                :options="options"
+                clearable
+              ></el-cascader>
+            </div>
+
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
@@ -1137,8 +1137,8 @@
               <TEditor
                 style="height: 400px"
                 ref="editor"
-                v-model="value"
                 @input="content_value_change"
+                v-model="value"
               />
             </div>
 
@@ -1150,7 +1150,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="Create_Notice()"
+                @click="Total_Menu_Create(menu_number, value)"
                 >保存并返回</el-button
               >
             </div>
@@ -2436,13 +2436,26 @@ export default {
   float: right;
 }
 
-.scrollbar-demo-item {
+.database-1{
   display: flex;
+  flex-wrap: wrap;
+}
+.database-button{
+  margin: 2px;
+  width: 80px;
+  background-color:#0C57AD;
+  color: white;
+  border-radius: 12px;
+}
+.database-css {
+  display: flex;
+  flex-grow: 1;
   align-items: center;
+  text-align: center;
   justify-content: center;
+  width: 41%;
   height: 150px;
-  width: 50%;
-  margin: 50px;
+  margin: 8px;
   border-radius: 12px;
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 }
@@ -2450,7 +2463,5 @@ export default {
 :deep(.el-scrollbar__wrap--hidden-default) {
   max-height: 100% !important;
 }
-:deep(.scrollbar-demo-item) {
-  margin: 20px;
-}
+
 </style>
