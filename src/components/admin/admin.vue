@@ -130,7 +130,14 @@
                     round
                     class="TAG_left_button"
                     @click="select(71)"
-                    >资源管理</el-button
+                    >文章管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(72)"
+                    >创建文章</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -1053,12 +1060,99 @@
             </div>
           </div>
           <!-- 右：馆藏资源-->
-          <!-- 右: 资源管理-->
+          <!-- 右: 文章管理-->
           <div class="TAG_rght_2" v-if="show(71)">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">资源管理</div>
+              <div class="TAG_right_admin_left">文章管理</div>
             </div>
             <el-divider></el-divider>
+
+          <div class="TAG_right_admin_table">
+              <el-table :data="title">
+                <el-table-column
+                  type="index"
+                  label="#"
+                  style="width: 83px"
+                ></el-table-column>
+                <el-table-column
+                  prop="insideId"
+                  label="目录名"
+                ></el-table-column>
+
+                <el-table-column label="操作">
+                  <template #default="scope">
+                    {{ scope.row.date }}
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 60px"
+                      @click="select(23)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
+                        width: 60px;
+                        background-color: #e27172;
+                        margin-left: 4px;
+                        font-size: 15px;
+                      "
+                      >删除</el-button
+                    >
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+
+          </div>
+
+           <!-- 右：馆藏资源-->
+          <!-- 右: 创建文章-->
+          <div class="TAG_rght_2" v-if="show(72)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">创建文章</div>
+            </div>
+            <el-divider></el-divider>
+
+            <div style="color: black; font-size: large; font-weight: bold">
+              选择目录
+            </div>
+            <div class="block">
+              <el-cascader
+                v-model="menu_number"
+                :options="options"
+                clearable
+              ></el-cascader>
+            </div>
+
+            <div style="color: black; font-size: large; font-weight: bold">
+              编辑内容
+            </div>
+            <div class="TAG_main_write">
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                @input="content_value_change"
+                v-model="value"
+              />
+            </div>
+
+            <div class="TAG_right_buttom">
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Total_Menu_Create(menu_number, value)"
+                >保存并返回</el-button
+              >
+            </div>
+            
           </div>
 
           <!-- 右：馆内服务-->
