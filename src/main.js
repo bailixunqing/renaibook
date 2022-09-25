@@ -25,10 +25,11 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 app.mount('#app')
 
-
+//ads
+//测试
 router.beforeEach((to, from, next) => {
 
-    const isLogin = sessionStorage.getItem('adminlogin');
+
     console.log(isLogin)
     const token=sessionStorage.getItem("token");
     console.log(token);
