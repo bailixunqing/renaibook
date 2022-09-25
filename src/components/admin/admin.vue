@@ -239,7 +239,7 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
-                      @click="open(0, scope)"
+                      @click="delete_total(0, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -345,7 +345,7 @@
             <div class="block">
               <el-cascader
                 v-model="menu_number"
-                :options="options"
+                :options="options_1"
                 clearable
               ></el-cascader>
             </div>
@@ -384,34 +384,8 @@
             </div>
             <el-divider></el-divider>
 
-            <!--被干掉了
-
-            <div style="color: black; font-size: large; font-weight: bold">
-              创建目录
-            </div>
-
-            <el-select
-              v-model="value"
-              multiple
-              filterable
-              allow-create
-              default-first-option
-              :reserve-keyword="false"
-              placeholder="输入创建目录"
-            >
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-
-
-           -->
-
             <div class="TAG_right_admin_table">
-              <el-table :data="title">
+              <el-table :data="title_1">
                 <el-table-column
                   type="index"
                   label="#"
@@ -430,7 +404,7 @@
                       type="success"
                       round
                       style="width: 60px"
-                      @click="select(23)"
+                      @click="Total_Menu_Update(0, scope)"
                       >修改</el-button
                     >
                     <el-button
@@ -443,53 +417,21 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
+                      @click="delete_total(5, scope)"
                       >删除</el-button
                     >
                   </template>
                 </el-table-column>
               </el-table>
             </div>
-
-            <!--被干掉了
-
-
-
-
-
-
-
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                @input="content_value_change"
-                v-model="value"
-              />
-            </div>
-
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="total_menu(item, value)"
-                >保存并返回</el-button
-              >
-            </div>
-
--->
           </div>
           <div class="TAG_rght_2" v-if="show(23)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">修改文章</div>
             </div>
-
+            <div style="color: black; font-size: large; font-weight: bold">
+              标题：{{ form.insideId }}
+            </div>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
@@ -499,6 +441,7 @@
                 ref="editor"
                 @input="content_value_change"
                 v-model="value"
+                :value="value"
               />
             </div>
 
@@ -510,7 +453,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="Total_Menu_Update()"
+                @click="Total_Menu_Update(1, 1)"
                 >保存并返回</el-button
               >
             </div>
@@ -565,7 +508,7 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
-                      @click="open(1, scope)"
+                      @click="delete_total(1, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -675,8 +618,7 @@
                   type="index"
                   style="width: 83px"
                   label="#"
-                ></el-table-column
-                >5
+                ></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
                 <el-table-column
@@ -704,7 +646,7 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
-                      @click="open(2, scope)"
+                      @click="delete_total(2, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -720,10 +662,10 @@
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.author_title"></el-input>
+              <el-input v-model="form.title"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.author_name"></el-input>
+              <el-input v-model="form.name"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
@@ -734,6 +676,7 @@
                 ref="editor"
                 v-model="value"
                 :value="value"
+                @input="content_value_change"
               />
             </div>
             <div class="TAG_right_buttom">
@@ -748,7 +691,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="Resource_update(1, 0)"
+                @click="Resource_update(1, 1)"
                 >保存并返回</el-button
               >
             </div>
@@ -772,7 +715,12 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+              />
             </div>
             <div class="TAG_right_buttom">
               <el-button type="success" round class="TAG_right_back"
@@ -837,7 +785,7 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
-                      @click="open(3, scope)"
+                      @click="delete_total(3, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -1102,7 +1050,7 @@
             <el-divider></el-divider>
 
             <div class="TAG_right_admin_table">
-              <el-table :data="title">
+              <el-table :data="title_2">
                 <el-table-column
                   type="index"
                   label="#"
@@ -1121,7 +1069,7 @@
                       type="success"
                       round
                       style="width: 60px"
-                      @click="select(23)"
+                      @click="Total_Menu_Update(0, scope)"
                       >修改</el-button
                     >
                     <el-button
@@ -1134,6 +1082,7 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
+                      @click="delete_total(5, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -1156,7 +1105,7 @@
             <div class="block">
               <el-cascader
                 v-model="menu_number"
-                :options="options"
+                :options="options_2"
                 clearable
                 @change="handleChange(options, menu_number)"
               ></el-cascader>
@@ -1197,7 +1146,7 @@
             <el-divider></el-divider>
 
             <div class="TAG_right_admin_table">
-              <el-table :data="title">
+              <el-table :data="title_3">
                 <el-table-column
                   type="index"
                   label="#"
@@ -1216,7 +1165,7 @@
                       type="success"
                       round
                       style="width: 60px"
-                      @click="select(23)"
+                      @click="Total_Menu_Update(0, scope)"
                       >修改</el-button
                     >
                     <el-button
@@ -1229,6 +1178,7 @@
                         margin-left: 4px;
                         font-size: 15px;
                       "
+                      @click="delete_total(5, scope)"
                       >删除</el-button
                     >
                   </template>
@@ -1251,7 +1201,7 @@
             <div class="block">
               <el-cascader
                 v-model="menu_number"
-                :options="options"
+                :options="options_3"
                 clearable
               ></el-cascader>
             </div>
@@ -1331,7 +1281,7 @@ export default {
       let ActivitiesData=[];
       let title=[];
       let itemKey=0;
-      const options= [
+      const options_1= [
           {
           value: '1-1-馆长寄语',
           label: '馆长寄语',
@@ -1367,20 +1317,93 @@ export default {
           label: '馆内服务',
           
         }];
+        const options_2= [
+        {
+          value: '2-1-书目查询',
+          label: '书目查询',
+          
+        }, 
+        {
+          value: '2-2-教学参考',
+          label: '教学参考',
+          
+        }, 
+        {
+          value: '2-3-随书光盘',
+          label: '随书光盘',
+          
+        },  
+        {
+          value: '2-4-学位论文',
+          label: '学位论文',
+          
+        },  
+        {
+          value: '2-5-图书捐赠',
+          label: '图书捐赠',
+          
+        },
+        {
+          value: '2-6-报纸导航',
+          label: '报纸导航',
+          
+        }, 
+        {
+          value: '2-7-易读获取',
+          label: '易读获取',
+          
+        }, 
+        {
+          value: '2-8-数据库',
+          label: '数据库',
+          
+        }];
+        
+        const options_3= [
+        {
+          value: '3-1-馆际互借',
+          label: '馆际互借',
+          
+        }, 
+        {
+          value: '3-2-咨询服务',
+          label: '咨询服务',
+          
+        }, 
+        {
+          value: '3-3-常见问题',
+          label: '常见问题',
+          
+        },  
+        {
+          value: '3-4-阅读疗法',
+          label: '阅读疗法',
+          
+        },  
+        {
+          value: '3-5-仁爱图苑',
+          label: '仁爱图苑',
+          
+        }];
       return {
         count: 3,
         update_form,
         author_title,
         activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
-         form,value_1:"",
-         textarea:"",
+        form,value_1:"",
+        textarea:"",
         search: '',//搜索
-       options,
+        options_1,
+        title_1:"",
+        options_2,
+        title_2:"",
+        options_3,
+        title_3:"",
         UserData,
         value,
         User_Form,
         ResourceData,
-        itemKey
+        itemKey,
       };
     },
     
@@ -1451,7 +1474,7 @@ export default {
        
       },
       //删除按钮
-       open(i,e) {
+       delete_total(i,e) {
         
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -1488,7 +1511,7 @@ export default {
               message: '删除成功!'
               });
           }
-          if(i==3)
+          if(i==3) //删除活动
           {
             this.Delete_Activities(e)
              this.$message({
@@ -1496,6 +1519,25 @@ export default {
               message: '删除成功!'
               });
           }
+          // if(i==4) //删除数据库
+          // {
+          //   this.Delete_Activities(e)
+          //    this.$message({
+          //     type: 'success',
+          //     message: '删除成功!'
+          //     });
+          // }
+          if(i==5) //删除标题栏内容
+          {
+              console.log(e)
+              console.log(this.activeName);
+              this.Total_Menu_Delete(e);
+            //  this.$message({
+            //   type: 'success',
+            //   message: '删除成功!'
+            //   });
+          }
+        
            
         }).catch(() => {
           this.$message({
@@ -1515,6 +1557,17 @@ export default {
         return false;
       },
       select(i) {
+        let form={};
+        if(i==111||i==23||i==311||i==511||i==23||i==411)
+        {
+         
+        }
+        else
+        {
+          this.form={};
+        }
+        console.log(this.form)
+        console.log(this.value)
         this.current=i;
       },
       handleRemove(file, fileList) {
@@ -1640,12 +1693,51 @@ export default {
 
       Total_Menu_init()
       {
+        let i=0;
+        let data;
+        let title_1=[];
+        let title_2=[];
+        let title_3=[];
+        var cmp=function(obj1,obj2){
+          var val_1=obj1.insideId;
+          var val_2=obj2.insideId;
+          if(val_1<val_2)
+          {
+          return -1;
+          }
+          else if(val_1>val_2)
+          {
+            return 1;
+          }
+          else return 0;
+
+        }
         axios
         .get("/api" + "/title/searchAll")
         .then((res) => {
-           
-          this.title=res.data.data
-           console.log(this.title)
+          data=res.data.data;
+          data.sort(cmp);
+          for(i=0;i<data.length;i++)
+          {
+            if(data[i].insideId[0]=="1")
+            {
+              title_1.push(data[i]);
+            }
+             if(data[i].insideId[0]=="2")
+            {
+              title_2.push(data[i]);
+            }
+              if(data[i].insideId[0]=="3")
+            {
+              title_3.push(data[i]);
+            }
+          }
+          this.title_1=title_1;
+          this.title_2=title_2;
+          this.title_3=title_3;
+          console.log(this.title_1)
+          console.log(this.title_2)
+          console.log(this.title_3)
       
        
         })
@@ -1656,26 +1748,151 @@ export default {
        Total_Menu_Create(menu_number,value)
      {
         var insideId=menu_number.toString()
-    
-        axios
-          .post("/api" + "/title/insert", null, {
-            params: {
+        var that=this;
+         let params= {
               insideId:insideId,
               content:this.value,
               token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-            alert("添加成功");
-            this.$refs.editor.$data.contentValue=""
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+
             
+        axios
+          .post("/api" + "/title/insert", params, config)
+          .then((res) => {
+            if(res.data.code==500)
+            {
+              this.$message({
+                type: 'error',
+                message: '已含有该标题!'
+              });
+            }
+            else
+            {
+              this.$message({
+                type: 'success',
+                message: '添加成功'
+              });
+            }
+            this.$refs.editor.$data.contentValue=""   
           })
           .catch((err) => {
-          
-            alert("添加失败");
+            this.$message({
+                type: 'error',
+                message: '添加失败'
+              });
           });
     },
+    Total_Menu_Delete(e)
+    {
+      var that=this;
+         let params= {
+              insideId:e.row.insideId,
+              token:sessionStorage.getItem("token")
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/title/delete", params, config)
+                 .then((res) => {
+                  console.log(res)
+                  if(res.data.code==500)
+                  {
+                    this.$message({
+                        type: 'error',
+                        message: '删除失败!'
+                        });
+                  }
+                  else
+                  {
+                    
+                        if(e.row.insideId[0]=="1")
+                        {
+                          this.title_1.splice(e.$index,1);
+                        }
+                        if(e.row.insideId[0]=="2")
+                        {
+                          this.title_2.splice(e.$index,1);
+                        }
+                        if(e.row.insideId[0]=="3")
+                        {
+                          this.title_3.splice(e.$index,1);
+                        }
 
+                        this.itemKey = Math.random()
+                        this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                        });
+                        
+                  }
+                  })
+                  .catch(() => {
+                alert("删除失败");
+                 console.log(err);
+              });
+    },
+      Total_Menu_Update(i,e)
+      {
+        if(i==0)
+        {
+          console.log(e);
+          this.form.insideId=e.row.insideId;
+          this.value=e.row.content;
+          this.select(23);
+        }
+        if(i==1)
+        {
+          let j=0;
+          if(this.form.insideId[0]=='1')
+            j=22
+          if(this.form.insideId[0]=='2')
+            j=71
+          if(this.form.insideId[0]=='3')
+            j=81
+          console.log("j:"+j)
+          let params= {
+              insideId:this.form.insideId,
+              content:this.value,
+              token:sessionStorage.getItem("token")
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/title/update", params, config)
+                 .then((res) => {
+                          if(res.data.code==200)
+                          {
+                            this.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                                });
+                            this.Total_Menu_init();
+                            this.value=""
+                            this.form={};
+                            setTimeout(() => {
+                             this.select(j)
+                            }, 1000);
+                          }
+                          
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+        }
+        
+      },
 
       //<=============================================指南===================================================>
       //<=============================================指南===================================================>
@@ -1756,7 +1973,6 @@ export default {
         }
         else if(i==1)
         {
-         console.log("notice_update_id:")
          console.log(this.form.id)
          let params= {
               id:this.form.id,
@@ -1775,8 +1991,8 @@ export default {
                  .then((res) => {
                           this.Notice_init();
                           this.value=""
-                          this.form.title="";
-                          this.form.name="";
+                          
+                          this.form={};
                           setTimeout(() => {
                             this.select(31)
                           }, 1000);
@@ -1830,7 +2046,8 @@ export default {
          axios
         .get("/api" + "/resource/searchAll")
         .then((res) => {
-
+          console.log("resource-init")
+          console.log(res)
           data=res.data.data;
           for( i=0;i<data.length;i++)
           {
@@ -1897,20 +2114,20 @@ export default {
       
       Resource_update(i,e)
       {
-         var that=this
-
+        var that=this
         if(i==0)
         {
           console.log(e)
-        this.select(311),
         this.form.id=e.row.id;
         this.form.title=e.row.title;
         this.form.name=e.row.author;
         this.value=e.row.content;
+        this.select(411)
       
         }
         else if(i==1)
         {
+          console.log("resource-update++++++")
          let params= {
               id:this.form.id,
               title: this.form.title,
@@ -1926,12 +2143,11 @@ export default {
             axios
                 .post("/api" + "/resource/update", params, config)
                  .then((res) => {
+                          console.log(res)
                           this.Resource_init()
-                          this.value=""
-                          this.form.title="";
-                          this.form.name="";
+                          this.form={};
                           setTimeout(() => {
-                            this.select(31)
+                            this.select(41)
                           }, 1000);
                           
                     })

@@ -15,28 +15,75 @@
             <li class="btli">
               <a href="">图书馆指南</a>
               <ul class="droplist">
-                <li @click="jump(1)">
+                <li @click="jump(0, 1)">
                   <a href="">馆长寄语</a>
                 </li>
-                <li @click="jump(2)">
+                <li @click="jump(0, 2)">
                   <a href="">本馆介绍</a>
                 </li>
-                <li @click="jump(3)">
+                <li @click="jump(0, 3)">
                   <a href="">馆藏分布</a>
                 </li>
-                <li @click="jump(4)">
+                <li @click="jump(0, 4)">
                   <a href="">开放时间</a>
                 </li>
-                <li @click="jump(5)">
+                <li @click="jump(0, 5)">
                   <a href="">入馆须知</a>
                 </li>
-                <li @click="jump(6)">
+                <li @click="jump(0, 6)">
                   <a href="">组织机构</a>
                 </li>
               </ul>
             </li>
-            <li class="btli"><a href="#">资源</a></li>
-            <li class="btli"><a href="#">服务</a></li>
+            <li class="btli">
+              <a href="#">资源</a>
+              <ul class="droplist">
+                <li @click="jump(1, 1)">
+                  <a href="">书目查询</a>
+                </li>
+                <li @click="jump(1, 2)">
+                  <a href="">教学参考</a>
+                </li>
+                <li @click="jump(1, 3)">
+                  <a href="">随书光盘</a>
+                </li>
+                <li @click="jump(1, 4)">
+                  <a href="">学位论文</a>
+                </li>
+                <li @click="jump(1, 5)">
+                  <a href="">图书捐赠</a>
+                </li>
+                <li @click="jump(1, 6)">
+                  <a href="">报纸导航</a>
+                </li>
+                <li @click="jump(1, 7)">
+                  <a href="">易读获取</a>
+                </li>
+                <li @click="jump(1, 8)">
+                  <a href="">数据库</a>
+                </li>
+              </ul>
+            </li>
+            <li class="btli">
+              <a href="#">服务</a>
+              <ul class="droplist">
+                <li @click="jump(2, 1)">
+                  <a href="">馆际互借</a>
+                </li>
+                <li @click="jump(2, 2)">
+                  <a href="">咨询服务</a>
+                </li>
+                <li @click="jump(2, 3)">
+                  <a href="">常见问题</a>
+                </li>
+                <li @click="jump(2, 4)">
+                  <a href="">阅读疗法</a>
+                </li>
+                <li @click="jump(2, 5)">
+                  <a href="">仁爱图苑</a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -48,13 +95,31 @@
 export default {
   name: "DropMenu",
   methods: {
-    jump(i) {
-      this.$router.push({
-        path: "/Library_Guide",
-        query: {
-          id: i,
-        },
-      });
+    jump(e, i) {
+      if (e == 0) {
+        this.$router.push({
+          path: "/Library_Guide",
+          query: {
+            id: i,
+          },
+        });
+      }
+      if (e == 1) {
+        this.$router.push({
+          path: "/Sources",
+          query: {
+            id: i,
+          },
+        });
+      }
+      if (e == 2) {
+        this.$router.push({
+          path: "/Service",
+          query: {
+            id: i,
+          },
+        });
+      }
     },
   },
 };

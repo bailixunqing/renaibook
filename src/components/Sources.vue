@@ -10,15 +10,15 @@
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
-          <el-collapse-item title="馆长寄语" @click="select(1)" name="1">
+          <el-collapse-item title="书目查询" @click="select(1)" name="1">
           </el-collapse-item>
-          <el-collapse-item title="本馆简介" @click="select(2)" name="2"> </el-collapse-item>
-          <el-collapse-item title="馆藏分布" @click="select(3)" name="3"> </el-collapse-item>
-          <el-collapse-item title="开放时间" @click="select(4)" name="4"> </el-collapse-item>
-          <el-collapse-item title="入馆须知" @click="select(5)" name="5"> </el-collapse-item>
-          <el-collapse-item title="组织机构" @click="select(6)" name="6"> </el-collapse-item>
-          <el-collapse-item title="联系我们" @click="select(7)" name="7"> </el-collapse-item>
-          <el-collapse-item title="馆内服务" @click="select(8)" name="8"> </el-collapse-item>
+          <el-collapse-item title="教学参考" @click="select(2)" name="2"> </el-collapse-item>
+          <el-collapse-item title="随书光盘" @click="select(3)" name="3"> </el-collapse-item>
+          <el-collapse-item title="学位论文" @click="select(4)" name="4"> </el-collapse-item>
+          <el-collapse-item title="图书捐赠" @click="select(5)" name="5"> </el-collapse-item>
+          <el-collapse-item title="报纸导航" @click="select(6)" name="6"> </el-collapse-item>
+          <el-collapse-item title="易读获取" @click="select(7)" name="7"> </el-collapse-item>
+          <el-collapse-item title="数据库" @click="select(8)" name="8"> </el-collapse-item>
         </el-collapse>
       </div>
       <div class="right">
@@ -74,28 +74,28 @@ export default {
         .then((res) => {
           data = res.data.data;
           for (i = 0; i < data.length; i++) {
-            if (data[i].insideId == "1-1-馆长寄语") {
+            if (data[i].insideId == "2-1-书目查询") {
               this.Menu[0] = data[i].content;
             }
-            if (data[i].insideId == "1-2-本馆简介") {
+            if (data[i].insideId == "2-2-教学参考") {
               this.Menu[1] = data[i].content;
             }
-            if (data[i].insideId == "1-3-馆藏分布") {
+            if (data[i].insideId == "2-3-随书光盘") {
               this.Menu[2] = data[i].content;
             }
-            if (data[i].insideId == "1-4-开放时间") {
+            if (data[i].insideId == "2-4-学位论文") {
               this.Menu[3] = data[i].content;
             }
-            if (data[i].insideId == "1-5-入馆须知") {
+            if (data[i].insideId == "2-5-图书捐赠") {
               this.Menu[4] = data[i].content;
             }
-            if (data[i].insideId == "1-6-组织机构") {
+            if (data[i].insideId == "2-6-报纸导航") {
               this.Menu[5] = data[i].content;
             }
-            if (data[i].insideId == "1-7-联系我们") {
+            if (data[i].insideId == "2-7-易读获取") {
               this.Menu[6] = data[i].content;
             }
-            if (data[i].insideId == "1-8-馆内服务") {
+            if (data[i].insideId == "2-8-数据库") {
               this.Menu[7] = data[i].content;
             }
           }
@@ -108,6 +108,9 @@ export default {
   },
 
   mounted: function () {
+    let data=this.$route.query
+    this.activeName=data.id
+    this.select(data.id)
     this.init();
   },
   message() {},

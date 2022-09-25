@@ -10,15 +10,13 @@
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
-          <el-collapse-item title="馆长寄语" @click="select(1)" name="1">
+          <el-collapse-item title="馆际互借" @click="select(1)" name="1">
           </el-collapse-item>
-          <el-collapse-item title="本馆简介" @click="select(2)" name="2"> </el-collapse-item>
-          <el-collapse-item title="馆藏分布" @click="select(3)" name="3"> </el-collapse-item>
-          <el-collapse-item title="开放时间" @click="select(4)" name="4"> </el-collapse-item>
-          <el-collapse-item title="入馆须知" @click="select(5)" name="5"> </el-collapse-item>
-          <el-collapse-item title="组织机构" @click="select(6)" name="6"> </el-collapse-item>
-          <el-collapse-item title="联系我们" @click="select(7)" name="7"> </el-collapse-item>
-          <el-collapse-item title="馆内服务" @click="select(8)" name="8"> </el-collapse-item>
+          <el-collapse-item title="咨询服务" @click="select(2)" name="2"> </el-collapse-item>
+          <el-collapse-item title="常见问题" @click="select(3)" name="3"> </el-collapse-item>
+          <el-collapse-item title="阅读疗法" @click="select(4)" name="4"> </el-collapse-item>
+          <el-collapse-item title="仁爱图苑" @click="select(5)" name="5"> </el-collapse-item>
+          
         </el-collapse>
       </div>
       <div class="right">
@@ -27,9 +25,7 @@
         <div class="text" v-html="Menu[2]" v-if="show(3)"></div>
         <div class="text" v-html="Menu[3]" v-if="show(4)"></div>
         <div class="text" v-html="Menu[4]" v-if="show(5)"></div>
-        <div class="text" v-html="Menu[5]" v-if="show(6)"></div>
-        <div class="text" v-html="Menu[6]" v-if="show(7)"></div>
-        <div class="text" v-html="Menu[7]" v-if="show(8)"></div>
+       
       </div>
     </div>
     
@@ -74,30 +70,22 @@ export default {
         .then((res) => {
           data = res.data.data;
           for (i = 0; i < data.length; i++) {
-            if (data[i].insideId == "1-1-馆长寄语") {
+            if (data[i].insideId == "3-1-馆际互借") {
               this.Menu[0] = data[i].content;
             }
-            if (data[i].insideId == "1-2-本馆简介") {
+            if (data[i].insideId == "3-2-咨询服务") {
               this.Menu[1] = data[i].content;
             }
-            if (data[i].insideId == "1-3-馆藏分布") {
+            if (data[i].insideId == "3-3-常见问题") {
               this.Menu[2] = data[i].content;
             }
-            if (data[i].insideId == "1-4-开放时间") {
+            if (data[i].insideId == "3-4-阅读疗法") {
               this.Menu[3] = data[i].content;
             }
-            if (data[i].insideId == "1-5-入馆须知") {
+            if (data[i].insideId == "3-5-仁爱图苑") {
               this.Menu[4] = data[i].content;
             }
-            if (data[i].insideId == "1-6-组织机构") {
-              this.Menu[5] = data[i].content;
-            }
-            if (data[i].insideId == "1-7-联系我们") {
-              this.Menu[6] = data[i].content;
-            }
-            if (data[i].insideId == "1-8-馆内服务") {
-              this.Menu[7] = data[i].content;
-            }
+            
           }
         })
         .catch((err) => {
@@ -107,7 +95,7 @@ export default {
   },
 
   mounted: function () {
-    console.log("id::::::")
+
     let data=this.$route.query
     console.log(data)
     this.activeName=data.id

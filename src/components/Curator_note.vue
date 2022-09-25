@@ -33,8 +33,8 @@
     <!-- 页面底 -->
 
     <!-- 页面底 -->
-    <div class="TAG_5">
-      <bottom-footer />
+     <div class="TAG_5">
+      <Admin-bottom />
     </div>
   </div>
 </template>
@@ -181,7 +181,7 @@ export default {
 .TAG_5 {
   position: absolute;
   width: 100%;
-  height: 456px;
+height: 200px;
 
   bottom: 0px;
 
