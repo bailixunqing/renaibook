@@ -1,48 +1,66 @@
 <template>
-  <div style="display:flex;flex-flow:column;align-items: center;
-  ">
-    <div style="height:50px;paddding-top:10px;">
-        <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
-        <a class="top_text2">English</a>
-      </div>
-  <slot >
-    <div class="head">
-      <div class="icon">
-        
-      </div>
-      <div class="nav">
-        <ul class="navlist">
-          <li @click="$router.push({ name: 'home' })" class="btli">
-            <a href="">首页</a>
-          </li>
-          <li class="btli" @click="$router.push({ name: 'behind' })">
-            <a href="">图书馆指南</a>
-            <ul class="droplist">
-              <li  @click="$router.push({ name: 'behind' })"><a href="">馆长寄语</a></li>
-              <li  @click="$router.push({ name: 'behind' })"><a href="">本馆介绍</a></li>
-              <li  @click="$router.push({ name: 'behind' })"><a href="">馆藏分布</a></li>
-              <li  @click="$router.push({ name: 'behind' })"><a href="">开放时间</a></li>
-              <li  @click="$router.push({ name: 'behind' })"><a href="">入馆须知</a></li>
-              <li  @click="$router.push({ name: 'behind' })"><a href="">组织机构</a></li>
-            </ul>
-          </li>
-          <li class="btli"><a href="#">资源</a></li>
-          <li class="btli"><a href="#">服务</a></li>
-        </ul>
-      </div>
+  <div style="display: flex; flex-flow: column; align-items: center">
+    <div style="height: 50px; paddding-top: 10px">
+      <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
+      <a class="top_text2">English</a>
     </div>
-  </slot>
+    <slot>
+      <div class="head">
+        <div class="icon"></div>
+        <div class="nav">
+          <ul class="navlist">
+            <li @click="$router.push({ name: 'home' })" class="btli">
+              <a href="">首页</a>
+            </li>
+            <li class="btli">
+              <a href="">图书馆指南</a>
+              <ul class="droplist">
+                <li @click="jump(1)">
+                  <a href="">馆长寄语</a>
+                </li>
+                <li @click="jump(2)">
+                  <a href="">本馆介绍</a>
+                </li>
+                <li @click="jump(3)">
+                  <a href="">馆藏分布</a>
+                </li>
+                <li @click="jump(4)">
+                  <a href="">开放时间</a>
+                </li>
+                <li @click="jump(5)">
+                  <a href="">入馆须知</a>
+                </li>
+                <li @click="jump(6)">
+                  <a href="">组织机构</a>
+                </li>
+              </ul>
+            </li>
+            <li class="btli"><a href="#">资源</a></li>
+            <li class="btli"><a href="#">服务</a></li>
+          </ul>
+        </div>
+      </div>
+    </slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "DropMenu"
-}
+  name: "DropMenu",
+  methods: {
+    jump(i) {
+      this.$router.push({
+        path: "/Library_Guide",
+        query: {
+          id: i,
+        },
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 * {
   margin: 0;
   padding: 0;
@@ -66,8 +84,7 @@ export default {
   width: 96px;
   height: 22px;
 
-  padding-left:20px ;
-
+  padding-left: 20px;
 
   font-family: "PingFang SC";
   font-style: normal;
@@ -94,12 +111,11 @@ export default {
 
 .icon {
   background-image: url("../../assets/images/icon.svg");
-  background-size:100% ;
+  background-size: 100%;
   width: 270px;
   height: 43px;
   margin: 34px 0 0 100px;
 }
-
 
 .nav {
   position: absolute;
@@ -141,8 +157,4 @@ export default {
   display: block;
   z-index: 999;
 }
-
-
-
-
 </style>

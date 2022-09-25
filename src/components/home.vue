@@ -525,15 +525,15 @@ export default {
 
   mounted: function () {
     this.init();
-    window.onbeforeunload = function (e) {
-      e = e || window.event;
-      if (e) {
-        sessionStorage.clear();
-        console.log("clear");
-        e.returnValue = "关闭提示";
-      }
-      return "关闭提示";
-    };
+    // window.onbeforeunload = function (e) {
+    //   e = e || window.event;
+    //   if (e) {
+    //     sessionStorage.clear();
+    //     console.log("clear");
+    //     e.returnValue = "关闭提示";
+    //   }
+    //   return "关闭提示";
+    // };
   },
   message() {},
 };

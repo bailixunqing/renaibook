@@ -45,7 +45,7 @@ import BehindMenu from "@/components/common/BehindMenu";
 import DropMenu from "@/components/common/DropMenu";
 const axios = require("axios");
 export default {
-  name: "BehindWand",
+  name: "Library_Guide",
   components: { DropMenu, BehindMenu, BottomFooter },
   data() {
     let activeName = "1";
@@ -99,7 +99,6 @@ export default {
               this.Menu[7] = data[i].content;
             }
           }
-          console.log(this.Menu[0]);
         })
         .catch((err) => {
           console.log(err);
@@ -108,6 +107,11 @@ export default {
   },
 
   mounted: function () {
+    console.log("id::::::")
+    let data=this.$route.query
+    console.log(data)
+    this.activeName=data.id
+    this.select(data.id)
     this.init();
   },
   message() {},

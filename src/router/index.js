@@ -5,7 +5,11 @@ import test from '@/components/test'
 import login from '@/components/login'
 import Curator_note from '@/components/Curator_note'
 import admin from '@/components/admin/admin'
-import behind from "@/components/BehindWang";
+import Library_Guide from "@/components/Library_Guide";
+import Sources from "@/components/Sources";
+
+import Service from "@/components/Service";
+
 
 export default createRouter({
     history: createWebHistory(),
@@ -36,9 +40,19 @@ export default createRouter({
             component: admin
         },
         {
-            path: '/behind',
-            name: 'behind',
-            component: behind 
+            path: '/Library_Guide',
+            name: 'Library_Guide',
+            component: Library_Guide 
+        },
+        {
+            path: '/Sources',
+            name: 'Sources',
+            component: Sources
+        },
+        {
+            path: '/Service',
+            name: 'Service',
+            component: Service
         }
     ],
 })
