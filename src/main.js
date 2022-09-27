@@ -30,7 +30,7 @@ app.mount('#app')
 router.beforeEach((to, from, next) => {
 
 
-    console.log(isLogin)
+
     const token=sessionStorage.getItem("token");
     console.log(token);
     if(token!=null)

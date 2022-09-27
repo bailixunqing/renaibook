@@ -1,10 +1,7 @@
 <template>
   <div class="screen">
     <div class="background">
-
-      <!--    标题栏-->
       <drop-menu />
-      <!-- //啦啦啦啦 -->
       <div class="TAG_0">
         <div class="ArtFont">
           <img src="../assets/images/Artfont.svg" />
@@ -22,8 +19,53 @@
             <img src="../assets/images/search.svg" @click="search()" />
           </div>
         </div>
+        <div
+          style="
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            justify-content: center;
+            margin-top:50px;
+            margin-bottom:0px;
+          "
+        >
+          <div
+            class="tap_1"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 1 } })"
+          >
+            <img class="tap_icon" src="../assets/images/icon5.svg" />
+            <h1 class="tap_txt">馆长寄语</h1>
+          </div>
+          <div class="tap_2" @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })">
+            <img class="tap_icon" src="../assets/images/icon6.svg" />
+            <h1 class="tap_txt">本馆简介</h1>
+          </div>
+          <div class="tap_3" @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })">
+            <img class="tap_icon" src="../assets/images/icon7.svg" />
+            <h1 class="tap_txt">馆藏分布</h1>
+          </div>
+          <div class="tap_4" @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })">
+            <img class="tap_icon" src="../assets/images/icon8.svg" />
+            <h1 class="tap_txt">开放时间</h1>
+          </div>
+          <div class="tap_5" @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })">
+            <img class="tap_icon" src="../assets/images/icon9.svg" />
+            <h1 class="tap_txt">入馆须知</h1>
+          </div>
+          <div class="tap_6" @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })">
+            <img class="tap_icon" src="../assets/images/icon10.svg" />
+            <h1 class="tap_txt">组织机构</h1>
+          </div>
+        </div>
+ 
+
+
+
+
+
+
       </div>
-    <div style="height:200px"></div>
+      <div style="height: 60px"></div>
     </div>
 
     <!-- 通知公告 -->
@@ -103,7 +145,7 @@
               <h1>活动报道</h1>
               <div class="line_1"></div>
               <h2>更多</h2>
-              
+
               <h3>Activity reports</h3>
               <div class="line_2"></div>
             </div>
@@ -131,14 +173,15 @@
           </div>
         </div>
         <div class="block_3">
-          <h1>常用数据库</h1>
-          <h1>试用数据库</h1>
-          <h1>开源数据库
-
-          </h1>
-          <div class="line_1"></div>
-          <h2>更多</h2>
+          <div style="display: flex">
+            <h1>常用数据库</h1>
+            <h1>试用数据库</h1>
+            <h1>开源数据库</h1>
+            <div class="line_1"></div>
+            <h2>更多</h2>
+          </div>
           <h3>Cooperative database</h3>
+
           <div class="line_2"></div>
           <div class="ad">
             <img src="../assets/images/ad.png" />
@@ -294,27 +337,30 @@
             justify-content: center;
           "
         >
-          <div class="tap_1" @click="$router.push({ name: 'behind' })">
+          <div
+            class="tap_1"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 1 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon5.svg" />
             <h1 class="tap_txt">馆长寄语</h1>
           </div>
-          <div class="tap_2" @click="$router.push({ name: 'behind' })">
+          <div class="tap_2" @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })">
             <img class="tap_icon" src="../assets/images/icon6.svg" />
             <h1 class="tap_txt">本馆简介</h1>
           </div>
-          <div class="tap_3" @click="$router.push({ name: 'behind' })">
+          <div class="tap_3" @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })">
             <img class="tap_icon" src="../assets/images/icon7.svg" />
             <h1 class="tap_txt">馆藏分布</h1>
           </div>
-          <div class="tap_4" @click="$router.push({ name: 'behind' })">
+          <div class="tap_4" @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })">
             <img class="tap_icon" src="../assets/images/icon8.svg" />
             <h1 class="tap_txt">开放时间</h1>
           </div>
-          <div class="tap_5" @click="$router.push({ name: 'behind' })">
+          <div class="tap_5" @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })">
             <img class="tap_icon" src="../assets/images/icon9.svg" />
             <h1 class="tap_txt">入馆须知</h1>
           </div>
-          <div class="tap_6" @click="$router.push({ name: 'Curator_note' })">
+          <div class="tap_6" @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })">
             <img class="tap_icon" src="../assets/images/icon10.svg" />
             <h1 class="tap_txt">组织机构</h1>
           </div>
@@ -324,8 +370,6 @@
 
     <!-- 页面底 -->
     <div class="TAG_5">
-      <!-- <bottom-footer />
-       -->
       <Admin-bottom />
     </div>
   </div>
@@ -370,59 +414,6 @@ export default {
       console.log(this.show);
     },
 
-    // init() {
-    //   let data = [];
-    //   let i = 0;
-    //   let j = 0;
-    //   axios
-    //     .get("/api" + "/activity/searchAll")
-    //     .then((res) => {
-    //       data = res.data.data.slice(0, 3);
-    //       data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-    //       data[i].time = data[i].gmtCreate.substring(0, 7);
-    //       data[i].time = data[i].time.replace("-", ".");
-    //       data[i].day = data[i].gmtCreate.substring(8, 10);
-    //       this.activities = data;
-    //       console.log(data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-
-    //   axios
-    //     .get("/api" + "/notice/searchAll")
-    //     .then((res) => {
-    //       data = res.data.data.slice(0, 6);
-    //       for (i = 0; i < data.length; i++) {
-    //         data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-    //         data[i].time = data[i].gmtCreate.substring(0, 7);
-    //         data[i].time = data[i].time.replace("-", ".");
-    //         data[i].day = data[i].gmtCreate.substring(8, 10);
-    //       }
-    //       this.Notice = data;
-    //       console.log(res.data.data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-
-    //   axios
-    //     .get("/api" + "/resource/searchAll")
-    //     .then((res) => {
-    //       data = res.data.data;
-    //       for (i = 0; i < data.length; i++) {
-    //         data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-    //         data[i].time = data[i].gmtCreate.substring(0, 7);
-    //         data[i].time = data[i].time.replace("-", ".");
-    //         data[i].day = data[i].gmtCreate.substring(8, 10);
-    //       }
-    //       this.Resource = data;
-    //       console.log(this.Resource);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
     imageUrl(item) {
       // console.log(item)
       // let iconStr = '';
@@ -451,7 +442,6 @@ export default {
               string = data[i].picture;
               data[i].picture = require("@/assets/source_images/" + string);
             }
-
             this.activities = data;
             console.log(this.activities);
             sessionStorage.setItem(
@@ -557,15 +547,12 @@ export default {
   justify-content: center;
 }
 
-
 .background {
   background-image: url("../assets/images/index.png");
   background-size: 100%;
   z-index: 0;
   display: flex;
   flex-flow: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 }
 
@@ -573,7 +560,7 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+
   z-index: 1;
   width: 100%;
 }
@@ -628,7 +615,7 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-top:20px;
+  margin-top: 20px;
   width: 584px;
   height: 58px;
 
@@ -747,13 +734,11 @@ export default {
 .line_1 {
   width: 1px;
   height: 43px;
- 
 
   background: #c4c4c4;
 }
-.block_1 .line_1
-{
-   margin-left: 10px;
+.block_1 .line_1 {
+  margin-left: 10px;
   margin-top: 22px;
 }
 .block_1 h4 {
@@ -836,8 +821,6 @@ export default {
   color: #000000;
 }
 .line_3 {
-
-
   width: 660px;
   height: 1px;
 
@@ -908,7 +891,7 @@ export default {
   color: rgba(13, 82, 161, 0.18);
 }
 .block_2 .line_1 {
-  margin-top:22px ;
+  margin-top: 22px;
   margin-left: 20px;
 }
 .block_2 .line_2 {
@@ -990,12 +973,11 @@ export default {
   border-radius: 26px;
 }
 .block_3 h1 {
-  position: absolute;
   width: 100px;
   height: 28px;
-  left: 34px;
-  top: 27px;
-  margin: 0 0 0 0;
+  margin-left: 34px;
+  margin-top: 27px;
+
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 900;
@@ -1006,16 +988,18 @@ export default {
   color: #0d52a1;
 }
 .block_3 .line_1 {
-  top: 19px;
-  left: 160px;
+  margin-top: 19px;
+  margin-left: 15px;
+}
+.block_3 .line_2 {
+  width: 1600px;
 }
 .block_3 h2 {
-  position: absolute;
   width: 32px;
   height: 40px;
-  left: 185px;
-  top: 21px;
-  margin: 0 0 0 0;
+  margin-left: 15px;
+  margin-top: 21px;
+
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 400;
@@ -1599,13 +1583,15 @@ export default {
   color: #0d52a1;
 }
 .tap_1 {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   margin-right: 20px;
   width: 131px;
   height: 133px;
   left: 429px;
-  top: 217px;
+  flex-flow: column;
 
   background: #ffffff;
   /* 基础投影 */
@@ -1614,12 +1600,10 @@ export default {
   border-radius: 26px;
 }
 .tap_icon {
-  margin-top: 30px;
-  margin-left: 40px;
 }
 .tap_txt {
   height: 22px;
-  margin-left: 33px;
+
   margin-top: 5px;
 
   font-family: "PingFang SC";
@@ -1631,6 +1615,10 @@ export default {
   color: #000000;
 }
 .tap_2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
   cursor: pointer;
   width: 131px;
   height: 133px;
@@ -1644,6 +1632,10 @@ export default {
   border-radius: 26px;
 }
 .tap_3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
   cursor: pointer;
   width: 131px;
   height: 133px;
@@ -1656,6 +1648,10 @@ export default {
   border-radius: 26px;
 }
 .tap_4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
   width: 131px;
   height: 133px;
   margin-left: 20px;
@@ -1668,6 +1664,10 @@ export default {
   border-radius: 26px;
 }
 .tap_5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
   cursor: pointer;
   width: 131px;
   height: 133px;
@@ -1680,6 +1680,10 @@ export default {
   border-radius: 26px;
 }
 .tap_6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
   cursor: pointer;
   width: 131px;
   height: 133px;
@@ -1695,7 +1699,6 @@ export default {
   width: 100%;
   height: 200px;
   background-size: 100% auto;
-
 
   background: #0d52a1;
 }

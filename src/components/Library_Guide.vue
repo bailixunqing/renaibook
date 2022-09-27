@@ -1,24 +1,30 @@
 <template>
   <div class="screen">
     <div class="background">
-       <drop-menu />
+      <drop-menu />
     </div>
-   
-   
+
     <!-- main -->
-    
+
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
           <el-collapse-item title="馆长寄语" @click="select(1)" name="1">
           </el-collapse-item>
-          <el-collapse-item title="本馆简介" @click="select(2)" name="2"> </el-collapse-item>
-          <el-collapse-item title="馆藏分布" @click="select(3)" name="3"> </el-collapse-item>
-          <el-collapse-item title="开放时间" @click="select(4)" name="4"> </el-collapse-item>
-          <el-collapse-item title="入馆须知" @click="select(5)" name="5"> </el-collapse-item>
-          <el-collapse-item title="组织机构" @click="select(6)" name="6"> </el-collapse-item>
-          <el-collapse-item title="联系我们" @click="select(7)" name="7"> </el-collapse-item>
-          <el-collapse-item title="馆内服务" @click="select(8)" name="8"> </el-collapse-item>
+          <el-collapse-item title="本馆简介" @click="select(2)" name="2">
+          </el-collapse-item>
+          <el-collapse-item title="馆藏分布" @click="select(3)" name="3">
+          </el-collapse-item>
+          <el-collapse-item title="开放时间" @click="select(4)" name="4">
+          </el-collapse-item>
+          <el-collapse-item title="入馆须知" @click="select(5)" name="5">
+          </el-collapse-item>
+          <el-collapse-item title="组织机构" @click="select(6)" name="6">
+          </el-collapse-item>
+          <el-collapse-item title="联系我们" @click="select(7)" name="7">
+          </el-collapse-item>
+          <el-collapse-item title="馆内服务" @click="select(8)" name="8">
+          </el-collapse-item>
         </el-collapse>
       </div>
       <div class="right">
@@ -32,7 +38,7 @@
         <div class="text" v-html="Menu[7]" v-if="show(8)"></div>
       </div>
     </div>
-    
+
     <!-- 页面底 -->
     <div class="TAG_5">
       <Admin-bottom />
@@ -51,9 +57,7 @@ export default {
     let activeName = "1";
     let current = 1;
     var value = 0;
-
     const Menu = [];
-
     return { value, current, Menu, activeName };
   },
   methods: {
@@ -65,7 +69,6 @@ export default {
       this.current = i;
       return true;
     },
-
     init() {
       let data;
       let i = 0;
@@ -107,12 +110,11 @@ export default {
   },
 
   mounted: function () {
-    console.log("id::::::")
-    let data=this.$route.query
-    console.log(data)
-    this.activeName=data.id
-    this.select(data.id)
+    let data = this.$route.query;
+    this.activeName = data.id;
+    this.select(data.id);
     this.init();
+    window.scroll(0, 0);
   },
   message() {},
 };
@@ -133,14 +135,13 @@ export default {
   z-index: 0;
   flex-flow: column;
   align-items: center;
- overflow: hidden;
+  overflow: hidden;
 }
 .background {
   background-image: url("../assets/images/index.png");
   background-size: 100%;
   height: 700px;
   z-index: 0;
-
   width: 100%;
 }
 .left {
@@ -564,8 +565,6 @@ export default {
   width: 100%;
   height: 200px;
   background-size: 100% auto;
-
-
 }
 /*开片样式*/
 </style>

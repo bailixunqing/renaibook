@@ -14,21 +14,21 @@
         justify-content: center;
       "
     >
-      <section class="main">
+      <div class="main">
         <div class="top">
           <h2 align="center">{{ Notice.title }}</h2>
 
           <p>
-            <span class="left">{{ Notice.author }}</span>
+            <span class="left">图书馆</span>
             <span class="right">{{ Notice.date }}</span>
           </p>
           <hr class="line" />
         </div>
         <div class="text" v-html="Notice.text"></div>
-      </section>
+      </div>
     </div>
     <div
-      style="height: 300px; margin-top: -1px; clear: both; overflow: hidden"
+      style="height: 300px; margin-top: -1px; clear: both;"
     ></div>
     <!-- 页面底 -->
 
@@ -95,10 +95,11 @@ export default {
   margin: -150px;
   width: 1200px;
   height: 100%;
-  left: 359px;
+  
   background: #ffffff;
   box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
   border-radius: 26px;
+  
 }
 
 .main .top h2 {
@@ -179,7 +180,6 @@ export default {
   height: 100%;
 }
 .TAG_5 {
-  position: absolute;
   width: 100%;
 height: 200px;
 

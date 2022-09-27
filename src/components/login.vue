@@ -21,7 +21,6 @@
           <div class="second">
             <div class="top">
               <span>账号<b>|</b></span>
-
               <input placeholder="输入您的学工号" v-model="account" />
             </div>
             <div class="bottom">
@@ -34,22 +33,21 @@
             </div>
           </div>
           <div class="finally">
-           
-              <div class="code-back">
-                <input type="button" id="checkCode" @click="createCode()" />
-                <input type="text" id="input1" />
-                <a href="#" style="margin: 20px auto" @click="createCode()"
-                  >看不清楚</a
-                >
-                <!-- <input
+            <div class="code-back">
+              <input type="button" id="checkCode" @click="createCode()" />
+              <input type="text" id="input1" />
+              <a href="#" style="margin: 20px auto" @click="createCode()"
+                >看不清楚</a
+              >
+              <!-- <input
                   id="Button1"
                   @click="validate()"
                   type="button"
                   value="确定"
                 /> -->
             </div>
-            <div style="margin-top:40px;">
-            <button @click="submitForm()">登录</button>
+            <div style="margin-top: 40px">
+              <button @click="submitForm()">登录</button>
             </div>
           </div>
         </div>
@@ -57,22 +55,21 @@
     </div>
   </div>
 
-  <div v-if="show" class="code_tag"></div>
 </template>
 <script>
 const axios = require("axios");
 export default {
   name: "login",
   data() {
-    var show = false;
+
     var code = "";
     var account = "";
     var password = "";
-    return { code, account, password, show };
+    return { code, account, password };
   },
   methods: {
     submitForm(e) {
-this.validate();
+      this.validate();
     },
     createCode() {
       console.log("生成");
@@ -141,17 +138,13 @@ this.validate();
             },
           })
           .then((res) => {
-            console.log(res.data.token);
             sessionStorage.setItem("token", res.data.token);
-            console.log("success");
-
-
             this.$router.push({ name: "admin" });
           })
           .catch((err) => {
-            console.log(err);
+
             alert("密码输入错误！");
-            this.show = !this.show;
+
           });
 
         return true;
@@ -242,7 +235,6 @@ this.validate();
 }
 
 .middle .right .second {
-
   display: flex;
   justify-content: center;
   align-items: center;
