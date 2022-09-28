@@ -75,6 +75,7 @@ export default {
       axios
         .get("/api" + "/title/searchAll")
         .then((res) => {
+          console.log(res);
           data = res.data.data;
           for (i = 0; i < data.length; i++) {
             if (data[i].insideId == "1-1-馆长寄语") {
@@ -563,7 +564,7 @@ export default {
 }
 .TAG_5 {
   width: 100%;
-  height: 200px;
+
   background-size: 100% auto;
 }
 /*开片样式*/

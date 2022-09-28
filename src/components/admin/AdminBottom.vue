@@ -24,7 +24,7 @@
 
 <style>
 .TAG_buttom {
-  position: absolute;
+
   width: 100%;
   height: 235px;
   bottom: 0px;

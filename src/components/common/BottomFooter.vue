@@ -1,28 +1,24 @@
 <template>
-  <slot >
+  <div class="footer_2">
+    <img class="school" src="../../assets/images/school.svg" />
 
-
-      <img class="school" src="../../assets/images/school.svg" />
-
-      <img class="ArtFont_1" src="../../assets/images/Artfont.svg" />
-      <h1 class="link1">相关链接</h1>
-      <h1 class="link2">相关链接</h1>
-      <h1 class="link3">相关链接</h1>
-      <h1 class="footer">版权所有@2015 天津仁爱学院 津ICP备19010746号</h1>
-      <div class="QRcode_1"></div>
-      <div class="QRcode_2"></div>
-
-  </slot>
+    <img class="ArtFont_1" src="../../assets/images/Artfont.svg" />
+    <h1 class="link1">相关链接</h1>
+    <h1 class="link2">相关链接</h1>
+    <h1 class="link3">相关链接</h1>
+    <h1 class="footer">版权所有@2015 天津仁爱学院 津ICP备19010746号</h1>
+    <div class="QRcode_1"></div>
+    <div class="QRcode_2"></div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "BottomFooter"
-}
+  name: "BottomFooter",
+};
 </script>
 
 <style scoped>
-
 * {
   margin: 0;
   padding: 0;
@@ -30,40 +26,12 @@ export default {
   list-style: none;
 }
 
-.background img {
-  max-width: 1920px;
-  object-fit: fill;
-  min-width: 100%;
-  max-height:  100%;
-  min-height: 456px ;
-  display: inline-block;
-  border: none;
+.footer_2 {
+ 
+  background: #0c57ad;
+  width: 100%;
+  height: 400px;
 }
-
-.navlist a {
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 60px;
-  text-align: center;
-  color: #00478b;
-  display: block;
-}
-.navlist a:hover {
-  background: #e7e7e7;
-  /* 大块投影 */
-  background: rgba(255, 255, 255, 1);
-}
-
-
-.ArtFont img {
-  margin-top: 125px;
-  margin-left: 811px;
-  z-index: -1;
-}
-
-
 .school {
   position: absolute;
   width: 277px;
@@ -75,7 +43,6 @@ export default {
   width: 395px;
   height: 53px;
   left: 763px;
-  top: 77px;
 }
 .footer {
   position: absolute;
@@ -160,5 +127,4 @@ export default {
 
   color: #ffffff;
 }
-
 </style>

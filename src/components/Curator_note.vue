@@ -28,7 +28,7 @@
       </div>
     </div>
     <div
-      style="height: 300px; margin-top: -1px; clear: both;"
+      style="height: 300px; "
     ></div>
     <!-- 页面底 -->
 
@@ -181,9 +181,9 @@ export default {
 }
 .TAG_5 {
   width: 100%;
-height: 200px;
+  height: 200px;
 
-  bottom: 0px;
+
 
   background: #0d52a1;
 }

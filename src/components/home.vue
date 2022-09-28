@@ -25,8 +25,8 @@
             flex-flow: row;
             align-items: center;
             justify-content: center;
-            margin-top:50px;
-            margin-bottom:0px;
+            margin-top: 50px;
+            margin-bottom: 0px;
           "
         >
           <div
@@ -36,34 +36,42 @@
             <img class="tap_icon" src="../assets/images/icon5.svg" />
             <h1 class="tap_txt">馆长寄语</h1>
           </div>
-          <div class="tap_2" @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })">
+          <div
+            class="tap_2"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon6.svg" />
             <h1 class="tap_txt">本馆简介</h1>
           </div>
-          <div class="tap_3" @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })">
+          <div
+            class="tap_3"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon7.svg" />
             <h1 class="tap_txt">馆藏分布</h1>
           </div>
-          <div class="tap_4" @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })">
+          <div
+            class="tap_4"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon8.svg" />
             <h1 class="tap_txt">开放时间</h1>
           </div>
-          <div class="tap_5" @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })">
+          <div
+            class="tap_5"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon9.svg" />
             <h1 class="tap_txt">入馆须知</h1>
           </div>
-          <div class="tap_6" @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })">
+          <div
+            class="tap_6"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon10.svg" />
             <h1 class="tap_txt">组织机构</h1>
           </div>
         </div>
- 
-
-
-
-
-
-
       </div>
       <div style="height: 60px"></div>
     </div>
@@ -324,7 +332,7 @@
           display: flex;
           flex-flow: column;
           align-items: center;
-          justify-content: center;
+
         "
       >
         <div class="library_guide">图书馆指南</div>
@@ -344,32 +352,49 @@
             <img class="tap_icon" src="../assets/images/icon5.svg" />
             <h1 class="tap_txt">馆长寄语</h1>
           </div>
-          <div class="tap_2" @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })">
+          <div
+            class="tap_2"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon6.svg" />
             <h1 class="tap_txt">本馆简介</h1>
           </div>
-          <div class="tap_3" @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })">
+          <div
+            class="tap_3"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon7.svg" />
             <h1 class="tap_txt">馆藏分布</h1>
           </div>
-          <div class="tap_4" @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })">
+          <div
+            class="tap_4"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon8.svg" />
             <h1 class="tap_txt">开放时间</h1>
           </div>
-          <div class="tap_5" @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })">
+          <div
+            class="tap_5"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon9.svg" />
             <h1 class="tap_txt">入馆须知</h1>
           </div>
-          <div class="tap_6" @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })">
+          <div
+            class="tap_6"
+            @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })"
+          >
             <img class="tap_icon" src="../assets/images/icon10.svg" />
             <h1 class="tap_txt">组织机构</h1>
           </div>
         </div>
       </div>
+      <div style="height:200px;"></div>
     </div>
 
     <!-- 页面底 -->
     <div class="TAG_5">
+      <!-- <bottom-footer /> -->
       <Admin-bottom />
     </div>
   </div>
@@ -432,17 +457,21 @@ export default {
         axios
           .get("/api" + "/activity/searchAll")
           .then((res) => {
+            console.log("activities:!!!!!!!!");
+
             data = res.data.data.slice(0, 3);
+            console.log(data);
             for (i = 0; i < data.length; i++) {
               data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
               data[i].time = data[i].gmtCreate.substring(0, 7);
               data[i].time = data[i].time.replace("-", ".");
               data[i].day = data[i].gmtCreate.substring(8, 10);
-              data[i].picture = data[i].picture.substring(7);
-              string = data[i].picture;
-              data[i].picture = require("@/assets/source_images/" + string);
+              // data[i].picture = data[i].picture.substring(7);
+              // string = data[i].picture;
+              // data[i].picture = require("@/assets/source_images/" + string);
             }
             this.activities = data;
+
             console.log(this.activities);
             sessionStorage.setItem(
               "activities",
@@ -460,6 +489,8 @@ export default {
         axios
           .get("/api" + "/notice/searchAll")
           .then((res) => {
+            console.log("notice:");
+            console.log(res);
             data = res.data.data.slice(0, 6);
             for (i = 0; i < data.length; i++) {
               data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
@@ -482,6 +513,8 @@ export default {
         axios
           .get("/api" + "/resource/searchAll")
           .then((res) => {
+            console.log("resource:");
+            console.log(res);
             data = res.data.data;
             for (i = 0; i < data.length; i++) {
               data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
@@ -1552,8 +1585,6 @@ export default {
   /* position: absolute; */
   background-image: url("../assets/images/TAG_4.png");
   background-size: 100% auto;
-  top: 3287px;
-  margin: 0 0 0 0;
 }
 .library_guide {
   height: 42px;
@@ -1697,14 +1728,10 @@ export default {
 }
 .TAG_5 {
   width: 100%;
-  height: 200px;
-  background-size: 100% auto;
+  height:200px;
+  /* background-color: #000000; */
+}
 
-  background: #0d52a1;
-}
-.screen {
-  overflow: hidden;
-}
 /*开片样式*/
 
 .el-carousel__item h3 {
