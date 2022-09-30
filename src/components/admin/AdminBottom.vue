@@ -14,8 +14,12 @@
         </div>
       </div>
       <div class="TAG_buttom_right">
-        <div class="QRcode"></div>
-        <div class="QRcode"></div>
+        <div class="QRcode">
+          <img src="@/assets/images/QR_code.jpg" alt="">
+        </div>
+        <div class="QRcode">
+          <img src="@/assets/images/QR_code.jpg" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -65,6 +69,7 @@
 }
 
 .QRcode {
+
   width: 122px;
   height: 122px;
   background: #ffffff;
@@ -72,5 +77,8 @@
   border-radius: 10px;
   margin: 50px;
   float: right;
+}
+.QRcode img{
+  width: 100%;
 }
 </style>

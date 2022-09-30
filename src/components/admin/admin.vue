@@ -772,7 +772,7 @@
                       type="success"
                       round
                       style="width: 40px"
-                      @click="select(511)"
+                      @click="Update_Activities(0,scope)"
                       >修改</el-button
                     >
                     <el-button
@@ -850,7 +850,7 @@
               <el-button type="success" round class="TAG_right_back"
                 >返回</el-button
               >
-              <el-button type="success" round class="TAG_right_on"
+              <el-button type="success" round class="TAG_right_on" @click="Update_Activities(1,1)"
                 >保存并返回</el-button
               >
             </div>
@@ -886,7 +886,12 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+              />
             </div>
             <el-checkbox
               label="显示图片"
@@ -2194,6 +2199,7 @@ export default {
       },
     Create_Activities()
     {
+      console.log(this.value);
           let params={
               title: this.form.title,
               content:this.value,
@@ -2211,14 +2217,26 @@ export default {
             axios
                 .post("/api" + "/activity/insert", params, config)
                  .then((res) => {
-                          this.$message({
+                  console.log(res)
+                          if(res.data.code==200)
+                          {
+                            this.$message({
                           type: 'success',
                           message: '添加成功!'
                           });
+                          
+                          this.Activities_init();
+                          }
+                          else 
+                          {
+                            this.$message({
+                          type: 'error',
+                          message: '添加失败!'
+                          });
+                          }
                           this.$refs.editor.$data.contentValue="";
             
                           this.form={}
-                          this.Activities_init();
                           
                           
                           
@@ -2227,13 +2245,6 @@ export default {
                  
               });
     },
-
-
-
-
-
-
-
 
       Delete_Activities(e)
       {
@@ -2258,7 +2269,64 @@ export default {
             
           });
       },
-
+      Update_Activities(i,e)
+      {
+        var that=this
+        if(i==0)
+        {
+            console.log(e)
+            this.form.id=e.row.id;
+            this.form.title=e.row.title;
+            this.form.name=e.row.author;
+            this.form.summary=e.row.summary;
+            this.value=e.row.content;
+            this.select(511)
+        }
+        else if(i==1)
+        {
+            let params={
+              title: this.form.title,
+              content:this.value,
+              author:this.form.name,
+              fileTmp:this.form.file,
+              summary:this.form.summary,
+              token:sessionStorage.getItem("token")
+            }
+        
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/activity/update", params, config)
+                 .then((res) => {
+                  console.log(res)
+                  
+                          if(res.data.code==200)
+                          {
+                            this.$message({
+                            type: 'success',
+                            message: '修改成功!'
+                            });
+                            this.Activities_init();
+                          }
+                          else 
+                          {
+                            this.$message({
+                            type: 'error',
+                            message: '修改失败!'
+                            });
+                          }
+                          this.$refs.editor.$data.contentValue="";
+                          this.form={}   
+                    })
+                  .catch(() => {
+                 
+              });
+        }
+         
+      },
 
 
 
@@ -2299,7 +2367,7 @@ export default {
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: var(--el-transition-duration-fast);
 }
 
@@ -2329,7 +2397,7 @@ export default {
 }
 
 .screen {
-  overflow: hidden;
+  /* overflow: hidden; */
   background: #f8f8f8bb;
   width: 100vw;
 }

@@ -46,10 +46,7 @@ export default {
   components: { BottomFooter, DropMenu },
   data() {
     const Notice = {
-      title: "标题",
-      author: "张大千",
-      date: "2022.05.02",
-      text: "",
+      
     };
 
     return { Notice };

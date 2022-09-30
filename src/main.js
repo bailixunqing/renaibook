@@ -31,21 +31,39 @@ router.beforeEach((to, from, next) => {
 
 
 
-    const token=sessionStorage.getItem("token");
-    console.log(token);
-    if(token!=null)
-    {
-        next()
-    }
-    else if (to.name == "admin" && from.name != "login") {
-        next('/login')
-    }
-    else
-    {
-        next()
-    }
+    const token = sessionStorage.getItem("token");
 
- });
+    if (to.name == "admin") {
+        if (token != null) {
+            next()
+        }
+        else if (from.name != "login") {
+            next('/login')
+        }
+
+    }
+    if (to.name == "Curator_note") {
+        if(from.name != "home")
+        {
+            next('/')
+        }
+        else next()
+        // if (from.name == "home") {
+        //     next({
+        //         path: '/Curator_note',
+        //         query: {
+        //             id: 1 // 把要跳转的页面路径作为参数传到登录页面
+        //         }
+        //     })
+        // }
+        // else {
+        //     next('/home')
+        // }
+    }
+    next()
+
+
+});
 
 
 

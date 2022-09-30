@@ -31,45 +31,45 @@
         >
           <div
             class="tap_1"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 1 } })"
+            @click="jump_other(1)"
           >
             <img class="tap_icon" src="../assets/images/icon5.svg" />
-            <h1 class="tap_txt">馆长寄语</h1>
+            <h1 class="tap_txt">热门推荐</h1>
           </div>
           <div
             class="tap_2"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })"
+            @click="jump_other(2)"
           >
             <img class="tap_icon" src="../assets/images/icon6.svg" />
-            <h1 class="tap_txt">本馆简介</h1>
+            <h1 class="tap_txt">分类浏览</h1>
           </div>
           <div
             class="tap_3"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })"
+            @click="jump_other(3)"
           >
             <img class="tap_icon" src="../assets/images/icon7.svg" />
-            <h1 class="tap_txt">馆藏分布</h1>
+            <h1 class="tap_txt">新书通报</h1>
           </div>
           <div
             class="tap_4"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })"
+            @click="jump_other(4)"
           >
             <img class="tap_icon" src="../assets/images/icon8.svg" />
-            <h1 class="tap_txt">开放时间</h1>
+            <h1 class="tap_txt">期刊导航</h1>
           </div>
           <div
             class="tap_5"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })"
+            @click="jump_other(5)"
           >
             <img class="tap_icon" src="../assets/images/icon9.svg" />
-            <h1 class="tap_txt">入馆须知</h1>
+            <h1 class="tap_txt">读者荐购</h1>
           </div>
           <div
             class="tap_6"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })"
+            @click="jump_other(6)"
           >
             <img class="tap_icon" src="../assets/images/icon10.svg" />
-            <h1 class="tap_txt">组织机构</h1>
+            <h1 class="tap_txt">学科参考</h1>
           </div>
         </div>
       </div>
@@ -90,21 +90,22 @@
                 flex-wrap: wrap;
               "
             >
-              <div class="h1" :class="{ active: !show }" @click="change()">
+              <div class="h1" :class="{ active: current==0 }" @click="select(0)">
                 通知公告
               </div>
-              <div class="h2" :class="{ active: show }" @click="change()">
+              <div class="h2" :class="{ active: current==1 }" @click="select(1)">
                 资源动态
               </div>
               <div class="line_1"></div>
               <h3>更多</h3>
+              <!-- select(3) -->
               <h4>Notice</h4>
 
               <div class="line_2"></div>
             </div>
 
             <div class="notice">
-              <span v-if="!show">
+              <span v-if="show(0)">
                 <div
                   v-for="item in Notice"
                   :key="item.index"
@@ -121,7 +122,7 @@
                   <div class="line_3"></div>
                 </div>
               </span>
-              <span v-else>
+              <span v-if="show(1)">
                 <div
                   v-for="item in Resource"
                   :key="item.index"
@@ -153,6 +154,7 @@
               <h1>活动报道</h1>
               <div class="line_1"></div>
               <h2>更多</h2>
+              <!-- select(4) -->
 
               <h3>Activity reports</h3>
               <div class="line_2"></div>
@@ -180,23 +182,35 @@
             </div>
           </div>
         </div>
-        <div class="block_3">
-          <div style="display: flex">
-            <h1>常用数据库</h1>
-            <h1>试用数据库</h1>
-            <h1>开源数据库</h1>
+        <div class="block_3" >
+          <div style="display: flex;align-items: center;">
+            <div class="h1" :class="{ active: current_1==0 }" @click="select_1(0)">常用数据库</div>
+            <div class="h1" :class="{ active: current_1==1 }" @click="select_1(1)">试用数据库</div>
+            <div class="h1" :class="{ active: current_1==2 }" @click="select_1(2)">开源数据库</div>
+           
             <div class="line_1"></div>
             <h2>更多</h2>
           </div>
           <h3>Cooperative database</h3>
 
           <div class="line_2"></div>
-          <div class="ad">
+          <div class="ad" v-if="show_1(0)">
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
+          </div>
+          <div class="ad" v-if="show_1(1)">
+            <img src="../assets/images/ad.png" />
+            <img src="../assets/images/ad.png" />
+            <img src="../assets/images/ad.png" />
+            
+          </div>
+          <div class="ad" v-if="show_1(2)">
+            <img src="../assets/images/ad.png" />
+            <img src="../assets/images/ad.png" />
+            
           </div>
         </div>
       </div>
@@ -327,14 +341,7 @@
 
     <!-- 图书馆服务 -->
     <div class="TAG_4">
-      <div
-        style="
-          display: flex;
-          flex-flow: column;
-          align-items: center;
-
-        "
-      >
+      <div style="display: flex; flex-flow: column; align-items: center">
         <div class="library_guide">图书馆指南</div>
         <div class="library_guide_en">Library Guide</div>
         <div
@@ -389,7 +396,7 @@
           </div>
         </div>
       </div>
-      <div style="height:200px;"></div>
+      <div style="height: 200px"></div>
     </div>
 
     <!-- 页面底 -->
@@ -408,7 +415,9 @@ export default {
   name: "home",
   components: { DropMenu, BottomFooter, AdminBottom },
   data() {
-    var show = false;
+
+    let current=0;
+    let current_1=0;
     const Resource = [];
     const Notice = [];
     const activities = [
@@ -431,9 +440,29 @@ export default {
         img: "",
       },
     ];
-    return { Notice, activities, show, Resource, value: "" };
+    return { Notice, activities, Resource, value: "" ,current,current_1};
   },
   methods: {
+      show(i){
+        if(this.current==i){
+          return true;
+        }
+        return false;
+      },
+      show_1(i){
+        if(this.current_1==i){
+          return true;
+        }
+        return false;
+      },
+      select(i) {
+        
+        this.current=i;
+      },
+      select_1(i)
+      {
+        this.current_1=i;
+      },
     change() {
       this.show = !this.show;
       console.log(this.show);
@@ -466,9 +495,9 @@ export default {
               data[i].time = data[i].gmtCreate.substring(0, 7);
               data[i].time = data[i].time.replace("-", ".");
               data[i].day = data[i].gmtCreate.substring(8, 10);
-              // data[i].picture = data[i].picture.substring(7);
-              // string = data[i].picture;
-              // data[i].picture = require("@/assets/source_images/" + string);
+
+              string = data[i].picture;
+              data[i].picture = require("@/assets/source_images/" + string);
             }
             this.activities = data;
 
@@ -537,6 +566,20 @@ export default {
         params: { Notice: JSON.stringify(e) },
       });
       console.log(e);
+    },
+    jump_other(i) {
+      if (i == 1) 
+        window.open("https://opac.nankai.edu.cn/top/top_lend.php");
+      if (i == 2)
+        window.open("https://opac.nankai.edu.cn/browse/cls_browsing.php");
+      if (i == 3)
+        window.open("https://opac.nankai.edu.cn/newbook/newbook_cls_browse.php");
+      if (i == 4) 
+        window.open("https://opac.nankai.edu.cn/peri/peri_nav_e.php");
+      if (i == 5)
+        window.open("https://opac.nankai.edu.cn/asord/asord_hist.php");
+      if (i == 6)
+        window.open("https://opac.nankai.edu.cn/shelf/curriculum_browse.php");
     },
     search() {
       window.open(
@@ -715,7 +758,7 @@ export default {
   cursor: pointer;
   display: block;
   margin-left: 30px;
-  width: 80px;
+  width: 100px;
   height: 28px;
   margin-top: 12px;
   font-family: "PingFang SC";
@@ -946,6 +989,7 @@ export default {
   height: 139px;
 }
 .activity_image {
+  overflow: hidden;
   width: 153px;
   height: 120px;
 
@@ -1018,7 +1062,7 @@ export default {
   line-height: 28px;
   /* identical to box height */
 
-  color: #0d52a1;
+  color: #888888;
 }
 .block_3 .line_1 {
   margin-top: 19px;
@@ -1728,7 +1772,7 @@ export default {
 }
 .TAG_5 {
   width: 100%;
-  height:200px;
+  height: 200px;
   /* background-color: #000000; */
 }
 

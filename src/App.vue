@@ -1,5 +1,5 @@
 <template>
-<div style="height:100%;width:100%;margin:0 auto;">
+<div style="height:100%;">
   <router-view />
 </div>
 </template>
@@ -7,17 +7,16 @@
 <style>
 html,
 #app {
-  min-width:1920px;
+  /* min-width:1920px; */
   /* overflow-x: hidden; */
-  position: relative;
-  width: auto;
   height: 100%;
+  width: 100%;
   display: grid;
-  grid-template: 0;
-  
+  position: relative;
+
 }
 * {
-  margin: 0;
+  margin: 0 ;
   padding: 0;
 }
 </style>
@@ -25,6 +24,8 @@ html,
 export default {
   name: "App",
   methods: {},
-  mounted: function () {},
+  mounted: function () {
+    window.scrollTo((document.body.scrollWidth-document.body.offsetWidth)/2,0)
+  },
 };
 </script>

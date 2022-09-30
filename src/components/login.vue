@@ -1,5 +1,5 @@
-<template s>
-  <div class="body">
+<template >
+  <div class="body_1">
     <img class="renai" src="../assets/images/reaai.svg" alt="" />
     <div class="all">
       <div class="middle">
@@ -157,14 +157,15 @@ export default {
 };
 </script>
 <style  scoped>
-.body {
+.body_1 {
   background: url("../assets/images/index2.png");
 
   background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1940px;
+  width: 100%;
+  height:100%;
   background-size: cover;
   background-position: center;
 }
