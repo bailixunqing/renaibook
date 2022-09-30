@@ -531,7 +531,7 @@ export default {
 }
 
 .right {
-  width: 877px;
+  width:1000px;
 
   background: #ffffff;
   /* 大块投影 */
@@ -540,6 +540,12 @@ export default {
   border-radius: 26px;
   margin-top: 62px;
   margin-left: 27px;
+  margin-bottom: 40px;
+}
+.text {
+  width: 940px;
+  height: 100%;
+  margin: 30px 30px 30px 30px;
   margin-bottom: 40px;
 }
 .text {

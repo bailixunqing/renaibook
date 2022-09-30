@@ -142,7 +142,7 @@ export default {
   background-image: url("../assets/images/index.png");
   background-size: 100%;
   height: 700px;
-  z-index: 0;
+
   width: 100%;
 }
 .left {
@@ -545,7 +545,7 @@ export default {
 }
 
 .right {
-  width: 877px;
+  width:1000px;
 
   background: #ffffff;
   /* 大块投影 */
@@ -557,14 +557,14 @@ export default {
   margin-bottom: 40px;
 }
 .text {
-  width: 817px;
+  width: 940px;
   height: 100%;
   margin: 30px 30px 30px 30px;
   margin-bottom: 40px;
 }
 .TAG_5 {
   width: 100%;
-
+  height: 200px;
   background-size: 100% auto;
 }
 /*开片样式*/

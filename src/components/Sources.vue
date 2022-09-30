@@ -3,10 +3,7 @@
     <div class="background">
        <drop-menu />
     </div>
-   
-   
     <!-- main -->
-    
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
@@ -532,7 +529,6 @@ export default {
   margin-left: 811px;
   z-index: -1;
 }
-
 .main {
   display: flex;
   justify-content: center;
@@ -542,7 +538,7 @@ export default {
 }
 
 .right {
-  width: 877px;
+  width:1000px;
 
   background: #ffffff;
   /* 大块投影 */
@@ -554,7 +550,7 @@ export default {
   margin-bottom: 40px;
 }
 .text {
-  width: 817px;
+  width: 940px;
   height: 100%;
   margin: 30px 30px 30px 30px;
   margin-bottom: 40px;
