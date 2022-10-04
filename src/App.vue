@@ -1,5 +1,5 @@
 <template>
-<div style="height:100%;">
+<div style="height:100%;overflow:hidden ;">
   <router-view />
 </div>
 </template>
@@ -8,14 +8,16 @@
 html,
 #app {
   /* min-width:1920px; */
-  /* overflow-x: hidden; */
+  /* overflow-x:hidden ; */
   height: 100%;
   width: 100%;
   display: grid;
+  grid: repeat(0, 100%);
   position: relative;
 
 }
 * {
+
   margin: 0 ;
   padding: 0;
 }
@@ -27,7 +29,7 @@ export default {
      handleScreen(){
         const m = this.detectZoom();
         console.log(m, 'MMMMMMMMMMMMMMM')
-        document.body.style.zoom = 100/Number(m);
+        document.body.style.zoom = 98/Number(m);
       },
       detectZoom () {
 		      let ratio = 0,

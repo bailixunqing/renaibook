@@ -557,7 +557,7 @@ export default {
 }
 .TAG_5 {
   width: 100%;
-  height: 200px;
+
   background-size: 100% auto;
 
 

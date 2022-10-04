@@ -516,11 +516,6 @@ export default {
   background: rgba(255, 255, 255, 1);
 }
 
-.ArtFont img {
-  margin-top: 125px;
-  margin-left: 811px;
-  z-index: -1;
-}
 
 .main {
   display: flex;
@@ -543,20 +538,22 @@ export default {
   margin-bottom: 40px;
 }
 .text {
-  width: 940px;
-  height: 100%;
-  margin: 30px 30px 30px 30px;
-  margin-bottom: 40px;
+  display: block;
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 940px;
+    height: 100%;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 218.52%;
+    color: #000000;
 }
-.text {
-  width: 817px;
-  height: 100%;
-  margin: 30px 30px 30px 30px;
-  margin-bottom: 40px;
-}
+
 .TAG_5 {
   width: 100%;
-  height: 200px;
+
   background-size: 100% auto;
 
 

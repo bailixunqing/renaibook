@@ -10,11 +10,11 @@ import locale from 'element-plus/lib/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import TEditor from '@/components/TEditor.vue'
 import AdminBottom from '@/components/admin/AdminBottom.vue'
-import  {detectZoom}  from '@/utils/detectZoom.js';
+//import  {detectZoom}  from '@/utils/detectZoom.js';
 
-const m = detectZoom();
+//const m = detectZoom();
 
-document.body.style.zoom = 100 / Number(m);
+//document.body.style.zoom = 100 / Number(m);
 const app = createApp(App)
     .use(router)
     .use(ElementPlus, { locale })

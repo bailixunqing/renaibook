@@ -209,11 +209,11 @@ export default {
 .navlist a:hover {
   background: #e7e7e7;
   /* 大块投影 */
-  background: rgba(255, 255, 255, 1);
+  /* background: rgba(255, 255, 255, 1); */
 }
 
 .droplist {
-  background: rgba(255, 255, 255, 1);
+  background: rgb(255, 255, 255,0.9);
   display: none;
   z-index: 999;
 }

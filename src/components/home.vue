@@ -7,7 +7,7 @@
           <img src="../assets/images/Artfont.svg" />
         </div>
         <div class="Search_TAG">
-          <div class="search_text"><span>仁爱搜索</span></div>
+          <div class="search_text"><span>仁爱搜索</span>&emsp;<span>馆藏目录</span></div>
           <div class="search">
             <div class="key_word"><span style="color: white">关键字</span></div>
 
@@ -1772,7 +1772,7 @@ export default {
 }
 .TAG_5 {
   width: 100%;
-  height: 200px;
+
   /* background-color: #000000; */
 }
 
