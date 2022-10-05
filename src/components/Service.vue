@@ -133,7 +133,7 @@ export default {
 }
 .left {
   width: 291px;
-  height: 459px;
+  height:0px;
   /* margin-left: 361px; */
   margin-top: 62px;
   background: #ffffff;
@@ -152,21 +152,11 @@ export default {
   font-size: 18px;
 }
 
-.TAG {
-  width: 1240px;
-  height: 1400px;
-  margin: 0 auto;
-}
 
-.TAG_left {
-  width: 18%;
-  height: 450px;
-  float: left;
-  border-radius: 50px;
-  margin-top: 62px;
-}
+
 
 .TAG_left_1 {
+
   margin-top: 0px;
   border-top-width: 0px;
   border-bottom-width: 0px;
@@ -204,16 +194,7 @@ export default {
   background-color: #0c57ad;
 }
 
-.TAG_right_buttom {
-  margin-top: 2px;
-  margin-right: 27px;
-  text-align: right;
-}
 
-.TAG_main_write {
-  margin-top: 26px;
-  margin-bottom: 26px;
-}
 
 :deep(.el-collapse) {
   background: #ffffff;
@@ -266,37 +247,7 @@ export default {
   border-radius: 20px;
 }
 
-.TAG_left_button {
-  text-align: left;
-  width: 200px;
-  height: 40px;
-  margin: 10px;
-  font-size: 15px;
-  font-family: "PingFang SC";
-  border: 0;
-  color: #00488bd5;
-  background: #ffffff00;
-}
 
-.TAG_right_adminpower_top {
-  padding-top: 27px;
-}
-.TAG_right_adminpower_bottom {
-  padding-bottom: 27px;
-}
-
-.TAG_right_back {
-  padding-top: 20px !important;
-  width: 8%;
-  padding-bottom: 20px !important;
-  background-color: #c4c4c4 !important;
-}
-
-.TAG_right_on {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-  width: 14%;
-}
 
 :deep(.el-button--primary) {
   --el-button-hover-bg-color: #0d52a1;
@@ -338,40 +289,8 @@ export default {
   border-color: #0d52a1;
 }
 
-.TAG_right {
-  width: 81%;
-  margin-top: 62px;
-  float: right;
-}
 
-.TAG_rght_2 {
-  height: 100%;
-  margin-bottom: 500px;
-  margin-left: 15px;
-  margin-right: 25px;
-  padding: 42px;
-  padding-top: 23px;
-  padding-bottom: 80px;
-  background: #ffffff;
-  border-radius: 26px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-.TAG_right_admin {
-  margin-bottom: 50px;
-}
-.TAG_right_admin_left {
-  font-size: 28px;
-  font-family: "PingFang SC";
-  float: left;
-  color: #0c57ad;
-}
 
-.TAG_right_admin_right {
-  font-size: 25px;
-  font-family: "PingFang SC";
-  float: right;
-  color: #0c57ad;
-}
 
 :deep(.el-form-item) {
   margin-right: 15px;
@@ -458,14 +377,6 @@ export default {
   height: 46px;
 }
 
-.TAG_right_button {
-  margin-top: 10px;
-}
-
-.TAG_right_admin_table {
-  margin-top: 20px;
-}
-
 :deep(.el-table--fit) {
   width: 100%;
   border-radius: 25px;
@@ -520,10 +431,11 @@ export default {
 .main {
   display: flex;
   justify-content: center;
-  height: 1600px;
+  min-height: 900px;
   width: 100%;
   background-color: #e5e5e5;
 }
+
 
 .right {
   width:1000px;

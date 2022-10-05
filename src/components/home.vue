@@ -7,9 +7,21 @@
           <img src="../assets/images/Artfont.svg" />
         </div>
         <div class="Search_TAG">
-          <div class="search_text"><span>仁爱搜索</span>&emsp;<span>馆藏目录</span></div>
+          <div class="search_text">
+            <span>仁爱搜索</span>&emsp;<span>馆藏目录</span>
+          </div>
           <div class="search">
-            <div class="key_word"><span style="color: white">关键字</span></div>
+            <div class="key_word">
+              <el-select v-model="strSearchType" placeholder="关键字">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                  :disabled="item.disabled"
+                />
+              </el-select>
+            </div>
 
             <input
               class="input"
@@ -17,6 +29,16 @@
               v-model="value"
             />
             <img src="../assets/images/search.svg" @click="search()" />
+          </div>
+          <div style="height: 50px"></div>
+          <div class="mb-2 flex items-center text-sm">
+            <el-radio-group v-model="doctype" class="ml-4">
+              <el-radio label="ALL" size="large">所有书刊</el-radio>
+              <el-radio label="01" size="large">中文图书</el-radio>
+              <el-radio label="02" size="large">西文图书</el-radio>
+              <el-radio label="11" size="large">中文期刊</el-radio>
+              <el-radio label="12" size="large">西文期刊</el-radio>
+            </el-radio-group>
           </div>
         </div>
         <div
@@ -29,45 +51,27 @@
             margin-bottom: 0px;
           "
         >
-          <div
-            class="tap_1"
-            @click="jump_other(1)"
-          >
+          <div class="tap_1" @click="jump_other(1)">
             <img class="tap_icon" src="../assets/images/icon5.svg" />
             <h1 class="tap_txt">热门推荐</h1>
           </div>
-          <div
-            class="tap_2"
-            @click="jump_other(2)"
-          >
+          <div class="tap_2" @click="jump_other(2)">
             <img class="tap_icon" src="../assets/images/icon6.svg" />
             <h1 class="tap_txt">分类浏览</h1>
           </div>
-          <div
-            class="tap_3"
-            @click="jump_other(3)"
-          >
+          <div class="tap_3" @click="jump_other(3)">
             <img class="tap_icon" src="../assets/images/icon7.svg" />
             <h1 class="tap_txt">新书通报</h1>
           </div>
-          <div
-            class="tap_4"
-            @click="jump_other(4)"
-          >
+          <div class="tap_4" @click="jump_other(4)">
             <img class="tap_icon" src="../assets/images/icon8.svg" />
             <h1 class="tap_txt">期刊导航</h1>
           </div>
-          <div
-            class="tap_5"
-            @click="jump_other(5)"
-          >
+          <div class="tap_5" @click="jump_other(5)">
             <img class="tap_icon" src="../assets/images/icon9.svg" />
             <h1 class="tap_txt">读者荐购</h1>
           </div>
-          <div
-            class="tap_6"
-            @click="jump_other(6)"
-          >
+          <div class="tap_6" @click="jump_other(6)">
             <img class="tap_icon" src="../assets/images/icon10.svg" />
             <h1 class="tap_txt">学科参考</h1>
           </div>
@@ -90,10 +94,18 @@
                 flex-wrap: wrap;
               "
             >
-              <div class="h1" :class="{ active: current==0 }" @click="select(0)">
+              <div
+                class="h1"
+                :class="{ active: current == 0 }"
+                @click="select(0)"
+              >
                 通知公告
               </div>
-              <div class="h2" :class="{ active: current==1 }" @click="select(1)">
+              <div
+                class="h2"
+                :class="{ active: current == 1 }"
+                @click="select(1)"
+              >
                 资源动态
               </div>
               <div class="line_1"></div>
@@ -182,12 +194,30 @@
             </div>
           </div>
         </div>
-        <div class="block_3" >
-          <div style="display: flex;align-items: center;">
-            <div class="h1" :class="{ active: current_1==0 }" @click="select_1(0)">常用数据库</div>
-            <div class="h1" :class="{ active: current_1==1 }" @click="select_1(1)">试用数据库</div>
-            <div class="h1" :class="{ active: current_1==2 }" @click="select_1(2)">开源数据库</div>
-           
+        <div class="block_3">
+          <div style="display: flex; align-items: center">
+            <div
+              class="h1"
+              :class="{ active: current_1 == 0 }"
+              @click="select_1(0)"
+            >
+              常用数据库
+            </div>
+            <div
+              class="h1"
+              :class="{ active: current_1 == 1 }"
+              @click="select_1(1)"
+            >
+              试用数据库
+            </div>
+            <div
+              class="h1"
+              :class="{ active: current_1 == 2 }"
+              @click="select_1(2)"
+            >
+              开源数据库
+            </div>
+
             <div class="line_1"></div>
             <h2>更多</h2>
           </div>
@@ -205,12 +235,10 @@
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
-            
           </div>
           <div class="ad" v-if="show_1(2)">
             <img src="../assets/images/ad.png" />
             <img src="../assets/images/ad.png" />
-            
           </div>
         </div>
       </div>
@@ -410,16 +438,57 @@
 import DropMenu from "@/components/common/DropMenu";
 import BottomFooter from "@/components/common/BottomFooter";
 import AdminBottom from "@/components/admin/AdminBottom.vue";
+import { ref } from 'vue';
 const axios = require("axios");
 export default {
   name: "home",
   components: { DropMenu, BottomFooter, AdminBottom },
   data() {
-
-    let current=0;
-    let current_1=0;
+    let current = 0;
+    let current_1 = 0;
     const Resource = [];
     const Notice = [];
+    let strSearchType="keyword";
+    const doctype = ref('ALL')
+    let options = [
+      {
+        value: "title",
+        label: "题名",
+      },
+      {
+        value: "author",
+        label: "责任者",
+      },
+      {
+        value: "keyword",
+        label: "主题词",
+      },
+      {
+        value: "isbn",
+        label: "ISBN",
+      },
+      {
+        value: "asordno",
+        label: "订购号",
+      },{
+        value: "coden",
+        label: "分类号",
+      },
+      {
+        value: "callno",
+        label: "索书号",
+      },
+      
+      {
+        value: "publisher",
+        label: "出版社",
+      },
+  
+      {
+        value: "series",
+        label: "丛书名",
+      },
+    ];
     const activities = [
       {
         title: "2022年度ProQuest博硕士学位论文订购通知",
@@ -440,29 +509,37 @@ export default {
         img: "",
       },
     ];
-    return { Notice, activities, Resource, value: "" ,current,current_1};
+    return {
+      Notice,
+      activities,
+      Resource,
+      value: "",
+      current,
+      doctype,
+      strSearchType,
+      current_1,
+      options,
+    };
   },
   methods: {
-      show(i){
-        if(this.current==i){
-          return true;
-        }
-        return false;
-      },
-      show_1(i){
-        if(this.current_1==i){
-          return true;
-        }
-        return false;
-      },
-      select(i) {
-        
-        this.current=i;
-      },
-      select_1(i)
-      {
-        this.current_1=i;
-      },
+    show(i) {
+      if (this.current == i) {
+        return true;
+      }
+      return false;
+    },
+    show_1(i) {
+      if (this.current_1 == i) {
+        return true;
+      }
+      return false;
+    },
+    select(i) {
+      this.current = i;
+    },
+    select_1(i) {
+      this.current_1 = i;
+    },
     change() {
       this.show = !this.show;
       console.log(this.show);
@@ -497,11 +574,22 @@ export default {
               data[i].day = data[i].gmtCreate.substring(8, 10);
 
               string = data[i].picture;
-              data[i].picture = require("@/assets/source_images/" + string);
+              console.log("渲染测试")
+              try
+              {
+                require("@/assets/source_images/" + string)
+              }
+              catch {
+                  data[i].picture = require("@/assets/source_images/" + "1.jpeg");
+                  console.log("11111");
+                  console.log(data);
+                  break;
+              }
+              console.log("normal image")
+               data[i].picture = require("@/assets/source_images/" + string);
+               console.log(data);
             }
             this.activities = data;
-
-            console.log(this.activities);
             sessionStorage.setItem(
               "activities",
               JSON.stringify(this.activities)
@@ -568,23 +656,26 @@ export default {
       console.log(e);
     },
     jump_other(i) {
-      if (i == 1) 
-        window.open("https://opac.nankai.edu.cn/top/top_lend.php");
+      if (i == 1) window.open("https://opac.nankai.edu.cn/top/top_lend.php");
       if (i == 2)
         window.open("https://opac.nankai.edu.cn/browse/cls_browsing.php");
       if (i == 3)
-        window.open("https://opac.nankai.edu.cn/newbook/newbook_cls_browse.php");
-      if (i == 4) 
-        window.open("https://opac.nankai.edu.cn/peri/peri_nav_e.php");
+        window.open(
+          "https://opac.nankai.edu.cn/newbook/newbook_cls_browse.php"
+        );
+      if (i == 4) window.open("https://opac.nankai.edu.cn/peri/peri_nav_e.php");
       if (i == 5)
         window.open("https://opac.nankai.edu.cn/asord/asord_hist.php");
       if (i == 6)
         window.open("https://opac.nankai.edu.cn/shelf/curriculum_browse.php");
     },
     search() {
+      console.log(this.strSearchType);
+      console.log(this.doctype)
+      let str='strSearchType='+this.strSearchType+'&strText='+encodeURIComponent(this.value)+'&doctype='+this.doctype;
       window.open(
-        "https://opac.nankai.edu.cn/opac/ajax_adv_jump.php?sType0=any&q0=" +
-          encodeURIComponent(this.value)
+        "https://opac.nankai.edu.cn/opac/openlink.php?" +
+          str
       );
     },
   },
@@ -659,7 +750,7 @@ export default {
   align-items: center;
 
   margin-top: 20px;
-  width: 1400px;
+  width: 1000px;
   height: 300px;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -688,7 +779,6 @@ export default {
   margin-top: 60px;
 }
 .search {
-  cursor: pointer;
   display: flex;
   align-items: center;
   margin-top: 20px;
@@ -708,6 +798,38 @@ export default {
   height: 39px;
   background: #0d52a1;
   border-radius: 16px;
+}
+
+:deep(.el-input__wrapper) {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 11px;
+  background-color: transparent;
+  background-image: none;
+  border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+  transition: var(--el-transition-box-shadow);
+
+  border: none !important;
+  box-shadow: none !important;
+}
+
+:deep(.el-input__inner) {
+  color: #ffffff;
+}
+:deep(.el-input) {
+  --el-input-placeholder-color: #ffffff;
+}
+:deep(.el-select) {
+  --el-select-border-color-hover: var(--el-border-color-hover);
+  --el-select-disabled-border: var(--el-disabled-border-color);
+  --el-select-font-size: var(--el-font-size-base);
+  --el-select-close-hover-color: var(--el-text-color-secondary);
+  --el-select-input-color: var(--el-text-color-placeholder);
+  --el-select-multiple-input-color: var(--el-text-color-regular);
+  --el-select-input-focus-border-color: none;
+  --el-select-input-font-size: 14px;
 }
 .input {
   margin-left: 20px;
@@ -975,7 +1097,7 @@ export default {
 }
 
 .activity {
-  cursor: pointer;
+  /* cursor: pointer; */
 
   height: 374px;
   width: 850px;
@@ -984,6 +1106,7 @@ export default {
   margin-top: 100px;
 }
 .activity_tag {
+  cursor: pointer; 
   display: flex;
   margin-top: 5px;
   height: 139px;

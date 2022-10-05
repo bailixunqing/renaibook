@@ -532,10 +532,11 @@ export default {
 .main {
   display: flex;
   justify-content: center;
-  height: 1600px;
+  min-height: 900px;
   width: 100%;
   background-color: #e5e5e5;
 }
+
 
 .right {
   width:1000px;
