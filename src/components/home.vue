@@ -8,19 +8,37 @@
         </div>
         <div class="Search_TAG">
           <div class="search_text">
-            <span>仁爱搜索</span>&emsp;<span>馆藏目录</span>
+            <div
+              @click="searchchange(0)"
+              style="cursor: pointer"
+              :class="{ active: search_current == 0 }"
+            >
+              仁爱搜索
+            </div>
+            <div
+              @click="searchchange(1)"
+              style="margin-left: 20px; cursor: pointer"
+              :class="{ active: search_current == 1 }"
+            >
+              馆藏目录
+            </div>
           </div>
           <div class="search">
             <div class="key_word">
+              <block v-if="search_current == 1">
               <el-select v-model="strSearchType" placeholder="关键字">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                  :disabled="item.disabled"
-                />
+                
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    :disabled="item.disabled"
+                  />
+                
               </el-select>
+              </block>
+              <h v-else style="color:white;margin-left:-5px;">关键字</h>
             </div>
 
             <input
@@ -28,10 +46,13 @@
               placeholder="在此输入需要搜索的内容"
               v-model="value"
             />
-            <img src="../assets/images/search.svg" @click="search()" />
+            <img src="../assets/images/search.svg" @click="search()" style="cursor: pointer"/>
           </div>
           <div style="height: 50px"></div>
-          <div class="mb-2 flex items-center text-sm">
+          <div
+            class="mb-2 flex items-center text-sm"
+            v-if="search_current == 1"
+          >
             <el-radio-group v-model="doctype" class="ml-4">
               <el-radio label="ALL" size="large">所有书刊</el-radio>
               <el-radio label="01" size="large">中文图书</el-radio>
@@ -438,7 +459,7 @@
 import DropMenu from "@/components/common/DropMenu";
 import BottomFooter from "@/components/common/BottomFooter";
 import AdminBottom from "@/components/admin/AdminBottom.vue";
-import { ref } from 'vue';
+import { ref } from "vue";
 const axios = require("axios");
 export default {
   name: "home",
@@ -448,8 +469,9 @@ export default {
     let current_1 = 0;
     const Resource = [];
     const Notice = [];
-    let strSearchType="keyword";
-    const doctype = ref('ALL')
+    let strSearchType = "keyword";
+    let search_current = 0;
+    const doctype = ref("ALL");
     let options = [
       {
         value: "title",
@@ -470,7 +492,8 @@ export default {
       {
         value: "asordno",
         label: "订购号",
-      },{
+      },
+      {
         value: "coden",
         label: "分类号",
       },
@@ -478,12 +501,12 @@ export default {
         value: "callno",
         label: "索书号",
       },
-      
+
       {
         value: "publisher",
         label: "出版社",
       },
-  
+
       {
         value: "series",
         label: "丛书名",
@@ -516,6 +539,7 @@ export default {
       value: "",
       current,
       doctype,
+      search_current,
       strSearchType,
       current_1,
       options,
@@ -574,20 +598,18 @@ export default {
               data[i].day = data[i].gmtCreate.substring(8, 10);
 
               string = data[i].picture;
-              console.log("渲染测试")
-              try
-              {
-                require("@/assets/source_images/" + string)
+              console.log("渲染测试");
+              try {
+                require("@/assets/source_images/" + string);
+              } catch {
+                data[i].picture = require("@/assets/source_images/" + "1.jpeg");
+                console.log("11111");
+                console.log(data);
+                break;
               }
-              catch {
-                  data[i].picture = require("@/assets/source_images/" + "1.jpeg");
-                  console.log("11111");
-                  console.log(data);
-                  break;
-              }
-              console.log("normal image")
-               data[i].picture = require("@/assets/source_images/" + string);
-               console.log(data);
+              console.log("normal image");
+              data[i].picture = require("@/assets/source_images/" + string);
+              console.log(data);
             }
             this.activities = data;
             sessionStorage.setItem(
@@ -669,14 +691,26 @@ export default {
       if (i == 6)
         window.open("https://opac.nankai.edu.cn/shelf/curriculum_browse.php");
     },
+    searchchange(i) {
+      this.search_current = i;
+    },
     search() {
       console.log(this.strSearchType);
-      console.log(this.doctype)
-      let str='strSearchType='+this.strSearchType+'&strText='+encodeURIComponent(this.value)+'&doctype='+this.doctype;
-      window.open(
-        "https://opac.nankai.edu.cn/opac/openlink.php?" +
-          str
-      );
+      console.log(this.doctype);
+
+      if (this.search_current == 1) {
+        let str =
+          "strSearchType=" +
+          this.strSearchType +
+          "&strText=" +
+          encodeURIComponent(this.value) +
+          "&doctype=" +
+          this.doctype;
+        window.open("https://opac.nankai.edu.cn/opac/openlink.php?" + str);
+      }
+      else {
+        console.log("本地搜索")
+      }
     },
   },
 
@@ -761,23 +795,19 @@ export default {
 .search_text {
   width: 680px;
   margin-top: 50px;
-  margin-left: 200px;
+  margin-left: 150px;
   height: 25px;
-
+  display: flex;
+  flex-flow: row;
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 900;
   font-size: 14px;
   line-height: 20px;
   /* identical to box height */
-
-  text-decoration-line: underline;
-
-  color: #0d52a1;
+  color: #8888;
 }
-.search_text span {
-  margin-top: 60px;
-}
+
 .search {
   display: flex;
   align-items: center;
@@ -878,6 +908,7 @@ export default {
 
 .h1 {
   cursor: pointer;
+  color: #888888;
   display: block;
   margin-left: 30px;
   width: 100px;
@@ -889,7 +920,6 @@ export default {
   font-size: 20px;
   line-height: 28px;
   /* identical to box height */
-  color: #888888;
 }
 .h2 {
   cursor: pointer;
@@ -1106,7 +1136,7 @@ export default {
   margin-top: 100px;
 }
 .activity_tag {
-  cursor: pointer; 
+  cursor: pointer;
   display: flex;
   margin-top: 5px;
   height: 139px;
