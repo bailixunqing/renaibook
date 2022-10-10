@@ -26,8 +26,7 @@
           <div class="search">
             <div class="key_word">
               <block v-if="search_current == 1">
-              <el-select v-model="strSearchType" placeholder="关键字">
-                
+                <el-select v-model="strSearchType" placeholder="关键字">
                   <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -35,10 +34,11 @@
                     :value="item.value"
                     :disabled="item.disabled"
                   />
-                
-              </el-select>
+                </el-select>
               </block>
-              <h v-else style="color:white;margin-left:-5px;">关键字</h>
+              <h v-else style="color: white; margin-left: -5px; font-size: 15px"
+                >关键字</h
+              >
             </div>
 
             <input
@@ -46,7 +46,11 @@
               placeholder="在此输入需要搜索的内容"
               v-model="value"
             />
-            <img src="../assets/images/search.svg" @click="search()" style="cursor: pointer"/>
+            <img
+              src="../assets/images/search.svg"
+              @click="search()"
+              style="cursor: pointer;"
+            />
           </div>
           <div style="height: 50px"></div>
           <div
@@ -76,23 +80,23 @@
             <img class="tap_icon" src="../assets/images/icon5.svg" />
             <h1 class="tap_txt">热门推荐</h1>
           </div>
-          <div class="tap_2" @click="jump_other(2)">
+          <div class="tap_1" @click="jump_other(2)">
             <img class="tap_icon" src="../assets/images/icon6.svg" />
             <h1 class="tap_txt">分类浏览</h1>
           </div>
-          <div class="tap_3" @click="jump_other(3)">
+          <div class="tap_1" @click="jump_other(3)">
             <img class="tap_icon" src="../assets/images/icon7.svg" />
             <h1 class="tap_txt">新书通报</h1>
           </div>
-          <div class="tap_4" @click="jump_other(4)">
+          <div class="tap_1" @click="jump_other(4)">
             <img class="tap_icon" src="../assets/images/icon8.svg" />
             <h1 class="tap_txt">期刊导航</h1>
           </div>
-          <div class="tap_5" @click="jump_other(5)">
+          <div class="tap_1" @click="jump_other(5)">
             <img class="tap_icon" src="../assets/images/icon9.svg" />
             <h1 class="tap_txt">读者荐购</h1>
           </div>
-          <div class="tap_6" @click="jump_other(6)">
+          <div class="tap_1" @click="jump_other(6)">
             <img class="tap_icon" src="../assets/images/icon10.svg" />
             <h1 class="tap_txt">学科参考</h1>
           </div>
@@ -313,25 +317,29 @@
       >
         <div class="service">服务</div>
         <div class="service_en">service</div>
-        <div style="width: 100%; height: 400px">
-          <!-- <div class="card_1">
-            <div class="picture"></div>
-            <div class="circle"></div>
-            <div class="icon_1"></div>
+        <div style="width: 100%; height: 400px; display: flex; flex-flow: row">
+          <div class="card_1" v-for="item in card" :key="item">
+            <div
+              class="picture"
+              v-bind:style="{ backgroundImage: 'url(' + item.img + ')' }"
+            >
+              <div class="circle">
+                <img :src="item.icon" class="icon_1" style="height: 50%" />
+              </div>
+            </div>
+
             <div class="card_choice">
-              <div class="point1"></div>
-              <h1>证卡管理</h1>
-              <h2>图书借阅</h2>
-              <h3>馆记互借</h3>
-              <div class="point2"></div>
-              <div class="point3"></div>
-              <div class="point4"></div>
-              <div class="point5"></div>
+              <ul >
+                <li class="li" v-for="i in item.text" :key="i">
+                  {{ i }}
+                </li>
+              </ul>
             </div>
             <div class="more">
               <h1>更多</h1>
             </div>
           </div>
+          <!-- 
           <div class="card_2">
             <div class="picture"></div>
             <div class="circle"></div>
@@ -409,35 +417,35 @@
             <h1 class="tap_txt">馆长寄语</h1>
           </div>
           <div
-            class="tap_2"
+            class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })"
           >
             <img class="tap_icon" src="../assets/images/icon6.svg" />
             <h1 class="tap_txt">本馆简介</h1>
           </div>
           <div
-            class="tap_3"
+            class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })"
           >
             <img class="tap_icon" src="../assets/images/icon7.svg" />
             <h1 class="tap_txt">馆藏分布</h1>
           </div>
           <div
-            class="tap_4"
+            class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })"
           >
             <img class="tap_icon" src="../assets/images/icon8.svg" />
             <h1 class="tap_txt">开放时间</h1>
           </div>
           <div
-            class="tap_5"
+            class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })"
           >
             <img class="tap_icon" src="../assets/images/icon9.svg" />
             <h1 class="tap_txt">入馆须知</h1>
           </div>
           <div
-            class="tap_6"
+            class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })"
           >
             <img class="tap_icon" src="../assets/images/icon10.svg" />
@@ -472,6 +480,28 @@ export default {
     let strSearchType = "keyword";
     let search_current = 0;
     const doctype = ref("ALL");
+    const card = [
+      {
+        icon: require("../assets/images/icon1.svg"),
+        img: require("../assets/images/picture1.png"),
+        text: ["图书借阅", "馆记互借", "证卡管理"],
+      },
+      {
+        icon: require("../assets/images/icon2.svg"),
+        img: require("../assets/images/picture2.png"),
+        text: ["影音空间", "研修间", "多媒体阅览区", "空间预约", "空中课堂"],
+      },
+      {
+        icon: require("../assets/images/icon3.svg"),
+        img: require("../assets/images/picture3.png"),
+        text: ["知识产权", "论文提交", "用户教育"],
+      },
+      {
+        icon: require("../assets/images/icon4.svg"),
+        img: require("../assets/images/picture4.png"),
+        text: ["学科服务", "机构知识库", "学科分析报告"],
+      },
+    ];
     let options = [
       {
         value: "title",
@@ -543,6 +573,7 @@ export default {
       strSearchType,
       current_1,
       options,
+      card,
     };
   },
   methods: {
@@ -707,9 +738,8 @@ export default {
           "&doctype=" +
           this.doctype;
         window.open("https://opac.nankai.edu.cn/opac/openlink.php?" + str);
-      }
-      else {
-        console.log("本地搜索")
+      } else {
+        console.log("本地搜索");
       }
     },
   },
@@ -817,6 +847,11 @@ export default {
 
   background: rgba(255, 255, 255, 0.8);
   border-radius: 100px;
+}
+.search img:hover
+{
+  transform: scale(1.2);
+  transition: all 0.3s;
 }
 .key_word {
   z-index: 1;
@@ -1005,8 +1040,14 @@ export default {
   width: 434px;
   height: 74px;
   cursor: pointer;
+  transition: all 0.3s;
 
   /* background: blue; */
+}
+.notice_tag:hover
+{
+  transform: scale(1.05);
+  transition: all 0.3s;
 }
 .day {
   margin: 0px 40px 0px 2px;
@@ -1140,6 +1181,12 @@ export default {
   display: flex;
   margin-top: 5px;
   height: 139px;
+  transition: all 0.3s;
+}
+.activity_tag:hover
+{
+  transform: scale(1.04);
+  transition: all 0.3s;
 }
 .activity_image {
   overflow: hidden;
@@ -1470,27 +1517,26 @@ export default {
   font-weight: 300;
   font-size: 28px;
   line-height: 154%;
-  /* or 43px */
-
   letter-spacing: 0.01em;
 
   color: #0d52a1;
 }
 .card_1 {
-  position: absolute;
   width: 245px;
   height: 357px;
   left: 361px;
-  top: 230px;
-
+  margin-top: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
   background: #ffffff;
   /* 基础投影 */
-
   box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
   border-radius: 26px;
 }
 .card_1 .picture {
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 245px;
   height: 137px;
   border-radius: 26px 26px 0 0;
@@ -1498,283 +1544,69 @@ export default {
   background-image: url("../assets/images/picture1.png");
 }
 .circle {
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 77px;
   height: 79px;
-  left: 84px;
-  top: 31px;
+
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.39);
   backdrop-filter: blur(4px);
 }
-.card_1 .icon_1 {
-  position: absolute;
-  left: 107px;
-  top: 52px;
-  height: 37px;
-  width: 30px;
-  background-image: url("../assets/images/icon1.svg");
-}
+
 .card_choice {
-  position: absolute;
-  height: 221px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  height: 170px;
   width: 245px;
-  top: 137px;
 
   border-radius: 0 0 26px 26px;
 }
-.card_choice .point1 {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  left: 15px;
-  top: 32px;
-  border-radius: 50%;
-  background: #0d52a1;
+.card_choice li {
+  margin-top: 5px;
+  cursor: pointer;
+  list-style-type: disc;
 }
-.card_choice h1 {
-  position: absolute;
-  width: 90px;
-  height: 22px;
-  left: 33px;
-  top: 25px;
-  margin: 0 0 0 0;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 154%;
-  /* identical to box height, or 22px */
-
-  letter-spacing: 0.01em;
-
-  color: #0d52a1;
-}
-.card_choice .point2 {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  left: 137px;
-  top: 32px;
-  border-radius: 50%;
-  background: #0d52a1;
-}
-.card_choice h2 {
-  position: absolute;
-  width: 90px;
-  height: 22px;
-  left: 154px;
-  top: 25px;
-  margin: 0 0 0 0;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 154%;
-  /* identical to box height, or 22px */
-
-  letter-spacing: 0.01em;
-
-  color: #0d52a1;
-}
-.card_choice .point3 {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  left: 15px;
-  top: 80px;
-  border-radius: 50%;
-  background: #0d52a1;
-}
-.card_choice h3 {
-  position: absolute;
-  width: 90px;
-  height: 22px;
-  left: 33px;
-  top: 72px;
-  margin: 0 0 0 0;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 154%;
-  /* identical to box height, or 22px */
-
-  letter-spacing: 0.01em;
-
-  color: #0d52a1;
-}
-.card_choice .point4 {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  left: 137px;
-  top: 80px;
-  border-radius: 50%;
-  background: #0d52a1;
-}
-.card_choice h4 {
-  position: absolute;
-  width: 90px;
-  height: 22px;
-  left: 154px;
-  top: 72px;
-  margin: 0 0 0 0;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 154%;
-  /* identical to box height, or 22px */
-
-  letter-spacing: 0.01em;
-
-  color: #0d52a1;
-}
-.card_choice .point5 {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  left: 15px;
-  top: 126px;
-  border-radius: 50%;
-  background: #0d52a1;
-}
-.card_choice h5 {
-  position: absolute;
-  width: 90px;
-  height: 22px;
-  left: 33px;
-  top: 119px;
-  margin: 0 0 0 0;
-  font-family: "PingFang SC";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 154%;
-  /* identical to box height, or 22px */
-
-  letter-spacing: 0.01em;
-
-  color: #0d52a1;
-}
-.card_2 {
-  position: absolute;
-  width: 245px;
-  height: 357px;
-  left: 679px;
-  top: 230px;
-
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.card_2 .icon_1 {
-  position: absolute;
-  left: 101px;
-  top: 49px;
-  height: 39.82px;
-  width: 44.41px;
-  background-image: url("../assets/images/icon2.svg");
-}
-.card_2 .picture {
-  position: absolute;
-  width: 245px;
-  height: 137px;
-  border-radius: 26px 26px 0 0;
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  background-image: url("../assets/images/picture2.png");
-}
-.card_3 {
-  position: absolute;
-  width: 245px;
-  height: 357px;
-  left: 997px;
-  top: 230px;
-
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.card_3 .icon_1 {
-  position: absolute;
-  left: 101px;
-  top: 49px;
-  height: 41px;
-  width: 41px;
-  background-image: url("../assets/images/icon3.svg");
-}
-.card_3 .picture {
-  position: absolute;
-  width: 245px;
-  height: 137px;
-  border-radius: 26px 26px 0 0;
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  background-image: url("../assets/images/picture3.png");
-}
-.card_4 {
-  position: absolute;
-  width: 245px;
-  height: 357px;
-  left: 1316px;
-  top: 230px;
-
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.card_4 .icon_1 {
-  position: absolute;
-  left: 99px;
-  top: 52px;
-  height: 34px;
-  width: 46px;
-  background-image: url("../assets/images/icon4.svg");
-}
-.card_4 .picture {
-  position: absolute;
-  width: 245px;
-  height: 137px;
-  border-radius: 26px 26px 0 0;
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  background-image: url("../assets/images/picture4.png");
+.card_choice li:hover {
+color:blue
 }
 .more {
-  position: absolute;
+  cursor: pointer;
   width: 80px;
   height: 35px;
-  left: 150px;
-  top: 316px;
 
+  margin-left: 150px;
   background: #ffffff;
   /* 基础投影 */
 
   box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
   border-radius: 19px;
 }
+.more:hover {
+ 
+  background: #dbdbdb;
+  color: #0075fc;
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.3);
+  /* 基础投影 */
+
+}
 .more h1 {
-  position: absolute;
   width: 33px;
   height: 25px;
-  left: 25px;
-  top: 6px;
-  margin: 0 0 0 0;
+  margin-left: 24px;
+  margin-top: 6px;
   font-family: "PingFang SC";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 154%;
+  line-height: 35px;
   /* identical to box height, or 25px */
-
   letter-spacing: 0.01em;
 
-  color: #9f9f9f;
+  /* color: #9f9f9f; */
 }
 .TAG_4 {
   height: 466px;
@@ -1810,15 +1642,22 @@ export default {
 
   color: #0d52a1;
 }
+.tap_1:hover
+{
+  transform: scale(1.1);
+  transition: all 0.5s ;
+}
 .tap_1 {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.5s ;
+  margin-left: 20px;
   margin-right: 20px;
   width: 131px;
   height: 133px;
-  left: 429px;
+
   flex-flow: column;
 
   background: #ffffff;
@@ -1827,8 +1666,7 @@ export default {
   box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
   border-radius: 26px;
 }
-.tap_icon {
-}
+
 .tap_txt {
   height: 22px;
 
@@ -1841,87 +1679,6 @@ export default {
   line-height: 22px;
 
   color: #000000;
-}
-.tap_2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  cursor: pointer;
-  width: 131px;
-  height: 133px;
-  margin-left: 20px;
-  margin-right: 20px;
-
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.tap_3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  cursor: pointer;
-  width: 131px;
-  height: 133px;
-  margin-left: 20px;
-  margin-right: 20px;
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.tap_4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  width: 131px;
-  height: 133px;
-  margin-left: 20px;
-  margin-right: 20px;
-  cursor: pointer;
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.tap_5 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  cursor: pointer;
-  width: 131px;
-  height: 133px;
-  margin-left: 20px;
-  margin-right: 20px;
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
-}
-.tap_6 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  cursor: pointer;
-  width: 131px;
-  height: 133px;
-  margin-left: 20px;
-
-  background: #ffffff;
-  /* 基础投影 */
-
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 26px;
 }
 .TAG_5 {
   width: 100%;
