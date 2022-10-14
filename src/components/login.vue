@@ -131,13 +131,14 @@ export default {
         return false;
       } else {
         axios
-          .post("/api" + "/user/submit", null, {
+          .post("/api" + "/user/login", null, {
             params: {
               idCard: this.account,
               password: this.password,
             },
           })
           .then((res) => {
+            console.log(res)
             sessionStorage.setItem("token", res.data.token);
             this.$router.push({ name: "admin" });
           })
