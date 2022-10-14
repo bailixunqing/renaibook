@@ -138,8 +138,11 @@ export default {
             },
           })
           .then((res) => {
-            console.log(res)
-            sessionStorage.setItem("token", res.data.token);
+            
+            let token=res.data.ok
+            token=token.substr(11,token.length)
+            console.log(token)
+            sessionStorage.setItem("token", token);
             this.$router.push({ name: "admin" });
           })
           .catch((err) => {

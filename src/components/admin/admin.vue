@@ -33,6 +33,13 @@
                     round
                     class="TAG_left_button"
                     @click="select(22)"
+                    >目录管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(21)"
                     >文章管理</el-button
                   >
                   <el-button
@@ -40,7 +47,7 @@
                     round
                     class="TAG_left_button"
                     @click="select(21)"
-                    >创建文章</el-button
+                    >发布文章</el-button
                   >
                 </el-row>
               </el-collapse-item>
@@ -123,42 +130,7 @@
                   >
                 </el-row>
               </el-collapse-item>
-              <el-collapse-item title="馆藏资源" name="7">
-                <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(71)"
-                    >文章管理</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(72)"
-                    >创建文章</el-button
-                  >
-                </el-row>
-              </el-collapse-item>
-              <el-collapse-item title="馆内服务" name="8">
-                <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(81)"
-                    >文章管理</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(82)"
-                    >创建文章</el-button
-                  >
-                </el-row>
-              </el-collapse-item>
+      
             </el-collapse>
           </div>
         </div>
@@ -1916,7 +1888,12 @@ export default {
         let data;
         let i=0;
          axios
-        .get("/api" + "/notice/searchAll")
+        .get("/api" + "/notice/searchAll",
+        {
+          params:{
+              pageSize:10
+          }
+        })
         .then((res) => {
 
           data=res.data.data;
@@ -1926,6 +1903,7 @@ export default {
           }
           this.NoticeData=data
           console.log("刷新成功")
+          console.log(this.NoticeData)
        
         })
         .catch((err) => {
@@ -2049,7 +2027,12 @@ export default {
         let data;
         let i=0;
          axios
-        .get("/api" + "/resource/searchAll")
+        .get("/api" + "/resource/searchAll",
+        {
+          params:{
+              pageSize:10
+          }
+        })
         .then((res) => {
           console.log("resource-init")
           console.log(res)
