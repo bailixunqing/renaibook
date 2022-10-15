@@ -2,6 +2,7 @@
   <div class="new">
     <div class="screen">
       <AdminTop @usershow="usershow" />
+      
       <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
@@ -352,6 +353,27 @@
           </div>
 
 
+          <div class="TAG_rght_2" v-if="show(21)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">目录管理</div>
+            </div>
+            <el-divider></el-divider>
+
+            <el-row >
+              <div style="margin-left: 5px;margin-right: 15px;margin-top: 2px;font-size: 25px;font-weight: 600;">编辑目录</div>
+              <div>
+                <!--  树形控件--><el-tree :data="options_1" 
+                show-checkbox node-key="id" 
+                default-expand-all :expand-on-click-node="false"
+                  :render-content="renderContent" />
+                </div>
+              </el-row>
+          </div>
+
+
+
+
+
 
           <!-- 右:图书指南-->
           <!-- 右:文章管理-->
@@ -360,16 +382,27 @@
               <div class="TAG_right_admin_left">文章管理</div>
             </div>
             <el-divider></el-divider>
+            
+            <el-row>
+              <el-form-item label="目录">
+                <el-input
+                  v-model="form.uers_name"
+                  placeholder="请输入关键字搜索"
+                ></el-input>
+              </el-form-item>
+            </el-row>
 
             <div class="TAG_right_admin_table">
-              <el-table :data="title_1">
+              <el-table :data="options_1">
+
                 <el-table-column
                   type="index"
                   label="#"
                   style="width: 83px"
                 ></el-table-column>
+
                 <el-table-column
-                  prop="insideId"
+                  prop="value"
                   label="目录名"
                 ></el-table-column>
 
@@ -2159,6 +2192,8 @@ export default {
   transition: var(--el-transition-duration-fast);
 }
 
+
+
 .avatar-uploader .el-upload:hover {
   border-color: var(--el-color-primary);
 }
@@ -2191,7 +2226,7 @@ export default {
 }
 
 .TAG_top {
-  width: 1400px;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -2258,7 +2293,7 @@ export default {
 }
 
 .TAG {
-  width: 1000px;
+  width: 70%;
   height: 1400px;
   margin: 0 auto;
 }
@@ -2319,11 +2354,6 @@ export default {
   width: 39%;
 }
 
-:deep(.el-select) {
-  width: 39%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
 .TAG_main_write {
   margin-top: 26px;

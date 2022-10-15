@@ -20,9 +20,8 @@
         </template>
       </el-dropdown>
     </div>
-    <div class="TAG_top_img">
-      <img src="../../assets/images/setting.svg" />
-    </div>
+
+
   </div>
 </template>
 
@@ -91,8 +90,5 @@ export default {
   font-size: 18px !important;
 }
 
-.TAG_top_img {
-  z-index: -1;
-  float: right;
-}
+
 </style>
