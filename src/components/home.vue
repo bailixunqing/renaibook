@@ -146,7 +146,7 @@
                 <div
                   v-for="item in Notice"
                   :key="item.index"
-                  @click="jump_notice(item)"
+                  @click="jump_notice(item,0)"
                 >
                   <div class="notice_tag">
                     <div class="date">
@@ -163,7 +163,7 @@
                 <div
                   v-for="item in Resource"
                   :key="item.index"
-                  @click="jump_notice(item)"
+                  @click="jump_notice(item,1)"
                 >
                   <div class="notice_tag">
                     <div class="date">
@@ -201,7 +201,7 @@
               <div
                 v-for="item in activities"
                 :key="item.index"
-                @click="jump_notice(item)"
+                @click="jump_notice(item,2)"
               >
                 <div class="activity_tag">
                   <div class="activity_image">
@@ -339,59 +339,7 @@
               <h1>更多</h1>
             </div>
           </div>
-          <!-- 
-          <div class="card_2">
-            <div class="picture"></div>
-            <div class="circle"></div>
-            <div class="icon_1"></div>
-            <div class="card_choice">
-              <div class="point1"></div>
-              <h1>影音空间</h1>
-              <h2>研修间</h2>
-              <h3>多媒体阅览区</h3>
-              <h4>空间预约</h4>
-              <h5>空中课堂</h5>
-              <div class="point2"></div>
-              <div class="point3"></div>
-              <div class="point4"></div>
-              <div class="point5"></div>
-            </div>
-            <div class="more">
-              <h1>更多</h1>
-            </div>
-          </div>
-          <div class="card_3">
-            <div class="picture"></div>
-            <div class="circle"></div>
-            <div class="icon_1"></div>
-            <div class="card_choice">
-              <div class="point1"></div>
-              <h1>知识产权</h1>
-              <h2>论文提交</h2>
-              <h3>用户教育</h3>
-              <div class="point2"></div>
-              <div class="point3"></div>
-            </div>
-            <div class="more">
-              <h1>更多</h1>
-            </div>
-          </div>
-          <div class="card_4">
-            <div class="picture"></div>
-            <div class="circle"></div>
-            <div class="icon_1"></div>
-            <div class="card_choice">
-              <div class="point1"></div>
-              <h1>学科服务</h1>
-              <h2>机构知识库</h2>
-              <h3>学科分析报告</h3>
-              <div class="point2"></div>
-              <div class="point3"></div>
-            </div>
-            <div class="more">
-              <h1>更多</h1>
-            </div>
-          </div> -->
+          
         </div>
       </div>
     </div>
@@ -713,12 +661,12 @@ export default {
           });
       }
     },
-    jump_notice(e) {
+    jump_notice(e,type) {
       this.$router.push({
         name: "Curator_note",
-        params: { Notice: JSON.stringify(e) },
+        params: { id: e.id,type:type },
       });
-      console.log(e);
+
     },
     jump_other(i) {
       if (i == 1) window.open("https://opac.nankai.edu.cn/top/top_lend.php");
