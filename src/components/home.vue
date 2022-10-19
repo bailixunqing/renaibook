@@ -25,20 +25,26 @@
           </div>
           <div class="search">
             <div class="key_word">
-              <block v-if="search_current == 1">
-                <el-select v-model="strSearchType" placeholder="关键字">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                    :disabled="item.disabled"
-                  />
-                </el-select>
-              </block>
-              <h v-else style="color: white; margin-left: -5px; font-size: 15px"
-                >关键字</h
+              <el-select
+                v-if="search_current == 1"
+                v-model="strSearchType"
+                placeholder="关键字"
               >
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                  :disabled="item.disabled"
+                />
+              </el-select>
+
+              <h1
+                v-else
+                style="color: white; margin-left: -5px; font-size: 15px"
+              >
+                关键字
+              </h1>
             </div>
 
             <input
@@ -49,7 +55,7 @@
             <img
               src="../assets/images/search.svg"
               @click="search()"
-              style="cursor: pointer;"
+              style="cursor: pointer"
             />
           </div>
           <div style="height: 50px"></div>
@@ -74,31 +80,49 @@
             justify-content: center;
             margin-top: 50px;
             margin-bottom: 0px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.6);
           "
         >
-          <div class="tap_1" @click="jump_other(1)">
-            <img class="tap_icon" src="../assets/images/icon5.svg" />
-            <h1 class="tap_txt">热门推荐</h1>
+          <div class="search_tap_1" @click="jump_other(1)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/1.png" />
+            <h1 class="search_tap_txt">热门推荐</h1>
           </div>
-          <div class="tap_1" @click="jump_other(2)">
-            <img class="tap_icon" src="../assets/images/icon6.svg" />
-            <h1 class="tap_txt">分类浏览</h1>
+          <div class="search_tap_1" @click="jump_other(2)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/8.png" />
+            <h1 class="search_tap_txt">分类浏览</h1>
           </div>
-          <div class="tap_1" @click="jump_other(3)">
-            <img class="tap_icon" src="../assets/images/icon7.svg" />
-            <h1 class="tap_txt">新书通报</h1>
+          <div class="search_tap_1" @click="jump_other(3)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/4.png" />
+            <h1 class="search_tap_txt">新书通报</h1>
           </div>
-          <div class="tap_1" @click="jump_other(4)">
-            <img class="tap_icon" src="../assets/images/icon8.svg" />
-            <h1 class="tap_txt">期刊导航</h1>
+          <div class="search_tap_1" @click="jump_other(4)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/5.png" />
+            <h1 class="search_tap_txt">期刊导航</h1>
           </div>
-          <div class="tap_1" @click="jump_other(5)">
-            <img class="tap_icon" src="../assets/images/icon9.svg" />
-            <h1 class="tap_txt">读者荐购</h1>
+          <div class="search_tap_1" @click="jump_other(5)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/2.png" />
+            <h1 class="search_tap_txt">读者荐购</h1>
           </div>
-          <div class="tap_1" @click="jump_other(6)">
-            <img class="tap_icon" src="../assets/images/icon10.svg" />
-            <h1 class="tap_txt">学科参考</h1>
+          <div class="search_tap_1" @click="jump_other(6)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/3.png" />
+            <h1 class="search_tap_txt">馆际互借</h1>
+          </div>
+          <div class="search_tap_1" @click="jump_other(7)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/6.png" />
+            <h1 class="search_tap_txt">论文提交</h1>
+          </div>
+          <div class="search_tap_1" @click="jump_other(8)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/10.png" />
+            <h1 class="search_tap_txt">空间预约</h1>
+          </div>
+          <div class="search_tap_1" @click="jump_other(9)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/11.png" />
+            <h1 class="search_tap_txt">影音空间</h1>
+          </div>
+          <div class="search_tap_1" @click="jump_other(10)">
+            <img class="tap_icon" src="@/assets/images/TAG_0_icon/12.png" />
+            <h1 class="search_tap_txt">咨询互动</h1>
           </div>
         </div>
       </div>
@@ -146,7 +170,7 @@
                 <div
                   v-for="item in Notice"
                   :key="item.index"
-                  @click="jump_notice(item,0)"
+                  @click="jump_notice(item, 0)"
                 >
                   <div class="notice_tag">
                     <div class="date">
@@ -163,7 +187,7 @@
                 <div
                   v-for="item in Resource"
                   :key="item.index"
-                  @click="jump_notice(item,1)"
+                  @click="jump_notice(item, 1)"
                 >
                   <div class="notice_tag">
                     <div class="date">
@@ -201,7 +225,7 @@
               <div
                 v-for="item in activities"
                 :key="item.index"
-                @click="jump_notice(item,2)"
+                @click="jump_notice(item, 2)"
               >
                 <div class="activity_tag">
                   <div class="activity_image">
@@ -329,7 +353,7 @@
             </div>
 
             <div class="card_choice">
-              <ul >
+              <ul>
                 <li class="li" v-for="i in item.text" :key="i">
                   {{ i }}
                 </li>
@@ -339,7 +363,6 @@
               <h1>更多</h1>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -564,11 +587,11 @@ export default {
         console.log("非空", JSON.stringify(this.activities));
       } else {
         axios
-          .get("/api" + "/activity/searchAll",{
-          params:{
-              pageSize:3
-          }
-        })
+          .get("/api" + "/activity/searchAll", {
+            params: {
+              pageSize: 3,
+            },
+          })
           .then((res) => {
             console.log("activities:!!!!!!!!");
 
@@ -582,14 +605,13 @@ export default {
 
               string = data[i].picture;
               console.log("渲染测试");
-              try {
-                require("@/assets/source_images/" + string);
-              } catch {
-                data[i].picture = require("@/assets/source_images/" + "1.jpeg");
-                console.log("11111");
-                console.log(data);
-                break;
-              }
+              // try {
+              //   require("@/assets/source_images/" + string);
+              // } catch {
+              //   data[i].picture = require("@/assets/source_images/" + "1.jpeg");
+              //   console.log(data);
+              //   break;
+              // }
               console.log("normal image");
               data[i].picture = require("@/assets/source_images/" + string);
               console.log(data);
@@ -609,11 +631,11 @@ export default {
         this.Notice = JSON.parse(sessionStorage.getItem("Notice"));
       } else {
         axios
-          .get("/api" + "/notice/searchAll",{
-          params:{
-              pageSize:6
-          }
-        })
+          .get("/api" + "/notice/searchAll", {
+            params: {
+              pageSize: 6,
+            },
+          })
           .then((res) => {
             console.log("notice:");
             console.log(res);
@@ -637,11 +659,11 @@ export default {
         this.Resource = JSON.parse(sessionStorage.getItem("Resource"));
       } else {
         axios
-          .get("/api" + "/resource/searchAll",{
-          params:{
-              pageSize:6
-          }
-        })
+          .get("/api" + "/resource/searchAll", {
+            params: {
+              pageSize: 6,
+            },
+          })
           .then((res) => {
             console.log("resource:");
             console.log(res);
@@ -661,12 +683,11 @@ export default {
           });
       }
     },
-    jump_notice(e,type) {
+    jump_notice(e, type) {
       this.$router.push({
         name: "Curator_note",
-        params: { id: e.id,type:type },
+        params: { id: e.id, type: type },
       });
-
     },
     jump_other(i) {
       if (i == 1) window.open("https://opac.nankai.edu.cn/top/top_lend.php");
@@ -722,8 +743,1048 @@ export default {
 
 
 <style scoped>
-@import '@/assets/styles/home.css';
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
 
+.screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  background-image: url("@/assets/images/index.png");
+  background-size: 100%;
+  z-index: 0;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+.TAG_0 {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  z-index: 1;
+  width: 100%;
+}
+
+.ArtFont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ArtFont img {
+  margin-top: 100px;
+
+  z-index: 1;
+}
+
+.Search_TAG {
+  display: flex;
+  flex-flow: column;
+  z-index: -999;
+  align-items: center;
+
+  margin-top: 20px;
+  width: 1000px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+
+  border-radius: 28px;
+}
+
+.search_text {
+  width: 680px;
+  margin-top: 50px;
+  margin-left: 150px;
+  height: 25px;
+  display: flex;
+  flex-flow: row;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #8888;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  width: 584px;
+  height: 58px;
+
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 100px;
+}
+
+.search img:hover {
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
+
+.key_word {
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-left: 22px;
+  width: 98px;
+  height: 39px;
+  background: #0d52a1;
+  border-radius: 16px;
+}
+.search_tap_1:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+.search_tap_1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 120px;
+  height: 120px;
+
+  flex-flow: column;
+
+  /* background: rgb(112, 185, 253); */
+  /* 基础投影 */
+
+  /* box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12); */
+  border-radius: 26px;
+}
+
+.search_tap_txt {
+  height: 22px;
+
+  margin-top: 5px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #000000;
+}
+.tap_icon {
+  color: #0075fc;
+}
+:deep(.el-input__wrapper) {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 11px;
+  background-color: transparent;
+  background-image: none;
+  border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+  transition: var(--el-transition-box-shadow);
+
+  border: none !important;
+  box-shadow: none !important;
+}
+
+:deep(.el-input__inner) {
+  color: #ffffff;
+}
+
+:deep(.el-input) {
+  --el-input-placeholder-color: #ffffff;
+}
+
+:deep(.el-select) {
+  --el-select-border-color-hover: var(--el-border-color-hover);
+  --el-select-disabled-border: var(--el-disabled-border-color);
+  --el-select-font-size: var(--el-font-size-base);
+  --el-select-close-hover-color: var(--el-text-color-secondary);
+  --el-select-input-color: var(--el-text-color-placeholder);
+  --el-select-multiple-input-color: var(--el-text-color-regular);
+  --el-select-input-focus-border-color: none;
+  --el-select-input-font-size: 14px;
+}
+
+.input {
+  margin-left: 20px;
+  outline-style: none;
+  border: none;
+  width: 395px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0);
+  z-index: 2;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+
+  color: black;
+}
+
+.input::input-placeholder {
+  color: #aeaeae;
+}
+
+/* //////////////////////////// */
+
+.TAG_1 {
+  /* position: absolute; */
+  display: flex;
+  background-color: #e5e5e5;
+  height: 1116px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  top: 750px;
+}
+
+.block_1 {
+  position: relative;
+  width: 700px;
+  height: 553px;
+  margin-top: 61px;
+
+  background: #ffffff;
+  /* 大块投影 */
+
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  border-radius: 26px;
+}
+
+.h1 {
+  cursor: pointer;
+  color: #888888;
+  display: block;
+  margin-left: 30px;
+  width: 100px;
+  height: 28px;
+  margin-top: 12px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 28px;
+  /* identical to box height */
+}
+
+.h2 {
+  cursor: pointer;
+  /* 资源动态 */
+  display: block;
+  margin-left: 20px;
+  margin-top: 12px;
+  width: 80px;
+  height: 28px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 28px;
+  /* identical to box height */
+
+  color: #888888;
+}
+
+.block_1 h3 {
+  /* 更多 */
+  cursor: pointer;
+
+  width: 32px;
+  height: 40px;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 250.5%;
+  /* identical to box height, or 40px */
+
+  color: #0d52a1;
+}
+
+.active {
+  color: #0d52a1;
+}
+
+.line_1 {
+  width: 1px;
+  height: 43px;
+
+  background: #c4c4c4;
+}
+
+.block_1 .line_1 {
+  margin-left: 10px;
+  margin-top: 22px;
+}
+
+.block_1 h4 {
+  /* Notice */
+
+  height: 39px;
+  margin-left: 100px;
+  margin-top: 20px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 39px;
+
+  color: rgba(13, 82, 161, 0.18);
+}
+
+.line_2 {
+  width: 700px;
+  height: 1px;
+  left: 22px;
+  top: 74px;
+
+  background: #eaeaea;
+}
+
+.notice {
+  position: absolute;
+  height: 374px;
+  width: 434px;
+
+  left: 33px;
+  top: 100px;
+}
+
+.notice_tag {
+  display: flex;
+  width: 434px;
+  height: 74px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  /* background: blue; */
+}
+
+.notice_tag:hover {
+  transform: scale(1.05);
+  transition: all 0.3s;
+}
+
+.day {
+  margin: 0px 40px 0px 2px;
+  width: 29px;
+  height: 30px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 250.5%;
+  /* or 80px */
+
+  color: #0d52a1;
+}
+
+.time {
+  width: 35px;
+  height: 30px;
+  margin: 15px 0 0 0;
+
+  font-family: "PT Sans Narrow";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 250.5%;
+  /* identical to box height, or 30px */
+
+  color: #000000;
+}
+
+.notice_title {
+  margin-top: 25px;
+  width: 500px;
+  height: 36px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  /* or 36px */
+
+  color: #000000;
+}
+
+.line_3 {
+  width: 660px;
+  height: 1px;
+
+  background: #eaeaea;
+}
+
+.block_2 {
+  display: flex;
+
+  width: 855px;
+  height: 553px;
+  margin-left: 40px;
+  margin-top: 61px;
+  flex-flow: column;
+  background: #ffffff;
+  /* 大块投影 */
+
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  border-radius: 26px;
+}
+
+.block_2 h1 {
+  /* 活动报道 */
+
+  width: 80px;
+  height: 28px;
+  margin-left: 34px;
+  margin-top: 28px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 28px;
+  /* identical to box height */
+
+  color: #0d52a1;
+}
+
+.block_2 h2 {
+  /* 更多 */
+
+  width: 32px;
+  height: 40px;
+  margin-left: 30px;
+  margin-top: 22px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 250.5%;
+  /* identical to box height, or 40px */
+
+  color: #0d52a1;
+}
+
+.block_2 h3 {
+  /* Activity reports */
+
+  width: 204px;
+  height: 39px;
+  margin-top: 22px;
+  margin-left: 234px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 39px;
+
+  color: rgba(13, 82, 161, 0.18);
+}
+
+.block_2 .line_1 {
+  margin-top: 22px;
+  margin-left: 20px;
+}
+
+.block_2 .line_2 {
+  width: 850px;
+}
+
+.activity {
+  /* cursor: pointer; */
+
+  height: 374px;
+  width: 850px;
+  /* background: violet; */
+  margin-left: 28px;
+  margin-top: 100px;
+}
+
+.activity_tag {
+  cursor: pointer;
+  display: flex;
+  margin-top: 5px;
+  height: 139px;
+  transition: all 0.3s;
+}
+
+.activity_tag:hover {
+  transform: scale(1.04);
+  transition: all 0.3s;
+}
+
+.activity_image {
+  overflow: hidden;
+  width: 153px;
+  height: 120px;
+
+  border-radius: 14px;
+}
+
+.activity_image img {
+  border-radius: 12px;
+  width: 100%;
+}
+
+.activity_title {
+  margin-left: 18px;
+  width: 500px;
+  height: 36px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 227%;
+  /* or 36px */
+
+  color: #000000;
+}
+
+.activity_content {
+  margin-left: 18px;
+  margin-top: 10px;
+  width: 500px;
+  height: 64px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 227%;
+  /* or 32px */
+
+  color: #9b9b9b;
+}
+
+.describe .line_3 {
+  width: 650px;
+  height: 1px;
+  margin-top: 10px;
+  margin-left: 20px;
+
+  background: #eaeaea;
+}
+
+.block_3 {
+  position: relative;
+  width: 1600px;
+  height: 341px;
+
+  top: 50px;
+
+  background: #ffffff;
+  /* 基础投影 */
+
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  border-radius: 26px;
+}
+
+.block_3 h1 {
+  width: 100px;
+  height: 28px;
+  margin-left: 34px;
+  margin-top: 27px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 28px;
+  /* identical to box height */
+
+  color: #888888;
+}
+
+.block_3 .line_1 {
+  margin-top: 19px;
+  margin-left: 15px;
+}
+
+.block_3 .line_2 {
+  width: 1600px;
+}
+
+.block_3 h2 {
+  width: 32px;
+  height: 40px;
+  margin-left: 15px;
+  margin-top: 21px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 250.5%;
+  /* identical to box height, or 40px */
+
+  color: #0d52a1;
+}
+
+.block_3 h3 {
+  position: absolute;
+  width: 294px;
+  height: 39px;
+  left: 886px;
+  top: 21px;
+  margin: 0 0 0 0;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 39px;
+
+  color: rgba(13, 82, 161, 0.18);
+}
+
+.ad {
+  position: absolute;
+  display: flex;
+  top: 100px;
+  width: 1201px;
+  height: 200px;
+}
+
+.ad img {
+  margin-left: 50px;
+  width: 134px;
+  height: 46px;
+}
+
+.TAG_2 {
+  /* position: absolute; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("@/assets/images/TAG_2.png");
+  background-size: 100% auto;
+  /* background-size: cover; */
+  width: 100%;
+  height: 729px;
+  top: 1866px;
+  margin: 0 0 0 0;
+  overflow: hidden;
+}
+
+.title {
+  /* 馆藏资源 */
+
+  width: 120px;
+  height: 42px;
+  padding-bottom: 20px;
+  margin-top: 22px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 42px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+
+.title_en {
+  width: 194px;
+  height: 43px;
+
+  padding-bottom: 20px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 154%;
+  /* or 43px */
+
+  color: #ffffff;
+}
+
+.choice {
+  display: flex;
+  width: 635px;
+  height: 45px;
+  margin-left: 190px;
+  background: #ffffff;
+  box-shadow: 0px 3px 26px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.choice h1 {
+  width: 20%;
+  height: 25px;
+  margin-left: 34px;
+  margin-top: 9px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 154%;
+  /* identical to box height, or 25px */
+
+  display: flex;
+  align-items: center;
+
+  color: #666666;
+}
+
+.choice h2 {
+  width: 20%;
+  height: 25px;
+
+  margin-top: 9px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 154%;
+  /* identical to box height, or 25px */
+
+  color: #666666;
+}
+
+.choice h3 {
+  width: 20%;
+  height: 25px;
+
+  margin-top: 9px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 154%;
+  /* identical to box height, or 25px */
+
+  display: flex;
+  align-items: center;
+
+  color: #666666;
+}
+
+.choice h4 {
+  margin-top: 9px;
+  width: 20%;
+  height: 25px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 154%;
+  /* identical to box height, or 25px */
+
+  align-items: center;
+
+  color: #666666;
+}
+
+.choice h5 {
+  width: 20%;
+  height: 25px;
+  margin-top: 9px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 154%;
+  /* identical to box height, or 25px */
+
+  color: #666666;
+}
+
+.other {
+  width: 102px;
+  height: 45px;
+  margin-left: 100px;
+  top: 168px;
+
+  background: #ffffff;
+  box-shadow: 0px 3px 26px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.other h1 {
+  width: 48px;
+  height: 22px;
+  margin-left: 27px;
+  margin-top: 12px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #00478b;
+}
+
+.book {
+  width: 1200px;
+  height: 353px;
+
+  margin-top: 40px;
+
+  background: rgba(255, 255, 255, 0.84);
+  border-radius: 21px 21px 0px 0px;
+}
+
+.border {
+  width: 1241px;
+  height: 25px;
+  top: 593px;
+
+  background: #ffffff;
+  box-shadow: 0px 2px 4px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+}
+
+.TAG_3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 2595px;
+  height: 692px;
+  width: 100%;
+  background: #e5e5e5;
+}
+
+.service {
+  width: 60px;
+  height: 42px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 42px;
+  /* identical to box height */
+
+  color: #0d52a1;
+}
+
+.service_en {
+  height: 43px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 154%;
+  letter-spacing: 0.01em;
+
+  color: #0d52a1;
+}
+
+.card_1 {
+  width: 245px;
+  height: 357px;
+  left: 361px;
+  margin-top: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
+  background: #ffffff;
+  /* 基础投影 */
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  border-radius: 26px;
+}
+
+.card_1 .picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 245px;
+  height: 137px;
+  border-radius: 26px 26px 0 0;
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  background-image: url("@/assets/images/picture1.png");
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 77px;
+  height: 79px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.39);
+  backdrop-filter: blur(4px);
+}
+
+.card_choice {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  height: 170px;
+  width: 245px;
+
+  border-radius: 0 0 26px 26px;
+}
+
+.card_choice li {
+  margin-top: 5px;
+  cursor: pointer;
+  list-style-type: disc;
+}
+
+.card_choice li:hover {
+  color: blue;
+}
+
+.more {
+  cursor: pointer;
+  width: 80px;
+  height: 35px;
+
+  margin-left: 150px;
+  background: #ffffff;
+  /* 基础投影 */
+
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  border-radius: 19px;
+}
+
+.more:hover {
+  background: #dbdbdb;
+  color: #0075fc;
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.3);
+  /* 基础投影 */
+}
+
+.more h1 {
+  width: 33px;
+  height: 25px;
+  margin-left: 24px;
+  margin-top: 6px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 35px;
+  /* identical to box height, or 25px */
+  letter-spacing: 0.01em;
+
+  /* color: #9f9f9f; */
+}
+
+.TAG_4 {
+  height: 466px;
+  width: 100%;
+  /* position: absolute; */
+  background-image: url("@/assets/images/TAG_4.png");
+  background-size: 100% auto;
+}
+
+.library_guide {
+  height: 42px;
+  margin-top: 71px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 42px;
+  /* identical to box height */
+
+  color: #0d52a1;
+}
+
+.library_guide_en {
+  height: 43px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 154%;
+  /* or 43px */
+
+  letter-spacing: 0.01em;
+
+  color: #0d52a1;
+}
+
+.tap_1:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+.tap_1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 131px;
+  height: 133px;
+
+  flex-flow: column;
+
+  background: #ffffff;
+  /* 基础投影 */
+
+  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
+  border-radius: 26px;
+}
+
+.tap_txt {
+  height: 22px;
+
+  margin-top: 5px;
+
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #000000;
+}
+
+.TAG_5 {
+  width: 100%;
+
+  /* background-color: #000000; */
+}
+
+/*开片样式*/
+
+.el-carousel__item h3 {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
+}
 </style>
 
 

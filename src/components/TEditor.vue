@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import api from "@/services/rootapi/api.js";
+// import api from "@/services/rootapi/api.js";
 //这里的api是我定义的接口文件(一般情况下你只需要引入你的接口配置文件就可以了)
 //如果不懂看下面代码，我附上了我的api文件
 
