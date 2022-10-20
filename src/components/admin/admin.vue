@@ -194,16 +194,17 @@
                     </el-button>
                 </div>
                 <div>
-                  <el-input placeholder="输入关键字进行过滤" v-model="filterText">
-                    </el-input>
+                  
+                  <el-form-item label="搜索目录">
+                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
+                  </el-form-item>
+                  
                 </div>
                 <div>
                   <el-button  class="button_on" type="success" round @click="savemenu()">保存修改</el-button>
                 </div>
               </div>
               <div>
-                
-         
                 <div>
                   <el-tree :data="options_1" node-key="id" @node-drag-start="handleDragStart"
                     @node-drag-enter="handleDragEnter" @node-drag-leave="handleDragLeave"
