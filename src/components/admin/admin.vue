@@ -370,7 +370,7 @@
                     <el-input
                       v-model="menu"
                       placeholder="请输入新目录  "
-                      @click="addmenu()"
+                      
                     ></el-input>
                   </el-form-item>
                 </div>
@@ -414,6 +414,7 @@
                   type="success"
                   round
                   style="width: 60px"
+                  @click="addmenu()"
                   >添加</el-button
                 >
               </div>
@@ -1658,7 +1659,43 @@ export default {
       //<=============================================指南===================================================>
       //<=============================================指南===================================================>
       
-
+      addmenu()
+      {
+        let menu={
+          label:this.menu,
+          children:[]
+        }
+        this.options_1.push(menu);
+      },
+      savemenu()
+      {
+        let data=[];
+        let menu=this.options_1;
+        let length=this.options_1.length;
+        for(let i=0;i<length;i++)
+        {
+          let menu_data={
+            type:String(i+1),
+            name:menu[i].label,
+          }
+          data.push(menu_data);
+          console.log("childernlength:",menu[i].children.length)
+          if(menu[i].children.length)
+          {
+            for(let j=0;j<menu[i].children.length;j++)
+            {
+              menu_data={
+                type:String(i+1)+","+(j+1),
+                name:menu[i].children[j].label
+                
+              }
+              console.log("j:"+menu_data)
+              data.push(menu_data);
+            }
+          }
+        }
+        console.log(data);
+      },
       Total_Menu_init()
       {
         let i=0;
