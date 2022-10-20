@@ -1982,6 +1982,7 @@ export default {
       
       Resource_init()
       {
+        
         let string1;
         let data;
         let i=0;
@@ -2010,20 +2011,25 @@ export default {
         });
       },
       Create_Resource(){
-        
-         axios
-          .post("/api" + "/resource/insert", null, {
-            params: {
+         let params= {
               title: this.form.title,
               content:this.value,
               author:this.form.name,
               token:sessionStorage.getItem("token")
-            },
-          })
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+         axios
+          .post("/api" + "/resource/insert", params,config)
           .then((res) => {
-            alert("添加成功");
+            this.$message({
+                          type: 'success',
+                          message: '添加成功!'
+                          });
             this.$refs.editor.$data.contentValue=""
-            
             this.form.title="";
             this.form.name="";
             this.Resource_init();
@@ -2130,7 +2136,12 @@ export default {
         let data;
         let i=0;
          axios
-        .get("/api" + "/activity/searchAll")
+        .get("/api" + "/activity/searchAll",
+        {
+          params:{
+              pageSize:10
+          }
+        })
         .then((res) => {
 
           data=res.data.data;
@@ -2207,11 +2218,7 @@ export default {
           })
           .then((res) => {
            this.ActivitiesData.splice(e.$index,1);
-            this.itemKey = Math.random()
-
-      
-            //this.Notice_init()
-
+          this.itemKey = Math.random()
           })
           .catch((err) => {
             console.log(err);

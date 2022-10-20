@@ -82,6 +82,7 @@
             margin-bottom: 0px;
             backdrop-filter: blur(12px);
             background: rgba(255, 255, 255, 0.6);
+             border-radius: 28px;
           "
         >
           <div class="search_tap_1" @click="jump_other(1)">
@@ -1256,7 +1257,7 @@ export default {
 
 .activity_title {
   margin-left: 18px;
-  width: 500px;
+  width: 600px;
   height: 36px;
 
   font-family: "PingFang SC";
@@ -1272,7 +1273,7 @@ export default {
 .activity_content {
   margin-left: 18px;
   margin-top: 10px;
-  width: 500px;
+  width: 600px;
   height: 64px;
 
   font-family: "PingFang SC";
