@@ -368,8 +368,9 @@
                 <div>
                   <el-form-item label="新建目录">
                     <el-input
-                      v-model="form.uers_name"
+                      v-model="menu"
                       placeholder="请输入新目录  "
+                      @click="addmenu()"
                     ></el-input>
                   </el-form-item>
                 </div>
@@ -397,7 +398,14 @@
                     ref="tree"
                   >
                   </el-tree>
+                  
                 </div>
+                <el-button
+                type="success"
+                style="margin:auto"
+                @click="savemenu()"
+                >保存并返回
+              </el-button>
               </div>
 
               <div>
@@ -1139,72 +1147,105 @@ export default {
       let ActivitiesData=[];
       let title=[];
       let itemKey=0;
+      let menu;
       const options_1= [
           {
-          id: 1,
-          value: '1-1-馆长寄语',
-          label: '馆长寄语',
+          // id: 1,
+          value: '1',
+          label: '图书馆指南',
           children: [{
-            id: 9,
-            label: '二级 1-2',
-          }]
+            value: '1,1',
+            label: '馆长寄语',
+          },
+          {
+            value: '1,2',
+            label: '本馆简介',
+          },
+          {
+            value: '1,3',
+            label: '馆藏分布',
+          },
+          {
+            value: '1,4',
+            label: '开放时间',
+          },
+          {
+            value: '1,5',
+            label: '入馆须知',
+          },
+          {
+            value: '1,6',
+            label: '组织机构',
+          },
+          {
+            value: '1,7',
+            label: '联系我们',
+          },
+          {
+            value: '1,8',
+            label: '馆内服务',
+          },
+          ]
         }, {
-          id: 2,
-          value: '1-2-本馆简介',
-          label: '本馆简介',
-          children: [{
-            id: 10,
-            label: '二级 1-2',
-          }]
+
+          value: '2',
+          label: '资源',
+          children: [
+            {
+            value: '2,1',
+            label: '数目查询',
+          },{
+            value: '2,2',
+            label: '教学参考',
+          },
+          {
+            value: '2,3',
+            label: '随书光盘',
+          },
+          {
+            value: '2,4',
+            label: '学位论文',
+          },
+          {
+            value: '2,5',
+            label: '报纸导航',
+          },
+          {
+            value: '2,6',
+            label: '易读获取',
+          },
+            
+          ]
         }, {
-          id: 3,
-          value: '1-3-馆藏分布',
-          label: '馆藏分布',
+          // id: 3,
+          value: '3',
+          label: '服务',
           children: [{
-            id: 11,
-            label: '二级 1-3',
-          }]
+            value: '3,1',
+            label: '馆际互借',
+          },{
+            value: '3,2',
+            label: '教学参考',
+          },
+          {
+            value: '3,3',
+            label: '常见问题',
+          },
+          {
+            value: '3,4',
+            label: '阅读疗法',
+          },
+          {
+            value: '3,5',
+            label: '仁爱图苑',
+          },]
         },  {
           id: 4,
-          value: '1-4-开放时间',
-          label: '开放时间',
+          value: '4',
+          label: '文化推广',
           children: [{
             id: 12,
             label: '二级 1-4',
-          }]
-        },  
-        {
-          id: 5,
-          value: '1-5-入馆须知',
-          label: '入馆须知',
-          children: [{
-            id: 13,
-            label: '二级 1-5',
-          }]
-        },
-        {
-          id: 6,
-          value: '1-6-组织机构',
-          label: '组织机构',
-          children: [{
-            id: 14,
-            label: '二级 1-6',
-          }]
-        }, {
-          id: 7,
-          value: '1-7-联系我们',
-          label: '联系我们',
-          children: [{
-            id: 15,
-            label: '二级 1-7',
-          }]
-        }, {
-          id: 8,
-          value: '1-8-馆内服务',
-          label: '馆内服务',
-          children: [{
-            id: 16,
-            label: '二级 1-8',
           }]
         }];
         const options_2= [
@@ -1294,6 +1335,7 @@ export default {
         User_Form,
         ResourceData,
         itemKey,
+        menu
       };
     },
     methods:{
@@ -1301,23 +1343,24 @@ export default {
         if (!value) return true;
         return data.label.indexOf(value) !== -1;
       },
-      handleDragStart(node, ev) {
-        console.log('drag start', node);
-      },
+      // handleDragStart(node, ev) {
+      //   console.log('drag start', node);
+      // },
       handleDragEnter(draggingNode, dropNode, ev) {
-        console.log('tree drag enter: ', dropNode.label);
+        console.log('tree drag enter: ', dropNode);
       },
-      handleDragLeave(draggingNode, dropNode, ev) {
-        console.log('tree drag leave: ', dropNode.label);
-      },
-      handleDragOver(draggingNode, dropNode, ev) {
-        console.log('tree drag over: ', dropNode.label);
-      },
-      handleDragEnd(draggingNode, dropNode, dropType, ev) {
-        console.log('tree drag end: ', dropNode && dropNode.label, dropType);
-      },
+      // handleDragLeave(draggingNode, dropNode, ev) {
+      //   console.log('tree drag leave: ', dropNode.label);
+      // },
+      // handleDragOver(draggingNode, dropNode, ev) {
+      //   console.log('tree drag over: ', dropNode.label);
+      // },
+      // handleDragEnd(draggingNode, dropNode, dropType, ev) {
+      //   console.log('tree drag end: ', dropNode && dropNode.label, dropType);
+      // },
       handleDrop(draggingNode, dropNode, dropType, ev) {
         console.log('tree drop: ', dropNode.label, dropType);
+        console.log(this.options_1)
       },
       allowDrop(draggingNode, dropNode, type) {
         if (dropNode.data.label === '二级 3-1') {
@@ -2228,17 +2271,20 @@ export default {
       },
       Update_Activities(i,e)
       {
+        console.log(e)
         var that=this
         if(i==0)
         {
           axios
-        .get("/api" + "/notice/search",
+        .get("/api" + "/activity/search",
         {
           params:{
               id:e.row.id
           }
         }).then((res)=>{
+          
           let data=res.data.data[0];
+          console.log("data:",data)
           this.form.id=data.id;
           this.form.title=data.title;
           this.form.summary=data.summary;
