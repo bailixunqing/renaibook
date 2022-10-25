@@ -312,6 +312,130 @@
             </div>
           </div>
 
+          <div class="TAG_rght_2" v-if="show(21)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">目录管理</div>
+            </div>
+            <el-divider></el-divider>
+
+            <div class="menu">
+              <div class="menu1">
+                <div>
+                  <el-form-item label="新建目录">
+                    <el-input
+                      v-model="menu"
+                      placeholder="请输入新目录"
+                    ></el-input>
+                  </el-form-item>
+                </div>
+                <div>
+                  <el-button
+                    class="button_on"
+                    type="success"
+                    round
+                    @click="addmenu()"
+                    >添加目录
+                  </el-button>
+                </div>
+                <div>
+                  <el-form-item label="搜索目录">
+                    <el-input
+                      v-model="filterText"
+                      placeholder="输入关键字进行过滤"
+                    ></el-input>
+                  </el-form-item>
+                </div>
+                <div>
+                  <el-button
+                    class="button_on"
+                    type="success"
+                    round
+                    @click="savemenu()"
+                    >保存修改</el-button
+                  >
+                </div>
+              </div>
+              <div>
+                <div>
+                  <el-tree
+                    :data="options_1"
+                    node-key="id"
+                    @node-drag-start="handleDragStart"
+                    @node-drag-enter="handleDragEnter"
+                    @node-drag-leave="handleDragLeave"
+                    @node-drag-over="handleDragOver"
+                    @node-drag-end="handleDragEnd"
+                    @node-drop="handleDrop"
+                    draggable
+                    :filter-node-method="filterNode"
+                    :props="defaultProps"
+                    :allow-drop="allowDrop"
+                    :allow-drag="allowDrag"
+                    ref="tree"
+                  >
+                  </el-tree>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右:图书指南-->
+          <!-- 右:文章管理-->
+          <div class="TAG_rght_2" v-if="show(22)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">文章管理</div>
+            </div>
+            <el-divider></el-divider>
+
+            <el-row>
+              <el-form-item label="目录">
+                <el-input
+                  v-model="form.uers_name"
+                  placeholder="请输入关键字搜索"
+                ></el-input>
+              </el-form-item>
+            </el-row>
+
+            <div class="TAG_right_admin_table">
+              <el-table :data="options_1">
+                <el-table-column
+                  type="index"
+                  label="#"
+                  style="width: 83px"
+                ></el-table-column>
+
+                <el-table-column prop="value" label="目录名"></el-table-column>
+
+                <el-table-column label="操作">
+                  <template #default="scope">
+                    {{ scope.row.date }}
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 60px"
+                      @click="Total_Menu_Update(0, scope)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
+                        width: 60px;
+                        background-color: #e27172;
+                        margin-left: 4px;
+                        font-size: 15px;
+                      "
+                      @click="delete_total(5, scope)"
+                      >删除</el-button
+                    >
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+
           <!-- 右:图书指南-->
           <!-- 右:编辑文章-->
           <div class="TAG_rght_2" v-if="show(23)">
@@ -1725,6 +1849,10 @@ export default {
       },
       addmenu()
       {
+        if(this.menu==undefined||this.menu==""){
+          console.log(this.menu);
+          return;
+        }
         let menu={
           label:this.menu,
           children:[]
@@ -3015,9 +3143,16 @@ export default {
 }
 
 .menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  margin: 15px;
+}
+
+.menu1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 30px;
 }
 
 :deep(.el-tree-node__content) {
