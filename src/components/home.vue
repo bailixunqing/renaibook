@@ -82,7 +82,7 @@
             margin-bottom: 0px;
             backdrop-filter: blur(12px);
             background: rgba(255, 255, 255, 0.6);
-             border-radius: 28px;
+            border-radius: 28px;
           "
         >
           <div class="search_tap_1" @click="jump_other(1)">
@@ -599,9 +599,18 @@ export default {
             data = res.data.data.slice(0, 3);
             console.log(data);
             for (i = 0; i < data.length; i++) {
-              data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-              data[i].time = data[i].gmtCreate.substring(0, 7);
-              data[i].time = data[i].time.replace("-", ".");
+              var date = new Date(data[i].gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data[i].gmtCreate = Y + M + D;
+              console.log(data[i].gmtCreate);
+              data[i].time = data[i].gmtCreate
+                .replace("-", ".")
+                .substring(0, 7);
               data[i].day = data[i].gmtCreate.substring(8, 10);
 
               string = data[i].picture;
@@ -642,9 +651,18 @@ export default {
             console.log(res);
             data = res.data.data.slice(0, 6);
             for (i = 0; i < data.length; i++) {
-              data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-              data[i].time = data[i].gmtCreate.substring(0, 7);
-              data[i].time = data[i].time.replace("-", ".");
+              var date = new Date(data[i].gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data[i].gmtCreate = Y + M + D;
+              console.log(data[i].gmtCreate);
+              data[i].time = data[i].gmtCreate
+                .replace("-", ".")
+                .substring(0, 7);
               data[i].day = data[i].gmtCreate.substring(8, 10);
             }
             this.Notice = data;
@@ -670,9 +688,18 @@ export default {
             console.log(res);
             data = res.data.data;
             for (i = 0; i < data.length; i++) {
-              data[i].gmtCreate = data[i].gmtCreate.substring(0, 10);
-              data[i].time = data[i].gmtCreate.substring(0, 7);
-              data[i].time = data[i].time.replace("-", ".");
+              var date = new Date(data[i].gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data[i].gmtCreate = Y + M + D;
+              console.log(data[i].gmtCreate);
+              data[i].time = data[i].gmtCreate
+                .replace("-", ".")
+                .substring(0, 7);
               data[i].day = data[i].gmtCreate.substring(8, 10);
             }
             this.Resource = data;
@@ -728,6 +755,29 @@ export default {
 
   mounted: function () {
     this.init();
+    let params = {
+      titleOptionsInfo: [
+        {
+          id: "2",
+          type: "2",
+          name: "333",
+        },
+      ],
+      token:
+        "eyJUeXBlIjoiSnd0IiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJwcmVJZCI6IjExMTExMTExMSIsImV4cGlyZURhdGUiOiIxNjY2NTE4NDE5MTMxIiwidXNlcklkIjoiMTIzIn0.3tdgwNh0epm_Gy5DMZHD81tST03x-U_UpYfhLi6uOEg",
+    };
+
+    let config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    axios
+      .post("/api" + "/titleOptions/update", params, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(() => {});
     // window.onbeforeunload = function (e) {
     //   e = e || window.event;
     //   if (e) {

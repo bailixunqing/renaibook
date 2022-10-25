@@ -64,6 +64,15 @@ export default {
             console.log(res);
             let data = res.data.data[0];
             console.log(data);
+             var date = new Date(data.gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data.gmtCreate = Y + M + D;
+              console.log(data.gmtCreate);
             data.gmtCreate = data.gmtCreate.substring(0, 10);
             this.Notice = data;
             this.Notice.title = data.title;

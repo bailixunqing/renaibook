@@ -370,7 +370,6 @@
                     <el-input
                       v-model="menu"
                       placeholder="请输入新目录  "
-                      
                     ></el-input>
                   </el-form-item>
                 </div>
@@ -398,14 +397,13 @@
                     ref="tree"
                   >
                   </el-tree>
-                  
                 </div>
                 <el-button
-                type="success"
-                style="margin:auto"
-                @click="savemenu()"
-                >保存并返回
-              </el-button>
+                  type="success"
+                  style="margin: auto"
+                  @click="savemenu()"
+                  >保存并返回
+                </el-button>
               </div>
 
               <div>
@@ -446,7 +444,7 @@
                   style="width: 83px"
                 ></el-table-column>
 
-                <el-table-column prop="value" label="目录名"></el-table-column>
+                <el-table-column prop="label" label="目录名"></el-table-column>
 
                 <el-table-column label="操作">
                   <template #default="scope">
@@ -1150,105 +1148,106 @@ export default {
       let itemKey=0;
       let menu;
       const options_1= [
-          {
-          // id: 1,
-          value: '1',
-          label: '图书馆指南',
-          children: [{
-            value: '1,1',
-            label: '馆长寄语',
-          },
-          {
-            value: '1,2',
-            label: '本馆简介',
-          },
-          {
-            value: '1,3',
-            label: '馆藏分布',
-          },
-          {
-            value: '1,4',
-            label: '开放时间',
-          },
-          {
-            value: '1,5',
-            label: '入馆须知',
-          },
-          {
-            value: '1,6',
-            label: '组织机构',
-          },
-          {
-            value: '1,7',
-            label: '联系我们',
-          },
-          {
-            value: '1,8',
-            label: '馆内服务',
-          },
-          ]
-        }, {
+        //   {
+        //   // id: 1,
+        //   value: '1',
+        //   label: '图书馆指南',
+        //   children: [{
+        //     value: '1,1',
+        //     label: '馆长寄语',
+        //   },
+        //   {
+        //     value: '1,2',
+        //     label: '本馆简介',
+        //   },
+        //   {
+        //     value: '1,3',
+        //     label: '馆藏分布',
+        //   },
+        //   {
+        //     value: '1,4',
+        //     label: '开放时间',
+        //   },
+        //   {
+        //     value: '1,5',
+        //     label: '入馆须知',
+        //   },
+        //   {
+        //     value: '1,6',
+        //     label: '组织机构',
+        //   },
+        //   {
+        //     value: '1,7',
+        //     label: '联系我们',
+        //   },
+        //   {
+        //     value: '1,8',
+        //     label: '馆内服务',
+        //   },
+        //   ]
+        // }, {
 
-          value: '2',
-          label: '资源',
-          children: [
-            {
-            value: '2,1',
-            label: '数目查询',
-          },{
-            value: '2,2',
-            label: '教学参考',
-          },
-          {
-            value: '2,3',
-            label: '随书光盘',
-          },
-          {
-            value: '2,4',
-            label: '学位论文',
-          },
-          {
-            value: '2,5',
-            label: '报纸导航',
-          },
-          {
-            value: '2,6',
-            label: '易读获取',
-          },
+        //   value: '2',
+        //   label: '资源',
+        //   children: [
+        //     {
+        //     value: '2,1',
+        //     label: '数目查询',
+        //   },{
+        //     value: '2,2',
+        //     label: '教学参考',
+        //   },
+        //   {
+        //     value: '2,3',
+        //     label: '随书光盘',
+        //   },
+        //   {
+        //     value: '2,4',
+        //     label: '学位论文',
+        //   },
+        //   {
+        //     value: '2,5',
+        //     label: '报纸导航',
+        //   },
+        //   {
+        //     value: '2,6',
+        //     label: '易读获取',
+        //   },
             
-          ]
-        }, {
-          // id: 3,
-          value: '3',
-          label: '服务',
-          children: [{
-            value: '3,1',
-            label: '馆际互借',
-          },{
-            value: '3,2',
-            label: '教学参考',
-          },
-          {
-            value: '3,3',
-            label: '常见问题',
-          },
-          {
-            value: '3,4',
-            label: '阅读疗法',
-          },
-          {
-            value: '3,5',
-            label: '仁爱图苑',
-          },]
-        },  {
-          id: 4,
-          value: '4',
-          label: '文化推广',
-          children: [{
-            id: 12,
-            label: '二级 1-4',
-          }]
-        }];
+        //   ]
+        // }, {
+        //   // id: 3,
+        //   value: '3',
+        //   label: '服务',
+        //   children: [{
+        //     value: '3,1',
+        //     label: '馆际互借',
+        //   },{
+        //     value: '3,2',
+        //     label: '教学参考',
+        //   },
+        //   {
+        //     value: '3,3',
+        //     label: '常见问题',
+        //   },
+        //   {
+        //     value: '3,4',
+        //     label: '阅读疗法',
+        //   },
+        //   {
+        //     value: '3,5',
+        //     label: '仁爱图苑',
+        //   },]
+        // },  {
+        //   id: 4,
+        //   value: '4',
+        //   label: '文化推广',
+        //   children: [{
+        //     id: 12,
+        //     label: '二级 1-4',
+        //   }]
+        // }
+        ];
         const options_2= [
         {
           value: '2-1-书目查询',
@@ -1649,16 +1648,81 @@ export default {
       //<=============================================用户===================================================>
       //<=============================================用户===================================================>
 
+      
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
+      //<=============================================指南===================================================>
       clear()
       {
         this.form={};
         this.value=""
       },
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      
+      Menu_init()
+      {
+        axios
+        .get("/api" + "/titleOptions/searchAll")
+        .then((res) => {
+          let data=res.data.data;
+          
+          let menu_test=[];
+
+          for(let i=0;i<data.length;i++)
+          {
+            console.log(data[i]);
+            console.log(data[i].type);
+            console.log(data[i].type.length);
+            console.log(i)
+            let test={};
+            if(data[i].type.length==1)
+            {
+              test.value=data[i].type;
+              test.id=data[i].id;
+              test.label=data[i].name;
+              test.children=[];
+              console.log(test.label);
+              menu_test.push(test)
+
+              console.log(menu_test);
+            }
+
+            else
+            if(data[i].type.length==3)
+              {
+              test.value=data[i].type;
+              test.id=data[i].id;
+              test.label=data[i].name;
+              test.children=[];
+              let j=Number(data[i].type[0])-1;
+              let k=Number(data[i].type[2])-1;
+              menu_test[j].children.push(test);
+
+
+              }
+              else 
+              if(data[i].type.length==5)
+              {
+                test.value=data[i].type;
+                test.id=data[i].id;
+                test.label=data[i].name;
+                test.children=[];
+                let j=Number(data[i].type[0])-1;
+                let k=Number(data[i].type[2])-1;
+                let n=Number(data[i].type[4])-1;
+                menu_test[j].children[k].children.push(test);
+
+              }
+
+            } 
+            this.options_1=menu_test;
+
+          
+       
+        })
+        .catch((err) => {
+       
+        });
+      },
       addmenu()
       {
         let menu={
@@ -1672,11 +1736,13 @@ export default {
         let data=[];
         let menu=this.options_1;
         let length=this.options_1.length;
+        console.log(this.options_1)
         for(let i=0;i<length;i++)
         {
           let menu_data={
             type:String(i+1),
             name:menu[i].label,
+            id:menu[i].id
           }
           data.push(menu_data);
           console.log("childernlength:",menu[i].children.length)
@@ -1686,70 +1752,64 @@ export default {
             {
               menu_data={
                 type:String(i+1)+","+(j+1),
-                name:menu[i].children[j].label
-                
+                name:menu[i].children[j].label,
+                id:menu[i].children[j].id
               }
               console.log("j:"+menu_data)
               data.push(menu_data);
+              if(menu[i].children[j].children.length)
+              {
+                for(let k=0;k<menu[i].children[j].children.length;k++)
+                {
+                  menu_data={
+                type:String(i+1)+","+(j+1)+","+(k+1),
+                name:menu[i].children[j].children[k].label,
+                id:menu[i].children[j].children[k].id
+                  }
+                  data.push(menu_data);
+                }
+              }
             }
           }
         }
         console.log(data);
-      },
-      Total_Menu_init()
-      {
-        let i=0;
-        let data;
-        let title_1=[];
-        let title_2=[];
-        let title_3=[];
-        var cmp=function(obj1,obj2){
-          var val_1=obj1.insideId;
-          var val_2=obj2.insideId;
-          if(val_1<val_2)
-          {
-          return -1;
-          }
-          else if(val_1>val_2)
-          {
-            return 1;
-          }
-          else return 0;
+        let token=sessionStorage.getItem("token");
+        let params= {
+              titleOptionsInfo:data
+            };
+            console.log(params)
+            let config = {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            };
+            axios
+                .post("/api" + "/titleOptions/update?token="+token, params, config)
+                 .then((res) => {
+                          if(res.data.code==200)
+                          {
+                            this.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                                });
+                            // this.Total_Menu_init();
+                            this.value=""
+                            this.form={};
+                            setTimeout(() => {
+                             this.select(j)
+                            }, 1000);
+                          }
+                          
+                          
+                    })
+                  .catch(() => {
+                 
+              });
 
-        }
-        axios
-        .get("/api" + "/title/searchAll")
-        .then((res) => {
-          data=res.data.data;
-          data.sort(cmp);
-          for(i=0;i<data.length;i++)
-          {
-            if(data[i].insideId[0]=="1")
-            {
-              title_1.push(data[i]);
-            }
-             if(data[i].insideId[0]=="2")
-            {
-              title_2.push(data[i]);
-            }
-              if(data[i].insideId[0]=="3")
-            {
-              title_3.push(data[i]);
-            }
-          }
-          this.title_1=title_1;
-          this.title_2=title_2;
-          this.title_3=title_3;
-          console.log(this.title_1)
-          console.log(this.title_2)
-          console.log(this.title_3)
-      
-       
-        })
-        .catch((err) => {
-       
-        });
+
       },
+
+
        Total_Menu_Create(menu_number,value)
      {
         var insideId=menu_number.toString()
@@ -1923,11 +1983,19 @@ export default {
           }
         })
         .then((res) => {
-
+          console.log("通知公告")
+          console.log(res)
           data=res.data.data;
           for( i=0;i<data.length;i++)
           {
-            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
+            var date = new Date(data[i].gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data[i].gmtCreate = Y + M + D;
           }
           this.NoticeData=data
           console.log("刷新成功")
@@ -2079,7 +2147,15 @@ export default {
           data=res.data.data;
           for( i=0;i<data.length;i++)
           {
-            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
+            var date = new Date(data[i].gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data[i].gmtCreate = Y + M + D;
+              
             
 
           }
@@ -2151,7 +2227,7 @@ export default {
         if(i==0)
         {
           axios
-        .get("/api" + "/notice/search",
+        .get("/api" + "/resource/search",
         {
           params:{
               id:e.row.id
@@ -2227,7 +2303,14 @@ export default {
           data=res.data.data;
           for( i=0;i<data.length;i++)
           {
-            data[i].gmtCreate=data[i].gmtCreate.substring(0,10)
+            var date = new Date(data[i].gmtCreate);
+              let Y = date.getFullYear() + "-";
+              let M =
+                (date.getMonth() + 1 < 10
+                  ? "0" + (date.getMonth() + 1)
+                  : date.getMonth() + 1) + "-";
+              let D = date.getDate() + " ";
+              data[i].gmtCreate = Y + M + D;
             
 
           }
@@ -2398,6 +2481,7 @@ export default {
     },
     mounted:function ()
     {
+      this.Menu_init();
       this.Total_Menu_init();
       this.Resource_init();
       this.Notice_init();
