@@ -328,7 +328,7 @@
 
             <div class="menu">
               <div class="menu1">
-                <div >
+                <div>
                   <el-form-item label="搜索目录" style="font-size: 35px;">
                     <el-input
                       v-model="filterText"
@@ -343,7 +343,7 @@
                     <el-tree :data="options_1" node-key="id" @node-drag-start="handleDragStart" @node-drag-enter="handleDragEnter"
                       @node-drag-leave="handleDragLeave" @node-drag-over="handleDragOver" @node-drag-end="handleDragEnd"
                       @node-drop="handleDrop" draggable :filter-node-method="filterNode" :props="defaultProps" :allow-drop="allowDrop"
-                      :allow-drag="allowDrag" ref="tree">
+                      :allow-drag="allowDrag" ref="tree" empty-text="找不到该目录">
                     </el-tree>
                 </el-form-item>
                 </div>
@@ -3217,6 +3217,8 @@ export default {
   margin: 50px;
 }
 :deep(.el-tree__empty-text){
-  color: #90939900;
+  color: #000000;
+  display: contents;
+  font-size: 30px;
 }
 </style>
