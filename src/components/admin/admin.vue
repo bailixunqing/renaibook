@@ -481,7 +481,7 @@
             </div>
           </div>
 
-          <div class="TAG_rght_2" v-if="show(21)">
+          <!-- <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">目录管理</div>
             </div>
@@ -541,7 +541,7 @@
                 >
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- 右:图书指南-->
           <!-- 右:文章管理-->
@@ -2610,7 +2610,7 @@ export default {
     mounted:function ()
     {
       this.Menu_init();
-      this.Total_Menu_init();
+
       this.Resource_init();
       this.Notice_init();
       this.User_init();
