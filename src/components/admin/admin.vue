@@ -342,8 +342,8 @@
                 <el-form-item label="编辑目录">
                     <el-tree :data="options_1" node-key="id" @node-drag-start="handleDragStart" @node-drag-enter="handleDragEnter"
                       @node-drag-leave="handleDragLeave" @node-drag-over="handleDragOver" @node-drag-end="handleDragEnd"
-                      @node-drop="handleDrop" draggable :filter-node-method="filterNode" :props="defaultProps" :allow-drop="allowDrop"
-                      :allow-drag="allowDrag" ref="tree" empty-text="找不到该目录">
+                      @node-drop="handleDrop"  empty-text="找不到该目录" draggable :filter-node-method="filterNode" :props="defaultProps" :allow-drop="allowDrop"
+                      :allow-drag="allowDrag" ref="tree" :highlight-current="true" :default-expand-all="true" :expand-on-click-node="false">
                     </el-tree>
                 </el-form-item>
                 </div>
@@ -3220,5 +3220,10 @@ export default {
   color: #000000;
   display: contents;
   font-size: 30px;
+}
+
+:deep(.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content){
+  background-color: #8bcdff;
+    padding: 10px;
 }
 </style>
