@@ -38,6 +38,13 @@
                     type="primary"
                     round
                     class="TAG_left_button"
+                    @click="select(20)"
+                    >管理测试</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
                     @click="select(21)"
                     >目录管理</el-button
                   >
@@ -311,6 +318,50 @@
               >
             </div>
           </div>
+
+
+          <div class="TAG_rght_2" v-if="show(20)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">管理测试</div>
+            </div>
+            <el-divider></el-divider>
+
+            <div class="menu">
+              <div class="menu1">
+                <div >
+                  <el-form-item label="搜索目录" style="font-size: 35px;">
+                    <el-input
+                      v-model="filterText"
+                      placeholder="输入关键字进行过滤"
+                    ></el-input>
+                  </el-form-item>
+                </div>
+              </div>
+              <div  class="menu2">
+                <div>
+                <el-form-item label="编辑目录">
+                    <el-tree :data="options_1" node-key="id" @node-drag-start="handleDragStart" @node-drag-enter="handleDragEnter"
+                      @node-drag-leave="handleDragLeave" @node-drag-over="handleDragOver" @node-drag-end="handleDragEnd"
+                      @node-drop="handleDrop" draggable :filter-node-method="filterNode" :props="defaultProps" :allow-drop="allowDrop"
+                      :allow-drag="allowDrag" ref="tree">
+                    </el-tree>
+                </el-form-item>
+                </div>
+                <div style="margin-left: auto;">
+                  <el-button
+                    class="button_on"
+                    style="height: 40px;"
+                    type="success"
+                    round
+                    @click="savemenu()"
+                    >保存修改</el-button
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
@@ -1467,24 +1518,17 @@ export default {
         if (!value) return true;
         return data.label.indexOf(value) !== -1;
       },
-      // handleDragStart(node, ev) {
-      //   console.log('drag start', node);
-      // },
+       handleDragStart(node, ev) {
+       },
       handleDragEnter(draggingNode, dropNode, ev) {
-        console.log('tree drag enter: ', dropNode);
       },
-      // handleDragLeave(draggingNode, dropNode, ev) {
-      //   console.log('tree drag leave: ', dropNode.label);
-      // },
-      // handleDragOver(draggingNode, dropNode, ev) {
-      //   console.log('tree drag over: ', dropNode.label);
-      // },
-      // handleDragEnd(draggingNode, dropNode, dropType, ev) {
-      //   console.log('tree drag end: ', dropNode && dropNode.label, dropType);
-      // },
+       handleDragLeave(draggingNode, dropNode, ev) {
+       },
+       handleDragOver(draggingNode, dropNode, ev) {
+       },
+       handleDragEnd(draggingNode, dropNode, dropType, ev) {
+       },
       handleDrop(draggingNode, dropNode, dropType, ev) {
-        console.log('tree drop: ', dropNode.label, dropType);
-        console.log(this.options_1)
       },
       allowDrop(draggingNode, dropNode, type) {
         if (dropNode.data.label === '二级 3-1') {
@@ -2660,7 +2704,7 @@ export default {
 .screen {
   /* overflow: hidden; */
   background: #f8f8f8bb;
-  width: 100vw;
+  width:100%;
 }
 
 .TAG_top {
@@ -2969,7 +3013,7 @@ export default {
 :deep(.el-form-item__label) {
   color: #000;
   font-family: "PingFang SC";
-  font-size: 18px;
+  font-size: 25px;
   margin-top: 5px;
 }
 
@@ -3143,16 +3187,25 @@ export default {
 }
 
 .menu {
-  display: grid;
-  grid-template-columns: auto auto;
-  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-  margin: 15px;
+  padding-top: 5px;
 }
 
 .menu1 {
   display: grid;
   grid-template-columns: auto auto;
   margin: 30px;
+}
+
+.menu2 {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-left: 30px;
+  margin-right: 80px;
+}
+
+:deep(.el-tree){
+  --el-tree-text-color:#606266;
+  background: #ffffff00;
 }
 
 :deep(.el-tree-node__content) {
@@ -3162,5 +3215,8 @@ export default {
 :deep(.el-tree-node__label) {
   font-size: 30px !important;
   margin: 50px;
+}
+:deep(.el-tree__empty-text){
+  color: #90939900;
 }
 </style>
