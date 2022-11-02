@@ -40,6 +40,12 @@
 
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
 .TAG_buttom {
   width: 100%;
   height: 235px;

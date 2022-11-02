@@ -772,12 +772,12 @@ export default {
         "Content-Type": "multipart/form-data",
       },
     };
-    axios
-      .post("/api" + "/titleOptions/update", params, config)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch(() => {});
+    // axios
+    //   .post("/api" + "/titleOptions/update", params, config)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch(() => {});
     // window.onbeforeunload = function (e) {
     //   e = e || window.event;
     //   if (e) {

@@ -7,18 +7,19 @@
     <slot>
       <div class="head">
         <div class="icon"></div>
+        <div style="width:20%"></div>
         <div class="nav">
           <ul class="navlist">
             <li @click="$router.push({ name: 'home' })" class="btli">
               <a href="">首页</a>
             </li>
-            <li class="btli">
-              <a href="">{{Menu_options[0].label}}</a>
+            <li v-for="item in Menu_options" :key="item.id" class="btli">
+              <a href="">{{item.label}}</a>
               <ul class="droplist">
-                <li @click="jump(0, 1)">
-                  <a href="">馆长寄语</a>
+                <li v-for="item2 in item.children" :key="item2.id" @click="jump(e)">
+                  <a href="">{{item2.label}}</a>
                 </li>
-                <li @click="jump(0, 2)">
+                <!-- <li @click="jump(0, 2)">
                   <a href="">本馆介绍</a>
                 </li>
                 <li @click="jump(0, 3)">
@@ -32,10 +33,10 @@
                 </li>
                 <li @click="jump(0, 6)">
                   <a href="">组织机构</a>
-                </li>
+                </li> -->
               </ul>
             </li>
-            <li class="btli">
+            <!-- <li class="btli">
               <a href="#">资源</a>
               <ul class="droplist">
                 <li @click="jump(1, 1)">
@@ -83,7 +84,7 @@
                   <a href="">仁爱图苑</a>
                 </li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -254,24 +255,27 @@ this.Menu_init()
 .icon {
   background-image: url("../../assets/images/icon.svg");
   background-size: 100%;
-  width: 270px;
+  width: 20%;
   height: 43px;
   margin: 34px 0 0 100px;
 }
 
 .nav {
-  position: absolute;
-  width: 780px;
+  position: relative;
+  width: 80%;
   height: 100px;
-  margin-left: 930px;
+  margin-left:10%;
   margin-top: 20px;
   z-index: 999;
 }
 
 .btli {
   float: left;
-  width: 170px;
+  width: 13%;
   z-index: 999;
+}
+.navlist{
+  width:100%;
 }
 .navlist a {
   font-family: "PingFang SC";
