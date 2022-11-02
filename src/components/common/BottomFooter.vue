@@ -3,7 +3,7 @@
     <img class="school" src="../../assets/images/school.svg" />
 
     <img class="ArtFont_1" src="../../assets/images/Artfont.svg" />
-    <h1 class="link1">相关链接</h1>
+    <h1 class="link1" href="http://www.tjrac.edu.cn/">天津仁爱学院</h1>
     <h1 class="link2">相关链接</h1>
     <h1 class="link3">相关链接</h1>
     <h1 class="footer">版权所有@2015 天津仁爱学院 津ICP备19010746号</h1>

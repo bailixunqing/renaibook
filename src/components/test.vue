@@ -1,47 +1,95 @@
+
 <template>
-    <div class="screen">
-    <div class="background">
-
-      </div>
-
-
-    </div>
+	<el-tree :data="data" node-key="id" :expand-on-click-node="false" default-expand-all highlight-current :allow-drop="allowDrop"
+	 :allow-drag="allowDrag" draggable>
+	
+	</el-tree>
 </template>
+
 <script>
-export default {
-  name: "test",
-  data() {
-    let value = "";
-    return { value };
-  },
-  
-  watch: {
-    value:function(e)
-    {
+	export default {
+    name:"test",
+		data() {
+			return {
+				data: [{
+					id: 1,
+					label: '一级 1',
+					folderId: 'fo-1',
+					children: [{
+						fileId: 'fi-1',
+						id: 4,
+						label: '二级 1-1',
+						children: [{
+							imgId: 'im-1',
+							id: 9,
+							label: '三级 1-1-1'
+						}, {
+							id: 10,
+							label: '三级 1-1-2'
+						}]
+					}]
+				}, {
+					id: 2,
+					label: '一级 2',
+					folderId: 'fo-2',
+					children: [{
+						fileId: 'fi-2',
+						id: 5,
+						label: '二级 2-1'
+					}, {
+						id: 6,
+						label: '二级 2-2'
+					}]
+				}, {
+					id: 3,
+					label: '一级 3',
+					folderId: 'fo-3',
+					children: [{
+						fileId: 'fo-3',
+						id: 7,
+						label: '二级 3-1'
+					}, {
+						id: 8,
+						fileId: 'fo-4',
+						label: '二级 3-2',
+						children: [{
+							imgId: 'fo-3',
+							id: 11,
+							label: '三级 3-2-1'
+						}, {
+							id: 12,
+							label: '三级 3-2-2'
+						}, {
+							id: 13,
+							label: '三级 3-2-3'
+						}]
+					}]
+				}],
+				defaultProps: {
+					children: 'children',
+					label: 'label'
+				}
+			};
+		},
+		methods: {
+			// 判断目标节点能否被放置
+			allowDrop(moveNode, inNode, type) {
+				if (inNode.data.fileId) {
+					// this.removeload()
+					return type === 'inner'
+				}
+			},
+			// 节点能否被拖拽
+			allowDrag(draggingNode) {
+				if (draggingNode.data.imgId) {
+					return draggingNode
+				}
+			},
 
-        console.log(e);
-    }
-  },
-  methods: {
-    test(e)
-    {
-        console.log("success");
-        console.log(e);
-    }
-  },
-
-  mounted: function () {},
-};
+		},
+	};
 </script>
-<style  scoped>
-.screen{
-  display: flex;
-  justify-content: center;
-    background-image: linear-gradient(90deg,rgba(0, 47, 255, 0.1) 0,rgba(131, 26, 5, 0.1) 15%,rgba(167, 55, 87, 0.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1) 100%);
-  width: 100%;
-  height:100%;
-}
-.background{
-  /* background-image: linear-gradient(90deg,rgba(247,149,51,.1) 0,rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1) 100%); */
-}
+
+<style>
 </style>
+

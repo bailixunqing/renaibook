@@ -6,19 +6,32 @@
           <img class="school" src="../../assets/images/school.svg" />
           <img class="ArtFont" src="../../assets/images/Artfont.svg" />
         </div>
-        <div class="TAG_link">相关链接</div>
-        <div class="TAG_link">相关链接</div>
-        <div class="TAG_link">相关链接</div>
+
+        <div class="TAG_link">
+          <a class="TAG_link" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
+          <a class="TAG_link" href="http://www.scal.edu.cn/">全国高校图工委</a>
+          <a class="TAG_link" href="https://lib.nankai.edu.cn/tjtgw"
+            >天津高校图工委</a
+          >
+        </div>
+        
+        <div class="TAG_link"><a class="TAG_link" href="http://www.calis.edu.cn/">CALIS</a>
+        
+        <a class="TAG_link" href="http://www.cashl.edu.cn/">CASHL</a>
+        
+        </div>
+        <div class="TAG_link">
+          <a class="TAG_link">相关链接</a></div>
         <div class="TAG_renai">
-          版权所有@2015 天津仁爱学院 津ICP备19010746号
+          <a class="TAG_link">版权所有@2015 天津仁爱学院 津ICP备19010746号</a>
         </div>
       </div>
       <div class="TAG_buttom_right">
         <div class="QRcode">
-          <img src="@/assets/images/QR_code.jpg" alt="">
+          <img src="@/assets/images/QR_code.jpg" alt="" />
         </div>
         <div class="QRcode">
-          <img src="@/assets/images/QR_code.jpg" alt="">
+          <img src="@/assets/images/QR_code.jpg" alt="" />
         </div>
       </div>
     </div>
@@ -28,7 +41,6 @@
 
 <style>
 .TAG_buttom {
-
   width: 100%;
   height: 235px;
   bottom: 0px;
@@ -69,7 +81,6 @@
 }
 
 .QRcode {
-
   width: 122px;
   height: 122px;
   background: #ffffff;
@@ -78,7 +89,7 @@
   margin: 50px;
   float: right;
 }
-.QRcode img{
+.QRcode img {
   width: 100%;
 }
 </style>

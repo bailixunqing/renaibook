@@ -47,12 +47,12 @@
 </template>
 <script>
 import BottomFooter from "@/components/common/BottomFooter";
-import BehindMenu from "@/components/common/BehindMenu";
+
 import DropMenu from "@/components/common/DropMenu";
 const axios = require("axios");
 export default {
   name: "Library_Guide",
-  components: { DropMenu, BehindMenu, BottomFooter },
+  components: { DropMenu, BottomFooter },
   data() {
     let activeName = "1";
     let current = 1;

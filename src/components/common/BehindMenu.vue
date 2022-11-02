@@ -1,5 +1,5 @@
 <template>
-  <slot >
+
     <div class="main">
       <el-affix >
         <div class="left">
@@ -39,7 +39,7 @@
       </el-affix>
       <div class="right"></div>
     </div>
-  </slot>
+
 </template>
 
 <script>

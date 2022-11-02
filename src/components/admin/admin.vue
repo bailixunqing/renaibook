@@ -319,7 +319,6 @@
             </div>
           </div>
 
-
           <div class="TAG_rght_2" v-if="show(20)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">管理测试</div>
@@ -329,7 +328,7 @@
             <div class="menu">
               <div class="menu1">
                 <div>
-                  <el-form-item label="搜索目录" style="font-size: 35px;">
+                  <el-form-item label="搜索目录" style="font-size: 35px">
                     <el-input
                       v-model="filterText"
                       placeholder="输入关键字进行过滤"
@@ -337,20 +336,36 @@
                   </el-form-item>
                 </div>
               </div>
-              <div  class="menu2">
+              <div class="menu2">
                 <div>
-                <el-form-item label="编辑目录">
-                    <el-tree :data="options_1" node-key="id" @node-drag-start="handleDragStart" @node-drag-enter="handleDragEnter"
-                      @node-drag-leave="handleDragLeave" @node-drag-over="handleDragOver" @node-drag-end="handleDragEnd"
-                      @node-drop="handleDrop"  empty-text="找不到该目录" draggable :filter-node-method="filterNode" :props="defaultProps" :allow-drop="allowDrop"
-                      :allow-drag="allowDrag" ref="tree" :highlight-current="true" :default-expand-all="true" :expand-on-click-node="false">
+                  <el-form-item label="编辑目录">
+                    <el-tree
+                      :data="options_1"
+                      node-key="id"
+                      @node-drag-start="handleDragStart"
+                      @node-drag-enter="handleDragEnter"
+                      @node-drag-leave="handleDragLeave"
+                      @node-drag-over="handleDragOver"
+                      @node-drag-end="handleDragEnd"
+                      @node-drop="handleDrop"
+                      empty-text="找不到该目录"
+                      draggable
+                      :filter-node-method="filterNode"
+                      :props="defaultProps"
+                      :allow-drop="allowDrop"
+                      :allow-drag="allowDrag"
+                      ref="tree"
+                      :highlight-current="true"
+                      :default-expand-all="true"
+                      :expand-on-click-node="false"
+                    >
                     </el-tree>
-                </el-form-item>
+                  </el-form-item>
                 </div>
-                <div style="margin-left: auto;">
+                <div style="margin-left: auto">
                   <el-button
                     class="button_on"
-                    style="height: 40px;"
+                    style="height: 40px"
                     type="success"
                     round
                     @click="savemenu()"
@@ -360,8 +375,6 @@
               </div>
             </div>
           </div>
-
-
 
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
@@ -1939,7 +1952,8 @@ export default {
         console.log(data);
         let token=sessionStorage.getItem("token");
         let params= {
-              titleOptionsInfo:data
+              titleOptionsInfo:data,
+              token:token
             };
             console.log(params)
             let config = {
@@ -1948,7 +1962,7 @@ export default {
               },
             };
             axios
-                .post("/api" + "/titleOptions/update?token="+token, params, config)
+                .post("/api" + "/titleOptions/update", params, config)
                  .then((res) => {
                           if(res.data.code==200)
                           {
@@ -2243,6 +2257,10 @@ export default {
             axios
                 .post("/api" + "/notice/update", params, config)
                  .then((res) => {
+                  this.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                                });
                           this.Notice_init();
                           this.value=""
                           
@@ -2273,12 +2291,18 @@ export default {
             axios
                 .post("/api" + "/notice/delete", params, config)
                  .then((res) => {
-                        
+                        this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                                });
                         this.NoticeData.splice(e.$index,1);
                         this.itemKey = Math.random()
                         })
                   .catch(() => {
-                alert("删除失败");
+                this.$message({
+                                type: 'success',
+                                message: '删除失败!'
+                                });
                  console.log(err);
               });
       },
@@ -2371,6 +2395,10 @@ export default {
             },
           })
           .then((res) => {
+            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                                });
            this.ResourceData.splice(e.$index,1);
            this.itemKey = Math.random()
 
@@ -2425,8 +2453,13 @@ export default {
                 .post("/api" + "/resource/update", params, config)
                  .then((res) => {
                           console.log(res)
+                          this.$message({
+                                type: 'success',
+                                message: '更新成功!'
+                                });
+                                this.form={};
                           this.Resource_init()
-                          this.form={};
+                          
                           setTimeout(() => {
                             this.select(41)
                           }, 1000);
@@ -2544,10 +2577,18 @@ export default {
             },
           })
           .then((res) => {
+            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                                });
            this.ActivitiesData.splice(e.$index,1);
           this.itemKey = Math.random()
           })
           .catch((err) => {
+            this.$message({
+                                type: 'success',
+                                message: '删除失败!'
+                                });
             console.log(err);
           
             
@@ -2696,7 +2737,7 @@ export default {
 .screen {
   /* overflow: hidden; */
   background: #f8f8f8bb;
-  width:100%;
+  width: 100%;
 }
 
 .TAG_top {
@@ -3195,8 +3236,8 @@ export default {
   margin-right: 80px;
 }
 
-:deep(.el-tree){
-  --el-tree-text-color:#606266;
+:deep(.el-tree) {
+  --el-tree-text-color: #606266;
   background: #ffffff00;
   width: 100%;
 }
@@ -3206,18 +3247,24 @@ export default {
   font-size: 30px !important;
   margin-left: 50px;
 }
-:deep(.el-tree__empty-text){
+:deep(.el-tree__empty-text) {
   color: #000000;
   display: contents;
   font-size: 30px;
 }
 
-:deep(.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content){
+:deep(.el-tree--highlight-current
+    .el-tree-node.is-current
+    > .el-tree-node__content) {
   background-color: #8bcdff;
+<<<<<<< HEAD
   border-radius: 20px;
 }
 :deep(.el-tree-node__content){
   height: 42px;
   margin: 10px;
+=======
+  padding: 10px;
+>>>>>>> a3416dd4fd33c9716e444e91ec63e48b7972f5d9
 }
 </style>
