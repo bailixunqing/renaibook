@@ -3257,14 +3257,10 @@ export default {
     .el-tree-node.is-current
     > .el-tree-node__content) {
   background-color: #8bcdff;
-<<<<<<< HEAD
   border-radius: 20px;
 }
 :deep(.el-tree-node__content){
   height: 42px;
   margin: 10px;
-=======
-  padding: 10px;
->>>>>>> a3416dd4fd33c9716e444e91ec63e48b7972f5d9
 }
 </style>
