@@ -1271,25 +1271,17 @@
   </div>
 </template>
 
-
-
 <script setup lang="lass"  >
 //引入头部
-import AdminTop from '@/components/admin/AdminTop.vue'
+import AdminTop from '@/components/admin/AdminTop.vue';
 //引入底部
-import AdminBottom from '@/components/admin/AdminBottom.vue'
+import AdminBottom from '@/components/admin/AdminBottom.vue';
 //引入富文本
-import TEditor from '@/components/TEditor.vue'
+import TEditor from '@/components/TEditor.vue';
 //引入element依赖
-import { ArrowDown } from '@element-plus/icons-vue'
-
-const axios = require("axios")
-
-
-import { ref } from 'vue'
-
-
-
+import { ArrowDown } from '@element-plus/icons-vue';
+const axios = require("axios");
+import { ref } from 'vue';
 export default {
     name:'admin',
     components: {TEditor,AdminTop},
@@ -3206,15 +3198,13 @@ export default {
 :deep(.el-tree){
   --el-tree-text-color:#606266;
   background: #ffffff00;
+  width: 100%;
 }
 
-:deep(.el-tree-node__content) {
-  margin: 10px;
-}
 
 :deep(.el-tree-node__label) {
   font-size: 30px !important;
-  margin: 50px;
+  margin-left: 50px;
 }
 :deep(.el-tree__empty-text){
   color: #000000;
@@ -3224,6 +3214,10 @@ export default {
 
 :deep(.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content){
   background-color: #8bcdff;
-    padding: 10px;
+  border-radius: 20px;
+}
+:deep(.el-tree-node__content){
+  height: 42px;
+  margin: 10px;
 }
 </style>
