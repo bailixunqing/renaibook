@@ -111,7 +111,7 @@
           </div>
           <div class="search_tap_1" @click="jump_other(7)">
             <img class="tap_icon" src="@/assets/images/TAG_0_icon/6.png" />
-            <h1 class="search_tap_txt">论文提交</h1>
+            <h1 class="search_tap_txt">学位论文</h1>
           </div>
           <div class="search_tap_1" @click="jump_other(8)">
             <img class="tap_icon" src="@/assets/images/TAG_0_icon/10.png" />

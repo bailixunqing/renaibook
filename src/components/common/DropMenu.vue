@@ -13,7 +13,7 @@
               <a href="">首页</a>
             </li>
             <li class="btli">
-              <a href="">图书馆指南</a>
+              <a href="">{{Menu_options[0].label}}</a>
               <ul class="droplist">
                 <li @click="jump(0, 1)">
                   <a href="">馆长寄语</a>
@@ -92,8 +92,20 @@
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   name: "DropMenu",
+  data()
+  {
+    let Menu_options=[
+      {label:""},
+      {label:""},
+      {label:""}
+    ];
+    let test_menu="图书馆指南";
+
+    return{Menu_options,test_menu}
+  },
   methods: {
     jump(e, i) {
       if (e == 0) {
@@ -121,7 +133,72 @@ export default {
         });
       }
     },
+    Menu_init()
+    {
+      axios
+        .get("/api" + "/titleOptions/searchAll")
+        .then((res) => {
+          let data=res.data.data;
+          
+          let menu_test=[];
+
+          for(let i=0;i<data.length;i++)
+          {
+
+            let test={};
+            if(data[i].type.length==1)
+            {
+              test.value=data[i].type;
+              test.id=data[i].id;
+              test.label=data[i].name;
+              test.children=[];
+
+              menu_test.push(test)
+
+
+            }
+
+            else
+            if(data[i].type.length==3)
+              {
+              test.value=data[i].type;
+              test.id=data[i].id;
+              test.label=data[i].name;
+              test.children=[];
+              let j=Number(data[i].type[0])-1;
+              let k=Number(data[i].type[2])-1;
+              menu_test[j].children.push(test);
+
+
+              }
+              else 
+              if(data[i].type.length==5)
+              {
+                test.value=data[i].type;
+                test.id=data[i].id;
+                test.label=data[i].name;
+                test.children=[];
+                let j=Number(data[i].type[0])-1;
+                let k=Number(data[i].type[2])-1;
+                let n=Number(data[i].type[4])-1;
+                menu_test[j].children[k].children.push(test);
+
+              }
+
+            } 
+            this.Menu_options=menu_test;
+            console.log(this.Menu_options);
+          
+       
+        })
+        .catch((err) => {
+       
+        });
+    }
   },
+  mounted: function () {
+this.Menu_init()
+  }
 };
 </script>
 
