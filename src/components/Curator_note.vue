@@ -60,19 +60,16 @@ export default {
             },
           })
           .then((res) => {
-            console.log("notice:");
-            console.log(res);
             let data = res.data.data[0];
-            console.log(data);
-             var date = new Date(data.gmtCreate);
-              let Y = date.getFullYear() + "-";
-              let M =
-                (date.getMonth() + 1 < 10
-                  ? "0" + (date.getMonth() + 1)
-                  : date.getMonth() + 1) + "-";
-              let D = date.getDate() + " ";
-              data.gmtCreate = Y + M + D;
-              console.log(data.gmtCreate);
+            var date = new Date(data.gmtCreate);
+            let Y = date.getFullYear() + "-";
+            let M =
+              (date.getMonth() + 1 < 10
+                ? "0" + (date.getMonth() + 1)
+                : date.getMonth() + 1) + "-";
+            let D = date.getDate() + " ";
+            data.gmtCreate = Y + M + D;
+            console.log(data.gmtCreate);
             data.gmtCreate = data.gmtCreate.substring(0, 10);
             this.Notice = data;
             this.Notice.title = data.title;
@@ -87,19 +84,24 @@ export default {
             console.log(err);
           });
       }
-      if(i==1)
-      {
-         axios
+      if (i == 1) {
+        axios
           .get("/api" + "/resource/search", {
             params: {
               id: this.Notice.id,
             },
           })
           .then((res) => {
-            console.log("notice:");
-            console.log(res);
             let data = res.data.data[0];
-            console.log(data);
+            var date = new Date(data.gmtCreate);
+            let Y = date.getFullYear() + "-";
+            let M =
+              (date.getMonth() + 1 < 10
+                ? "0" + (date.getMonth() + 1)
+                : date.getMonth() + 1) + "-";
+            let D = date.getDate() + " ";
+            data.gmtCreate = Y + M + D;
+            console.log(data.gmtCreate);
             data.gmtCreate = data.gmtCreate.substring(0, 10);
             this.Notice = data;
             this.Notice.title = data.title;
@@ -107,26 +109,29 @@ export default {
             this.Notice.date = data.gmtCreate.replace(/-/g, ".");
             // this.Notice.text = data.content.replace(/\n/g, "<br>");
             this.Notice.text = data.content.replace(/"/g, '"');
-
-            console.log(this.Notice);
           })
           .catch((err) => {
             console.log(err);
           });
       }
-      if(i==2)
-      {
-         axios
+      if (i == 2) {
+        axios
           .get("/api" + "/activity/search", {
             params: {
               id: this.Notice.id,
             },
           })
           .then((res) => {
-            console.log("activity:");
-            console.log(res);
-            let data = res.data.data[0];
-            console.log(data);
+           let data = res.data.data[0];
+            var date = new Date(data.gmtCreate);
+            let Y = date.getFullYear() + "-";
+            let M =
+              (date.getMonth() + 1 < 10
+                ? "0" + (date.getMonth() + 1)
+                : date.getMonth() + 1) + "-";
+            let D = date.getDate() + " ";
+            data.gmtCreate = Y + M + D;
+            console.log(data.gmtCreate);
             data.gmtCreate = data.gmtCreate.substring(0, 10);
             this.Notice = data;
             this.Notice.title = data.title;
@@ -134,8 +139,6 @@ export default {
             this.Notice.date = data.gmtCreate.replace(/-/g, ".");
             // this.Notice.text = data.content.replace(/\n/g, "<br>");
             this.Notice.text = data.content.replace(/"/g, '"');
-
-            console.log(this.Notice);
           })
           .catch((err) => {
             console.log(err);
