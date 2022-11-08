@@ -853,173 +853,9 @@ export default {
       let itemKey=0;
       let menu;
       const options_1= [
-        //   {
-        //   // id: 1,
-        //   value: '1',
-        //   label: '图书馆指南',
-        //   children: [{
-        //     value: '1,1',
-        //     label: '馆长寄语',
-        //   },
-        //   {
-        //     value: '1,2',
-        //     label: '本馆简介',
-        //   },
-        //   {
-        //     value: '1,3',
-        //     label: '馆藏分布',
-        //   },
-        //   {
-        //     value: '1,4',
-        //     label: '开放时间',
-        //   },
-        //   {
-        //     value: '1,5',
-        //     label: '入馆须知',
-        //   },
-        //   {
-        //     value: '1,6',
-        //     label: '组织机构',
-        //   },
-        //   {
-        //     value: '1,7',
-        //     label: '联系我们',
-        //   },
-        //   {
-        //     value: '1,8',
-        //     label: '馆内服务',
-        //   },
-        //   ]
-        // }, {
-
-        //   value: '2',
-        //   label: '资源',
-        //   children: [
-        //     {
-        //     value: '2,1',
-        //     label: '数目查询',
-        //   },{
-        //     value: '2,2',
-        //     label: '教学参考',
-        //   },
-        //   {
-        //     value: '2,3',
-        //     label: '随书光盘',
-        //   },
-        //   {
-        //     value: '2,4',
-        //     label: '学位论文',
-        //   },
-        //   {
-        //     value: '2,5',
-        //     label: '报纸导航',
-        //   },
-        //   {
-        //     value: '2,6',
-        //     label: '易读获取',
-        //   },
-            
-        //   ]
-        // }, {
-        //   // id: 3,
-        //   value: '3',
-        //   label: '服务',
-        //   children: [{
-        //     value: '3,1',
-        //     label: '馆际互借',
-        //   },{
-        //     value: '3,2',
-        //     label: '教学参考',
-        //   },
-        //   {
-        //     value: '3,3',
-        //     label: '常见问题',
-        //   },
-        //   {
-        //     value: '3,4',
-        //     label: '阅读疗法',
-        //   },
-        //   {
-        //     value: '3,5',
-        //     label: '仁爱图苑',
-        //   },]
-        // },  {
-        //   id: 4,
-        //   value: '4',
-        //   label: '文化推广',
-        //   children: [{
-        //     id: 12,
-        //     label: '二级 1-4',
-        //   }]
-        // }
+        
         ];
-        const options_2= [
-        {
-          value: '2-1-书目查询',
-          label: '书目查询',
-          
-        }, 
-        {
-          value: '2-2-教学参考',
-          label: '教学参考',
-          
-        }, 
-        {
-          value: '2-3-随书光盘',
-          label: '随书光盘',
-          
-        },  
-        {
-          value: '2-4-学位论文',
-          label: '学位论文',
-          
-        },  
-        {
-          value: '2-5-图书捐赠',
-          label: '图书捐赠',
-          
-        },
-        {
-          value: '2-6-报纸导航',
-          label: '报纸导航',
-          
-        }, 
-        {
-          value: '2-7-易读获取',
-          label: '易读获取',
-          
-        }, 
-        {
-          value: '2-8-数据库',
-          label: '数据库',
-          
-        }];
-        const options_3= [
-        {
-          value: '3-1-馆际互借',
-          label: '馆际互借',
-          
-        }, 
-        {
-          value: '3-2-咨询服务',
-          label: '咨询服务',
-          
-        }, 
-        {
-          value: '3-3-常见问题',
-          label: '常见问题',
-          
-        },  
-        {
-          value: '3-4-阅读疗法',
-          label: '阅读疗法',
-          
-        },  
-        {
-          value: '3-5-仁爱图苑',
-          label: '仁爱图苑',
-          
-        }];
+       
       return {
         filterText: '',
         count: 3,
@@ -1031,9 +867,8 @@ export default {
         search: '',//搜索
         options_1,
         title_1:"",
-        options_2,
+    
         title_2:"",
-        options_3,
         title_3:"",
         UserData,
         value,

@@ -307,7 +307,7 @@
       >
         <div class="title">馆藏资源</div>
         <div class="title_en">Activity reports</div>
-        <div style="display: flex">
+        <!-- <div style="display: flex">
           <div class="choice">
             <h1>热门</h1>
             <h2>科技</h2>
@@ -318,14 +318,25 @@
           <div class="other">
             <h1>换一批</h1>
           </div>
-        </div>
+        </div> -->
 
         <div class="book">
-          <el-carousel :interval="4000" type="card" height="330px" width="25%">
-            <el-carousel-item v-for="item in 6" :key="item">
-              <h3 text="2xl" justify="center">{{ item }}</h3>
+          <el-carousel :interval="5000" type="card" arrow="always">
+            <el-carousel-item v-for="item in book" :key="item" >
+              <img
+                :src="item.picture"
+                style="margin:auto;"
+                @click="book_jump(item)"
+              />
+              <h3>{{item.name}}</h3>
             </el-carousel-item>
           </el-carousel>
+          <!-- <el-carousel :interval="4000" type="card" height="330px" width="25%">
+            <el-carousel-item v-for="item in book" :key="item">
+              <img :src="item.picture"/>
+           
+            </el-carousel-item>
+          </el-carousel> -->
         </div>
         <div class="border"></div>
       </div>
@@ -534,6 +545,44 @@ export default {
         img: "",
       },
     ];
+    let book = [
+      {
+        url: "https://book.douban.com/subject/1007305/",
+        picture:
+          "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
+        name: "红楼梦",
+      },
+      {
+        url: "https://book.douban.com/subject/4913064/",
+        picture:
+          "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
+        name: "活着",
+      },
+      {
+        url: "https://book.douban.com/subject/1007305/",
+        picture:
+          "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
+        name: "红楼梦",
+      },
+      {
+        url: "https://book.douban.com/subject/1007305/",
+        picture:
+          "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
+        name: "红楼梦",
+      },
+      {
+        url: "https://book.douban.com/subject/1007305/",
+        picture:
+          "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
+        name: "红楼梦",
+      },
+      {
+        url: "https://book.douban.com/subject/1007305/",
+        picture:
+          "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
+        name: "红楼梦",
+      },
+    ];
     return {
       Notice,
       activities,
@@ -546,6 +595,7 @@ export default {
       current_1,
       options,
       card,
+      book,
     };
   },
   methods: {
@@ -751,6 +801,12 @@ export default {
         console.log("本地搜索");
       }
     },
+
+    book_jump(e)
+    {
+      console.log(e);
+      window.open(e.url);
+    }
   },
 
   mounted: function () {
@@ -1828,14 +1884,32 @@ export default {
 }
 
 /*开片样式*/
-
-.el-carousel__item h3 {
+:deep(.el-carousel__item)
+{
+  display: flex;
+  flex-flow: column;
+}
+:deep(.el-carousel__container) {
+  height: 350px;
+}
+:deep(.el-carousel__item is-active is-animating) {
+  width: 200px;
+}
+:deep(.el-carousel__item h3) {
   color: #475669;
-  opacity: 0.75;
-  line-height: 200px;
+ 
+  line-height: 30px;
   margin: 0;
   text-align: center;
 }
+
+/* :deep(.el-carousel__item:nth-child(2n)) {
+
+}
+
+:deep(.el-carousel__item:nth-child(2n + 1)) {
+
+} */
 </style>
 
 
