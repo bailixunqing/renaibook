@@ -101,7 +101,11 @@ export default {
     let Menu_options=[
       {label:""},
       {label:""},
-      {label:""}
+      {label:""},
+      {label:""},
+      {label:""},
+      {label:""},
+      
     ];
     let test_menu="图书馆指南";
 
