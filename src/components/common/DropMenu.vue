@@ -7,17 +7,17 @@
     <slot>
       <div class="head">
         <div class="icon"></div>
-        <div style="width:20%"></div>
+        <div style="width: 20%"></div>
         <div class="nav">
           <ul class="navlist">
             <li @click="$router.push({ name: 'home' })" class="btli">
               <a href="">首页</a>
             </li>
             <li v-for="item in Menu_options" :key="item.id" class="btli">
-              <a href="">{{item.label}}</a>
+              <a href="">{{ item.label }}</a>
               <ul class="droplist">
-                <li v-for="item2 in item.children" :key="item2.id" @click="jump(e)">
-                  <a href="">{{item2.label}}</a>
+                <li v-for="item2 in item.children" :key="item2.id">
+                  <a href="" @click="jump(item2)">{{ item2.label }}</a>
                 </li>
                 <!-- <li @click="jump(0, 2)">
                   <a href="">本馆介绍</a>
@@ -96,114 +96,83 @@
 const axios = require("axios");
 export default {
   name: "DropMenu",
-  data()
-  {
-    let Menu_options=[
-      {label:""},
-      {label:""},
-      {label:""},
-      {label:""},
-      {label:""},
-      {label:""},
-      
+  data() {
+    let Menu_options = [
+      { label: "" },
+      { label: "" },
+      { label: "" },
+      { label: "" },
+      { label: "" },
+      { label: "" },
     ];
-    let test_menu="图书馆指南";
+    let test_menu = "图书馆指南";
 
-    return{Menu_options,test_menu}
+    return { Menu_options, test_menu };
   },
   methods: {
-    jump(e, i) {
-      if (e == 0) {
-        this.$router.push({
-          path: "/Library_Guide",
-          query: {
-            id: i,
-          },
-        });
-      }
-      if (e == 1) {
-        this.$router.push({
-          path: "/Sources",
-          query: {
-            id: i,
-          },
-        });
-      }
-      if (e == 2) {
-        this.$router.push({
-          path: "/Service",
-          query: {
-            id: i,
-          },
-        });
-      }
+    jump(e) {
+      console.log(e);
+      this.$router.push({
+        path: "/Library_Guide",
+        // params: { options: e, type: type },
+        query: {
+          type: e.value,
+          id: e.id,
+        },
+      });
     },
-    Menu_init()
-    {
-      axios
-        .get("/api" + "/titleOptions/searchAll")
-        .then((res) => {
-          let data=res.data.data;
-          
-          let menu_test=[];
 
-          for(let i=0;i<data.length;i++)
-          {
+    Menu_init() {
+      
+        axios
+          .get("/api" + "/titleOptions/searchAll")
+          .then((res) => {
+            let data = res.data.data;
+            data.sort(function(a, b){return a.type.length - b.type.length})
+            let menu_test = [];
 
-            let test={};
-            if(data[i].type.length==1)
-            {
-              test.value=data[i].type;
-              test.id=data[i].id;
-              test.label=data[i].name;
-              test.children=[];
+            for (let i = 0; i < data.length; i++) {
+              let test = {};
+              if (data[i].type.length == 1||data[i].type.length==2) {
+                test.value = data[i].type;
+                test.id = data[i].id;
+                test.label = data[i].name;
+                test.children = [];
 
-              menu_test.push(test)
-
-
-            }
-
-            else
-            if(data[i].type.length==3)
-              {
-              test.value=data[i].type;
-              test.id=data[i].id;
-              test.label=data[i].name;
-              test.children=[];
-              let j=Number(data[i].type[0])-1;
-              let k=Number(data[i].type[2])-1;
-              menu_test[j].children.push(test);
-
-
-              }
-              else 
-              if(data[i].type.length==5)
-              {
-                test.value=data[i].type;
-                test.id=data[i].id;
-                test.label=data[i].name;
-                test.children=[];
-                let j=Number(data[i].type[0])-1;
-                let k=Number(data[i].type[2])-1;
-                let n=Number(data[i].type[4])-1;
+                menu_test.push(test);
+              } else if (data[i].type.length == 3||data[i].type.length==4) {
+                test.value = data[i].type;
+                test.id = data[i].id;
+                test.label = data[i].name;
+                test.children = [];
+                let j = Number(data[i].type[0]) - 1;
+           
+                menu_test[j].children.push(test);
+              } else if (data[i].type.length == 5||data[i].type.length==6) {
+                test.value = data[i].type;
+                test.id = data[i].id;
+                test.label = data[i].name;
+                test.children = [];
+                let j = Number(data[i].type[0]) - 1;
+                let k = Number(data[i].type[2]) - 1;
                 menu_test[j].children[k].children.push(test);
-
               }
-
-            } 
-            this.Menu_options=menu_test;
+            }
+            this.Menu_options = menu_test;
             console.log(this.Menu_options);
-          
-       
-        })
-        .catch((err) => {
-       
-        });
-    }
+            sessionStorage.setItem("Menu_options", JSON.stringify(menu_test));
+          })
+          .catch((err) => {});
+      // }
+    },
   },
   mounted: function () {
-this.Menu_init()
-  }
+    if (sessionStorage.getItem("Menu_options") != null) {
+        this.Menu_options = JSON.parse(sessionStorage.getItem("Menu_options"));
+      } else {
+    this.Menu_init();
+      }
+  },
 };
 </script>
 
@@ -214,6 +183,7 @@ this.Menu_init()
   text-decoration: none;
   list-style: none;
 }
+
 .top_text1 {
   padding-left: 1386px;
   width: 96px;
@@ -268,7 +238,7 @@ this.Menu_init()
   position: relative;
   width: 80%;
   height: 100px;
-  margin-left:10%;
+  margin-left: 10%;
   margin-top: 20px;
   z-index: 999;
 }
@@ -278,8 +248,8 @@ this.Menu_init()
   width: 13%;
   z-index: 999;
 }
-.navlist{
-  width:100%;
+.navlist {
+  width: 100%;
 }
 .navlist a {
   font-family: "PingFang SC";
@@ -298,7 +268,7 @@ this.Menu_init()
 }
 
 .droplist {
-  background: rgb(255, 255, 255,0.9);
+  background: rgb(255, 255, 255, 0.9);
   display: none;
   z-index: 999;
 }

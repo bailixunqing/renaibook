@@ -8,44 +8,139 @@
         <!-- 左边导航栏-->
         <div class="TAG_left">
           <div class="TAG_left_border">
-            <el-collapse v-model="activeName" accordion class="TAG_left_1" @click="clear()">
+            <el-collapse
+              v-model="activeName"
+              accordion
+              class="TAG_left_1"
+              @click="clear()"
+            >
               <el-collapse-item title="超级管理" name="1">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(11)">用户管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(12)">添加用户</el-button>
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(11)"
+                    >用户管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(12)"
+                    >添加用户</el-button
+                  >
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(20)">管理测试</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(21)">目录管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(22)">文章管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(23)">发布文章</el-button>
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(20)"
+                    >管理测试</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(21)"
+                    >目录管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(22)"
+                    >文章管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(23)"
+                    >发布文章</el-button
+                  >
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="通知公告" name="3">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(31)">公告管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(32)">新建公告</el-button>
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(31)"
+                    >公告管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(32)"
+                    >新建公告</el-button
+                  >
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="资源动态" name="4">
                 <el-row style="text-align: center">
-                  <el-button type="primary" round class="TAG_left_button" @click="select(41)">动态管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(42)">添加动态</el-button>
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(41)"
+                    >动态管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(42)"
+                    >添加动态</el-button
+                  >
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="活动报道" name="5">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(51)">报道管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(52)">新建报道</el-button>
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(51)"
+                    >报道管理</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(52)"
+                    >新建报道</el-button
+                  >
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="合作数据库" name="6">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(61)">中文数据库</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(62)">外文数据库</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(63)">试用数据库</el-button>
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(61)"
+                    >中文数据库</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(62)"
+                    >外文数据库</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    round
+                    class="TAG_left_button"
+                    @click="select(63)"
+                    >试用数据库</el-button
+                  >
                 </el-row>
               </el-collapse-item>
             </el-collapse>
@@ -67,8 +162,12 @@
             </el-form-item>
 
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on">保存并返回</el-button>
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button type="success" round class="TAG_right_on"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -82,32 +181,54 @@
 
             <el-row>
               <el-form-item label="用户姓名">
-                <el-input v-model="search" placeholder="请输入关键字"></el-input>
+                <el-input
+                  v-model="search"
+                  placeholder="请输入关键字"
+                ></el-input>
               </el-form-item>
             </el-row>
 
             <div class="TAG_right_admin_table">
-              <el-table :data="
-                UserData.filter(
-                  (data) =>
-                    !search ||
-                    data.name.toLowerCase().includes(search.toLowerCase())
-                )
-              ">
-                <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
+              <el-table
+                :data="
+                  UserData.filter(
+                    (data) =>
+                      !search ||
+                      data.name.toLowerCase().includes(search.toLowerCase())
+                  )
+                "
+              >
+                <el-table-column
+                  type="index"
+                  label="#"
+                  style="width: 83px"
+                ></el-table-column>
                 <el-table-column prop="idCard" label="ID工号"></el-table-column>
                 <el-table-column prop="username" label="姓名"></el-table-column>
                 <el-table-column label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px" @click="select(111)">修改
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 60px"
+                      @click="select(111)"
+                      >修改
                     </el-button>
-                    <el-button class="button_off" type="success" round style="
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
                         width: 60px;
                         background-color: #e27172;
                         margin-left: 4px;
                         font-size: 15px;
-                      " @click="delete_total(0, scope)">删除</el-button>
+                      "
+                      @click="delete_total(0, scope)"
+                      >删除</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -130,18 +251,30 @@
               <el-input v-model="form.user_password"></el-input>
             </el-form-item>
             <el-form-item label="用户权限">
-              <el-checkbox label="系统管理" name="type" class="TAG_right_adminpower_top"></el-checkbox>
+              <el-checkbox
+                label="系统管理"
+                name="type"
+                class="TAG_right_adminpower_top"
+              ></el-checkbox>
               <el-checkbox label="菜单管理" name="type"></el-checkbox>
               <el-checkbox label="通知公告" name="type"></el-checkbox>
               <el-checkbox label="资源动态" name="type"></el-checkbox>
               <el-checkbox label="活动报道" name="type"></el-checkbox>
               <el-checkbox label="合作数据库" name="type"></el-checkbox>
               <el-checkbox label="馆藏资源" name="type"></el-checkbox>
-              <el-checkbox label="馆内服务" name="type" class="TAG_right_adminpower_bottom"></el-checkbox>
+              <el-checkbox
+                label="馆内服务"
+                name="type"
+                class="TAG_right_adminpower_bottom"
+              ></el-checkbox>
             </el-form-item>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on">保存并返回</el-button>
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button type="success" round class="TAG_right_on"
+                >保存并返回</el-button
+              >
             </div>
           </div>
           <!-- 右:超级管理-->
@@ -162,7 +295,11 @@
             </el-form-item>
             <el-form-item label=""> </el-form-item>
             <el-form-item label="用户权限" v-model="User_Form.userPres">
-              <el-checkbox label="系统管理" name="type" class="TAG_right_adminpower_top"></el-checkbox>
+              <el-checkbox
+                label="系统管理"
+                name="type"
+                class="TAG_right_adminpower_top"
+              ></el-checkbox>
               <el-checkbox label="菜单管理" name="type"></el-checkbox>
               <el-checkbox label="通知公告" name="type"></el-checkbox>
               <el-checkbox label="资源动态" name="type"></el-checkbox>
@@ -172,7 +309,13 @@
               <el-checkbox label="馆内服务" name="type"></el-checkbox>
             </el-form-item>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_on" @click="User_Create()">保存并返回</el-button>
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="User_Create()"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -185,24 +328,47 @@
               <div class="menu1">
                 <div>
                   <el-form-item label="搜索目录" style="font-size: 35px">
-                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
+                    <el-input
+                      v-model="filterText"
+                      placeholder="输入关键字进行过滤"
+                    ></el-input>
                   </el-form-item>
                 </div>
               </div>
               <div class="menu2">
                 <div>
                   <el-form-item label="编辑目录">
-                    <el-tree :data="options_1" node-key="id" empty-text="找不到该目录" draggable
-                      :filter-node-method="filterNode" :props="defaultProps" :allow-drop="allowDrop"
-                      :allow-drag="allowDrag" ref="tree" :highlight-current="true" :default-expand-all="true"
-                      :expand-on-click-node="false">
+                    <el-tree
+                      :data="title_options"
+                      node-key="id"
+                      empty-text="找不到该目录"
+                      draggable
+                      :filter-node-method="filterNode"
+                      :props="defaultProps"
+                      :allow-drop="allowDrop"
+                      :allow-drag="allowDrag"
+                      ref="tree"
+                      :highlight-current="true"
+                      :default-expand-all="true"
+                      :expand-on-click-node="false"
+                    >
                       <template #default="{ node, data }">
                         <span class="custom-tree-node">
                           <span>{{ node.label }}</span>
                           <span>
-                            <a style="margin-left: 8px" @click="updatamune(data)">修改</a>
-                            <a style="margin-left: 8px" @click="append(data)">添加</a>
-                            <a style="margin-left: 8px" @click="remove(node, data)">删除</a>
+                            <a
+                              style="margin-left: 8px"
+                              @click="updatamune(data)"
+                              >修改</a
+                            >
+                            <a style="margin-left: 8px" @click="append(data)"
+                              >添加</a
+                            >
+                            <a
+                              style="margin-left: 8px"
+                              @click="remove(node, data)"
+                              >删除</a
+                            >
                           </span>
                         </span>
                       </template>
@@ -210,7 +376,13 @@
                   </el-form-item>
                 </div>
                 <div style="margin-left: auto">
-                  <el-button class="button_on" style="height: 40px" type="success" round @click="savemenu()">保存修改
+                  <el-button
+                    class="button_on"
+                    style="height: 40px"
+                    type="success"
+                    round
+                    @click="savemenu()"
+                    >保存修改
                   </el-button>
                 </div>
               </div>
@@ -227,26 +399,51 @@
               <div class="menu1">
                 <div>
                   <el-form-item label="新建目录">
-                    <el-input v-model="menu" placeholder="请输入新目录"></el-input>
+                    <el-input
+                      v-model="menu"
+                      placeholder="请输入新目录"
+                    ></el-input>
                   </el-form-item>
                 </div>
                 <div>
-                  <el-button class="button_on" type="success" round @click="addmenu()">添加目录
+                  <el-button
+                    class="button_on"
+                    type="success"
+                    round
+                    @click="addmenu()"
+                    >添加目录
                   </el-button>
                 </div>
                 <div>
                   <el-form-item label="搜索目录">
-                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
+                    <el-input
+                      v-model="filterText"
+                      placeholder="输入关键字进行过滤"
+                    ></el-input>
                   </el-form-item>
                 </div>
                 <div>
-                  <el-button class="button_on" type="success" round @click="savemenu()">保存修改</el-button>
+                  <el-button
+                    class="button_on"
+                    type="success"
+                    round
+                    @click="savemenu()"
+                    >保存修改</el-button
+                  >
                 </div>
               </div>
               <div>
                 <div>
-                  <el-tree :data="options_1" node-key="id" draggable :filter-node-method="filterNode"
-                    :props="defaultProps" :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree">
+                  <el-tree
+                    :data="title_options"
+                    node-key="id"
+                    draggable
+                    :filter-node-method="filterNode"
+                    :props="defaultProps"
+                    :allow-drop="allowDrop"
+                    :allow-drag="allowDrag"
+                    ref="tree"
+                  >
                   </el-tree>
                 </div>
               </div>
@@ -263,27 +460,47 @@
 
             <el-row>
               <el-form-item label="目录">
-                <el-input v-model="form.uers_name" placeholder="请输入关键字搜索"></el-input>
+                <el-input
+                  v-model="form.uers_name"
+                  placeholder="请输入关键字搜索"
+                ></el-input>
               </el-form-item>
             </el-row>
 
             <div class="TAG_right_admin_table">
-              <el-table :data="options_1">
-                <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
+              <el-table :data="title_contents">
+                <el-table-column
+                  type="index"
+                  label="#"
+                  style="width: 83px"
+                ></el-table-column>
 
                 <el-table-column prop="value" label="目录名"></el-table-column>
 
                 <el-table-column label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                      @click="Total_Menu_Update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round style="
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 60px"
+                      @click="Total_Menu_Update(0, scope)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
                         width: 60px;
                         background-color: #e27172;
                         margin-left: 4px;
                         font-size: 15px;
-                      " @click="delete_total(5, scope)">删除</el-button>
+                      "
+                      @click="delete_total(5, scope)"
+                      >删除</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -301,20 +518,37 @@
               选择目录
             </div>
             <div class="block">
-              <el-cascader v-model="menu_number" :options="options_1" clearable></el-cascader>
+              <el-cascader
+                v-model="id"
+                :options="title_options"
+                ref="cascader"
+                clearable
+              ></el-cascader>
             </div>
 
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" @input="content_value_change" v-model="value"
-                :value="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                @input="content_value_change"
+                v-model="value"
+                :value="value"
+              />
             </div>
 
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Total_Menu_Create(menu_number, value)">保存并返回
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="title_contents_edit(id, value)"
+                >保存并返回
               </el-button>
             </div>
           </div>
@@ -343,7 +577,7 @@
                   >
                   </el-input>
                   <el-tree
-                    :data="options_1"
+                    :data="title_options"
                     node-key="id"
                     draggable
                     :filter-node-method="filterNode"
@@ -375,42 +609,7 @@
             </div>
           </div> -->
 
-          <!-- 右:图书指南-->
-          <!-- 右:文章管理-->
-          <div class="TAG_rght_2" v-if="show(22)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">文章管理</div>
-            </div>
-            <el-divider></el-divider>
-
-            <el-row>
-              <el-form-item label="目录">
-                <el-input v-model="form.uers_name" placeholder="请输入关键字搜索"></el-input>
-              </el-form-item>
-            </el-row>
-
-            <div class="TAG_right_admin_table">
-              <el-table :data="options_1">
-                <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
-
-                <el-table-column prop="label" label="目录名"></el-table-column>
-
-                <el-table-column label="操作">
-                  <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                      @click="Total_Menu_Update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round style="
-                        width: 60px;
-                        background-color: #e27172;
-                        margin-left: 4px;
-                        font-size: 15px;
-                      " @click="delete_total(5, scope)">删除</el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </div>
-          </div>
+          
 
           <!-- 右：通知公告-->
           <!-- 右：公告管理-->
@@ -421,26 +620,49 @@
             <el-divider></el-divider>
             <el-row>
               <el-form-item label="标题">
-                <el-input v-model="form.uers_name" placeholder="请输入关键字"></el-input>
+                <el-input
+                  v-model="form.uers_name"
+                  placeholder="请输入关键字"
+                ></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
               <el-table :data="NoticeData" :key="itemKey">
-                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
+                <el-table-column
+                  type="index"
+                  style="width: 83px"
+                  label="#"
+                ></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
+                <el-table-column
+                  prop="gmtCreate"
+                  label="发布时间"
+                ></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                      @click="Notice_update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round style="
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 60px"
+                      @click="Notice_update(0, scope)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
                         width: 60px;
                         background-color: #e27172;
                         margin-left: 4px;
                         font-size: 15px;
-                      " @click="delete_total(1, scope)">删除</el-button>
+                      "
+                      @click="delete_total(1, scope)"
+                      >删除</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -464,12 +686,29 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" @input="content_value_change" v-model="value" :value="value" />
+              <TEditor
+                style="height: 400px"
+                @input="content_value_change"
+                v-model="value"
+                :value="value"
+              />
             </div>
 
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back" @click="select(31)">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Notice_update(1, 1)">保存并返回</el-button>
+              <el-button
+                type="success"
+                round
+                class="TAG_right_back"
+                @click="select(31)"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Notice_update(1, 1)"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -490,13 +729,26 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
-                :value="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+                :value="value"
+              />
             </div>
 
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Create_Notice()">保存并返回</el-button>
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Create_Notice()"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -509,26 +761,49 @@
             <el-divider></el-divider>
             <el-row>
               <el-form-item label="标题">
-                <el-input v-model="form.uers_name" placeholder="请输入关键字"></el-input>
+                <el-input
+                  v-model="form.uers_name"
+                  placeholder="请输入关键字"
+                ></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
               <el-table :data="ResourceData" :key="itemKey">
-                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
+                <el-table-column
+                  type="index"
+                  style="width: 83px"
+                  label="#"
+                ></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
+                <el-table-column
+                  prop="gmtCreate"
+                  label="发布时间"
+                ></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                      @click="Resource_update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round style="
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 60px"
+                      @click="Resource_update(0, scope)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
                         width: 60px;
                         background-color: #e27172;
                         margin-left: 4px;
                         font-size: 15px;
-                      " @click="delete_total(2, scope)">删除</el-button>
+                      "
+                      @click="delete_total(2, scope)"
+                      >删除</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -552,12 +827,29 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" :value="value"
-                @input="content_value_change" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                :value="value"
+                @input="content_value_change"
+              />
             </div>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back" @click="select(41)">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Resource_update(1, 1)">保存并返回</el-button>
+              <el-button
+                type="success"
+                round
+                class="TAG_right_back"
+                @click="select(41)"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Resource_update(1, 1)"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -579,12 +871,25 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
-                :value="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+                :value="value"
+              />
             </div>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Create_Resource()">保存并返回</el-button>
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Create_Resource()"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -597,26 +902,49 @@
             <el-divider></el-divider>
             <el-row>
               <el-form-item label="标题">
-                <el-input v-model="form.title" placeholder="请输入关键字"></el-input>
+                <el-input
+                  v-model="form.title"
+                  placeholder="请输入关键字"
+                ></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
               <el-table :data="ActivitiesData" :key="itemKey">
-                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
+                <el-table-column
+                  type="index"
+                  style="width: 83px"
+                  label="#"
+                ></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
+                <el-table-column
+                  prop="gmtCreate"
+                  label="发布时间"
+                ></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 40px"
-                      @click="Update_Activities(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round style="
+                    <el-button
+                      class="button_on"
+                      type="success"
+                      round
+                      style="width: 40px"
+                      @click="Update_Activities(0, scope)"
+                      >修改</el-button
+                    >
+                    <el-button
+                      class="button_off"
+                      type="success"
+                      round
+                      style="
                         width: 40px;
                         background-color: #e27172;
                         margin-left: 4px;
                         font-size: 15px;
-                      " @click="delete_total(3, scope)">删除</el-button>
+                      "
+                      @click="delete_total(3, scope)"
+                      >删除</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -641,11 +969,13 @@
               报道概述
             </div>
             <div class="TAG_main_write">
-              <div style="
+              <div
+                style="
                   margin-right: 18px !important;
                   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
                   border-radius: 20px;
-                ">
+                "
+              >
                 <el-input v-model="form.summary" clearable />
               </div>
             </div>
@@ -653,21 +983,44 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                :value="value"
+              />
             </div>
             <div style="text-align: left">
-              <el-upload class="avatar-uploader" action :http-request="uploadFile" :show-file-list="true"
-                :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+              <el-upload
+                class="avatar-uploader"
+                action
+                :http-request="uploadFile"
+                :show-file-list="true"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload"
+              >
                 <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                 <el-icon v-else class="avatar-uploader-icon">
                   <Plus />
                 </el-icon>
               </el-upload>
             </div>
-            <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
+            <el-checkbox
+              label="显示图片"
+              name="type"
+              style="font-weight: bold"
+            ></el-checkbox>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Update_Activities(1, 1)">保存并返回</el-button>
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Update_Activities(1, 1)"
+                >保存并返回</el-button
+              >
             </div>
           </div>
 
@@ -688,11 +1041,13 @@
               报道概述
             </div>
             <div class="TAG_main_write">
-              <div style="
+              <div
+                style="
                   margin-right: 18px !important;
                   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
                   border-radius: 20px;
-                ">
+                "
+              >
                 <el-input v-model="form.summary" clearable />
               </div>
             </div>
@@ -700,13 +1055,28 @@
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
-                :value="value" />
+              <TEditor
+                style="height: 400px"
+                ref="editor"
+                v-model="value"
+                @input="content_value_change"
+                :value="value"
+              />
             </div>
-            <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
+            <el-checkbox
+              label="显示图片"
+              name="type"
+              style="font-weight: bold"
+            ></el-checkbox>
             <div style="text-align: left">
-              <el-upload class="avatar-uploader" action :http-request="uploadFile" :show-file-list="true"
-                :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+              <el-upload
+                class="avatar-uploader"
+                action
+                :http-request="uploadFile"
+                :show-file-list="true"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload"
+              >
                 <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                 <el-icon v-else class="avatar-uploader-icon">
                   <Plus />
@@ -714,8 +1084,16 @@
               </el-upload>
             </div>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Create_Activities()">保存并返回</el-button>
+              <el-button type="success" round class="TAG_right_back"
+                >返回</el-button
+              >
+              <el-button
+                type="success"
+                round
+                class="TAG_right_on"
+                @click="Create_Activities()"
+                >保存并返回</el-button
+              >
             </div>
           </div>
           <!-- 右：合作数据库-->
@@ -728,18 +1106,34 @@
             <div class="database-1">
               <div v-for="item in count" :key="item" class="database-css">
                 <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
-                <el-avatar shape="square" style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
+                <el-divider
+                  direction="vertical"
+                  style="height: 100px; color: #0c57ad"
+                />
+                <el-avatar
+                  shape="square"
+                  style="width: 180px; height: 100px"
+                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"
+                >
                 </el-avatar>
                 <div style="display: grid; justify-items: end">
                   <el-button class="database-button">修改内容</el-button>
                   <el-button class="database-button">修改图片</el-button>
-                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
+                  <el-button
+                    @click="onDelete"
+                    class="database-button"
+                    style="background-color: #e27172"
+                    >删除</el-button
+                  >
                 </div>
               </div>
               <div class="database-css">
-                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
+                <el-button
+                  @click="add"
+                  class="database-button"
+                  style="width: 160px"
+                  >添加数据库显示</el-button
+                >
               </div>
             </div>
           </div>
@@ -755,18 +1149,34 @@
             <div class="database-1">
               <div v-for="item in count" :key="item" class="database-css">
                 <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
-                <el-avatar shape="square" style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
+                <el-divider
+                  direction="vertical"
+                  style="height: 100px; color: #0c57ad"
+                />
+                <el-avatar
+                  shape="square"
+                  style="width: 180px; height: 100px"
+                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"
+                >
                 </el-avatar>
                 <div style="display: grid; justify-items: end">
                   <el-button class="database-button">修改内容</el-button>
                   <el-button class="database-button">修改图片</el-button>
-                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
+                  <el-button
+                    @click="onDelete"
+                    class="database-button"
+                    style="background-color: #e27172"
+                    >删除</el-button
+                  >
                 </div>
               </div>
               <div class="database-css">
-                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
+                <el-button
+                  @click="add"
+                  class="database-button"
+                  style="width: 160px"
+                  >添加数据库显示</el-button
+                >
               </div>
             </div>
           </div>
@@ -781,18 +1191,34 @@
             <div class="database-1">
               <div v-for="item in count" :key="item" class="database-css">
                 <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
-                <el-avatar shape="square" style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
+                <el-divider
+                  direction="vertical"
+                  style="height: 100px; color: #0c57ad"
+                />
+                <el-avatar
+                  shape="square"
+                  style="width: 180px; height: 100px"
+                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"
+                >
                 </el-avatar>
                 <div style="display: grid; justify-items: end">
                   <el-button class="database-button">修改内容</el-button>
                   <el-button class="database-button">修改图片</el-button>
-                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
+                  <el-button
+                    @click="onDelete"
+                    class="database-button"
+                    style="background-color: #e27172"
+                    >删除</el-button
+                  >
                 </div>
               </div>
               <div class="database-css">
-                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
+                <el-button
+                  @click="add"
+                  class="database-button"
+                  style="width: 160px"
+                  >添加数据库显示</el-button
+                >
               </div>
             </div>
           </div>
@@ -852,7 +1278,7 @@ export default {
       let title=[];
       let itemKey=0;
       let menu;
-      const options_1= [
+      const title_options= [
         
         ];
        
@@ -865,7 +1291,7 @@ export default {
         form,value_1:"",
         textarea:"",
         search: '',//搜索
-        options_1,
+        title_options,
         title_1:"",
     
         title_2:"",
@@ -1203,37 +1629,35 @@ export default {
         .get("/api" + "/titleOptions/searchAll")
         .then((res) => {
           let data=res.data.data;
-          
+
+          console.log(data.sort(function(a, b){return a.type.length - b.type.length}));
+
+
           let menu_test=[];
 
           for(let i=0;i<data.length;i++)
           {
-            console.log(data[i]);
-            console.log(data[i].type);
-            console.log(data[i].type.length);
-            console.log(i)
+   
             let test={};
-            if(data[i].type.length==1)
+            if(data[i].type.length==1||data[i].type.length==2)
             {
               test.value=data[i].type;
               test.id=data[i].id;
               test.label=data[i].name;
               test.children=[];
-              console.log(test.label);
-              menu_test.push(test)
 
-              console.log(menu_test);
+              menu_test.push(test);
             }
 
             else
-            if(data[i].type.length==3)
+            if(data[i].type.length==3||data[i].type.length==4)
               {
               test.value=data[i].type;
               test.id=data[i].id;
               test.label=data[i].name;
               test.children=[];
               let j=Number(data[i].type[0])-1;
-              let k=Number(data[i].type[2])-1;
+
               menu_test[j].children.push(test);
 
 
@@ -1247,13 +1671,13 @@ export default {
                 test.children=[];
                 let j=Number(data[i].type[0])-1;
                 let k=Number(data[i].type[2])-1;
-                let n=Number(data[i].type[4])-1;
+
                 menu_test[j].children[k].children.push(test);
 
               }
 
             } 
-            this.options_1=menu_test;
+            this.title_options=menu_test;
 
           
        
@@ -1272,29 +1696,46 @@ export default {
           label:this.menu,
           children:[]
         }
-        this.options_1.push(menu);
+        this.title_options.push(menu);
       },
       savemenu()
       {
         let data=[];
-        let menu=this.options_1;
-        let length=this.options_1.length;
-        console.log(this.options_1)
+        let menu=this.title_options;
+        let length=this.title_options.length;
+        let type="";
+        console.log(this.title_options)
         for(let i=0;i<length;i++)
         {
+          if(menu[i].children.length)
+          {
+            type=String(i+1)+',';
+          }
+          else 
+          {
+            type=String(i+1);
+          }
           let menu_data={
-            type:String(i+1),
+            type:type,
             name:menu[i].label,
             id:menu[i].id
           }
           data.push(menu_data);
-          console.log("childernlength:",menu[i].children.length)
+
           if(menu[i].children.length)
           {
             for(let j=0;j<menu[i].children.length;j++)
             {
+              if(menu[i].children[j].children.length)
+              {
+                type=String(i+1)+","+(j+1)+',';
+              }
+              else 
+              {
+                type=String(i+1)+","+(j+1);
+              }
               menu_data={
-                type:String(i+1)+","+(j+1),
+                type:type,
                 name:menu[i].children[j].label,
                 id:menu[i].children[j].id
               }
@@ -1354,160 +1795,59 @@ export default {
       },
 
 
-       Total_Menu_Create(menu_number,value)
-     {
-        var insideId=menu_number.toString()
-        var that=this;
-         let params= {
-              insideId:insideId,
-              content:this.value,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-
-            
-        axios
-          .post("/api" + "/title/insert", params, config)
-          .then((res) => {
-            if(res.data.code==500)
-            {
-              this.$message({
-                type: 'error',
-                message: '已含有该标题!'
-              });
-            }
-            else
-            {
-              this.$message({
-                type: 'success',
-                message: '添加成功'
-              });
-            }
-            this.$refs.editor.$data.contentValue=""   
-          })
-          .catch((err) => {
-            this.$message({
-                type: 'error',
-                message: '添加失败'
-              });
-          });
-    },
-    Total_Menu_Delete(e)
-    {
-      var that=this;
-         let params= {
-              insideId:e.row.insideId,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/title/delete", params, config)
-                 .then((res) => {
-                  console.log(res)
-                  if(res.data.code==500)
-                  {
-                    this.$message({
-                        type: 'error',
-                        message: '删除失败!'
-                        });
-                  }
-                  else
-                  {
-                    
-                        if(e.row.insideId[0]=="1")
-                        {
-                          this.title_1.splice(e.$index,1);
-                        }
-                        if(e.row.insideId[0]=="2")
-                        {
-                          this.title_2.splice(e.$index,1);
-                        }
-                        if(e.row.insideId[0]=="3")
-                        {
-                          this.title_3.splice(e.$index,1);
-                        }
-
-                        this.itemKey = Math.random()
-                        this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                        });
-                        
-                  }
-                  })
-                  .catch(() => {
-                alert("删除失败");
-                 console.log(err);
-              });
-    },
-      Total_Menu_Update(i,e)
-      {
-        if(i==0)
-        {
-          console.log(e);
-          this.form.insideId=e.row.insideId;
-          this.value=e.row.content;
-          this.select(23);
-        }
-        if(i==1)
-        {
-          let j=0;
-          if(this.form.insideId[0]=='1')
-            j=22
-          if(this.form.insideId[0]=='2')
-            j=71
-          if(this.form.insideId[0]=='3')
-            j=81
-          console.log("j:"+j)
-          let params= {
-              insideId:this.form.insideId,
-              content:this.value,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/title/update", params, config)
-                 .then((res) => {
-                          if(res.data.code==200)
-                          {
-                            this.$message({
-                                type: 'success',
-                                message: '修改成功!'
-                                });
-                            this.Total_Menu_init();
-                            this.value=""
-                            this.form={};
-                            setTimeout(() => {
-                             this.select(j)
-                            }, 1000);
-                          }
-                          
-                          
-                    })
-                  .catch(() => {
-                 
-              });
-        }
         
-      },
+
 
       //<=============================================指南===================================================>
       //<=============================================指南===================================================>
       //<=============================================指南===================================================>
       //<=============================================指南===================================================>
 
+
+
+
+
+
+
+      //<=============================================标题内容===================================================>
+      //<=============================================标题内容===================================================>
+      //<=============================================标题内容===================================================>
+      //<=============================================标题内容===================================================>
+     title_contents_edit(i,value){
+      console.log(i);
+      console.log(value);
+      let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+      console.log(getCheckedNodes)
+     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
 
       //<=============================================公告===================================================>
       //<=============================================公告===================================================>
@@ -2623,7 +2963,9 @@ export default {
   font-size: 30px;
 }
 
-:deep(.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content) {
+:deep(.el-tree--highlight-current
+    .el-tree-node.is-current
+    > .el-tree-node__content) {
   background-color: #8bcdff;
   border-radius: 20px;
 }

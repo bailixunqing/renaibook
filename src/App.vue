@@ -1,6 +1,7 @@
 <template>
 <div style="height:100%;">
-  <router-view />
+
+  <router-view :key="$route.fullPath"/>
 </div>
 </template>
 
@@ -23,6 +24,7 @@ html,
 }
 </style>
 <script>
+import DropMenu from "@/components/common/DropMenu";
 export default {
   name: "App",
   methods: {

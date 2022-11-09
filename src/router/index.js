@@ -6,9 +6,7 @@ import login from '@/components/login'
 import Curator_note from '@/components/Curator_note'
 import admin from '@/components/admin/admin'
 import Library_Guide from "@/components/Library_Guide";
-import Sources from "@/components/Sources";
 
-import Service from "@/components/Service";
 
 
 export default createRouter({
@@ -44,15 +42,5 @@ export default createRouter({
             name: 'Library_Guide',
             component: Library_Guide 
         },
-        {
-            path: '/Sources',
-            name: 'Sources',
-            component: Sources
-        },
-        {
-            path: '/Service',
-            name: 'Service',
-            component: Service
-        }
     ],
 })

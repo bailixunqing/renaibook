@@ -9,33 +9,18 @@
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
-          <el-collapse-item title="馆长寄语" @click="select(1)" name="1">
+          
+          <el-collapse-item v-for="item in Menu" :key="item" :title="item.label"  :name="item.value" @click="select(item.id)">
+            <el-row>
+                  <el-button type="primary" v-for="item2 in item.children" :key="item2" round class="TAG_left_button" @click.stop="select(item2.id)">{{item2.label}}</el-button>
+                  
+                </el-row>
           </el-collapse-item>
-          <el-collapse-item title="本馆简介" @click="select(2)" name="2">
-          </el-collapse-item>
-          <el-collapse-item title="馆藏分布" @click="select(3)" name="3">
-          </el-collapse-item>
-          <el-collapse-item title="开放时间" @click="select(4)" name="4">
-          </el-collapse-item>
-          <el-collapse-item title="入馆须知" @click="select(5)" name="5">
-          </el-collapse-item>
-          <el-collapse-item title="组织机构" @click="select(6)" name="6">
-          </el-collapse-item>
-          <el-collapse-item title="联系我们" @click="select(7)" name="7">
-          </el-collapse-item>
-          <el-collapse-item title="馆内服务" @click="select(8)" name="8">
-          </el-collapse-item>
+         
         </el-collapse>
       </div>
       <div class="right">
-        <div class="text" v-html="Menu[0]" v-if="show(1)"></div>
-        <div class="text" v-html="Menu[1]" v-if="show(2)"></div>
-        <div class="text" v-html="Menu[2]" v-if="show(3)"></div>
-        <div class="text" v-html="Menu[3]" v-if="show(4)"></div>
-        <div class="text" v-html="Menu[4]" v-if="show(5)"></div>
-        <div class="text" v-html="Menu[5]" v-if="show(6)"></div>
-        <div class="text" v-html="Menu[6]" v-if="show(7)"></div>
-        <div class="text" v-html="Menu[7]" v-if="show(8)"></div>
+        <div class="text" v-html="content"></div>
       </div>
     </div>
 
@@ -57,65 +42,53 @@ export default {
     let activeName = "1";
     let current = 1;
     var value = 0;
-    const Menu = [];
-    return { value, current, Menu, activeName };
+    let content=""
+    const Menu = "";
+    return { value, current, Menu, activeName,content };
   },
   methods: {
     show(i) {
       if (i == this.current) return true;
       else return false;
     },
-    select(i) {
-      this.current = i;
-      return true;
+    select(id) {
+
+
+
+      axios
+        .get("/api" + "/title/search",
+        {
+          params:{
+              id:id
+          }
+        }).then((res)=>{
+          console.log(res.data.data[0].content)
+         this.content=res.data.data[0].content
+        }
+
+        );
+
+
     },
     init() {
-      let data;
-      let i = 0;
-      axios
-        .get("/api" + "/title/searchAll")
-        .then((res) => {
-          console.log(res);
-          data = res.data.data;
-          for (i = 0; i < data.length; i++) {
-            if (data[i].insideId == "1-1-馆长寄语") {
-              this.Menu[0] = data[i].content;
-            }
-            if (data[i].insideId == "1-2-本馆简介") {
-              this.Menu[1] = data[i].content;
-            }
-            if (data[i].insideId == "1-3-馆藏分布") {
-              this.Menu[2] = data[i].content;
-            }
-            if (data[i].insideId == "1-4-开放时间") {
-              this.Menu[3] = data[i].content;
-            }
-            if (data[i].insideId == "1-5-入馆须知") {
-              this.Menu[4] = data[i].content;
-            }
-            if (data[i].insideId == "1-6-组织机构") {
-              this.Menu[5] = data[i].content;
-            }
-            if (data[i].insideId == "1-7-联系我们") {
-              this.Menu[6] = data[i].content;
-            }
-            if (data[i].insideId == "1-8-馆内服务") {
-              this.Menu[7] = data[i].content;
-            }
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
   },
 
   mounted: function () {
     let data = this.$route.query;
-    this.activeName = data.id;
+    
+    console.log(data)
+    this.Menu=JSON.parse(sessionStorage.getItem("Menu_options"));
+    // if(data.type[0]=='1')
+    this.Menu=this.Menu[Number(data.type[0])-1].children;
+    
+    this.activeName = data.type;
+ 
+    // this.select(data.id);
+
     this.select(data.id);
-    this.init();
-    window.scroll(0, 0);
+    // this.init();
+    // window.scroll(0, 0);
   },
   message() {},
 };
@@ -151,11 +124,7 @@ export default {
   height: 459px;
   /* margin-left: 361px; */
   margin-top: 62px;
-  background: #ffffff;
-  /* 大块投影 */
 
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 20px;
 }
 
 .el-dropdown {

@@ -10,14 +10,14 @@
           <div class="search_text">
             <div
               @click="searchchange(0)"
-              style="cursor: pointer"
+              style="cursor: pointer;font-size:20px;"
               :class="{ active: search_current == 0 }"
             >
               仁爱搜索
             </div>
             <div
               @click="searchchange(1)"
-              style="margin-left: 20px; cursor: pointer"
+              style="margin-left: 20px; cursor: pointer;font-size:20px;"
               :class="{ active: search_current == 1 }"
             >
               馆藏目录
@@ -1031,7 +1031,10 @@ export default {
   --el-select-input-focus-border-color: none;
   --el-select-input-font-size: 14px;
 }
-
+:deep(.el-radio.el-radio--large .el-radio__label)
+{
+  font-size: 16px;
+}
 .input {
   margin-left: 20px;
   outline-style: none;
