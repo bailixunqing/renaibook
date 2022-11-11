@@ -519,10 +519,11 @@
             </div>
             <div class="block">
               <el-cascader
-                v-model="id"
+                v-model="form.cascader"
                 :options="title_options"
                 ref="cascader"
-                clearable
+                
+                @change="title_tree_change()"
               ></el-cascader>
             </div>
 
@@ -535,6 +536,7 @@
                 ref="editor"
                 @input="content_value_change"
                 v-model="value"
+                :key="form.change"
                 :value="value"
               />
             </div>
@@ -547,7 +549,7 @@
                 type="success"
                 round
                 class="TAG_right_on"
-                @click="title_contents_edit(id, value)"
+                @click="title_contents_edit()"
                 >保存并返回
               </el-button>
             </div>
@@ -608,8 +610,6 @@
               </div>
             </div>
           </div> -->
-
-          
 
           <!-- 右：通知公告-->
           <!-- 右：公告管理-->
@@ -690,6 +690,7 @@
                 style="height: 400px"
                 @input="content_value_change"
                 v-model="value"
+            
                 :value="value"
               />
             </div>
@@ -733,6 +734,7 @@
                 style="height: 400px"
                 ref="editor"
                 v-model="value"
+              
                 @input="content_value_change"
                 :value="value"
               />
@@ -832,6 +834,7 @@
                 ref="editor"
                 v-model="value"
                 :value="value"
+            
                 @input="content_value_change"
               />
             </div>
@@ -875,6 +878,7 @@
                 style="height: 400px"
                 ref="editor"
                 v-model="value"
+               
                 @input="content_value_change"
                 :value="value"
               />
@@ -988,6 +992,7 @@
                 ref="editor"
                 v-model="value"
                 :value="value"
+               
               />
             </div>
             <div style="text-align: left">
@@ -1059,6 +1064,7 @@
                 style="height: 400px"
                 ref="editor"
                 v-model="value"
+                
                 @input="content_value_change"
                 :value="value"
               />
@@ -1240,7 +1246,7 @@ import AdminBottom from '@/components/admin/AdminBottom.vue';
 import TEditor from '@/components/TEditor.vue';
 //引入element依赖
 import { ArrowDown } from '@element-plus/icons-vue';
-
+import { ElMessage, ElMessageBox } from 'element-plus'
 const axios = require("axios");
 import { ref } from 'vue';
 
@@ -1813,10 +1819,111 @@ export default {
       //<=============================================标题内容===================================================>
       //<=============================================标题内容===================================================>
       //<=============================================标题内容===================================================>
-     title_contents_edit(i,value){
-      console.log(i);
-      console.log(value);
+     title_contents_edit(){
+      let undef=this.form.undef;
       let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+      console.log(getCheckedNodes)
+      console.log(undef)
+      if(undef)
+      {
+        let params= {
+              toid:getCheckedNodes.id,
+              content:this.value,
+              token:sessionStorage.getItem("token")
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/title/insert", params, config)
+                 .then((res) => {
+                  this.$message({
+                                type: 'success',
+                                message: '新建成功!'
+                                });
+                          this.value=""
+                          
+                          this.form={};
+                          setTimeout(() => {
+                            this.select(31)
+                          }, 1000);
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+      }
+      else 
+      {
+        let params= {
+              id:this.form.id,
+              content:this.value,
+              token:sessionStorage.getItem("token")
+            };
+            let config = {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            };
+            axios
+                .post("/api" + "/title/update", params, config)
+                 .then((res) => {
+                  console.log(res)
+                  this.$message({
+                                type: 'success',
+                                message: '修改成功!'
+                                });
+                          this.value=""
+                          
+                          this.form={};
+                          setTimeout(() => {
+                            this.select(31)
+                          }, 1000);
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+      }
+
+
+     },
+     title_tree_change()
+     {
+      this.value=""
+      let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+      let id=getCheckedNodes.id;
+      let type=getCheckedNodes.value;
+       axios
+        .get("/api" + "/title/search",
+        {
+          params:{
+              id:id
+          }
+        }).then((res)=>{
+          console.log(res)
+          if(res.data.data.length==0)
+          {
+          this.value="";
+          this.form.undef=true;
+          console.log("form::")
+          console.log(this.form);
+          }
+          else
+          {
+          let data=res.data.data[0];
+          this.value=data.content;
+          this.form.change=0;
+          this.form.id=data.id;
+          this.form.undef=false;
+          console.log(this.value);
+          }
+        // console.log(res.data.data[0].content)
+        //  this.content=res.data.data[0].content
+        }
+        );
       console.log(getCheckedNodes)
      },
 
