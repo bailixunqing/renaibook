@@ -10,7 +10,7 @@
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
           
-          <el-collapse-item v-for="item in Menu" :key="item" :title="item.label"  :name="item.value" @click="select(item.id)">
+          <el-collapse-item v-for="item in Menu" :key="item" :title="item.label"  :name="item.value" @click="select(item)">
             <el-row>
                   <el-button type="primary" v-for="item2 in item.children" :key="item2" round class="TAG_left_button" @click.stop="select(item2.id)">{{item2.label}}</el-button>
                   
@@ -51,22 +51,27 @@ export default {
       if (i == this.current) return true;
       else return false;
     },
-    select(id) {
-
-
-
-      axios
+    select(e) {
+      console.log(e)
+      var index=this.Menu.findIndex(item=>item.id==e.id)
+      console.log(index)
+        if(this.Menu[index].content==null)
+        {
+          axios
         .get("/api" + "/title/search",
         {
           params:{
-              id:id
+              id:e.id
           }
         }).then((res)=>{
-          console.log(res.data.data[0].content)
-         this.content=res.data.data[0].content
+          this.Menu[index].content=res.data.data[0].content;
+         this.content= this.Menu[index].content
         }
-
         );
+        }
+        else{
+          this.content=this.Menu[index].content
+        }
 
 
     },
@@ -86,9 +91,9 @@ export default {
  
     // this.select(data.id);
 
-    this.select(data.id);
+    this.select(data);
     // this.init();
-    // window.scroll(0, 0);
+    window.scroll(0, 0);
   },
   message() {},
 };

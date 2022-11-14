@@ -394,12 +394,14 @@
         >
           <div
             class="tap_1"
-            @click="$router.push({ path: '/Library_Guide', query: { id: 1 } })"
+            v-for="item in library_guide"
+            :key="item.index"
+            @click="jump_guide(item)"
           >
-            <img class="tap_icon" src="../assets/images/icon5.svg" />
-            <h1 class="tap_txt">馆长寄语</h1>
+            <img class="tap_icon" :src="item.img" />
+            <h1 class="tap_txt">{{item.label}}</h1>
           </div>
-          <div
+          <!-- <div
             class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })"
           >
@@ -433,7 +435,7 @@
           >
             <img class="tap_icon" src="../assets/images/icon10.svg" />
             <h1 class="tap_txt">组织机构</h1>
-          </div>
+          </div> -->
         </div>
       </div>
       <div style="height: 200px"></div>
@@ -463,6 +465,7 @@ export default {
     let strSearchType = "keyword";
     let search_current = 0;
     const doctype = ref("ALL");
+    let library_guide=[];
     const card = [
       {
         icon: require("../assets/images/icon1.svg"),
@@ -582,6 +585,7 @@ export default {
           "https://tse4-mm.cn.bing.net/th/id/OIP-C.KFlFSNt_RQHnYaXrPJkLagAAAA?w=204&h=296&c=7&r=0&o=5&pid=1.7",
         name: "红楼梦",
       },
+      
     ];
     return {
       Notice,
@@ -596,6 +600,7 @@ export default {
       options,
       card,
       book,
+      library_guide,
     };
   },
   methods: {
@@ -806,28 +811,31 @@ export default {
     {
       console.log(e);
       window.open(e.url);
+    },
+    jump_guide(e)
+    {
+      console.log(e);
+      console.log(e);
+      this.$router.push({
+        path: "/Library_Guide",
+        // params: { options: e, type: type },
+        query: {
+          type: e.value,
+          id: e.id,
+        },
+      });
     }
   },
 
   mounted: function () {
     this.init();
-    let params = {
-      titleOptionsInfo: [
-        {
-          id: "2",
-          type: "2",
-          name: "333",
-        },
-      ],
-      token:
-        "eyJUeXBlIjoiSnd0IiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJwcmVJZCI6IjExMTExMTExMSIsImV4cGlyZURhdGUiOiIxNjY2NTE4NDE5MTMxIiwidXNlcklkIjoiMTIzIn0.3tdgwNh0epm_Gy5DMZHD81tST03x-U_UpYfhLi6uOEg",
-    };
-
-    let config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
+    this.library_guide = JSON.parse(sessionStorage.getItem("Menu_options"));
+    this.library_guide =this.library_guide[0].children
+    for(let i=0;i<this.library_guide.length;i++)
+    {
+      this.library_guide[i].img=require("../assets/images/icon"+(i+5)+".svg");
+    }
+    console.log(this.library_guide)
     // axios
     //   .post("/api" + "/titleOptions/update", params, config)
     //   .then((res) => {
