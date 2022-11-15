@@ -1,5 +1,5 @@
 <template >
-  <div class="screen">
+  <div v-if="load" class="screen">
     <div class="background">
       <drop-menu />
       <div style="height: 400px"></div>
@@ -46,8 +46,8 @@ export default {
   components: { BottomFooter, DropMenu },
   data() {
     const Notice = {};
-
-    return { Notice };
+    let load=false;
+    return { Notice,load };
   },
   methods: {
     init(i) {
@@ -77,7 +77,7 @@ export default {
             this.Notice.date = data.gmtCreate.replace(/-/g, ".");
             // this.Notice.text = data.content.replace(/\n/g, "<br>");
             this.Notice.text = data.content.replace(/"/g, '"');
-
+            this.load=true;
             console.log(this.Notice);
           })
           .catch((err) => {
@@ -109,6 +109,7 @@ export default {
             this.Notice.date = data.gmtCreate.replace(/-/g, ".");
             // this.Notice.text = data.content.replace(/\n/g, "<br>");
             this.Notice.text = data.content.replace(/"/g, '"');
+            this.load=true;
           })
           .catch((err) => {
             console.log(err);
@@ -139,6 +140,7 @@ export default {
             this.Notice.date = data.gmtCreate.replace(/-/g, ".");
             // this.Notice.text = data.content.replace(/\n/g, "<br>");
             this.Notice.text = data.content.replace(/"/g, '"');
+            this.load=true;
           })
           .catch((err) => {
             console.log(err);

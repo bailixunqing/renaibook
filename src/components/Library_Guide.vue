@@ -1,5 +1,5 @@
 <template>
-  <div class="screen">
+  <div v-if="load"  class="screen">
     <div class="background">
       <drop-menu />
     </div>
@@ -39,12 +39,13 @@ export default {
   name: "Library_Guide",
   components: { DropMenu, BottomFooter },
   data() {
+    let load=false;
     let activeName = "1";
     let current = 1;
     var value = 0;
     let content=""
     const Menu = "";
-    return { value, current, Menu, activeName,content };
+    return { value, current, Menu, activeName,content,load };
   },
   methods: {
     show(i) {
@@ -65,12 +66,14 @@ export default {
           }
         }).then((res)=>{
           this.Menu[index].content=res.data.data[0].content;
-         this.content= this.Menu[index].content
+         this.content= this.Menu[index].content;
+         this.load=true;
         }
         );
         }
         else{
-          this.content=this.Menu[index].content
+          this.content=this.Menu[index].content,
+          this.load=true;
         }
 
 

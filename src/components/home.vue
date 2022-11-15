@@ -159,7 +159,7 @@
                 资源动态
               </div>
               <div class="line_1"></div>
-              <h3>更多</h3>
+              <h3 @click="jump_more()">更多</h3>
               <!-- select(3) -->
               <h4>Notice</h4>
 
@@ -215,7 +215,7 @@
             >
               <h1>活动报道</h1>
               <div class="line_1"></div>
-              <h2>更多</h2>
+              <h2 @click="jump_more()">更多</h2>
               <!-- select(4) -->
 
               <h3>Activity reports</h3>
@@ -632,6 +632,13 @@ export default {
       // let iconStr = '';
       // iconStr = require(`@/assets/source_images/${item.picture}`);
       // return '@/assets/source_images/${data[i].picture};
+    },
+    jump_more()
+    {
+this.$router.push({
+        name: "more",
+        
+      });
     },
     init() {
       let data = [];
