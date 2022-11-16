@@ -1357,13 +1357,67 @@ export default {
       },
       remove(node, data) {
         console.log("删除");
-        console.log(node);
+
         console.log(data);
         const parent = node.parent;
         const children = parent.data.children || parent.data;
         const index = children.findIndex(d => d.id === data.id);
-        console.log(children)
+        var delete_nodes=[]
+        var delete_title=[]
         children.splice(index, 1);
+        function get_leaf(obj)
+        {
+          if(obj.children.length==0)
+          {
+            delete_nodes.push(obj.id);
+            delete_title.push(obj.id);
+            return 1;
+          }
+          else 
+          {
+            delete_nodes.push(obj.id);
+            for(let i=0;i<obj.children.length;i++)
+            {
+              get_leaf(obj.children[i]);
+            }
+            
+          }
+        }
+        get_leaf(data);
+        console.log(delete_nodes) 
+        console.log(delete_title)
+        let token=sessionStorage.getItem("token");
+        let params= {
+              id:delete_nodes,
+              token:token
+            };
+            let config = {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            };
+            axios
+                .post("/api" + "/titleOptions/delete", params, config)
+                 .then((res) => {
+                          if(res.data.code==200)
+                          {
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                                });
+                           
+                            
+                          }
+                          
+                          
+                    })
+                  .catch(() => {
+                 
+              });
+
+
+
+        
       },
       filterNode(value, data) {
         if (!value) return true;
@@ -1671,8 +1725,7 @@ export default {
         .get("/api" + "/titleOptions/searchAll")
         .then((res) => {
           let data=res.data.data;
-          let test_sort=["1","1,1","2","2,2","3","3,1","3,2","3,3","2,1"];
-          console.log(test_sort.sort())
+
           data.sort(function(a,b){
                     if(a.type>b.type)
                     return 1;
