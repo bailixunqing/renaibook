@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; flex-flow: column; align-items: center">
+  <div  style="display: flex; flex-flow: column; align-items: center">
     <div style="height: 50px; paddding-top: 10px">
       <a class="top_text1" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
       <a class="top_text2">English</a>
@@ -9,7 +9,7 @@
         <div class="icon"></div>
         <div style="width: 20%"></div>
         <div class="nav">
-          <ul class="navlist">
+          <ul class="navlist" >
             <li @click="$router.push({ name: 'home' })" class="btli">
               <a href="">首页</a>
             </li>
@@ -33,6 +33,7 @@ const axios = require("axios");
 export default {
   name: "DropMenu",
   data() {
+
     let Menu_options = [
       { label: "" },
       { label: "" },
@@ -64,7 +65,12 @@ export default {
           .get("/api" + "/titleOptions/searchAll")
           .then((res) => {
             let data = res.data.data;
-            data.sort(function(a, b){return a.type.length - b.type.length})
+            data.sort(function(a,b){
+                    if(a.type>b.type)
+                    return 1;
+                    else return -1;
+
+                                        })
             let menu_test = [];
 
             for (let i = 0; i < data.length; i++) {
@@ -95,8 +101,9 @@ export default {
               }
             }
             this.Menu_options = menu_test;
-            console.log(this.Menu_options);
+
             sessionStorage.setItem("Menu_options", JSON.stringify(menu_test));
+           this.$router.go(0)
           })
           .catch((err) => {});
       // }

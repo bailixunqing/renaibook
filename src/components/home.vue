@@ -1,7 +1,7 @@
 <template>
   <div class="screen">
     <div class="background">
-      <drop-menu />
+      <!-- <drop-menu /> -->
       <div class="TAG_0">
         <div class="ArtFont">
           <img src="../assets/images/Artfont.svg" />
@@ -371,9 +371,7 @@
                 </li>
               </ul>
             </div>
-            <div class="more">
-              <h1>更多</h1>
-            </div>
+    
           </div>
         </div>
       </div>
@@ -895,7 +893,7 @@ this.$router.push({
   display: flex;
   flex-flow: column;
   align-items: center;
-
+  margin-top:100px;
   z-index: 1;
   width: 100%;
 }
@@ -1171,7 +1169,7 @@ this.$router.push({
   /* Notice */
 
   height: 39px;
-  margin-left: 100px;
+  margin-left: 250px;
   margin-top: 20px;
 
   font-family: "PingFang SC";
@@ -1323,7 +1321,7 @@ this.$router.push({
   width: 204px;
   height: 39px;
   margin-top: 22px;
-  margin-left: 234px;
+  margin-left: 400px;
 
   font-family: "PingFang SC";
   font-style: normal;

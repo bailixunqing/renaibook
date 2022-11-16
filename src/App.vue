@@ -1,8 +1,11 @@
 <template>
 <div style="height:100%;">
-
+  <div v-if="headshow" class="total_head" ><drop-menu /></div>
+  
   <router-view :key="$route.fullPath"/>
+
 </div>
+
 </template>
 
 <style>
@@ -18,15 +21,26 @@ html,
 
 }
 * {
-
   margin: 0 ;
   padding: 0;
 }
+.total_head{
+  height:100px;
+  width:100%;
+  position:absolute;
+  z-index: 999;
+}
+
 </style>
 <script>
 import DropMenu from "@/components/common/DropMenu";
 export default {
   name: "App",
+  components: { DropMenu },
+  data()
+  {
+return {headshow:false}
+  },
   methods: {
      handleScreen(){
         const m = this.detectZoom();
@@ -56,5 +70,17 @@ export default {
   mounted: function () {
    this.handleScreen();
   },
+  watch:{
+    $route(to,from)
+    {
+      if(this.$route.path=="/login"||this.$route.path=="/admin")
+      {
+        this.headshow=false;
+      }
+      else {
+        this.headshow=true
+      }
+    }
+  }
 };
 </script>

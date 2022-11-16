@@ -333,24 +333,18 @@
                       placeholder="输入关键字进行过滤"
                     ></el-input>
                   </el-form-item>
-                  <div style="display:flex;">
+                  <div style="display: flex">
                     <el-form-item label="新建目录">
                       <el-input
                         v-model="menu"
                         placeholder="请输入新目录"
                       ></el-input>
                     </el-form-item>
-                    <el-button
-              
-                      type="success"
-                      round
-                      @click="addmenu()"
+                    <el-button type="success" round @click="addmenu()"
                       >添加目录
                     </el-button>
                   </div>
-                  
                 </div>
-                
               </div>
 
               <div class="menu2">
@@ -1677,8 +1671,16 @@ export default {
         .get("/api" + "/titleOptions/searchAll")
         .then((res) => {
           let data=res.data.data;
+          let test_sort=["1","1,1","2","2,2","3","3,1","3,2","3,3","2,1"];
+          console.log(test_sort.sort())
+          data.sort(function(a,b){
+                    if(a.type>b.type)
+                    return 1;
+                    else return -1;
 
-          console.log(data.sort(function(a, b){return a.type.length - b.type.length}));
+                                        }
+)
+          console.log(data);
 
 
           let menu_test=[];
@@ -1687,7 +1689,7 @@ export default {
           {
    
             let test={};
-            if(data[i].type.length==1||data[i].type.length==2)
+            if(data[i].type.length==1)
             {
               test.value=data[i].type;
               test.id=data[i].id;
@@ -1698,7 +1700,7 @@ export default {
             }
 
             else
-            if(data[i].type.length==3||data[i].type.length==4)
+            if(data[i].type.length==3)
               {
               test.value=data[i].type;
               test.id=data[i].id;
@@ -1755,14 +1757,9 @@ export default {
         console.log(this.title_options)
         for(let i=0;i<length;i++)
         {
-          if(menu[i].children.length)
-          {
-            type=String(i+1)+',';
-          }
-          else 
-          {
+          
             type=String(i+1);
-          }
+          
           let menu_data={
             type:type,
             name:menu[i].label,
@@ -1774,14 +1771,9 @@ export default {
           {
             for(let j=0;j<menu[i].children.length;j++)
             {
-              if(menu[i].children[j].children.length)
-              {
-                type=String(i+1)+","+(j+1)+',';
-              }
-              else 
-              {
+              
                 type=String(i+1)+","+(j+1);
-              }
+              
               menu_data={
                 type:type,
                 name:menu[i].children[j].label,

@@ -1,7 +1,7 @@
 <template>
   <div v-if="load"  class="screen">
     <div class="background">
-      <drop-menu />
+
     </div>
 
     <!-- main -->
@@ -65,8 +65,17 @@ export default {
               id:e.id
           }
         }).then((res)=>{
-          this.Menu[index].content=res.data.data[0].content;
+          
+          if(res.data.data.length!= 0)
+          {
+            
+            this.Menu[index].content=res.data.data[0].content;
          this.content= this.Menu[index].content;
+          }
+          else
+          {
+            this.content= "";
+          }
          this.load=true;
         }
         );
