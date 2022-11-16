@@ -254,7 +254,7 @@
               <el-checkbox
                 label="系统管理"
                 name="type"
-                class="TAG_right_adminpower_top"
+
               ></el-checkbox>
               <el-checkbox label="菜单管理" name="type"></el-checkbox>
               <el-checkbox label="通知公告" name="type"></el-checkbox>
@@ -1403,17 +1403,14 @@ export default {
                           {
                             this.$message({
                                 type: 'success',
-                                message: '删除成功!'
+                                message: '标题删除成功!'
                                 });
-                           
-                            
                           }
-                          
-                          
                     })
                   .catch(() => {
                  
               });
+        
 
 
 
@@ -1871,11 +1868,9 @@ export default {
                                 message: '修改成功!'
                                 });
                             // this.Total_Menu_init();
-                            this.value=""
                             this.form={};
-                            setTimeout(() => {
-                             this.select(j)
-                            }, 1000);
+                            this.Menu_init();
+                  
                           }
                           
                           
@@ -1933,9 +1928,7 @@ export default {
                           this.value=""
                           
                           this.form={};
-                          setTimeout(() => {
-                            this.select(31)
-                          }, 1000);
+
                           
                     })
                   .catch(() => {
@@ -1963,11 +1956,8 @@ export default {
                                 message: '修改成功!'
                                 });
                           this.value=""
-                          
                           this.form={};
-                          setTimeout(() => {
-                            this.select(31)
-                          }, 1000);
+
                           
                     })
                   .catch(() => {
