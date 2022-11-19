@@ -45,11 +45,12 @@ router.beforeEach((to, from, next) => {
 
     }
     if (to.name == "Curator_note") {
-        if(from.name != "home")
+        if(from.name == "home"|| from.name == "more")
         {
-            next('/')
+            next()
+           
         }
-        else next()
+        else  next('/')
         // if (from.name == "home") {
         //     next({
         //         path: '/Curator_note',

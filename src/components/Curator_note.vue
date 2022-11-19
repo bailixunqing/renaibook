@@ -59,6 +59,7 @@ export default {
               id: this.Notice.id,
             },
           })
+          
           .then((res) => {
             let data = res.data.data[0];
             var date = new Date(data.gmtCreate);
@@ -78,6 +79,7 @@ export default {
             // this.Notice.text = data.content.replace(/\n/g, "<br>");
             this.Notice.text = data.content.replace(/"/g, '"');
             this.load=true;
+            console.log("8888",id);
             console.log(this.Notice);
           })
           .catch((err) => {

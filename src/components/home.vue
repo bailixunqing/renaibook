@@ -648,7 +648,7 @@ this.$router.push({
         console.log("非空", JSON.stringify(this.activities));
       } else {
         axios
-          .get("/api" + "/activity/searchAll", {
+          .get("/api" + "/resource/searchAll", {
             params: {
               pageSize: 3,
             },
@@ -737,10 +737,12 @@ this.$router.push({
       if (sessionStorage.getItem("Resource") != null) {
         this.Resource = JSON.parse(sessionStorage.getItem("Resource"));
       } else {
+        
         axios
           .get("/api" + "/resource/searchAll", {
             params: {
               pageSize: 6,
+             
             },
           })
           .then((res) => {

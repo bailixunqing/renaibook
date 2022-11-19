@@ -1,31 +1,127 @@
 
 <template>
-    <div v-if="load"  class="screen">
-    <div class="background">
-
-    </div>
+  <div v-if="load" class="screen">
+    <div class="background"></div>
 
     <!-- main -->
 
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
-          
-          <el-collapse-item   title="通知公告"  name="1" @click="select(1)">
-            
+          <el-collapse-item title="通知公告" name="1" @click="select(1)">
           </el-collapse-item>
-         <el-collapse-item   title="资源动态"  name="2" @click="select(2)">
-           
+          <el-collapse-item title="资源动态" name="2" @click="select(2)">
           </el-collapse-item>
-           <el-collapse-item   title="活动报告"  name="3" @click="select(3)">
-            
+          <el-collapse-item title="活动报告" name="3" @click="select(3)">
           </el-collapse-item>
         </el-collapse>
       </div>
       <div class="right">
-        <div class="text" v-if="show(1)"  >通知公告</div>
-        <div class="text" v-if="show(2)"  >资源动态</div>
-        <div class="text" v-if="show(3)"  >活动报告</div>
+        <div class="mains" v-if="show(1)">
+          <div class="tit">通知公告</div>
+          <div
+            class="content"
+            v-for="item in Notice.content"
+            :key="item"
+            @click="jump(item, 0)"
+          >
+            <div class="major">
+              <text class="mainly">{{ item.title }}</text>
+              <text class="time">{{ item.gmtCreate }}</text>
+            </div>
+          </div>
+          <div class="select_page">
+            <div class="last" @click="Notice_page_last()">上一页</div>
+            <div class="next" @click="Notice_page_next()">下一页</div>
+            <div class="pages">
+              页码 :  
+              <div v-show="Notice_is_edit" @click="Notice_no_edit()" class="sel_span">
+                {{ Notice.page }}
+              </div>
+              <input
+                v-show="!Notice_is_edit"
+                class="sel_input"
+                @blur="Notice_edit($event)"
+                type="text"
+                :value="Notice.page"
+                ref="inputvalue"
+              /> /32
+            </div>
+            <div class="select" @click="Notice_page_jump()">跳转</div>
+          </div>
+        </div>
+
+
+        <div class="mains" v-if="show(2)">
+          <div class="tit">资源动态</div>
+          <div
+            class="content"
+            v-for="item in Resource.content"
+            :key="item"
+            @click="jump(item, 1)"
+          >
+            <div class="major">
+              <text class="mainly">{{ item.title }}</text>
+              <text class="time">{{ item.gmtCreate }}</text>
+            </div>
+          </div>
+          <div class="select_page">
+            <div class="last" @click="Resource_page_last()">上一页</div>
+            <div class="next" @click="Resource_page_next()">下一页</div>
+            <div class="pages">
+              页码 :
+              <div v-show="Resource_is_edit" @click="Resource_no_edit()" class="sel_span">
+                {{ Resource.page }}
+              </div>
+              <input
+                v-show="!Resource_is_edit"
+                class="sel_input"
+                @blur="Resource_edit($event)"
+                type="text"
+                :value="Resource.page"
+                ref="inputvalue"
+              /> /32
+            </div>
+            <div class="select" @click="Resource_page_jump()">跳转</div>
+          </div>
+        </div>
+
+
+        <div class="mains" v-if="show(3)">
+          <div class="tit">活动报告</div>
+          <div
+            class="content"
+            v-for="item in Activity.content"
+            :key="item"
+            @click="jump(item, 2)"
+          >
+            <div class="major">
+              <text class="mainly">{{ item.title }}</text>
+              <text class="time">{{ item.gmtCreate }}</text>
+            </div>
+          </div>
+          <div class="select_page">
+            <div class="last" @click="Activity_page_last()">上一页</div>
+            <div class="next" @click="Activity_page_next()">下一页</div>
+            <div class="pages">
+              页码 :
+              <div v-show="Activity_is_edit" @click="Activity_no_edit()" class="sel_span">
+                {{ Activity.page }}
+              </div>
+              <input
+                v-show="!Activity_is_edit"
+                class="sel_input"
+                @blur="Activity_edit($event)"
+                type="text"
+                :value="Activity.page"
+                ref="inputvalue"
+              />/32
+            </div>
+            <div class="select" @click="Activity_page_jump()">跳转</div>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
@@ -36,30 +132,319 @@
   </div>
 </template>
 <script>
+const axios = require("axios");
 export default {
-    name: "more",
-    data()
-    {
-let activeName = "1";
-let current=1;
-let load=true;
-  return{activeName,current,load}
+  name: "more",
+  data() {
+    let npage=1;
+    let apage = 1;
+    let rpage=1;
+    let page_select = 1;
+    // let major = [
+    //   {
+    //     mainly: "sdfgvhgnbfvdcfs",
+    //     time: 2022,
+    //   },
+    //   {
+    //     mainly: "qwertyu",
+    //     time: 2000,
+    //   },
+    // ];
+    const Notice = {
+      content: [],
+      page: 1,
+    };
+    const Activity = { content: [], page: 1 };
+    const Resource = { content: [], page: 1 };
+    let activeName = "1";
+    let current = 1;
+    let load = true;
+    let Notice_is_edit = true;
+    let Resource_is_edit = true;
+    let Activity_is_edit = true;
+    return {
+      activeName,
+      current,
+      load,
+      Notice_is_edit,
+      Resource_is_edit,
+      Activity_is_edit,
+      page_select,
+      npage,
+      apage,
+      rpage,
+      Notice,
+     
+      Activity,
+      Resource,
+    };
+  },
+  methods: {
+    select(i) {
+      this.current = i;
+      if (i == 1) {
+        if (this.Notice.content.length == 0) {
+          axios
+            .get("/api" + "/notice/searchAll", {
+              params: {
+                pageSize: 10,
+              },
+            })
+
+            .then((res) => {
+              let data = [];
+              console.log("notice:");
+              console.log(res);
+              data = res.data.data;
+              for (var i = 0; i < data.length; i++) {
+                var date = new Date(data[i].gmtCreate);
+                let Y = date.getFullYear() + "-";
+                let M =
+                  (date.getMonth() + 1 < 10
+                    ? "0" + (date.getMonth() + 1)
+                    : date.getMonth() + 1) + "-";
+                let D =
+                  date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                data[i].gmtCreate = Y + M + D;
+                console.log(data[i].gmtCreate);
+                data[i].time = data[i].gmtCreate
+                  .replace("-", ".")
+                  .substring(0, 7);
+                data[i].day = data[i].gmtCreate.substring(8, 10);
+              }
+              this.Notice.content = data;
+
+              console.log(this.Notice);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      }
+      if (i == 2) {
+        if (this.Resource.content.length == 0) {
+          axios
+            .get("/api" + "/resource/searchAll", {
+              params: {
+                pageSize: 10,
+              },
+            })
+
+            .then((res) => {
+              let data = [];
+              console.log("Resource:");
+              console.log(res);
+              data = res.data.data;
+              for (var i = 0; i < data.length; i++) {
+                var date = new Date(data[i].gmtCreate);
+                let Y = date.getFullYear() + "-";
+                let M =
+                  (date.getMonth() + 1 < 10
+                    ? "0" + (date.getMonth() + 1)
+                    : date.getMonth() + 1) + "-";
+                let D =
+                  date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                data[i].gmtCreate = Y + M + D;
+                console.log(data[i].gmtCreate);
+                data[i].time = data[i].gmtCreate
+                  .replace("-", ".")
+                  .substring(0, 7);
+                data[i].day = data[i].gmtCreate.substring(8, 10);
+              }
+              this.Resource.content = data;
+
+              console.log(this.Resource);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      }
+      if (i == 3) {
+        if (this.Activity.content.length == 0) {
+          axios
+            .get("/api" + "/activity/searchAll", {
+              params: {
+                pageSize: 10,
+              },
+            })
+
+            .then((res) => {
+              let data = [];
+              console.log("activity:");
+              console.log(res);
+              data = res.data.data;
+              for (var i = 0; i < data.length; i++) {
+                var date = new Date(data[i].gmtCreate);
+                let Y = date.getFullYear() + "-";
+                let M =
+                  (date.getMonth() + 1 < 10
+                    ? "0" + (date.getMonth() + 1)
+                    : date.getMonth() + 1) + "-";
+                let D =
+                  date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                data[i].gmtCreate = Y + M + D;
+                console.log(data[i].gmtCreate);
+                data[i].time = data[i].gmtCreate
+                  .replace("-", ".")
+                  .substring(0, 7);
+                data[i].day = data[i].gmtCreate.substring(8, 10);
+              }
+              this.Activity.content = data;
+
+              console.log(this.Activity);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      }
     },
-    methods:{
-      select(i)
-      {
-        this.current=i;
-      },
-       show(i) {
+    show(i) {
       if (i == this.current) return true;
       else return false;
     },
-
+    Notice_page_last() {
+      if (this.Notice.page > 1) {
+        this.Notice.page--;
+      } else {
+        return alert("页码错误");
+      }
     },
-    mounted: function () {
-
+    Resource_page_last() {
+      if (this.Resource.page > 1) {
+        this.Resource.page--;
+      } else {
+        return alert("页码错误");
+      }
+    },
+    Activity_page_last() {
+      if (this.Activity.page > 1) {
+        this.Activity.page--;
+      } else {
+        return alert("页码错误");
+      }
+    },
+    Notice_page_next() {
+      if (this.Notice.page < 32) {
+        this.Notice.page++;
+      } else {
+        return alert("页码错误");
+      }
+    },
+    Resource_page_next() {
+      if (this.Resource.page < 32) {
+        this.Resource.page++;
+      } else {
+        return alert("页码错误");
+      }
+    },
+    Activity_page_next() {
+      if (this.Activity.page < 32) {
+        this.Activity.page++;
+      } else {
+        return alert("页码错误");
+      }
+    },
+    Notice_no_edit() {
+      this.Notice_is_edit = false;
+      this.$nextTick(function () {
+        this.$refs.inputvalue.focus();
+      });
+    },
+    Resource_no_edit() {
+      this.Resource_is_edit = false;
+      this.$nextTick(function () {
+        this.$refs.inputvalue.focus();
+      });
+    },
+    Activity_no_edit() {
+      this.Activity_is_edit = false;
+      this.$nextTick(function () {
+        this.$refs.inputvalue.focus();
+      });
+    },
+    Notice_edit(e) {
+      this.Notice_is_edit = true;
+      if (!e.target.value.trim()) return alert("页码不为空");
+      if (e.target.value > 32 || e.target.value < 1) return alert("页码错误");
+      this.npage = e.target.value;
+    },
+    Resource_edit(e) {
+      this.Resource_is_edit = true;
+      if (!e.target.value.trim()) return alert("页码不为空");
+      if (e.target.value > 32 || e.target.value < 1) return alert("页码错误");
+      this.rpage = e.target.value;
+    },
+    Activity_edit(e) {
+      this.Activity_is_edit = true;
+      if (!e.target.value.trim()) return alert("页码不为空");
+      if (e.target.value > 32 || e.target.value < 1) return alert("页码错误");
+      this.apage = e.target.value;
+    },
+    Notice_page_jump() {
+      if(this.Notice_is_edit==false){
+        this.Notice_is_edit = true;
+      this.Notice.page = this.npage;
+      }
+      
+    },
+    Resource_page_jump() {
+      if(this.Resource_is_edit==false){
+        this.Resource_is_edit = true;
+      this.Resource.page = this.rpage;
+      }
+      
+    },
+    Activity_page_jump() {
+      if(this.Activity_is_edit==false){
+        this.Activity_is_edit = true;
+      this.Activity.page = this.apage;
+      }
+      
+    },
+    jump(e, type) {
+      this.$router.push({
+        name: "Curator_note",
+        params: { id: e.id, type: type },
+      });
+    },
   },
-}
+  mounted: function () {
+    axios
+      .get("/api" + "/notice/searchAll", {
+        params: {
+          pageSize: 10,
+        },
+      })
+
+      .then((res) => {
+        let data = [];
+        console.log("notice:");
+        console.log(res);
+        data = res.data.data;
+        for (var i = 0; i < data.length; i++) {
+          var date = new Date(data[i].gmtCreate);
+          let Y = date.getFullYear() + "-";
+          let M =
+            (date.getMonth() + 1 < 10
+              ? "0" + (date.getMonth() + 1)
+              : date.getMonth() + 1) + "-";
+          let D = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+          data[i].gmtCreate = Y + M + D;
+          console.log(data[i].gmtCreate);
+          data[i].time = data[i].gmtCreate.replace("-", ".").substring(0, 7);
+          data[i].day = data[i].gmtCreate.substring(8, 10);
+        }
+        this.Notice.content= data;
+        
+        console.log(this.Notice);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+};
 </script>
 <style scoped>
 * {
@@ -69,7 +454,7 @@ let load=true;
   list-style: none;
 }
 .screen {
-  overflow:hidden;
+  overflow: hidden;
   display: flex;
   width: 100%;
   height: 100%;
@@ -90,7 +475,6 @@ let load=true;
   height: 459px;
   /* margin-left: 361px; */
   margin-top: 62px;
-
 }
 
 .el-dropdown {
@@ -481,26 +865,85 @@ let load=true;
 }
 
 .right {
-  width:1000px;
+  width: 1000px;
 
   background: #ffffff;
   /* 大块投影 */
-
+  /* background-color: #5ca695; */
   box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
   border-radius: 26px;
   margin-top: 62px;
   margin-left: 27px;
   margin-bottom: 40px;
+  /* position: relative; */
 }
-.text {
+.tit {
+  padding-bottom: 10px;
+  /* background-color: #5ca695; */
+  border-bottom: 2px solid #a6a6a6;
+  font-size: 25px;
+  font-weight: 400;
+  color: #0d52a1;
+}
+
+.mains {
   width: 940px;
-  height: 100%;
-  margin: 30px 30px 30px 30px;
-  margin-bottom: 40px;
+  height: 93%;
+  margin: 30px;
+  /* background-color: #1f8ef6; */
+  position: relative;
+}
+
+.major {
+  /* margin-top: 20px; */
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  cursor: pointer;
+  /* background-color: #2fb163; */
+}
+.major:hover {
+  color: #0d52a1;
+}
+.content {
+  margin-top: 10px;
+}
+.pages {
+  display: flex;
+}
+.select_page {
+  display: flex;
+  position: absolute;
+  left:620px;
+  bottom: 0;
+}
+.last,
+.next,
+.select {
+  width: 50px;
+  margin: 0 10px 0 10px;
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
+  color: #0c57ad;
+}
+.last:hover,
+.next:hover,
+.select:hover {
+  cursor: pointer;
+  color: #1f8ef6;
+}
+.sel_span {
+  margin: 0 6px;
+  width: 15px;
+  text-align: center;
+  background-color: 
+#EFEFEF;
+}
+.sel_input {
+  width: 20px;
 }
 .TAG_5 {
   width: 100%;
-
   background-size: 100% auto;
 }
 /*开片样式*/

@@ -251,22 +251,49 @@
               <el-input v-model="form.user_password"></el-input>
             </el-form-item>
             <el-form-item label="用户权限">
+              <el-checkbox-group v-model="checkList">
               <el-checkbox
                 label="系统管理"
                 name="type"
-
+          
               ></el-checkbox>
-              <el-checkbox label="菜单管理" name="type"></el-checkbox>
-              <el-checkbox label="通知公告" name="type"></el-checkbox>
-              <el-checkbox label="资源动态" name="type"></el-checkbox>
-              <el-checkbox label="活动报道" name="type"></el-checkbox>
-              <el-checkbox label="合作数据库" name="type"></el-checkbox>
-              <el-checkbox label="馆藏资源" name="type"></el-checkbox>
               <el-checkbox
+         
+                label="活动报道"
+                name="type"
+              ></el-checkbox>
+              <el-checkbox
+             
+                label="通知公告"
+                name="type"
+              ></el-checkbox>
+              <el-checkbox
+             
+                label="资源动态"
+                name="type"
+              ></el-checkbox>
+              <el-checkbox
+          
+                label="菜单管理"
+                name="type"
+              ></el-checkbox>
+
+              <el-checkbox
+           
+                label="合作数据库"
+                name="type"
+              ></el-checkbox>
+            </el-checkbox-group>
+              <!-- <el-checkbox
+                @click="pres(6)"
+                label="馆藏资源"
+                name="type"
+              ></el-checkbox>
+              <el-checkbox
+                @click="pres(7)"
                 label="馆内服务"
                 name="type"
-                class="TAG_right_adminpower_bottom"
-              ></el-checkbox>
+              ></el-checkbox> -->
             </el-form-item>
             <div class="TAG_right_buttom">
               <el-button type="success" round class="TAG_right_back"
@@ -294,19 +321,40 @@
               <el-input v-model="User_Form.password"></el-input>
             </el-form-item>
             <el-form-item label=""> </el-form-item>
-            <el-form-item label="用户权限" v-model="User_Form.userPres">
+            <el-form-item label="用户权限" >
+              <el-checkbox-group v-model="checkList">
               <el-checkbox
-                label="系统管理"
+                label="1"
                 name="type"
-                class="TAG_right_adminpower_top"
-              ></el-checkbox>
-              <el-checkbox label="菜单管理" name="type"></el-checkbox>
-              <el-checkbox label="通知公告" name="type"></el-checkbox>
-              <el-checkbox label="资源动态" name="type"></el-checkbox>
-              <el-checkbox label="活动报道" name="type"></el-checkbox>
-              <el-checkbox label="合作数据库" name="type"></el-checkbox>
-              <el-checkbox label="馆藏资源" name="type"></el-checkbox>
-              <el-checkbox label="馆内服务" name="type"></el-checkbox>
+          
+              >系统管理</el-checkbox>
+              <el-checkbox
+         
+                label="2"
+                name="type"
+              >活动报道</el-checkbox>
+              <el-checkbox
+             
+                label="3"
+                name="type"
+              >通知公告</el-checkbox>
+              <el-checkbox
+             
+                label="4"
+                name="type"
+              >资源动态</el-checkbox>
+              <el-checkbox
+          
+                label="5"
+                name="type"
+              >菜单管理</el-checkbox>
+
+              <el-checkbox
+           
+                label="6"
+                name="type"
+              >合作数据库</el-checkbox>
+            </el-checkbox-group>
             </el-form-item>
             <div class="TAG_right_buttom">
               <el-button
@@ -1291,7 +1339,7 @@ export default {
         idCard:"",
         username:"",
         password:"",
-        userPres:[],
+        userPres:[0,0,0,0,0,0,0,0],
       }
       let activeName= '1';//左边菜单栏
       let current=11; //其实菜单栏
@@ -1334,7 +1382,8 @@ export default {
         ResourceData,
         itemKey,
         menu,
-        input:""
+        input:"",
+        checkList:[],
       };
     },
     methods:{
@@ -1639,9 +1688,17 @@ export default {
            
           });
       },
+      pres(i)
+      {
+       
+
+
+        this.User_Form.userPres[i]=Number(!this.User_Form.userPres[i]);
+        console.log(this.User_Form.userPres);
+      },
       User_Create()
       {
-        
+        console.log(this.checkList)
 
         axios
           .post("/api" + "/user/insert", null, {
