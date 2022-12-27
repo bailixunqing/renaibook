@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">创建文件</div>
-    </div>
-    <el-divider></el-divider>
     <div style="color: black; font-size: large; font-weight: bold">
         选择目录
     </div>
@@ -24,6 +20,8 @@
     </div>
 </template>
 <script setup>
-
 import TEditor from '@/components/TEditor.vue'
 </script>
+<style>
+
+</style>

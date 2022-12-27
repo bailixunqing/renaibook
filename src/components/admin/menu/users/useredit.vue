@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">编辑用户</div>
-    </div>
-    <el-divider></el-divider>
     <el-form-item label="工号ID&nbsp;&nbsp;&nbsp;">
         <el-input v-model="form['uers_id']"></el-input>
     </el-form-item>
@@ -31,16 +27,7 @@
 const from={}
 </script>
 <style>
-.TAG_right_admin {
-  margin-bottom: 50px;
-}
 
-.TAG_right_admin_left {
-  font-size: 28px;
-  font-family: "PingFang SC";
-  float: left;
-  color: #0c57ad;
-}
 .TAG_right_buttom {
   margin-top: 2px;
   margin-right: 27px;

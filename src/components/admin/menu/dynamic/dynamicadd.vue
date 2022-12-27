@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">添加动态</div>
-    </div>
-    <el-divider></el-divider>
     <el-form-item label="标题">
         <el-input v-model="form['title']"></el-input>
     </el-form-item>
@@ -21,5 +17,35 @@
     </div>
 </template>
 <script setup>
-
+const Create_Resource = () => {
+  // let params = {
+  //   title: form['title'],
+  //   content: value,
+  //   author: form['name'],
+  //   token: sessionStorage.getItem("token")
+  // };
+  // let config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  // axios
+  //   .post("/api" + "/resource/insert", params, config)
+  //   .then((res) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '添加成功!'
+  //     });
+  //     this.$refs.editor.$data.contentValue = ""
+  //     form['title'] = "";
+  //     form['name'] = "";
+  //     Resource_init();
+  //   })
+  //   .catch((err) => {
+  //     alert("添加失败");
+  //   })
+}
 </script>
+<style>
+
+</style>

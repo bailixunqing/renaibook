@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">添加用户</div>
-    </div>
-    <el-divider></el-divider>
     <el-form-item label="工号ID&nbsp;&nbsp;&nbsp;">
         <el-input type="number" v-model="User_Form.idCard"></el-input>
     </el-form-item>

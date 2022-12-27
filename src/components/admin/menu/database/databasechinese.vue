@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">中文数据库</div>
-    </div>
-    <el-divider></el-divider>
     <div class="database-1">
         <div v-for="item in count" :key="item" class="database-css">
             <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
@@ -33,15 +29,7 @@ const onDelete = () => {
 }
 </script>
 <style>
-.TAG_right_admin_table {
-  margin-top: 20px;
-}
-.TAG_right_admin_left {
-  font-size: 28px;
-  font-family: "PingFang SC";
-  float: left;
-  color: #0c57ad;
-}
+
 .database-1 {
   display: flex;
   flex-wrap: wrap;

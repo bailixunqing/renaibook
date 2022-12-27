@@ -62,75 +62,166 @@
 
         <div class="TAG_right">
           <div class="TAG_rght_2" v-if="show('AdminUpdata')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">更改密码</div>
+            </div>
+            <el-divider></el-divider>
             <AdminUpdata />
           </div>
 
           <div class="TAG_rght_2" v-if="show('UserManagement')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">用户管理</div>
+            </div>
+            <el-divider></el-divider>
             <UserManagement />
           </div>
 
           <div class="TAG_rght_2" v-if="show(111)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">用户编辑</div>
+            </div>
+            <el-divider></el-divider>
             <UserEdit />
           </div>
           <div class="TAG_rght_2" v-if="show('UserAdd')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">添加用户</div>
+            </div>
+
+            <el-divider></el-divider>
             <UserAdd />
           </div>
           <div class="TAG_rght_2" v-if="show('ManageTests')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+            <el-divider></el-divider>
             <ManageTests />
           </div>
           <div class="TAG_rght_2" v-if="show('ManageMenu')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <ManageMenu />
           </div>
 
           <div class="TAG_rght_2" v-if="show('ManageCreate')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <ManageCreate />
           </div>
 
           <div class="TAG_rght_2" v-if="show('NoticeManage')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <NoticeManage />
           </div>
 
           <div class="TAG_rght_2" v-if="show(311)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <NoticeUpdata />
           </div>
 
           <div class="TAG_rght_2" v-if="show('NoticeCreate')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <NoticeCreate />
           </div>
 
           <div class="TAG_rght_2" v-if="show('DynamicManage')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <DynamicManage />
           </div>
 
           <div class="TAG_rght_2" v-if="show(411)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <DynamicUpdata />
           </div>
 
           <div class="TAG_rght_2" v-if="show('DynamicAdd')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <DynamicAdd />
           </div>
 
           <div class="TAG_rght_2" v-if="show('ReportManage')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <ReportManage />
           </div>
 
           <div class="TAG_rght_2" v-if="show(511)">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <ReportUpdata />
           </div>
 
           <div class="TAG_rght_2" v-if="show('ReportCreate')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <ReportCreate />
           </div>
 
           <div class="TAG_rght_2" v-if="show('DatabaseChinese')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <DatabaseChinese />
           </div>
 
           <div class="TAG_rght_2" v-if="show('DatabaseLanguage')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <DatabaseLanguage />
           </div>
 
           <div class="TAG_rght_2" v-if="show('DatabaseProbation')">
+            <div class="TAG_right_admin">
+              <div class="TAG_right_admin_left">报道管理</div>
+            </div>
+
+            <el-divider></el-divider>
             <DatabaseProbation />
           </div>
         </div>
@@ -785,34 +876,7 @@ const Resource_init = () => {
     });
 }
 
-const Create_Resource = () => {
-  // let params = {
-  //   title: form['title'],
-  //   content: value,
-  //   author: form['name'],
-  //   token: sessionStorage.getItem("token")
-  // };
-  // let config = {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
-  // axios
-  //   .post("/api" + "/resource/insert", params, config)
-  //   .then((res) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '添加成功!'
-  //     });
-  //     this.$refs.editor.$data.contentValue = ""
-  //     form['title'] = "";
-  //     form['name'] = "";
-  //     Resource_init();
-  //   })
-  //   .catch((err) => {
-  //     alert("添加失败");
-  //   })
-}
+
 
 const Delete_Resource = (e) => {
   // axios

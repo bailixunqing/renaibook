@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">公告管理</div>
-    </div>
-    <el-divider></el-divider>
     <el-row>
         <el-form-item label="标题">
             <el-input v-model="form['uers_name']" placeholder="请输入关键字"></el-input>
@@ -31,3 +27,6 @@
 <script setup>
 
 </script>
+<style>
+
+</style>

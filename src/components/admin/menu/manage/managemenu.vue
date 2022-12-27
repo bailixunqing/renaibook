@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">目录管理</div>
-    </div>
-    <el-divider></el-divider>
     <div class="menu">
         <div class="menu1">
             <div>
@@ -34,3 +30,6 @@
 </template>
 <script setup>
 </script>
+<style>
+
+</style>

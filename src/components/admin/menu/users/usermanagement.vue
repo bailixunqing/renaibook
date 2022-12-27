@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">用户管理</div>
-    </div>
-    <el-divider></el-divider>
     <el-row>
         <el-form-item label="用户姓名">
             <el-input v-model="search" placeholder="请输入关键字"></el-input>
@@ -43,17 +39,6 @@ const delete_total=(i,e)=>{
 }
 </script>
 <style>
-.TAG_right_admin {
-    margin-bottom: 50px;
-}
-
-.TAG_right_admin_left {
-    font-size: 28px;
-    font-family: "PingFang SC";
-    float: left;
-    color: #0c57ad;
-}
-
 .TAG_right_admin_table {
     margin-top: 20px;
 }

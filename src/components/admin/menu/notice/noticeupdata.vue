@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">修改公告</div>
-    </div>
-    <el-divider></el-divider>
     <el-form-item label="标题">
         <el-input v-model="form['title']"></el-input>
     </el-form-item>
@@ -24,3 +20,6 @@
 
 import TEditor from '@/components/TEditor.vue'
 </script>
+<style>
+
+</style>

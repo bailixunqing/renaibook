@@ -1,8 +1,4 @@
 <template>
-    <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">管理测试</div>
-    </div>
-    <el-divider></el-divider>
     <div class="menu">
         <div class="menu1">
             <div>
@@ -61,3 +57,6 @@
 <script setup>
 
 </script>
+<style>
+
+</style>
