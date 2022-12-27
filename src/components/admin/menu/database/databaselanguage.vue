@@ -18,13 +18,14 @@
     </div>
 </template>
 <script setup>
-let count=3
+import {ref} from 'vue'
+let count=ref('3')
 const add = () => {
-  count++;
+  count.value++;
 }
 const onDelete = () => {
-  if (count > 0) {
-    count--;
+  if (count.value > 0) {
+    count.value--;
   }
 }
 </script>

@@ -219,6 +219,7 @@ import NoticeCreate from '@/components/admin/menu/notice/noticecreate.vue'
 import DynamicManage from '@/components/admin/menu/dynamic/dynamicmanage.vue'
 import DynamicUpdata from '@/components/admin/menu/dynamic/dynamicupdata.vue'
 import DynamicAdd from '@/components/admin/menu/dynamic/dynamicadd.vue'
+
 import ReportManage from '@/components/admin/menu/report/reportmanage.vue'
 import ReportUpdata from '@/components/admin/menu/report/reportupdata.vue'
 import ReportCreate from '@/components/admin/menu/report/reportcreate.vue'
