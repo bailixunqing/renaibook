@@ -1,32 +1,36 @@
 <template>
-    <div style="color: black; font-size: large; font-weight: bold">
-        选择目录
-    </div>
-    <div class="block">
-        <el-cascader v-model="form['cascader']" :options="title_options" ref="cascader" @change="title_tree_change()">
-        </el-cascader>
-    </div>
-    <div style="color: black; font-size: large; font-weight: bold">
-        编辑内容
-    </div>
-    <div class="TAG_main_write">
-        <TEditor style="height: 400px" ref="editor" @input="content_value_change" v-model="value" :key="form['change']"
-            :value="value" />
-    </div>
-    <div class="TAG_right_buttom">
-        <el-button type="success" round class="TAG_right_back">返回</el-button>
-        <el-button type="success" round class="TAG_right_on" @click="title_contents_edit()">保存并返回
-        </el-button>
-    </div>
+  <div style="color: black; font-size: large; font-weight: bold">
+    选择目录
+  </div>
+  <div class="block">
+    <el-cascader v-model="form.cascader"  ref="cascader" @change="title_tree_change()">
+    </el-cascader>
+  </div>
+  <div style="color: black; font-size: large; font-weight: bold">
+    编辑内容
+  </div>
+  <div class="TAG_main_write">
+    <TEditor style="height: 400px" ref="editor" @input="content_value_change" v-model="value" :key="form.change"
+      :value="value" />
+  </div>
+  <div class="TAG_right_buttom">
+    <el-button type="success" round class="TAG_right_back">返回</el-button>
+    <el-button type="success" round class="TAG_right_on" @click="title_contents_edit()">保存并返回
+    </el-button>
+  </div>
 </template>
 <script setup>
-
-
-
+import { ref } from 'vue'
 import TEditor from '@/components/TEditor.vue'
+const axios = require("axios")
+const form = ref({
+  "cascader": "",
+  "change": ""
+})
+const content_value_change = ref('')
+const value = ref('')
+//报错多多
 
-//axios
-let axios = require("axios")
 const title_tree_change = () => {
   // value = ""
   // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
@@ -110,11 +114,13 @@ const title_contents_edit = () => {
   margin-top: 26px;
   margin-bottom: 26px;
 }
+
 .TAG_right_buttom {
   margin-top: 2px;
   margin-right: 27px;
   text-align: right;
 }
+
 .TAG_right_back {
   padding-top: 20px !important;
   width: 8%;

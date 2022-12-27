@@ -12,7 +12,7 @@
             <el-table-column label="操作">
                 <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button type="success" round style="width: 60px" @click="select('UserEdit')">修改
+                    <el-button type="success" round style="width: 60px" @click="select('useredit')">修改
                     </el-button>
                     <el-button type="success" round
                         style="width: 60px;background-color: #e27172; margin-left: 4px;font-size: 15px;"
@@ -30,7 +30,7 @@ const UserData = [{
     'username': '谢基煌'
 }]
 const select = (i) => {
-    this.$emit("usermanagement", i)
+    console.log(i)
     return
 }
 const delete_total = (i, e) => {

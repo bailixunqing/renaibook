@@ -8,7 +8,7 @@
       <el-dropdown style="display:block;cursor: pointer;">
         <span class="el-dropdown-link">
           欢迎超级用户
-          <el-icon >
+          <el-icon>
             <arrow-down style="color: white" />
           </el-icon>
         </span>
@@ -24,14 +24,12 @@
 </template>
 <script setup>
 const select = (i) => {
-  this.$emit("AdminUpdataPasswrod", i)
+  console.log(i)
   return
 }
 const exit = () => {
-  /*
   sessionStorage.clear()
   location.reload()
-  */
 }
 </script>
 <style>

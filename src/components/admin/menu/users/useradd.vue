@@ -11,12 +11,12 @@
   <el-form-item label=""> </el-form-item>
   <el-form-item label="用户权限">
     <el-checkbox-group v-model="checkedCities" :min="1" :max="2">
-      <el-checkbox v-for="city in checkedCities" :key="city" :label="city">{{city}}
+      <el-checkbox v-for="city in checkedCities" :key="city" :label="city">{{ city }}
       </el-checkbox>
     </el-checkbox-group>
   </el-form-item>
-  <div class="TAG_right_buttom">
-    <el-button type="success" round class="TAG_right_on" @click="User_Create()">保存并返回</el-button>
+  <div class="buttom">
+    <el-button type="success" round class="buttom_on" @click="User_Create()">保存并返回</el-button>
   </div>
 </template>
 <script setup>
@@ -27,7 +27,8 @@ const password = ref('')
 const checkedCities = ref(['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库'])
 
 //axios
-let axios = require("axios")
+const axios = require("axios")
+
 const User_Create = () => {
   axios
     .post("/api" + "/user/insert", null, {
@@ -52,13 +53,13 @@ const User_Create = () => {
 }
 </script>
 <style>
-.TAG_right_buttom {
+.buttom {
   margin-top: 2px;
   margin-right: 27px;
   text-align: right;
 }
 
-.TAG_right_on {
+.buttom_on {
   padding-top: 20px !important;
   padding-bottom: 20px !important;
   width: 14%;

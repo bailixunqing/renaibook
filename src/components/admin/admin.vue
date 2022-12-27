@@ -1,7 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop @AdminUpdataPasswrod="AdminUpdataPasswrod" />
+      <AdminTop />
       <div class="TAG">
         <div class="TAG_left">
           <div class="TAG_left_border">
@@ -73,7 +73,7 @@
             <el-divider></el-divider>
             <UserManagement />
           </div>
-          <div class="TAG_rght_2" v-if="show('UserEdit')">
+          <div class="TAG_rght_2" v-if="show('useredit')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户编辑</div>
             </div>
@@ -200,8 +200,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
 import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
@@ -213,6 +211,7 @@ import UserAdd from '@/components/admin/menu/users/useradd.vue'
 import ManageTests from '@/components/admin/menu/manage/managetests.vue'
 import ManageMenu from '@/components/admin/menu/manage/managemenu.vue'
 import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
+
 import NoticeManage from '@/components/admin/menu/notice/noticemanage.vue'
 import NoticeUpdata from '@/components/admin/menu/notice/noticeupdata.vue'
 import NoticeCreate from '@/components/admin/menu/notice/noticecreate.vue'
@@ -225,11 +224,11 @@ import ReportCreate from '@/components/admin/menu/report/reportcreate.vue'
 import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vue'
 import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
+import { ref } from 'vue'
 //vue-menu控制
 const current = ref('useradd')
 //vue-menu选择器
 const select = (i) => {
-  console.log(current)
   current.value = i;
 }
 //vue-menu组件显示
@@ -239,13 +238,8 @@ const show = (i) => {
   }
   return false;
 }
-//管理员更新密码
-const AdminUpdataPasswrod = (i) => {
-  current.value = i;
-  show(i);
-}
 //菜单
-let activeName = '1'
+const activeName = ref('1')
 </script>
 
 <style scoped>

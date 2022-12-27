@@ -29,10 +29,11 @@
     </div>
 </template>
 <script setup>
+import { ref } from 'vue'
+const menu=ref('')
+const axios = require("axios")
 
 
-//axios
-let axios = require("axios")
 
 const allowDrag = (draggingNode) => {
   return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
@@ -49,7 +50,7 @@ const filterNode = (value, data) => {
   return data.label.indexOf(value) !== -1;
 }
 const addmenu = () => {
-  if (menu == undefined || menu == "") {
+  if (menu.value == undefined || menu.value == "") {
     return;
   }
   let newmenu = {
