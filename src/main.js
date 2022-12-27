@@ -9,7 +9,7 @@ import 'element-plus/theme-chalk/index.css'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import TEditor from '@/components/TEditor.vue'
-import AdminBottom from '@/components/admin/AdminBottom.vue'
+import AdminBottom from '@/components/admin/admins/adminbottom.vue'
 //import  {detectZoom}  from '@/utils/detectZoom.js';
 
 //const m = detectZoom();

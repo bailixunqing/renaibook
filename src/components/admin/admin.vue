@@ -1,78 +1,92 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop @usershow="usershow" />
+      <!--组件中的updatapasswrod执行这里的updatapassword-->
+      <AdminTop @AdminUpdataPasswrod="AdminUpdataPasswrod" />
       <div class="TAG">
-        <!-- 左边导航栏-->
         <div class="TAG_left">
           <div class="TAG_left_border">
             <el-collapse v-model="activeName" accordion class="TAG_left_1" @click="clear()">
               <el-collapse-item title="超级管理" name="1">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(11)">用户管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(12)">添加用户</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('UserManagement')">用户管理
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('UserAdd')">添加用户</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(20)">管理测试</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(21)">目录管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(23)">发布文章</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('ManageTests')">管理测试
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('ManageMenu')">目录管理</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('ManageCreate')">发布文章
+                  </el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="通知公告" name="3">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(31)">公告管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(32)">新建公告</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('NoticeManage')">公告管理
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('NoticeCreate')">新建公告
+                  </el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="资源动态" name="4">
                 <el-row style="text-align: center">
-                  <el-button type="primary" round class="TAG_left_button" @click="select(41)">动态管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(42)">添加动态</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('DynamicManage')">动态管理
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('DynamicAdd')">添加动态</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="活动报道" name="5">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(51)">报道管理</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(52)">新建报道</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('ReportManage')">报道管理
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('ReportCreate')">新建报道
+                  </el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="合作数据库" name="6">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(61)">中文数据库</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(62)">外文数据库</el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select(63)">试用数据库</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('DatabaseChinese')">中文数据库
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('DatabaseLanguage')">外文数据库
+                  </el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('DatabaseProbation')">试用数据库
+                  </el-button>
                 </el-row>
               </el-collapse-item>
             </el-collapse>
           </div>
         </div>
+
         <div class="TAG_right">
-          <div class="TAG_rght_2" v-if="show(999)">
-            <UpdataPassword />
+          <div class="TAG_rght_2" v-if="show('AdminUpdata')">
+            <AdminUpdata />
           </div>
-          <div class="TAG_rght_2" v-if="show(11)">
-            <letUserManagement />
+
+          <div class="TAG_rght_2" v-if="show('UserManagement')">
+            <UserManagement />
           </div>
+
           <div class="TAG_rght_2" v-if="show(111)">
             <UserEdit />
           </div>
-          <div class="TAG_rght_2" v-if="show(12)">
+          <div class="TAG_rght_2" v-if="show('UserAdd')">
             <UserAdd />
           </div>
-          <div class="TAG_rght_2" v-if="show(20)">
+          <div class="TAG_rght_2" v-if="show('ManageTests')">
             <ManageTests />
           </div>
-          <div class="TAG_rght_2" v-if="show(21)">
+          <div class="TAG_rght_2" v-if="show('ManageMenu')">
             <ManageMenu />
           </div>
 
-          <div class="TAG_rght_2" v-if="show(23)">
+          <div class="TAG_rght_2" v-if="show('ManageCreate')">
             <ManageCreate />
           </div>
 
-          <div class="TAG_rght_2" v-if="show(31)">
+          <div class="TAG_rght_2" v-if="show('NoticeManage')">
             <NoticeManage />
           </div>
 
@@ -80,266 +94,44 @@
             <NoticeUpdata />
           </div>
 
-          <div class="TAG_rght_2" v-if="show(32)">
+          <div class="TAG_rght_2" v-if="show('NoticeCreate')">
             <NoticeCreate />
           </div>
 
-          <div class="TAG_rght_2" v-if="show(41)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">动态管理</div>
-            </div>
-            <el-divider></el-divider>
-            <el-row>
-              <el-form-item label="标题">
-                <el-input v-model="form['uers_name']" placeholder="请输入关键字"></el-input>
-              </el-form-item>
-            </el-row>
-            <div class="TAG_right_admin_table">
-              <el-table :data="ResourceData" :key="itemKey">
-                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
-                <el-table-column prop="title" label="标题"></el-table-column>
-                <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
-                <el-table-column prop="user_operation" label="操作">
-                  <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                      @click="Resource_update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round
-                      style=" width: 60px;background-color: #e27172;margin-left: 4px;font-size: 15px;"
-                      @click="delete_total(2, scope)">删除</el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </div>
+          <div class="TAG_rght_2" v-if="show('DynamicManage')">
+            <DynamicManage />
           </div>
 
           <div class="TAG_rght_2" v-if="show(411)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">修改动态</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="标题">
-              <el-input v-model="form['title']"></el-input>
-            </el-form-item>
-            <el-form-item label="作者">
-              <el-input v-model="form['name']"></el-input>
-            </el-form-item>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" :value="value"
-                @input="content_value_change" />
-            </div>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back" @click="select(41)">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Resource_update(1, 1)">保存并返回</el-button>
-            </div>
+            <DynamicUpdata />
           </div>
-          <div class="TAG_rght_2" v-if="show(42)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">添加动态</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="标题">
-              <el-input v-model="form['title']"></el-input>
-            </el-form-item>
-            <el-form-item label="作者">
-              <el-input v-model="form['name']"></el-input>
-            </el-form-item>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
-                :value="value" />
-            </div>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Create_Resource()">保存并返回</el-button>
-            </div>
+
+          <div class="TAG_rght_2" v-if="show('DynamicAdd')">
+            <DynamicAdd />
           </div>
-          <div class="TAG_rght_2" v-if="show(51)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
-            </div>
-            <el-divider></el-divider>
-            <el-row>
-              <el-form-item label="标题">
-                <el-input v-model="form['title']" placeholder="请输入关键字"></el-input>
-              </el-form-item>
-            </el-row>
-            <div class="TAG_right_admin_table">
-              <el-table :data="ActivitiesData" :key="itemKey">
-                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
-                <el-table-column prop="title" label="标题"></el-table-column>
-                <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
-                <el-table-column prop="user_operation" label="操作">
-                  <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 40px"
-                      @click="Update_Activities(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round
-                      style="width: 40px; background-color: #e27172; margin-left: 4px;font-size: 15px;"
-                      @click="delete_total(3, scope)">删除</el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </div>
+
+          <div class="TAG_rght_2" v-if="show('ReportManage')">
+            <ReportManage />
           </div>
+
           <div class="TAG_rght_2" v-if="show(511)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">编辑报道</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="标题">
-              <el-input v-model="form['title']"></el-input>
-            </el-form-item>
-            <el-form-item label="作者">
-              <el-input v-model="form['name']"></el-input>
-            </el-form-item>
-            <div style="color: black; font-size: large; font-weight: bold">
-              报道概述
-            </div>
-            <div class="TAG_main_write">
-              <div
-                style="margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%); border-radius: 20px;">
-                <el-input v-model="form['summary']" clearable />
-              </div>
-            </div>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" />
-            </div>
-            <div style="text-align: left">
-              <el-upload class="avatar-uploader" action :http-request="uploadFile" :show-file-list="true"
-                :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                <el-icon v-else class="avatar-uploader-icon">
-                  <Plus />
-                </el-icon>
-              </el-upload>
-            </div>
-            <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Update_Activities(1, 1)">保存并返回</el-button>
-            </div>
+            <ReportUpdata />
           </div>
-          <div class="TAG_rght_2" v-if="show(52)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">新建报道</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="标题">
-              <el-input v-model="form['title']"></el-input>
-            </el-form-item>
-            <el-form-item label="作者">
-              <el-input v-model="form['name']"></el-input>
-            </el-form-item>
-            <div style="color: black; font-size: large; font-weight: bold">
-              报道概述
-            </div>
-            <div class="TAG_main_write">
-              <div
-                style=" margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);border-radius: 20px;">
-                <el-input v-model="form['summary']" clearable />
-              </div>
-            </div>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
-                :value="value" />
-            </div>
-            <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
-            <div style="text-align: left">
-              <el-upload class="avatar-uploader" action :http-request="uploadFile" :show-file-list="true"
-                :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                <el-icon v-else class="avatar-uploader-icon">
-                  <Plus />
-                </el-icon>
-              </el-upload>
-            </div>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Create_Activities()">保存并返回</el-button>
-            </div>
+
+          <div class="TAG_rght_2" v-if="show('ReportCreate')">
+            <ReportCreate />
           </div>
-          <div class="TAG_rght_2" v-if="show(61)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">中文数据库</div>
-            </div>
-            <el-divider></el-divider>
-            <div class="database-1">
-              <div v-for="item in count" :key="item" class="database-css">
-                <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
-                <el-avatar shape="square" style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
-                </el-avatar>
-                <div style="display: grid; justify-items: end">
-                  <el-button class="database-button">修改内容</el-button>
-                  <el-button class="database-button">修改图片</el-button>
-                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
-                </div>
-              </div>
-              <div class="database-css">
-                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
-              </div>
-            </div>
+
+          <div class="TAG_rght_2" v-if="show('DatabaseChinese')">
+            <DatabaseChinese />
           </div>
-          <div class="TAG_rght_2" v-if="show(62)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">外文数据库</div>
-            </div>
-            <el-divider></el-divider>
-            <div class="database-1">
-              <div v-for="item in count" :key="item" class="database-css">
-                <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
-                <el-avatar shape="square" style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
-                </el-avatar>
-                <div style="display: grid; justify-items: end">
-                  <el-button class="database-button">修改内容</el-button>
-                  <el-button class="database-button">修改图片</el-button>
-                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
-                </div>
-              </div>
-              <div class="database-css">
-                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
-              </div>
-            </div>
+
+          <div class="TAG_rght_2" v-if="show('DatabaseLanguage')">
+            <DatabaseLanguage />
           </div>
-          <div class="TAG_rght_2" v-if="show(63)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">试用数据库</div>
-            </div>
-            <el-divider></el-divider>
-            <div class="database-1">
-              <div v-for="item in count" :key="item" class="database-css">
-                <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
-                <el-avatar shape="square" style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
-                </el-avatar>
-                <div style="display: grid; justify-items: end">
-                  <el-button class="database-button">修改内容</el-button>
-                  <el-button class="database-button">修改图片</el-button>
-                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
-                </div>
-              </div>
-              <div class="database-css">
-                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
-              </div>
-            </div>
+
+          <div class="TAG_rght_2" v-if="show('DatabaseProbation')">
+            <DatabaseProbation />
           </div>
         </div>
       </div>
@@ -350,32 +142,53 @@
 </template>
 
 <script  lang="ts"  setup>
-import AdminTop from '@/components/admin/AdminTop.vue'
-import AdminBottom from '@/components/admin/AdminBottom.vue'
-//999
-import UpdataPassword from '@/components/admin/menu/updatapassword.vue'
-//11
-import letUserManagement from '@/components/admin/menu/users/usermanagement.vue'
-//111
+import AdminTop from '@/components/admin/admins/admintop.vue'
+import AdminBottom from '@/components/admin/admins/adminbottom.vue'
+
+import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
+
+import UserManagement from '@/components/admin/menu/users/usermanagement.vue'
 import UserEdit from '@/components/admin/menu/users/useredit.vue'
-//12
 import UserAdd from '@/components/admin/menu/users/useradd.vue'
-//20 
+
 import ManageTests from '@/components/admin/menu/manage/managetests.vue'
-//21
 import ManageMenu from '@/components/admin/menu/manage/managemenu.vue'
-//23
 import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
-//30
+
 import NoticeManage from '@/components/admin/menu/notice/noticemanage.vue'
-//
 import NoticeUpdata from '@/components/admin/menu/notice/noticeupdata.vue'
-
 import NoticeCreate from '@/components/admin/menu/notice/noticecreate.vue'
-//引入富文本
-import TEditor from '@/components/TEditor.vue'
 
+import DynamicManage from '@/components/admin/menu/dynamic/dynamicmanage.vue'
+import DynamicUpdata from '@/components/admin/menu/dynamic/dynamicupdata.vue'
+import DynamicAdd from '@/components/admin/menu/dynamic/dynamicadd.vue'
+
+import ReportManage from '@/components/admin/menu/report/reportmanage.vue'
+import ReportUpdata from '@/components/admin/menu/report/reportupdata.vue'
+import ReportCreate from '@/components/admin/menu/report/reportcreate.vue'
+
+import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vue'
+import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
+import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
+//axios
 let axios = require("axios")
+
+//menu控制
+let current = 'letUserManagement'
+
+//管理员更新密码
+const AdminUpdataPasswrod = (i) => {
+  current = i;
+  show(i);
+}
+//vue组件显示
+const show = (i) => {
+  if (current == i) {
+    return true;
+  }
+  return false;
+}
+
 let id = 1000
 let User_Form = {
   idCard: "",
@@ -384,7 +197,6 @@ let User_Form = {
   userPres: [0, 0, 0, 0, 0, 0, 0, 0]
 }
 let activeName = '1'
-let current = 11
 let imageUrl = ''
 let value = "sadasdasdasd"
 let form = {}
@@ -548,16 +360,9 @@ const delete_total = (i, e) => {
   //   });
   // });
 }
-const usershow = (i) => {
-  current = i;
-  show(i);
-}
-const show = (i) => {
-  if (current == i) {
-    return true;
-  }
-  return false;
-}
+
+
+
 const select = (i) => {
   let form = {};
   if (i == 111 || i == 23 || i == 311 || i == 511 || i == 23 || i == 411) { }

@@ -449,7 +449,7 @@
 <script>
 import DropMenu from "@/components/common/DropMenu";
 import BottomFooter from "@/components/common/BottomFooter";
-import AdminBottom from "@/components/admin/AdminBottom.vue";
+import AdminBottom from "@/components/admin/admins/adminbottom.vue";
 import { ref } from "vue";
 const axios = require("axios");
 export default {

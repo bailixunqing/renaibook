@@ -1,6 +1,6 @@
 <template>
     <div class="TAG_right_admin">
-        <div class="TAG_right_admin_left">修改公告</div>
+        <div class="TAG_right_admin_left">修改动态</div>
     </div>
     <el-divider></el-divider>
     <el-form-item label="标题">
@@ -13,11 +13,11 @@
         编辑内容
     </div>
     <div class="TAG_main_write">
-        <TEditor style="height: 400px" @input="content_value_change" v-model="value" :value="value" />
+        <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" @input="content_value_change" />
     </div>
     <div class="TAG_right_buttom">
-        <el-button type="success" round class="TAG_right_back" @click="select(31)">返回</el-button>
-        <el-button type="success" round class="TAG_right_on" @click="Notice_update(1, 1)">保存并返回</el-button>
+        <el-button type="success" round class="TAG_right_back" @click="select(41)">返回</el-button>
+        <el-button type="success" round class="TAG_right_on" @click="Resource_update(1, 1)">保存并返回</el-button>
     </div>
 </template>
 <script setup>

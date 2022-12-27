@@ -24,4 +24,6 @@
     </div>
 </template>
 <script setup>
+
+import TEditor from '@/components/TEditor.vue'
 </script>

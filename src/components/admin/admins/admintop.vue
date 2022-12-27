@@ -14,7 +14,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="select(999)"> 修改密码</el-dropdown-item>
+            <el-dropdown-item @click="select('AdminUpdata')"> 修改密码</el-dropdown-item>
             <el-dropdown-item @click="exit()">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -24,7 +24,7 @@
 </template>
 <script setup>
 const select = (i) => {
-  this.$emit("usershow", i)
+  this.$emit("AdminUpdataPasswrod", i)
   return
 }
 const exit = () => {
