@@ -33,12 +33,9 @@
     </div>
   </div>
 </template>
-
 <script setup> 
 
 </script>
-
-
 <style>
 * {
   margin: 0;

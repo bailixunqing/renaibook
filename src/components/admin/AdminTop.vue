@@ -22,18 +22,16 @@
     </div>
   </div>
 </template>
-
 <script setup>
 const select = (i) => {
-  this.$emit("usershow", i);
+  this.$emit("usershow", i)
+  return
 }
 const exit = () => {
   sessionStorage.clear()
   location.reload()
 }
 </script>
-
-
 <style>
 .TAG_top {
   width: 1660px;

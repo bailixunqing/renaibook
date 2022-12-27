@@ -50,309 +50,40 @@
         </div>
         <div class="TAG_right">
           <div class="TAG_rght_2" v-if="show(999)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">修改密码</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="旧密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form['user_name']"></el-input>
-            </el-form-item>
-            <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form['user_password']"></el-input>
-            </el-form-item>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on">保存并返回</el-button>
-            </div>
+            <UpdataPassword />
           </div>
           <div class="TAG_rght_2" v-if="show(11)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">用户管理</div>
-            </div>
-            <el-divider></el-divider>
-            <el-row>
-              <el-form-item label="用户姓名">
-                <el-input v-model="search" placeholder="请输入关键字"></el-input>
-              </el-form-item>
-            </el-row>
-            <div class="TAG_right_admin_table">
-              <el-table :data="
-                UserData.filter(
-                  (data) => {
-                    // !search ||
-                    // data.name.toLowerCase().includes(search.toLowerCase())
-                  }
-                )
-              ">
-                <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
-                <el-table-column prop="idCard" label="ID工号"></el-table-column>
-                <el-table-column prop="username" label="姓名"></el-table-column>
-                <el-table-column label="操作">
-                  <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px" @click="select(111)">修改
-                    </el-button>
-                    <el-button class="button_off" type="success" round
-                      style="width: 60px;background-color: #e27172; margin-left: 4px;font-size: 15px;"
-                      @click="delete_total(0, scope)">删除</el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </div>
+            <letUserManagement />
           </div>
           <div class="TAG_rght_2" v-if="show(111)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">编辑用户</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="工号ID&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form['uers_id']"></el-input>
-            </el-form-item>
-            <el-form-item label="姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form['user_name']"></el-input>
-            </el-form-item>
-            <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form['user_password']"></el-input>
-            </el-form-item>
-            <el-form-item label="用户权限">
-              <el-checkbox-group v-model="checkList">
-                <el-checkbox label="系统管理" name="type"></el-checkbox>
-                <el-checkbox label="活动报道" name="type"></el-checkbox>
-                <el-checkbox label="通知公告" name="type"></el-checkbox>
-                <el-checkbox label="资源动态" name="type"></el-checkbox>
-                <el-checkbox label="菜单管理" name="type"></el-checkbox>
-
-                <el-checkbox label="合作数据库" name="type"></el-checkbox>
-              </el-checkbox-group>
-            </el-form-item>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on">保存并返回</el-button>
-            </div>
+            <UserEdit />
           </div>
           <div class="TAG_rght_2" v-if="show(12)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">添加用户</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="工号ID&nbsp;&nbsp;&nbsp;">
-              <el-input type="number" v-model="User_Form.idCard"></el-input>
-            </el-form-item>
-            <el-form-item label="姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="User_Form.username"></el-input>
-            </el-form-item>
-            <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="User_Form.password"></el-input>
-            </el-form-item>
-            <el-form-item label=""> </el-form-item>
-            <el-form-item label="用户权限">
-              <el-checkbox-group v-model="checkList">
-                <el-checkbox label="1" name="type">系统管理</el-checkbox>
-                <el-checkbox label="2" name="type">活动报道</el-checkbox>
-                <el-checkbox label="3" name="type">通知公告</el-checkbox>
-                <el-checkbox label="4" name="type">资源动态</el-checkbox>
-                <el-checkbox label="5" name="type">菜单管理</el-checkbox>
-
-                <el-checkbox label="6" name="type">合作数据库</el-checkbox>
-              </el-checkbox-group>
-            </el-form-item>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_on" @click="User_Create()">保存并返回</el-button>
-            </div>
+            <UserAdd />
           </div>
           <div class="TAG_rght_2" v-if="show(20)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">管理测试</div>
-            </div>
-            <el-divider></el-divider>
-            <div class="menu">
-              <div class="menu1">
-                <div>
-                  <el-form-item label="搜索目录" style="font-size: 35px">
-                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
-                  </el-form-item>
-                  <div style="display: flex">
-                    <el-form-item label="新建目录">
-                      <el-input v-model="menu" placeholder="请输入新目录"></el-input>
-                    </el-form-item>
-                    <el-button type="success" round @click="addmenu()">添加目录
-                    </el-button>
-                  </div>
-                </div>
-              </div>
-              <div class="menu2">
-                <div>
-                  <el-form-item label="编辑目录">
-                    <el-tree :data="title_options" node-key="id" empty-text="找不到该目录" draggable
-                      :filter-node-method="filterNode" :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree"
-                      :highlight-current="true" :default-expand-all="true" :expand-on-click-node="false">
-                      <template #default="{ node, data }">
-                        <span class="custom-tree-node">
-                          <span>{{ node.label }}</span>
-                          <span>
-                            <el-popover placement="right" :width="400">
-                              <div style="display: grid;grid-template-columns: auto auto;">
-                                <el-input v-model="input" placeholder="Please input" />
-                                <el-button type="success" @click="updatamune(node, data)" round style="height: 40px">修改
-                                </el-button>
-                                <div></div>
-                                <el-button type="success" @click="remove(node, data)" round style="height: 40px">删除
-                                </el-button>
-                              </div>
-                              <template #reference>
-                                <el-icon :size="20">
-                                  <Edit />
-                                </el-icon>
-                              </template>
-                            </el-popover>
-                          </span>
-                        </span>
-                      </template>
-                    </el-tree>
-                  </el-form-item>
-                </div>
-                <div style="margin-left: auto">
-                  <el-button class="button_on" style="height: 40px" type="success" round @click="savemenu()">保存修改
-                  </el-button>
-                </div>
-              </div>
-            </div>
+            <ManageTests />
           </div>
           <div class="TAG_rght_2" v-if="show(21)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">目录管理</div>
-            </div>
-            <el-divider></el-divider>
-            <div class="menu">
-              <div class="menu1">
-                <div>
-                  <el-form-item label="新建目录">
-                    <el-input v-model="menu" placeholder="请输入新目录"></el-input>
-                  </el-form-item>
-                </div>
-                <div>
-                  <el-button class="button_on" type="success" round @click="addmenu()">添加目录
-                  </el-button>
-                </div>
-                <div>
-                  <el-form-item label="搜索目录">
-                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
-                  </el-form-item>
-                </div>
-                <div>
-                  <el-button class="button_on" type="success" round @click="savemenu()">保存修改</el-button>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <el-tree :data="title_options" node-key="id" draggable :filter-node-method="filterNode"
-                    :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree">
-                  </el-tree>
-                </div>
-              </div>
-            </div>
+            <ManageMenu />
           </div>
+
           <div class="TAG_rght_2" v-if="show(23)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">创建文章</div>
-            </div>
-            <el-divider></el-divider>
-            <div style="color: black; font-size: large; font-weight: bold">
-              选择目录
-            </div>
-            <div class="block">
-              <el-cascader v-model="form['cascader']" :options="title_options" ref="cascader"
-                @change="title_tree_change()"></el-cascader>
-            </div>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" @input="content_value_change" v-model="value"
-                :key="form['change']" :value="value" />
-            </div>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="title_contents_edit()">保存并返回
-              </el-button>
-            </div>
+            <ManageCreate />
           </div>
+
           <div class="TAG_rght_2" v-if="show(31)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">公告管理</div>
-            </div>
-            <el-divider></el-divider>
-            <el-row>
-              <el-form-item label="标题">
-                <el-input v-model="form['uers_name']" placeholder="请输入关键字"></el-input>
-              </el-form-item>
-            </el-row>
-            <div class="TAG_right_admin_table">
-              <el-table :data="NoticeData" :key="itemKey">
-                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
-                <el-table-column prop="title" label="标题"></el-table-column>
-                <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
-                <el-table-column prop="user_operation" label="操作">
-                  <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                      @click="Notice_update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round
-                      style="width: 60px;background-color: #e27172;margin-left: 4px;font-size: 15px;"
-                      @click="delete_total(1, scope)">删除</el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </div>
+            <NoticeManage />
           </div>
 
           <div class="TAG_rght_2" v-if="show(311)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">修改公告</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="标题">
-              <el-input v-model="form['title']"></el-input>
-            </el-form-item>
-            <el-form-item label="作者">
-              <el-input v-model="form['name']"></el-input>
-            </el-form-item>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" @input="content_value_change" v-model="value" :value="value" />
-            </div>
+            <NoticeUpdata />
+          </div>
 
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back" @click="select(31)">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Notice_update(1, 1)">保存并返回</el-button>
-            </div>
-          </div>
           <div class="TAG_rght_2" v-if="show(32)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">新建公告</div>
-            </div>
-            <el-divider></el-divider>
-            <el-form-item label="标题">
-              <el-input v-model="form['title']"></el-input>
-            </el-form-item>
-            <el-form-item label="作者">
-              <el-input v-model="form['name']"></el-input>
-            </el-form-item>
-            <div style="color: black; font-size: large; font-weight: bold">
-              编辑内容
-            </div>
-            <div class="TAG_main_write">
-              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
-                :value="value" />
-            </div>
-            <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back">返回</el-button>
-              <el-button type="success" round class="TAG_right_on" @click="Create_Notice()">保存并返回</el-button>
-            </div>
+            <NoticeCreate />
           </div>
+
           <div class="TAG_rght_2" v-if="show(41)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">动态管理</div>
@@ -619,11 +350,31 @@
 </template>
 
 <script  lang="ts"  setup>
-//引入element依赖
 import AdminTop from '@/components/admin/AdminTop.vue'
 import AdminBottom from '@/components/admin/AdminBottom.vue'
+//999
+import UpdataPassword from '@/components/admin/menu/updatapassword.vue'
+//11
+import letUserManagement from '@/components/admin/menu/users/usermanagement.vue'
+//111
+import UserEdit from '@/components/admin/menu/users/useredit.vue'
+//12
+import UserAdd from '@/components/admin/menu/users/useradd.vue'
+//20 
+import ManageTests from '@/components/admin/menu/manage/managetests.vue'
+//21
+import ManageMenu from '@/components/admin/menu/manage/managemenu.vue'
+//23
+import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
+//30
+import NoticeManage from '@/components/admin/menu/notice/noticemanage.vue'
+//
+import NoticeUpdata from '@/components/admin/menu/notice/noticeupdata.vue'
+
+import NoticeCreate from '@/components/admin/menu/notice/noticecreate.vue'
 //引入富文本
 import TEditor from '@/components/TEditor.vue'
+
 let axios = require("axios")
 let id = 1000
 let User_Form = {
@@ -1474,6 +1225,7 @@ const Update_Activities = (i, e) => {
   //     });
   // }
 }
+
 
 </script>
 
