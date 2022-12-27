@@ -28,8 +28,10 @@ const select = (i) => {
   return
 }
 const exit = () => {
+  /*
   sessionStorage.clear()
   location.reload()
+  */
 }
 </script>
 <style>

@@ -8,9 +8,9 @@
             <el-collapse v-model="activeName" accordion class="TAG_left_1">
               <el-collapse-item title="超级管理" name="1">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select('UserManagement')">用户管理
+                  <el-button type="primary" round class="TAG_left_button" @click="select('usermanagement')">用户管理
                   </el-button>
-                  <el-button type="primary" round class="TAG_left_button" @click="select('UserAdd')">添加用户</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select('useradd')">添加用户</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
@@ -59,14 +59,14 @@
           </div>
         </div>
         <div class="TAG_right">
-          <div class="TAG_rght_2" v-if="show('AdminUpdata')">
+          <div class="TAG_rght_2" v-if="show('adminupdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">更改密码</div>
             </div>
             <el-divider></el-divider>
             <AdminUpdata />
           </div>
-          <div class="TAG_rght_2" v-if="show('UserManagement')">
+          <div class="TAG_rght_2" v-if="show('usermanagement')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户管理</div>
             </div>
@@ -80,7 +80,7 @@
             <el-divider></el-divider>
             <UserEdit />
           </div>
-          <div class="TAG_rght_2" v-if="show('UserAdd')">
+          <div class="TAG_rght_2" v-if="show('useradd')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">添加用户</div>
             </div>
@@ -200,13 +200,16 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
 import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
-
 import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
+
 import UserManagement from '@/components/admin/menu/users/usermanagement.vue'
 import UserEdit from '@/components/admin/menu/users/useredit.vue'
 import UserAdd from '@/components/admin/menu/users/useradd.vue'
+
 import ManageTests from '@/components/admin/menu/manage/managetests.vue'
 import ManageMenu from '@/components/admin/menu/manage/managemenu.vue'
 import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
@@ -223,22 +226,22 @@ import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vu
 import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
 //vue-menu控制
-let current = 'UserManagement'
+const current = ref('useradd')
 //vue-menu选择器
 const select = (i) => {
   console.log(current)
-  current = i;
+  current.value = i;
 }
 //vue-menu组件显示
 const show = (i) => {
-  if (current == i) {
+  if (current.value == i) {
     return true;
   }
   return false;
 }
 //管理员更新密码
 const AdminUpdataPasswrod = (i) => {
-  current = i;
+  current.value = i;
   show(i);
 }
 //菜单
