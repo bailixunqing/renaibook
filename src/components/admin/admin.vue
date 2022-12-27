@@ -1,12 +1,11 @@
 <template>
   <div class="new">
     <div class="screen">
-      <!--组件中的updatapasswrod执行这里的updatapassword-->
       <AdminTop @AdminUpdataPasswrod="AdminUpdataPasswrod" />
       <div class="TAG">
         <div class="TAG_left">
           <div class="TAG_left_border">
-            <el-collapse v-model="activeName" accordion class="TAG_left_1" @click="clear()">
+            <el-collapse v-model="activeName" accordion class="TAG_left_1">
               <el-collapse-item title="超级管理" name="1">
                 <el-row>
                   <el-button type="primary" round class="TAG_left_button" @click="select('UserManagement')">用户管理
@@ -74,7 +73,7 @@
             <el-divider></el-divider>
             <UserManagement />
           </div>
-          <div class="TAG_rght_2" v-if="show(111)">
+          <div class="TAG_rght_2" v-if="show('UserEdit')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户编辑</div>
             </div>
@@ -116,7 +115,7 @@
             <el-divider></el-divider>
             <NoticeManage />
           </div>
-          <div class="TAG_rght_2" v-if="show('311')">
+          <div class="TAG_rght_2" v-if="show('NoticeUpdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">公告修改</div>
             </div>
@@ -137,7 +136,7 @@
             <el-divider></el-divider>
             <DynamicManage />
           </div>
-          <div class="TAG_rght_2" v-if="show('411')">
+          <div class="TAG_rght_2" v-if="show('DynamicUpdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">动态修改</div>
             </div>
@@ -158,7 +157,7 @@
             <el-divider></el-divider>
             <ReportManage />
           </div>
-          <div class="TAG_rght_2" v-if="show('511')">
+          <div class="TAG_rght_2" v-if="show('ReportUpdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道修改</div>
             </div>
@@ -195,7 +194,6 @@
           </div>
         </div>
       </div>
-      <!-- admin-->
       <AdminBottom />
     </div>
   </div>
@@ -204,6 +202,7 @@
 <script setup>
 import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
+
 import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
 import UserManagement from '@/components/admin/menu/users/usermanagement.vue'
 import UserEdit from '@/components/admin/menu/users/useredit.vue'
@@ -223,15 +222,8 @@ import ReportCreate from '@/components/admin/menu/report/reportcreate.vue'
 import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vue'
 import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
-//axios
-let axios = require("axios")
 //vue-menu控制
 let current = 'letUserManagement'
-//管理员更新密码
-const AdminUpdataPasswrod = (i) => {
-  current = i;
-  show(i);
-}
 //vue-menu组件显示
 const show = (i) => {
   if (current == i) {
@@ -241,89 +233,18 @@ const show = (i) => {
 }
 //vue-menu选择器
 const select = (i) => {
-  let form = {};
-  if (i == 111 || i == 23 || i == 311 || i == 511 || i == 23 || i == 411) { }
-  else {
-    form = {};
-  }
   current = i;
 }
-//超级管理
+//管理员更新密码
+const AdminUpdataPasswrod = (i) => {
+  current = i;
+  show(i);
+}
+//菜单
 let activeName = '1'
-let form = {}
-let value = "123"
-const clear = () => {
-  form = {};
-  value = ""
-}
-
-let count = 3
-//???
-const load = () => {
-  count += 2
-}
-///???
-const handleChange = (e, i) => { }
-//???
-const handleRemove = (file, fileList) => { }
-//???
-let dialogImageUrl = ''
-let dialogVisible = false
-const handlePictureCardPreview = (file) => {
-  dialogImageUrl = file.url;
-  dialogVisible = true;
-}
-let UserData = []
-//???
-const User_init = () => {
-  axios
-    .post("/api" + "/user/searchAll", null, {
-      params: {
-        token: sessionStorage.getItem("token")
-      },
-    })
-    .then((res) => {
-      UserData = res.data.data;
-    })
-    .catch((err) => { });
-}
-let User_Form = {
-  idCard: "",
-  username: "",
-  password: "",
-  userPres: [0, 0, 0, 0, 0, 0, 0, 0]
-}
-//???
-const pres = (i) => {
-  User_Form.userPres[i] = Number(!User_Form.userPres[i]);
-  console.log(User_Form.userPres);
-}
 </script>
 
-<style>
-.avatar-uploader .el-upload {
-  border-radius: 6px;
-  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-  cursor: pointer;
-  position: relative;
-  /* overflow: hidden; */
-  transition: let(--el-transition-duration-fast);
-}
-
-.avatar-uploader .el-upload:hover {
-  border-color: let(--el-color-primary);
-}
-
-.el-icon.avatar-uploader-icon {
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  font-size: 50px;
-  text-align: center;
-}
-</style>
-
-<style  scoped >
+<style scoped>
 .new {
   justify-content: space-between;
   display: flex;
@@ -374,39 +295,12 @@ const pres = (i) => {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
-.avatar-uploader .avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-
-.TAG_top {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.TAG_a {
-  text-align: right;
-  color: #0d52a1;
-  margin-right: 233px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 .head {
   height: 70px;
   background: #0c57ad;
   box-shadow: 0px 4px 61px 17px rgba(0, 71, 139, 0.15);
   backdrop-filter: blur(61px);
   border-radius: 30px;
-}
-
-.head img {
-  position: absolute;
-  width: 268px;
-  height: 42.86px;
-  left: 235px;
-  top: 16px;
 }
 
 .head {
@@ -424,6 +318,16 @@ const pres = (i) => {
   color: rgba(255, 255, 255, 0.32);
 }
 
+
+.head img {
+  position: absolute;
+  width: 268px;
+  height: 42.86px;
+  left: 235px;
+  top: 16px;
+}
+
+
 .el-button {
   text-align: center;
 }
@@ -439,6 +343,18 @@ const pres = (i) => {
   color: #00488bd5;
   background: #ffffff00;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 :deep(.el-overlay.is-message-box .el-overlay-message-box) {
   background-color: #1a1a1a2b !important;

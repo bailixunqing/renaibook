@@ -32,17 +32,17 @@ app.mount('#app')
 router.beforeEach((to, from, next) => {
 
 
-
     const token = sessionStorage.getItem("token");
 
     if (to.name == "admin") {
+        /*
         if (token != null) {
             next()
         }
         else if (from.name != "login") {
             next('/login')
         }
-
+        */
     }
     if (to.name == "Curator_note") {
         if(from.name == "home"|| from.name == "more")
@@ -64,7 +64,6 @@ router.beforeEach((to, from, next) => {
         // }
     }
     next()
-
 
 });
 
