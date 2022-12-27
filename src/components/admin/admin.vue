@@ -157,7 +157,6 @@
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道管理</div>
             </div>
-
             <el-divider></el-divider>
             <DynamicUpdata />
           </div>
@@ -166,7 +165,6 @@
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道管理</div>
             </div>
-
             <el-divider></el-divider>
             <DynamicAdd />
           </div>
@@ -232,7 +230,7 @@
   </div>
 </template>
 
-<script  lang="ts"  setup>
+<script setup>
 import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
 
@@ -301,7 +299,7 @@ let activeName = '1'
 
 
 
-let count: 3
+let count = 3
 let form = {}
 let value = "sadasdasdasd"
 //超级管理
