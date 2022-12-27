@@ -20,27 +20,17 @@
         </template>
       </el-dropdown>
     </div>
-
-
   </div>
 </template>
 
-
-
-<script>
-export default {
-        name: "Son",
-        methods:{
-            select(i){
-                this.$emit("usershow",i);
-            },
-            exit()
-            {
-              sessionStorage.clear()
-              location.reload()
-            }
-        }
-    }
+<script setup>
+const select = (i) => {
+  this.$emit("usershow", i);
+}
+const exit = () => {
+  sessionStorage.clear()
+  location.reload()
+}
 </script>
 
 
@@ -89,6 +79,4 @@ export default {
   font-weight: bold !important;
   font-size: 18px !important;
 }
-
-
 </style>

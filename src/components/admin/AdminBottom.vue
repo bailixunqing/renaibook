@@ -6,7 +6,6 @@
           <img class="school" src="../../assets/images/school.svg" />
           <img class="ArtFont" src="../../assets/images/Artfont.svg" />
         </div>
-
         <div class="TAG_link">
           <a class="TAG_link" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>
           <a class="TAG_link" href="http://www.scal.edu.cn/">全国高校图工委</a>
@@ -14,11 +13,8 @@
             >天津高校图工委</a
           >
         </div>
-        
         <div class="TAG_link"><a class="TAG_link" href="http://www.calis.edu.cn/">CALIS</a>
-        
         <a class="TAG_link" href="http://www.cashl.edu.cn/">CASHL</a>
-        
         </div>
         <div class="TAG_link">
           <a class="TAG_link">相关链接</a></div>
@@ -37,6 +33,10 @@
     </div>
   </div>
 </template>
+
+<script setup> 
+
+</script>
 
 
 <style>

@@ -2,152 +2,52 @@
   <div class="new">
     <div class="screen">
       <AdminTop @usershow="usershow" />
-
-      <!-- admin -->
       <div class="TAG">
         <!-- 左边导航栏-->
         <div class="TAG_left">
           <div class="TAG_left_border">
-            <el-collapse
-              v-model="activeName"
-              accordion
-              class="TAG_left_1"
-              @click="clear()"
-            >
+            <el-collapse v-model="activeName" accordion class="TAG_left_1" @click="clear()">
               <el-collapse-item title="超级管理" name="1">
                 <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(11)"
-                    >用户管理</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(12)"
-                    >添加用户</el-button
-                  >
+                  <el-button type="primary" round class="TAG_left_button" @click="select(11)">用户管理</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(12)">添加用户</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
                 <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(20)"
-                    >管理测试</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(21)"
-                    >目录管理</el-button
-                  >
-                  <!-- <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(22)"
-                    >文章管理</el-button
-                  > -->
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(23)"
-                    >发布文章</el-button
-                  >
+                  <el-button type="primary" round class="TAG_left_button" @click="select(20)">管理测试</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(21)">目录管理</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(23)">发布文章</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="通知公告" name="3">
                 <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(31)"
-                    >公告管理</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(32)"
-                    >新建公告</el-button
-                  >
+                  <el-button type="primary" round class="TAG_left_button" @click="select(31)">公告管理</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(32)">新建公告</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="资源动态" name="4">
                 <el-row style="text-align: center">
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(41)"
-                    >动态管理</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(42)"
-                    >添加动态</el-button
-                  >
+                  <el-button type="primary" round class="TAG_left_button" @click="select(41)">动态管理</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(42)">添加动态</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="活动报道" name="5">
                 <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(51)"
-                    >报道管理</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(52)"
-                    >新建报道</el-button
-                  >
+                  <el-button type="primary" round class="TAG_left_button" @click="select(51)">报道管理</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(52)">新建报道</el-button>
                 </el-row>
               </el-collapse-item>
               <el-collapse-item title="合作数据库" name="6">
                 <el-row>
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(61)"
-                    >中文数据库</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(62)"
-                    >外文数据库</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    round
-                    class="TAG_left_button"
-                    @click="select(63)"
-                    >试用数据库</el-button
-                  >
+                  <el-button type="primary" round class="TAG_left_button" @click="select(61)">中文数据库</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(62)">外文数据库</el-button>
+                  <el-button type="primary" round class="TAG_left_button" @click="select(63)">试用数据库</el-button>
                 </el-row>
               </el-collapse-item>
             </el-collapse>
           </div>
         </div>
-
-        <!--右边内容-->
         <div class="TAG_right">
           <div class="TAG_rght_2" v-if="show(999)">
             <div class="TAG_right_admin">
@@ -155,157 +55,81 @@
             </div>
             <el-divider></el-divider>
             <el-form-item label="旧密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.user_name"></el-input>
+              <el-input v-model="form['user_name']"></el-input>
             </el-form-item>
             <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.user_password"></el-input>
+              <el-input v-model="form['user_password']"></el-input>
             </el-form-item>
-
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button type="success" round class="TAG_right_on"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on">保存并返回</el-button>
             </div>
           </div>
-
-          <!-- 右:超级管理-->
-          <!-- 右：用户管理-->
           <div class="TAG_rght_2" v-if="show(11)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户管理</div>
             </div>
             <el-divider></el-divider>
-
             <el-row>
               <el-form-item label="用户姓名">
-                <el-input
-                  v-model="search"
-                  placeholder="请输入关键字"
-                ></el-input>
+                <el-input v-model="search" placeholder="请输入关键字"></el-input>
               </el-form-item>
             </el-row>
-
             <div class="TAG_right_admin_table">
-              <el-table
-                :data="
-                  UserData.filter(
-                    (data) =>
-                      !search ||
-                      data.name.toLowerCase().includes(search.toLowerCase())
-                  )
-                "
-              >
-                <el-table-column
-                  type="index"
-                  label="#"
-                  style="width: 83px"
-                ></el-table-column>
+              <el-table :data="
+                UserData.filter(
+                  (data) => {
+                    // !search ||
+                    // data.name.toLowerCase().includes(search.toLowerCase())
+                  }
+                )
+              ">
+                <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
                 <el-table-column prop="idCard" label="ID工号"></el-table-column>
                 <el-table-column prop="username" label="姓名"></el-table-column>
                 <el-table-column label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button
-                      class="button_on"
-                      type="success"
-                      round
-                      style="width: 60px"
-                      @click="select(111)"
-                      >修改
+                    <el-button class="button_on" type="success" round style="width: 60px" @click="select(111)">修改
                     </el-button>
-                    <el-button
-                      class="button_off"
-                      type="success"
-                      round
-                      style="
-                        width: 60px;
-                        background-color: #e27172;
-                        margin-left: 4px;
-                        font-size: 15px;
-                      "
-                      @click="delete_total(0, scope)"
-                      >删除</el-button
-                    >
+                    <el-button class="button_off" type="success" round
+                      style="width: 60px;background-color: #e27172; margin-left: 4px;font-size: 15px;"
+                      @click="delete_total(0, scope)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
             </div>
           </div>
-          <!-- 右:超级管理-->
-          <!-- 右：用户修改-->
           <div class="TAG_rght_2" v-if="show(111)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">编辑用户</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="工号ID&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.uers_id"></el-input>
+              <el-input v-model="form['uers_id']"></el-input>
             </el-form-item>
             <el-form-item label="姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.user_name"></el-input>
+              <el-input v-model="form['user_name']"></el-input>
             </el-form-item>
             <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-              <el-input v-model="form.user_password"></el-input>
+              <el-input v-model="form['user_password']"></el-input>
             </el-form-item>
             <el-form-item label="用户权限">
               <el-checkbox-group v-model="checkList">
-              <el-checkbox
-                label="系统管理"
-                name="type"
-          
-              ></el-checkbox>
-              <el-checkbox
-         
-                label="活动报道"
-                name="type"
-              ></el-checkbox>
-              <el-checkbox
-             
-                label="通知公告"
-                name="type"
-              ></el-checkbox>
-              <el-checkbox
-             
-                label="资源动态"
-                name="type"
-              ></el-checkbox>
-              <el-checkbox
-          
-                label="菜单管理"
-                name="type"
-              ></el-checkbox>
+                <el-checkbox label="系统管理" name="type"></el-checkbox>
+                <el-checkbox label="活动报道" name="type"></el-checkbox>
+                <el-checkbox label="通知公告" name="type"></el-checkbox>
+                <el-checkbox label="资源动态" name="type"></el-checkbox>
+                <el-checkbox label="菜单管理" name="type"></el-checkbox>
 
-              <el-checkbox
-           
-                label="合作数据库"
-                name="type"
-              ></el-checkbox>
-            </el-checkbox-group>
-              <!-- <el-checkbox
-                @click="pres(6)"
-                label="馆藏资源"
-                name="type"
-              ></el-checkbox>
-              <el-checkbox
-                @click="pres(7)"
-                label="馆内服务"
-                name="type"
-              ></el-checkbox> -->
+                <el-checkbox label="合作数据库" name="type"></el-checkbox>
+              </el-checkbox-group>
             </el-form-item>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button type="success" round class="TAG_right_on"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on">保存并返回</el-button>
             </div>
           </div>
-          <!-- 右:超级管理-->
-          <!-- 右：添加用户-->
           <div class="TAG_rght_2" v-if="show(12)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">添加用户</div>
@@ -321,52 +145,21 @@
               <el-input v-model="User_Form.password"></el-input>
             </el-form-item>
             <el-form-item label=""> </el-form-item>
-            <el-form-item label="用户权限" >
+            <el-form-item label="用户权限">
               <el-checkbox-group v-model="checkList">
-              <el-checkbox
-                label="1"
-                name="type"
-          
-              >系统管理</el-checkbox>
-              <el-checkbox
-         
-                label="2"
-                name="type"
-              >活动报道</el-checkbox>
-              <el-checkbox
-             
-                label="3"
-                name="type"
-              >通知公告</el-checkbox>
-              <el-checkbox
-             
-                label="4"
-                name="type"
-              >资源动态</el-checkbox>
-              <el-checkbox
-          
-                label="5"
-                name="type"
-              >菜单管理</el-checkbox>
+                <el-checkbox label="1" name="type">系统管理</el-checkbox>
+                <el-checkbox label="2" name="type">活动报道</el-checkbox>
+                <el-checkbox label="3" name="type">通知公告</el-checkbox>
+                <el-checkbox label="4" name="type">资源动态</el-checkbox>
+                <el-checkbox label="5" name="type">菜单管理</el-checkbox>
 
-              <el-checkbox
-           
-                label="6"
-                name="type"
-              >合作数据库</el-checkbox>
-            </el-checkbox-group>
+                <el-checkbox label="6" name="type">合作数据库</el-checkbox>
+              </el-checkbox-group>
             </el-form-item>
             <div class="TAG_right_buttom">
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="User_Create()"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_on" @click="User_Create()">保存并返回</el-button>
             </div>
           </div>
-
           <div class="TAG_rght_2" v-if="show(20)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">管理测试</div>
@@ -376,72 +169,34 @@
               <div class="menu1">
                 <div>
                   <el-form-item label="搜索目录" style="font-size: 35px">
-                    <el-input
-                      v-model="filterText"
-                      placeholder="输入关键字进行过滤"
-                    ></el-input>
+                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
                   </el-form-item>
                   <div style="display: flex">
                     <el-form-item label="新建目录">
-                      <el-input
-                        v-model="menu"
-                        placeholder="请输入新目录"
-                      ></el-input>
+                      <el-input v-model="menu" placeholder="请输入新目录"></el-input>
                     </el-form-item>
-                    <el-button type="success" round @click="addmenu()"
-                      >添加目录
+                    <el-button type="success" round @click="addmenu()">添加目录
                     </el-button>
                   </div>
                 </div>
               </div>
-
               <div class="menu2">
                 <div>
                   <el-form-item label="编辑目录">
-                    <el-tree
-                      :data="title_options"
-                      node-key="id"
-                      empty-text="找不到该目录"
-                      draggable
-                      :filter-node-method="filterNode"
-                      :props="defaultProps"
-                      :allow-drop="allowDrop"
-                      :allow-drag="allowDrag"
-                      ref="tree"
-                      :highlight-current="true"
-                      :default-expand-all="true"
-                      :expand-on-click-node="false"
-                    >
+                    <el-tree :data="title_options" node-key="id" empty-text="找不到该目录" draggable
+                      :filter-node-method="filterNode" :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree"
+                      :highlight-current="true" :default-expand-all="true" :expand-on-click-node="false">
                       <template #default="{ node, data }">
                         <span class="custom-tree-node">
                           <span>{{ node.label }}</span>
                           <span>
                             <el-popover placement="right" :width="400">
-                              <div
-                                style="
-                                  display: grid;
-                                  grid-template-columns: auto auto;
-                                "
-                              >
-                                <el-input
-                                  v-model="input"
-                                  placeholder="Please input"
-                                />
-                                <el-button
-                                  type="success"
-                                  @click="updatamune(node, data)"
-                                  round
-                                  style="height: 40px"
-                                  >修改
+                              <div style="display: grid;grid-template-columns: auto auto;">
+                                <el-input v-model="input" placeholder="Please input" />
+                                <el-button type="success" @click="updatamune(node, data)" round style="height: 40px">修改
                                 </el-button>
-
                                 <div></div>
-                                <el-button
-                                  type="success"
-                                  @click="remove(node, data)"
-                                  round
-                                  style="height: 40px"
-                                  >删除
+                                <el-button type="success" @click="remove(node, data)" round style="height: 40px">删除
                                 </el-button>
                               </div>
                               <template #reference>
@@ -457,139 +212,46 @@
                   </el-form-item>
                 </div>
                 <div style="margin-left: auto">
-                  <el-button
-                    class="button_on"
-                    style="height: 40px"
-                    type="success"
-                    round
-                    @click="savemenu()"
-                    >保存修改
+                  <el-button class="button_on" style="height: 40px" type="success" round @click="savemenu()">保存修改
                   </el-button>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="TAG_rght_2" v-if="show(21)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">目录管理</div>
             </div>
             <el-divider></el-divider>
-
             <div class="menu">
               <div class="menu1">
                 <div>
                   <el-form-item label="新建目录">
-                    <el-input
-                      v-model="menu"
-                      placeholder="请输入新目录"
-                    ></el-input>
+                    <el-input v-model="menu" placeholder="请输入新目录"></el-input>
                   </el-form-item>
                 </div>
                 <div>
-                  <el-button
-                    class="button_on"
-                    type="success"
-                    round
-                    @click="addmenu()"
-                    >添加目录
+                  <el-button class="button_on" type="success" round @click="addmenu()">添加目录
                   </el-button>
                 </div>
                 <div>
                   <el-form-item label="搜索目录">
-                    <el-input
-                      v-model="filterText"
-                      placeholder="输入关键字进行过滤"
-                    ></el-input>
+                    <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
                   </el-form-item>
                 </div>
                 <div>
-                  <el-button
-                    class="button_on"
-                    type="success"
-                    round
-                    @click="savemenu()"
-                    >保存修改</el-button
-                  >
+                  <el-button class="button_on" type="success" round @click="savemenu()">保存修改</el-button>
                 </div>
               </div>
               <div>
                 <div>
-                  <el-tree
-                    :data="title_options"
-                    node-key="id"
-                    draggable
-                    :filter-node-method="filterNode"
-                    :props="defaultProps"
-                    :allow-drop="allowDrop"
-                    :allow-drag="allowDrag"
-                    ref="tree"
-                  >
+                  <el-tree :data="title_options" node-key="id" draggable :filter-node-method="filterNode"
+                    :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree">
                   </el-tree>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- 右:图书指南-->
-          <!-- 右:文章管理-->
-          <!-- <div class="TAG_rght_2" v-if="show(22)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">文章管理</div>
-            </div>
-            <el-divider></el-divider>
-
-            <el-row>
-              <el-form-item label="目录">
-                <el-input
-                  v-model="form.uers_name"
-                  placeholder="请输入关键字搜索"
-                ></el-input>
-              </el-form-item>
-            </el-row>
-
-            <div class="TAG_right_admin_table">
-              <el-table :data="title_contents">
-                <el-table-column
-                  type="index"
-                  label="#"
-                  style="width: 83px"
-                ></el-table-column>
-
-                <el-table-column prop="value" label="目录名"></el-table-column>
-
-                <el-table-column label="操作">
-                  <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button
-                      class="button_on"
-                      type="success"
-                      round
-                      style="width: 60px"
-                      @click="Total_Menu_Update(0, scope)"
-                      >修改</el-button
-                    >
-                    <el-button
-                      class="button_off"
-                      type="success"
-                      round
-                      style="
-                        width: 60px;
-                        background-color: #e27172;
-                        margin-left: 4px;
-                        font-size: 15px;
-                      "
-                      @click="delete_total(5, scope)"
-                      >删除</el-button
-                    >
-                  </template>
-                </el-table-column>
-              </el-table>
-            </div>
-          </div> -->
-
-          <!-- 右:图书指南-->
-          <!-- 右:编辑文章-->
           <div class="TAG_rght_2" v-if="show(23)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">创建文章</div>
@@ -599,100 +261,22 @@
               选择目录
             </div>
             <div class="block">
-              <el-cascader
-                v-model="form.cascader"
-                :options="title_options"
-                ref="cascader"
-                @change="title_tree_change()"
-              ></el-cascader>
+              <el-cascader v-model="form['cascader']" :options="title_options" ref="cascader"
+                @change="title_tree_change()"></el-cascader>
             </div>
-
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                @input="content_value_change"
-                v-model="value"
-                :key="form.change"
-                :value="value"
-              />
+              <TEditor style="height: 400px" ref="editor" @input="content_value_change" v-model="value"
+                :key="form['change']" :value="value" />
             </div>
-
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="title_contents_edit()"
-                >保存并返回
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="title_contents_edit()">保存并返回
               </el-button>
             </div>
           </div>
-
-          <!-- <div class="TAG_rght_2" v-if="show(21)">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">目录管理</div>
-            </div>
-            <el-divider></el-divider>
-
-            <div class="menu">
-              <div>
-                <div>
-                  <el-form-item label="新建目录">
-                    <el-input
-                      v-model="menu"
-                      placeholder="请输入新目录  "
-                    ></el-input>
-                  </el-form-item>
-                </div>
-
-                <div>
-                  <el-input
-                    placeholder="输入关键字进行过滤"
-                    v-model="filterText"
-                  >
-                  </el-input>
-                  <el-tree
-                    :data="title_options"
-                    node-key="id"
-                    draggable
-                    :filter-node-method="filterNode"
-                    :props="defaultProps"
-                    :allow-drop="allowDrop"
-                    :allow-drag="allowDrag"
-                    ref="tree"
-                  >
-                  </el-tree>
-                </div>
-                <el-button
-                  type="success"
-                  style="margin: auto"
-                  @click="savemenu()"
-                  >保存并返回
-                </el-button>
-              </div>
-
-              <div>
-                <el-button
-                  class="button_on"
-                  type="success"
-                  round
-                  style="width: 60px"
-                  @click="addmenu()"
-                  >添加</el-button
-                >
-              </div>
-            </div>
-          </div> -->
-
-          <!-- 右：通知公告-->
-          <!-- 右：公告管理-->
           <div class="TAG_rght_2" v-if="show(31)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">公告管理</div>
@@ -700,140 +284,75 @@
             <el-divider></el-divider>
             <el-row>
               <el-form-item label="标题">
-                <el-input
-                  v-model="form.uers_name"
-                  placeholder="请输入关键字"
-                ></el-input>
+                <el-input v-model="form['uers_name']" placeholder="请输入关键字"></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
               <el-table :data="NoticeData" :key="itemKey">
-                <el-table-column
-                  type="index"
-                  style="width: 83px"
-                  label="#"
-                ></el-table-column>
+                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column
-                  prop="gmtCreate"
-                  label="发布时间"
-                ></el-table-column>
+                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button
-                      class="button_on"
-                      type="success"
-                      round
-                      style="width: 60px"
-                      @click="Notice_update(0, scope)"
-                      >修改</el-button
-                    >
-                    <el-button
-                      class="button_off"
-                      type="success"
-                      round
-                      style="
-                        width: 60px;
-                        background-color: #e27172;
-                        margin-left: 4px;
-                        font-size: 15px;
-                      "
-                      @click="delete_total(1, scope)"
-                      >删除</el-button
-                    >
+                    <el-button class="button_on" type="success" round style="width: 60px"
+                      @click="Notice_update(0, scope)">修改</el-button>
+                    <el-button class="button_off" type="success" round
+                      style="width: 60px;background-color: #e27172;margin-left: 4px;font-size: 15px;"
+                      @click="delete_total(1, scope)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
             </div>
           </div>
 
-          <!-- 右：通知公告-->
-          <!-- 右：修改公告-->
           <div class="TAG_rght_2" v-if="show(311)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">修改公告</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.title"></el-input>
+              <el-input v-model="form['title']"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form['name']"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                @input="content_value_change"
-                v-model="value"
-                :value="value"
-              />
+              <TEditor style="height: 400px" @input="content_value_change" v-model="value" :value="value" />
             </div>
 
             <div class="TAG_right_buttom">
-              <el-button
-                type="success"
-                round
-                class="TAG_right_back"
-                @click="select(31)"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Notice_update(1, 1)"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back" @click="select(31)">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="Notice_update(1, 1)">保存并返回</el-button>
             </div>
           </div>
-
-          <!-- 右：通知公告-->
-          <!-- 右：添加公告-->
           <div class="TAG_rght_2" v-if="show(32)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">新建公告</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.title"></el-input>
+              <el-input v-model="form['title']"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form['name']"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                v-model="value"
-                @input="content_value_change"
-                :value="value"
-              />
+              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
+                :value="value" />
             </div>
-
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Create_Notice()"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="Create_Notice()">保存并返回</el-button>
             </div>
           </div>
-
-          <!-- 右：资源动态-->
-          <!-- 右：动态管理-->
           <div class="TAG_rght_2" v-if="show(41)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">动态管理</div>
@@ -841,140 +360,75 @@
             <el-divider></el-divider>
             <el-row>
               <el-form-item label="标题">
-                <el-input
-                  v-model="form.uers_name"
-                  placeholder="请输入关键字"
-                ></el-input>
+                <el-input v-model="form['uers_name']" placeholder="请输入关键字"></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
               <el-table :data="ResourceData" :key="itemKey">
-                <el-table-column
-                  type="index"
-                  style="width: 83px"
-                  label="#"
-                ></el-table-column>
+                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column
-                  prop="gmtCreate"
-                  label="发布时间"
-                ></el-table-column>
+                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button
-                      class="button_on"
-                      type="success"
-                      round
-                      style="width: 60px"
-                      @click="Resource_update(0, scope)"
-                      >修改</el-button
-                    >
-                    <el-button
-                      class="button_off"
-                      type="success"
-                      round
-                      style="
-                        width: 60px;
-                        background-color: #e27172;
-                        margin-left: 4px;
-                        font-size: 15px;
-                      "
-                      @click="delete_total(2, scope)"
-                      >删除</el-button
-                    >
+                    <el-button class="button_on" type="success" round style="width: 60px"
+                      @click="Resource_update(0, scope)">修改</el-button>
+                    <el-button class="button_off" type="success" round
+                      style=" width: 60px;background-color: #e27172;margin-left: 4px;font-size: 15px;"
+                      @click="delete_total(2, scope)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
             </div>
           </div>
 
-          <!-- 右：资源动态-->
-          <!-- 右：修改动态-->
           <div class="TAG_rght_2" v-if="show(411)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">修改动态</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.title"></el-input>
+              <el-input v-model="form['title']"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form['name']"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                v-model="value"
-                :value="value"
-                @input="content_value_change"
-              />
+              <TEditor style="height: 400px" ref="editor" v-model="value" :value="value"
+                @input="content_value_change" />
             </div>
             <div class="TAG_right_buttom">
-              <el-button
-                type="success"
-                round
-                class="TAG_right_back"
-                @click="select(41)"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Resource_update(1, 1)"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back" @click="select(41)">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="Resource_update(1, 1)">保存并返回</el-button>
             </div>
           </div>
-
-          <!-- 右：资源动态-->
-          <!-- 右：添加动态-->
-
           <div class="TAG_rght_2" v-if="show(42)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">添加动态</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.title"></el-input>
+              <el-input v-model="form['title']"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form['name']"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                v-model="value"
-                @input="content_value_change"
-                :value="value"
-              />
+              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
+                :value="value" />
             </div>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Create_Resource()"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="Create_Resource()">保存并返回</el-button>
             </div>
           </div>
-
-          <!-- 右：活动报道-->
-          <!-- 右：报道管理-->
           <div class="TAG_rght_2" v-if="show(51)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道管理</div>
@@ -982,181 +436,100 @@
             <el-divider></el-divider>
             <el-row>
               <el-form-item label="标题">
-                <el-input
-                  v-model="form.title"
-                  placeholder="请输入关键字"
-                ></el-input>
+                <el-input v-model="form['title']" placeholder="请输入关键字"></el-input>
               </el-form-item>
             </el-row>
             <div class="TAG_right_admin_table">
               <el-table :data="ActivitiesData" :key="itemKey">
-                <el-table-column
-                  type="index"
-                  style="width: 83px"
-                  label="#"
-                ></el-table-column>
+                <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
                 <el-table-column prop="title" label="标题"></el-table-column>
                 <el-table-column prop="author" label="作者"></el-table-column>
-                <el-table-column
-                  prop="gmtCreate"
-                  label="发布时间"
-                ></el-table-column>
+                <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
                 <el-table-column prop="user_operation" label="操作">
                   <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button
-                      class="button_on"
-                      type="success"
-                      round
-                      style="width: 40px"
-                      @click="Update_Activities(0, scope)"
-                      >修改</el-button
-                    >
-                    <el-button
-                      class="button_off"
-                      type="success"
-                      round
-                      style="
-                        width: 40px;
-                        background-color: #e27172;
-                        margin-left: 4px;
-                        font-size: 15px;
-                      "
-                      @click="delete_total(3, scope)"
-                      >删除</el-button
-                    >
+                    <el-button class="button_on" type="success" round style="width: 40px"
+                      @click="Update_Activities(0, scope)">修改</el-button>
+                    <el-button class="button_off" type="success" round
+                      style="width: 40px; background-color: #e27172; margin-left: 4px;font-size: 15px;"
+                      @click="delete_total(3, scope)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
             </div>
           </div>
-
-          <!-- 右：活动报道-->
-          <!-- 右:编辑报道-->
           <div class="TAG_rght_2" v-if="show(511)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">编辑报道</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.title"></el-input>
+              <el-input v-model="form['title']"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form['name']"></el-input>
             </el-form-item>
-
             <div style="color: black; font-size: large; font-weight: bold">
               报道概述
             </div>
             <div class="TAG_main_write">
               <div
-                style="
-                  margin-right: 18px !important;
-                  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-                  border-radius: 20px;
-                "
-              >
-                <el-input v-model="form.summary" clearable />
+                style="margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%); border-radius: 20px;">
+                <el-input v-model="form['summary']" clearable />
               </div>
             </div>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                v-model="value"
-                :value="value"
-              />
+              <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" />
             </div>
             <div style="text-align: left">
-              <el-upload
-                class="avatar-uploader"
-                action
-                :http-request="uploadFile"
-                :show-file-list="true"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
-              >
+              <el-upload class="avatar-uploader" action :http-request="uploadFile" :show-file-list="true"
+                :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                 <el-icon v-else class="avatar-uploader-icon">
                   <Plus />
                 </el-icon>
               </el-upload>
             </div>
-            <el-checkbox
-              label="显示图片"
-              name="type"
-              style="font-weight: bold"
-            ></el-checkbox>
+            <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Update_Activities(1, 1)"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="Update_Activities(1, 1)">保存并返回</el-button>
             </div>
           </div>
-
-          <!-- 右：活动报道-->
-          <!-- 右:新建报道-->
           <div class="TAG_rght_2" v-if="show(52)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">新建报道</div>
             </div>
             <el-divider></el-divider>
             <el-form-item label="标题">
-              <el-input v-model="form.title"></el-input>
+              <el-input v-model="form['title']"></el-input>
             </el-form-item>
             <el-form-item label="作者">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form['name']"></el-input>
             </el-form-item>
             <div style="color: black; font-size: large; font-weight: bold">
               报道概述
             </div>
             <div class="TAG_main_write">
               <div
-                style="
-                  margin-right: 18px !important;
-                  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-                  border-radius: 20px;
-                "
-              >
-                <el-input v-model="form.summary" clearable />
+                style=" margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);border-radius: 20px;">
+                <el-input v-model="form['summary']" clearable />
               </div>
             </div>
             <div style="color: black; font-size: large; font-weight: bold">
               编辑内容
             </div>
             <div class="TAG_main_write">
-              <TEditor
-                style="height: 400px"
-                ref="editor"
-                v-model="value"
-                @input="content_value_change"
-                :value="value"
-              />
+              <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change"
+                :value="value" />
             </div>
-            <el-checkbox
-              label="显示图片"
-              name="type"
-              style="font-weight: bold"
-            ></el-checkbox>
+            <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
             <div style="text-align: left">
-              <el-upload
-                class="avatar-uploader"
-                action
-                :http-request="uploadFile"
-                :show-file-list="true"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
-              >
+              <el-upload class="avatar-uploader" action :http-request="uploadFile" :show-file-list="true"
+                :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                 <el-icon v-else class="avatar-uploader-icon">
                   <Plus />
@@ -1164,20 +537,10 @@
               </el-upload>
             </div>
             <div class="TAG_right_buttom">
-              <el-button type="success" round class="TAG_right_back"
-                >返回</el-button
-              >
-              <el-button
-                type="success"
-                round
-                class="TAG_right_on"
-                @click="Create_Activities()"
-                >保存并返回</el-button
-              >
+              <el-button type="success" round class="TAG_right_back">返回</el-button>
+              <el-button type="success" round class="TAG_right_on" @click="Create_Activities()">保存并返回</el-button>
             </div>
           </div>
-          <!-- 右：合作数据库-->
-          <!-- 右:中文数据库-->
           <div class="TAG_rght_2" v-if="show(61)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">中文数据库</div>
@@ -1186,41 +549,21 @@
             <div class="database-1">
               <div v-for="item in count" :key="item" class="database-css">
                 <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider
-                  direction="vertical"
-                  style="height: 100px; color: #0c57ad"
-                />
-                <el-avatar
-                  shape="square"
-                  style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"
-                >
+                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
+                <el-avatar shape="square" style="width: 180px; height: 100px"
+                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
                 </el-avatar>
                 <div style="display: grid; justify-items: end">
                   <el-button class="database-button">修改内容</el-button>
                   <el-button class="database-button">修改图片</el-button>
-                  <el-button
-                    @click="onDelete"
-                    class="database-button"
-                    style="background-color: #e27172"
-                    >删除</el-button
-                  >
+                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
                 </div>
               </div>
               <div class="database-css">
-                <el-button
-                  @click="add"
-                  class="database-button"
-                  style="width: 160px"
-                  >添加数据库显示</el-button
-                >
+                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
               </div>
             </div>
           </div>
-
-          <!-- 右：合作数据库-->
-          <!-- 右:外文数据库-->
-
           <div class="TAG_rght_2" v-if="show(62)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">外文数据库</div>
@@ -1229,40 +572,21 @@
             <div class="database-1">
               <div v-for="item in count" :key="item" class="database-css">
                 <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider
-                  direction="vertical"
-                  style="height: 100px; color: #0c57ad"
-                />
-                <el-avatar
-                  shape="square"
-                  style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"
-                >
+                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
+                <el-avatar shape="square" style="width: 180px; height: 100px"
+                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
                 </el-avatar>
                 <div style="display: grid; justify-items: end">
                   <el-button class="database-button">修改内容</el-button>
                   <el-button class="database-button">修改图片</el-button>
-                  <el-button
-                    @click="onDelete"
-                    class="database-button"
-                    style="background-color: #e27172"
-                    >删除</el-button
-                  >
+                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
                 </div>
               </div>
               <div class="database-css">
-                <el-button
-                  @click="add"
-                  class="database-button"
-                  style="width: 160px"
-                  >添加数据库显示</el-button
-                >
+                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
               </div>
             </div>
           </div>
-
-          <!-- 右：合作数据库-->
-          <!-- 右:试用数据库-->
           <div class="TAG_rght_2" v-if="show(63)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">试用数据库</div>
@@ -1271,1378 +595,885 @@
             <div class="database-1">
               <div v-for="item in count" :key="item" class="database-css">
                 <div style="color: #0d52a1; font-size: 30px">{{ item }}</div>
-                <el-divider
-                  direction="vertical"
-                  style="height: 100px; color: #0c57ad"
-                />
-                <el-avatar
-                  shape="square"
-                  style="width: 180px; height: 100px"
-                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png"
-                >
+                <el-divider direction="vertical" style="height: 100px; color: #0c57ad" />
+                <el-avatar shape="square" style="width: 180px; height: 100px"
+                  src="https://upload-bbs.mihoyo.com/upload/2022/09/17/a490e27b4545cfd495c85887598bc5d9_4830685343755963999.png">
                 </el-avatar>
                 <div style="display: grid; justify-items: end">
                   <el-button class="database-button">修改内容</el-button>
                   <el-button class="database-button">修改图片</el-button>
-                  <el-button
-                    @click="onDelete"
-                    class="database-button"
-                    style="background-color: #e27172"
-                    >删除</el-button
-                  >
+                  <el-button @click="onDelete" class="database-button" style="background-color: #e27172">删除</el-button>
                 </div>
               </div>
               <div class="database-css">
-                <el-button
-                  @click="add"
-                  class="database-button"
-                  style="width: 160px"
-                  >添加数据库显示</el-button
-                >
+                <el-button @click="add" class="database-button" style="width: 160px">添加数据库显示</el-button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <!-- admin-->
       <AdminBottom />
     </div>
   </div>
 </template>
 
-<script setup lang="lass"  >
-//引入头部
-import AdminTop from '@/components/admin/AdminTop.vue';
-//引入底部
-import AdminBottom from '@/components/admin/AdminBottom.vue';
-//引入富文本
-import TEditor from '@/components/TEditor.vue';
+<script  lang="ts"  setup>
 //引入element依赖
-import { ArrowDown } from '@element-plus/icons-vue';
-import { ElMessage, ElMessageBox } from 'element-plus'
-const axios = require("axios");
-import { ref } from 'vue';
-
-let id = 1000;
-
-export default {
-    name:'admin',
-    components: {TEditor,AdminTop},
-    watch: {
-      filterText(val) {
-        this.$refs.tree.filter(val);
+import AdminTop from '@/components/admin/AdminTop.vue'
+import AdminBottom from '@/components/admin/AdminBottom.vue'
+//引入富文本
+import TEditor from '@/components/TEditor.vue'
+let axios = require("axios")
+let id = 1000
+let User_Form = {
+  idCard: "",
+  username: "",
+  password: "",
+  userPres: [0, 0, 0, 0, 0, 0, 0, 0]
+}
+let activeName = '1'
+let current = 11
+let imageUrl = ''
+let value = "sadasdasdasd"
+let form = {}
+let update_form = {}
+let author_title
+let dialogImageUrl = ''
+let dialogVisible = false
+let UserData = []
+let NoticeData = []
+let ResourceData = []
+let ActivitiesData = []
+let title = []
+let itemKey = 0
+let menu
+let title_options = []
+let filterText: ''
+let count: 3
+let value_1: ""
+let textarea: ""
+let search: ''
+let title_1: ""
+let title_2: ""
+let title_3: ""
+let input: ""
+let checkList: []
+const updatamune = (node, data) => {
+  const parent = node.parent;
+  const children = parent.data.children || parent.data;
+  const index = children.findIndex((item) => item.id === data.id);
+  children[index].label = ''
+}
+const remove = (node, data) => {
+  const parent = node.parent
+  const children = parent.data.children || parent.data
+  const index = children.findIndex(d => d.id === data.id)
+  let delete_nodes = []
+  let delete_title = []
+  children.splice(index, 1)
+  const get_leaf = (obj) => {
+    if (obj.children.length == 0) {
+      delete_nodes.push(obj.id)
+      delete_title.push(obj.id)
+      return 1
+    }
+    else {
+      delete_nodes.push(obj.id);
+      for (let i = 0; i < obj.children.length; i++) {
+        get_leaf(obj.children[i])
       }
-    },
-    data() {
-      let User_Form={
-        idCard:"",
-        username:"",
-        password:"",
-        userPres:[0,0,0,0,0,0,0,0],
+    }
+  }
+  get_leaf(data)
+  let token = sessionStorage.getItem("token")
+  let params = {
+    id: delete_nodes,
+    token: token
+  }
+  let config = { headers: { "Content-Type": "application/json" } }
+  axios
+    .post("/api" + "/titleOptions/delete", params, config)
+    .then((res) => {
+      if (res.data.code == 200) {
+        // this.$message({
+        //   type: 'success',
+        //   message: '标题删除成功!'
+        // });
       }
-      let activeName= '1';//左边菜单栏
-      let current=11; //其实菜单栏
-      let imageUrl= '';
-      let dialogImageUrl='';
-      let dialogVisible= false;
-      let value="sadasdasdasd";//富文本
-      let form= {
-        };
-      let update_form={};//更新专用
-      var author_title;
-      let UserData= [];
-      let NoticeData= [];
-      let ResourceData=[];
-      let ActivitiesData=[];
-      let title=[];
-      let itemKey=0;
-      let menu;
-      const title_options= [
-        
-        ];
-       
-      return {
-        filterText: '',
-        count: 3,
-        update_form,
-        author_title,
-        activeName,current,imageUrl,dialogImageUrl,dialogVisible,value,
-        form,value_1:"",
-        textarea:"",
-        search: '',//搜索
-        title_options,
-        title_1:"",
-    
-        title_2:"",
-        title_3:"",
-        UserData,
-        value,
-        User_Form,
-        ResourceData,
-        itemKey,
-        menu,
-        input:"",
-        checkList:[],
-      };
-    },
-    methods:{
-      updatamune(node, data){
-        const parent = node.parent;
-        const children = parent.data.children || parent.data;
-        const index = children.findIndex(d => d.id === data.id);
-        children[index].label=this.input;
-        this.input=""
-        
+    })
+    .catch(() => { });
+}
+const filterNode = (value, data) => {
+  if (!value) return true;
+  return data.label.indexOf(value) !== -1;
+}
+const allowDrop = (draggingNode, dropNode, type) => {
+  if (dropNode.data.label === '二级 3-1') {
+    return type !== 'inner';
+  } else {
+    return true;
+  }
+}
+const allowDrag = (draggingNode) => {
+  return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+}
+const load = () => {
+  count += 2
+}
+const handleChange = (e, i) => { }
+const add = () => {
+  count++;
+}
+const onDelete = () => {
+  if (count > 0) {
+    count--;
+  }
+}
+const handleAvatarSuccess = (res, file) => {
+  imageUrl = URL.createObjectURL(file.raw);
+}
+const beforeAvatarUpload = (file) => {
+  const isJPG = file.type === 'image/jpeg';
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isJPG) {
+    // this.$message.error('上传头像图片只能是 JPG 格式!');
+  }
+  else
+    if (!isLt2M) {
+      // this.$message.error('上传头像图片大小不能超过 2MB!');
+    }
+  return isJPG && isLt2M;
+}
+const content_value_change = (e) => {
+  value = e;
+}
+const delete_total = (i, e) => {
+  // this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+  //   confirmButtonText: '确定',
+  //   cancelButtonText: '取消',
+  //   center: true
+  // }).then(() => {
+  //   if (i == 0) //删除用户
+  //   {
+  //     Delete_User(e.row)
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //   }
+  //   if (i == 1) //删除公告
+  //   {
+  //     Delete_Notice(e)
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //   }
+  //   if (i == 2) //删除资源
+  //   {
+  //     Delete_Resource(e)
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //   }
+  //   if (i == 3) //删除活动
+  //   {
+  //     Delete_Activities(e)
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //   }
+  //   if (i == 5) //删除标题栏内容
+  //   {
+  //     //this.Total_Menu_Delete(e);
+  //   }
+  // }).catch(() => {
+  //   this.$message({
+  //     type: 'info',
+  //     message: '已取消删除'
+  //   });
+  // });
+}
+const usershow = (i) => {
+  current = i;
+  show(i);
+}
+const show = (i) => {
+  if (current == i) {
+    return true;
+  }
+  return false;
+}
+const select = (i) => {
+  let form = {};
+  if (i == 111 || i == 23 || i == 311 || i == 511 || i == 23 || i == 411) { }
+  else {
+    form = {};
+  }
+  current = i;
+}
+const handleRemove = (file, fileList) => { }
+const handlePictureCardPreview = (file) => {
+  dialogImageUrl = file.url;
+  dialogVisible = true;
+}
+const uploadFile = (item) => {
+  let FormDatas = new FormData()
+  FormDatas.append('file', item.file)
+  form['file'] = item.file;
+}
+const User_init = () => {
+  axios
+    .post("/api" + "/user/searchAll", null, {
+      params: {
+        token: sessionStorage.getItem("token")
       },
-      append(data) {
-        console.log("添加");
-        const newChild = { id: id++, label: this.input, children: [] };
-        if (!data.children) {
-          this.$set(data, 'children', []);
-        }
-        data.children.push(newChild);
-        this.input=""
+    })
+    .then((res) => {
+      UserData = res.data.data;
+    })
+    .catch((err) => { });
+}
+const pres = (i) => {
+  User_Form.userPres[i] = Number(!User_Form.userPres[i]);
+  console.log(User_Form.userPres);
+}
+const User_Create = () => {
+  axios
+    .post("/api" + "/user/insert", null, {
+      params: {
+        idCard: User_Form.idCard,
+        username: User_Form.username,
+        password: User_Form.password,
+        userPres: User_Form.userPres,
+        token: sessionStorage.getItem("token")
       },
-      remove(node, data) {
-        console.log("删除");
-
-        console.log(data);
-        const parent = node.parent;
-        const children = parent.data.children || parent.data;
-        const index = children.findIndex(d => d.id === data.id);
-        var delete_nodes=[]
-        var delete_title=[]
-        children.splice(index, 1);
-        function get_leaf(obj)
-        {
-          if(obj.children.length==0)
-          {
-            delete_nodes.push(obj.id);
-            delete_title.push(obj.id);
-            return 1;
-          }
-          else 
-          {
-            delete_nodes.push(obj.id);
-            for(let i=0;i<obj.children.length;i++)
-            {
-              get_leaf(obj.children[i]);
-            }
-            
-          }
-        }
-        get_leaf(data);
-        console.log(delete_nodes) 
-        console.log(delete_title)
-        let token=sessionStorage.getItem("token");
-        let params= {
-              id:delete_nodes,
-              token:token
-            };
-            let config = {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            };
-            axios
-                .post("/api" + "/titleOptions/delete", params, config)
-                 .then((res) => {
-                          if(res.data.code==200)
-                          {
-                            this.$message({
-                                type: 'success',
-                                message: '标题删除成功!'
-                                });
-                          }
-                    })
-                  .catch(() => {
-                 
-              });
-        
-
-
-
-        
-      },
-      filterNode(value, data) {
-        if (!value) return true;
-        return data.label.indexOf(value) !== -1;
-      },
-      allowDrop(draggingNode, dropNode, type) {
-        if (dropNode.data.label === '二级 3-1') {
-          return type !== 'inner';
-        } else {
-          return true;
-        }
-      },
-      allowDrag(draggingNode) {
-        return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
-      },
-      load () {
-        this.count += 2
-      },
-      handleChange(e,i)
-      {
-        console.log(e);
-        console.log(i);
-      },
-      add(){
-       this.count++;
-       },
-      onDelete() {
-        if (this.count> 0) {
-           this.count--;
+    })
+    .then((res) => {
+      User_Form = {
+        idCard: "",
+        username: "",
+        password: "",
+        userPres: [],
       }
+      alert("创建成功");
+    })
+    .catch((err) => { });
+}
+const Delete_User = (e) => {
+  axios
+    .post("/api" + "/user/delete", null, {
+      params: {
+        idCard: e.idCard,
+        token: sessionStorage.getItem("token")
       },
-      handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-        console.log(file.blob());
-      },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        else
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        // else 
-        // {
-        //   // console.log(file.blob());
-        //     // let params = new FormData();
-        //     // params.append("file", blobInfo.blob());
-        //     // let config = {
-        //     //   headers: {
-        //     //     "Content-Type": "multipart/form-data",
-        //     //   },
-        //     // };
-        //     // axios
-        //     //   .post(`api/fileTemp`, params, config)
-        //     //   .then((res) => {
-        //     //     console.log(res)
-        //     //     if (res.data.code == 200) {
-        //     //       console.log(res.data)
-        //     //       success(res.data.msg); //上传成功，在成功函数里填入图片路径
-                  
-        //     //     } else {
-        //     //       failure("上传失败");
-        //     //     }
-        //     //   })
-        //     //   .catch(() => {
-        //     //     failure("上传出错，服务器开小差了呢");
-        //     //   });
-        // }
-      
-        return isJPG && isLt2M;
-      },
-      content_value_change(e)
-      {
-        this.value=e;
-       
-      },
-      //删除按钮
-       delete_total(i,e) {
-        
-        this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          center: true
-        }).then(() => {
-
-          if(i==0) //删除用户
-          {
-            this.Delete_User(e.row)
-            
-              this.$message({
-              type: 'success',
-              message: '删除成功!'
-              });
-            
-          }
-
-          if(i==1) //删除公告
-          {
-            
-            this.Delete_Notice(e)
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-              });
-            // location.reload() 
-          }
-          if(i==2) //删除资源
-          {
-            this.Delete_Resource(e)
-              this.$message({
-              type: 'success',
-              message: '删除成功!'
-              });
-          }
-          if(i==3) //删除活动
-          {
-            this.Delete_Activities(e)
-             this.$message({
-              type: 'success',
-              message: '删除成功!'
-              });
-          }
-          // if(i==4) //删除数据库
-          // {
-          //   this.Delete_Activities(e)
-          //    this.$message({
-          //     type: 'success',
-          //     message: '删除成功!'
-          //     });
-          // }
-          if(i==5) //删除标题栏内容
-          {
-              console.log(e)
-              console.log(this.activeName);
-              this.Total_Menu_Delete(e);
-            //  this.$message({
-            //   type: 'success',
-            //   message: '删除成功!'
-            //   });
-          }
-        
-           
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
-      },
-      usershow(i){
-        this.current=i;
-        this.show(i);
-      },
-      show(i){
-        if(this.current==i){
-          return true;
-        }
-        return false;
-      },
-      select(i) {
-        let form={};
-        if(i==111||i==23||i==311||i==511||i==23||i==411)
-        {
-         
-        }
-        else
-        {
-          this.form={};
-        }
-        console.log(this.form)
-        console.log(this.value)
-        this.current=i;
-      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      },
-      uploadFile(item)
-      {
-	          //上传文件的需要formdata类型;所以要转
-            let FormDatas = new FormData()
-    FormDatas.append('file',item.file);
-    console.log("123213123:")
-    console.log(FormDatas.file)
-        this.form.file=item.file;
-
-     
-      },
-
-
-
-
-
-   
-
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      User_init()
-      {
-        axios
-          .post("/api" + "/user/searchAll", null, {
-            params: {
-              
-              token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-           
-           this.UserData=res.data.data;
-            
-          })
-          .catch((err) => {
-           
-          });
-      },
-      pres(i)
-      {
-       
-
-
-        this.User_Form.userPres[i]=Number(!this.User_Form.userPres[i]);
-        console.log(this.User_Form.userPres);
-      },
-      User_Create()
-      {
-        console.log(this.checkList)
-
-        axios
-          .post("/api" + "/user/insert", null, {
-            params: {
-              idCard:this.User_Form.idCard,
-              username:this.User_Form.username,
-              password:this.User_Form.password,
-              userPres:this.User_Form.userPres,
-              token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-    
-           this.User_Form={
-            idCard:"",
-              username:"",
-              password:"",
-              userPres:[],
-           }
-            alert("创建成功");
-          })
-          .catch((err) => {
-           
-          });
-      },
-
-      Delete_User(e)
-      {
-        axios
-          .post("/api" + "/user/delete", null, {
-            params: {
-              idCard:e.idCard,
-              token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-           location.reload()
-           
-            
-          })
-          .catch((err) => {
-           
-          });
-      },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-      //<=============================================用户===================================================>
-
-      
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      clear()
-      {
-        this.form={};
-        this.value=""
-      },
-      Menu_init()
-      {
-        axios
-        .get("/api" + "/titleOptions/searchAll")
-        .then((res) => {
-          let data=res.data.data;
-
-          data.sort(function(a,b){
-                    if(a.type>b.type)
-                    return 1;
-                    else return -1;
-
-                                        }
-)
-          console.log(data);
-
-
-          let menu_test=[];
-
-          for(let i=0;i<data.length;i++)
-          {
-   
-            let test={};
-            if(data[i].type.length==1)
-            {
-              test.value=data[i].type;
-              test.id=data[i].id;
-              test.label=data[i].name;
-              test.children=[];
-
-              menu_test.push(test);
+    })
+    .then((res) => {
+      location.reload()
+    })
+    .catch((err) => { });
+}
+const clear = () => {
+  form = {};
+  value = ""
+}
+const Menu_init = () => {
+  axios
+    .get("/api" + "/titleOptions/searchAll")
+    .then((res) => {
+      let data = res.data.data;
+      data.sort(function (a, b) {
+        if (a.type > b.type)
+          return 1;
+        else return -1;
+      })
+      let menu_test = [];
+      for (let i = 0; i < data.length; i++) {
+        let test = {};
+        if (data[i].type.length == 1) {
+          test['value'] = data[i].type;
+          test['id'] = data[i].id;
+          test['label'] = data[i].name;
+          test['children'] = [];
+          menu_test.push(test);
+        } else
+          if (data[i].type.length == 3) {
+            test['value'] = data[i].type;
+            test['id'] = data[i].id;
+            test['label'] = data[i].name;
+            test['children'] = [];
+            let j = Number(data[i].type[0]) - 1;
+            menu_test[j].children.push(test);
+          } else
+            if (data[i].type.length == 5) {
+              test['value'] = data[i].type;
+              test['id'] = data[i].id;
+              test['label'] = data[i].name;
+              test['children'] = [];
+              let j = Number(data[i].type[0]) - 1;
+              let k = Number(data[i].type[2]) - 1;
+              menu_test[j].children[k].children.push(test);
             }
-
-            else
-            if(data[i].type.length==3)
-              {
-              test.value=data[i].type;
-              test.id=data[i].id;
-              test.label=data[i].name;
-              test.children=[];
-              let j=Number(data[i].type[0])-1;
-
-              menu_test[j].children.push(test);
-
-
-              }
-              else 
-              if(data[i].type.length==5)
-              {
-                test.value=data[i].type;
-                test.id=data[i].id;
-                test.label=data[i].name;
-                test.children=[];
-                let j=Number(data[i].type[0])-1;
-                let k=Number(data[i].type[2])-1;
-
-                menu_test[j].children[k].children.push(test);
-
-              }
-
-            } 
-            this.title_options=menu_test;
-
-          
-       
-        })
-        .catch((err) => {
-       
-        });
-      },
-      addmenu()
-      {
-        if(this.menu==undefined||this.menu==""){
-          console.log(this.menu);
-          return;
-        }
-        let menu={
-          label:this.menu,
-          children:[]
-        }
-        this.title_options.push(menu);
-      },
-      savemenu()
-      {
-        let data=[];
-        let menu=this.title_options;
-        let length=this.title_options.length;
-        let type="";
-        console.log(this.title_options)
-        for(let i=0;i<length;i++)
-        {
-          
-            type=String(i+1);
-          
-          let menu_data={
-            type:type,
-            name:menu[i].label,
-            id:menu[i].id
-          }
-          data.push(menu_data);
-
-          if(menu[i].children.length)
-          {
-            for(let j=0;j<menu[i].children.length;j++)
-            {
-              
-                type=String(i+1)+","+(j+1);
-              
-              menu_data={
-                type:type,
-                name:menu[i].children[j].label,
-                id:menu[i].children[j].id
-              }
-              console.log("j:"+menu_data)
-              data.push(menu_data);
-              if(menu[i].children[j].children.length)
-              {
-                for(let k=0;k<menu[i].children[j].children.length;k++)
-                {
-                  menu_data={
-                type:String(i+1)+","+(j+1)+","+(k+1),
-                name:menu[i].children[j].children[k].label,
-                id:menu[i].children[j].children[k].id
-                  }
-                  data.push(menu_data);
-                }
-              }
-            }
-          }
-        }
-        console.log(data);
-        let token=sessionStorage.getItem("token");
-        let params= {
-              titleOptionsInfo:data,
-              token:token
-            };
-            console.log(params)
-            let config = {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            };
-            axios
-                .post("/api" + "/titleOptions/update", params, config)
-                 .then((res) => {
-                          if(res.data.code==200)
-                          {
-                            this.$message({
-                                type: 'success',
-                                message: '修改成功!'
-                                });
-                            // this.Total_Menu_init();
-                            this.form={};
-                            this.Menu_init();
-                  
-                          }
-                          
-                          
-                    })
-                  .catch(() => {
-                 
-              });
-
-
-      },
-
-
-        
-
-
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-      //<=============================================指南===================================================>
-
-
-
-
-
-
-
-      //<=============================================标题内容===================================================>
-      //<=============================================标题内容===================================================>
-      //<=============================================标题内容===================================================>
-      //<=============================================标题内容===================================================>
-     title_contents_edit(){
-      let undef=this.form.undef;
-      let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
-      console.log(getCheckedNodes)
-      console.log(undef)
-      if(undef)
-      {
-        let params= {
-              toid:getCheckedNodes.id,
-              content:this.value,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/title/insert", params, config)
-                 .then((res) => {
-                  this.$message({
-                                type: 'success',
-                                message: '新建成功!'
-                                });
-                          this.value=""
-                          
-                          this.form={};
-
-                          
-                    })
-                  .catch(() => {
-                 
-              });
       }
-      else 
-      {
-        let params= {
-              id:this.form.id,
-              content:this.value,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/title/update", params, config)
-                 .then((res) => {
-                  console.log(res)
-                  this.$message({
-                                type: 'success',
-                                message: '修改成功!'
-                                });
-                          this.value=""
-                          this.form={};
-
-                          
-                    })
-                  .catch(() => {
-                 
-              });
-      }
-
-
-     },
-     title_tree_change()
-     {
-      this.value=""
-      let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
-      let id=getCheckedNodes.id;
-      let type=getCheckedNodes.value;
-       axios
-        .get("/api" + "/title/search",
-        {
-          params:{
-              id:id
-          }
-        }).then((res)=>{
-          console.log(res)
-          if(res.data.data.length==0)
-          {
-          this.value="";
-          this.form.change=!this.form.change;
-          this.form.undef=true;
-          console.log("form::")
-          console.log(this.form);
-          }
-          else
-          {
-          let data=res.data.data[0];
-          this.value=data.content;
-          this.form.change=!this.form.change;
-          this.form.id=data.id;
-          this.form.undef=false;
-          console.log(this.value);
-          }
-        // console.log(res.data.data[0].content)
-        //  this.content=res.data.data[0].content
-        }
-        );
-      console.log(getCheckedNodes)
-     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-      //<=============================================公告===================================================>
-      //<=============================================公告===================================================>
-      //<=============================================公告===================================================>
-      //<=============================================公告===================================================>
-      
-      Notice_init()
-      {
-        let string1;
-        let data;
-        let i=0;
-         axios
-        .get("/api" + "/notice/searchAll",
-        {
-          params:{
-              pageSize:10
-          }
-        })
-        .then((res) => {
-          console.log("通知公告")
-          console.log(res)
-          data=res.data.data;
-          for( i=0;i<data.length;i++)
-          {
-            var date = new Date(data[i].gmtCreate);
-              let Y = date.getFullYear() + "-";
-              let M =
-                (date.getMonth() + 1 < 10
-                  ? "0" + (date.getMonth() + 1)
-                  : date.getMonth() + 1) + "-";
-              let D = date.getDate() + " ";
-              data[i].gmtCreate = Y + M + D;
-          }
-          this.NoticeData=data
-          console.log("刷新成功")
-          console.log(this.NoticeData)
-       
-        })
-        .catch((err) => {
-       
-        });
-      },
-     
-      Create_Notice()
-      {
-        let params= {
-              title: this.form.title,
-              content:this.value,
-              author:this.form.name,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/notice/insert", params, config)
-                 .then((res) => {
-                                 this.$message({
-                                type: 'success',
-                                message: '添加成功!'
-                                });
-                                this.$refs.editor.$data.contentValue="";
-                                this.form={};
-                                this.Notice_init();
-                        })
-                  .catch(() => {
-                alert("添加失败");
-              });
-      },
-      //
-      Notice_update(i,e)
-      {
-        var that=this
-
-
-        if(i==0)
-        {
-        
-         axios
-        .get("/api" + "/notice/search",
-        {
-          params:{
-              id:e.row.id
-          }
-        }).then((res)=>{
-          let data=res.data.data[0];
-          this.form.id=data.id;
-          this.form.title=data.title;
-          this.value=data.content;
-          that.select(311)
-        }
-
-        );
-      
-        }
-        else if(i==1)
-        {
-         console.log(this.form.id)
-         let params= {
-              id:this.form.id,
-              title: this.form.title,
-              content:this.value,
-              author:this.form.name,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/notice/update", params, config)
-                 .then((res) => {
-                  this.$message({
-                                type: 'success',
-                                message: '修改成功!'
-                                });
-                          this.Notice_init();
-                          this.value=""
-                          
-                          this.form={};
-                          setTimeout(() => {
-                            this.select(31)
-                          }, 1000);
-                          
-                    })
-                  .catch(() => {
-                 
-              });
-        }
-        
-      },
-      Delete_Notice(e)
-      {
-        var that=this;
-         let params= {
-              id:e.row.id,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/notice/delete", params, config)
-                 .then((res) => {
-                        this.$message({
-                                type: 'success',
-                                message: '删除成功!'
-                                });
-                        this.NoticeData.splice(e.$index,1);
-                        this.itemKey = Math.random()
-                        })
-                  .catch(() => {
-                this.$message({
-                                type: 'success',
-                                message: '删除失败!'
-                                });
-                 console.log(err);
-              });
-      },
-      //<=============================================公告===================================================>
-      //<=============================================公告===================================================>
-      //<=============================================公告===================================================>
-      //<=============================================公告===================================================>
-
-       //<=============================================资源===================================================>
-      //<=============================================资源===================================================>
-      //<=============================================资源===================================================>
-      //<=============================================资源===================================================>
-      
-      Resource_init()
-      {
-        
-        let string1;
-        let data;
-        let i=0;
-         axios
-        .get("/api" + "/resource/searchAll",
-        {
-          params:{
-              pageSize:10
-          }
-        })
-        .then((res) => {
-          console.log("resource-init")
-          console.log(res)
-          data=res.data.data;
-          for( i=0;i<data.length;i++)
-          {
-            var date = new Date(data[i].gmtCreate);
-              let Y = date.getFullYear() + "-";
-              let M =
-                (date.getMonth() + 1 < 10
-                  ? "0" + (date.getMonth() + 1)
-                  : date.getMonth() + 1) + "-";
-              let D = date.getDate() + " ";
-              data[i].gmtCreate = Y + M + D;
-              
-            
-
-          }
-          this.ResourceData=data
-          console.log(this.ResourceData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      },
-      Create_Resource(){
-         let params= {
-              title: this.form.title,
-              content:this.value,
-              author:this.form.name,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-         axios
-          .post("/api" + "/resource/insert", params,config)
-          .then((res) => {
-            this.$message({
-                          type: 'success',
-                          message: '添加成功!'
-                          });
-            this.$refs.editor.$data.contentValue=""
-            this.form.title="";
-            this.form.name="";
-            this.Resource_init();
-          })
-          .catch((err) => {
-            console.log(err);
-            alert("添加失败");
-          });
-        
-      },
-      //
-      Delete_Resource(e)
-      {
-        axios
-          .post("/api" + "/resource/delete", null, {
-            params: {
-              id:e.row.id,
-              token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-            this.$message({
-                                type: 'success',
-                                message: '删除成功!'
-                                });
-           this.ResourceData.splice(e.$index,1);
-           this.itemKey = Math.random()
-
-      
-            //this.Notice_init()
-
-          })
-          .catch((err) => {
-            console.log(err);
-          
-            
-          });
-      },
-      
-      Resource_update(i,e)
-      {
-        var that=this
-        if(i==0)
-        {
-          axios
-        .get("/api" + "/resource/search",
-        {
-          params:{
-              id:e.row.id
-          }
-        }).then((res)=>{
-          let data=res.data.data[0];
-          this.form.id=data.id;
-          this.form.title=data.title;
-          this.value=data.content;
-          that.select(411)
-        })
-
-      
-        }
-        else if(i==1)
-        {
-          console.log("resource-update++++++")
-         let params= {
-              id:this.form.id,
-              title: this.form.title,
-              content:this.value,
-              author:this.form.name,
-              token:sessionStorage.getItem("token")
-            };
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/resource/update", params, config)
-                 .then((res) => {
-                          console.log(res)
-                          this.$message({
-                                type: 'success',
-                                message: '更新成功!'
-                                });
-                                this.form={};
-                          this.Resource_init()
-                          
-                          setTimeout(() => {
-                            this.select(41)
-                          }, 1000);
-                          
-                    })
-                  .catch(() => {
-                 
-              });
-        }
-
-
-
-      },
-      //<=============================================资源===================================================>
-      //<=============================================资源===================================================>
-      //<=============================================资源===================================================>
-      //<=============================================资源===================================================>
-      
-      //<=============================================活动报道===================================================>
-      //<=============================================活动报道===================================================>
-      //<=============================================活动报道===================================================>
-      //<=============================================活动报道===================================================>
-      
-   Activities_init()
-      {
-        let string1;
-        let data;
-        let i=0;
-         axios
-        .get("/api" + "/activity/searchAll",
-        {
-          params:{
-              pageSize:10
-          }
-        })
-        .then((res) => {
-
-          data=res.data.data;
-          for( i=0;i<data.length;i++)
-          {
-            var date = new Date(data[i].gmtCreate);
-              let Y = date.getFullYear() + "-";
-              let M =
-                (date.getMonth() + 1 < 10
-                  ? "0" + (date.getMonth() + 1)
-                  : date.getMonth() + 1) + "-";
-              let D = date.getDate() + " ";
-              data[i].gmtCreate = Y + M + D;
-            
-
-          }
-          this.ActivitiesData=data
-          console.log(this.ActivitiesData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      },
-    Create_Activities()
-    {
-      console.log(this.value);
-          let params={
-              title: this.form.title,
-              content:this.value,
-              author:this.form.name,
-              fileTmp:this.form.file,
-              summary:this.form.summary,
-              token:sessionStorage.getItem("token")
-            }
-        
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/activity/insert", params, config)
-                 .then((res) => {
-                  console.log(res)
-                          if(res.data.code==200)
-                          {
-                            this.$message({
-                          type: 'success',
-                          message: '添加成功!'
-                          });
-                          
-                          this.Activities_init();
-                          }
-                          else 
-                          {
-                            this.$message({
-                          type: 'error',
-                          message: '添加失败!'
-                          });
-                          }
-                          this.$refs.editor.$data.contentValue="";
-            
-                          this.form={}
-                          
-                          
-                          
-                    })
-                  .catch(() => {
-                 
-              });
-    },
-
-      Delete_Activities(e)
-      {
-        axios
-          .post("/api" + "/activity/delete", null, {
-            params: {
-              id:e.row.id,
-              token:sessionStorage.getItem("token")
-            },
-          })
-          .then((res) => {
-            this.$message({
-                                type: 'success',
-                                message: '删除成功!'
-                                });
-           this.ActivitiesData.splice(e.$index,1);
-          this.itemKey = Math.random()
-          })
-          .catch((err) => {
-            this.$message({
-                                type: 'success',
-                                message: '删除失败!'
-                                });
-            console.log(err);
-          
-            
-          });
-      },
-      Update_Activities(i,e)
-      {
-        console.log(e)
-        var that=this
-        if(i==0)
-        {
-          axios
-        .get("/api" + "/activity/search",
-        {
-          params:{
-              id:e.row.id
-          }
-        }).then((res)=>{
-          
-          let data=res.data.data[0];
-          console.log("data:",data)
-          this.form.id=data.id;
-          this.form.title=data.title;
-          this.form.summary=data.summary;
-          this.value=data.content;
-          that.select(511)
-        })
-
-        }
-        else if(i==1)
-        {
-            let params={
-              title: this.form.title,
-              content:this.value,
-              author:this.form.name,
-              fileTmp:this.form.file,
-              summary:this.form.summary,
-              token:sessionStorage.getItem("token")
-            }
-        
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            axios
-                .post("/api" + "/activity/update", params, config)
-                 .then((res) => {
-                  console.log(res)
-                  
-                          if(res.data.code==200)
-                          {
-                            this.$message({
-                            type: 'success',
-                            message: '修改成功!'
-                            });
-                            this.Activities_init();
-                          }
-                          else 
-                          {
-                            this.$message({
-                            type: 'error',
-                            message: '修改失败!'
-                            });
-                          }
-                          this.$refs.editor.$data.contentValue="";
-                          this.form={}   
-                    })
-                  .catch(() => {
-                 
-              });
-        }
-         
-      },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      //<=============================================活动报道===================================================>
-      //<=============================================活动报道===================================================>
-      //<=============================================活动报道===================================================>
-      //<=============================================活动报道===================================================>
-      
-    },
-    mounted:function ()
-    {
-      this.Menu_init();
-
-      this.Resource_init();
-      this.Notice_init();
-      this.User_init();
-      this.Activities_init();
-    },
+      title_options = menu_test;
+    })
+    .catch((err) => { });
 }
 
+const addmenu = () => {
+  if (menu == undefined || menu == "") {
+    return;
+  }
+  let newmenu = {
+    label: menu,
+    children: []
+  }
+  title_options.push(newmenu);
+}
+
+const savemenu = () => {
+  let data = [];
+  let menu = title_options;
+  let length = title_options.length;
+  let type = "";
+  for (let i = 0; i < length; i++) {
+    type = String(i + 1);
+    let menu_data = {
+      type: type,
+      name: menu[i].label,
+      id: menu[i].id
+    }
+    data.push(menu_data);
+    if (menu[i].children.length) {
+      for (let j = 0; j < menu[i].children.length; j++) {
+        type = String(i + 1) + "," + (j + 1);
+        menu_data = {
+          type: type,
+          name: menu[i].children[j].label,
+          id: menu[i].children[j].id
+        }
+        data.push(menu_data);
+        if (menu[i].children[j].children.length) {
+          for (let k = 0; k < menu[i].children[j].children.length; k++) {
+            menu_data = {
+              type: String(i + 1) + "," + (j + 1) + "," + (k + 1),
+              name: menu[i].children[j].children[k].label,
+              id: menu[i].children[j].children[k].id
+            }
+            data.push(menu_data);
+          }
+        }
+      }
+    }
+  }
+  let token = sessionStorage.getItem("token");
+  let params = {
+    titleOptionsInfo: data,
+    token: token
+  };
+  let config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  axios
+    .post("/api" + "/titleOptions/update", params, config)
+    .then((res) => {
+      if (res.data.code == 200) {
+        // this.$message({
+        //   type: 'success',
+        //   message: '修改成功!'
+        // });
+        form = {};
+        Menu_init();
+      }
+    })
+    .catch(() => { });
+}
+
+const title_contents_edit = () => {
+  // let undef = form['undef']
+  // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+  // if (undef) {
+  //   let params = {
+  //     toid: getCheckedNodes.id,
+  //     content: value,
+  //     token: sessionStorage.getItem("token")
+  //   };
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   axios
+  //     .post("/api" + "/title/insert", params, config)
+  //     .then((res) => {
+  //       this.$message({
+  //         type: 'success',
+  //         message: '新建成功!'
+  //       });
+  //       value = ""
+  //       form = {};
+  //     })
+  //     .catch(() => {});
+  // }
+  // else {
+  //   let params = {
+  //     id: form['id'],
+  //     content: value,
+  //     token: sessionStorage.getItem("token")
+  //   };
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   axios
+  //     .post("/api" + "/title/update", params, config)
+  //     .then((res) => {
+  //       this.$message({
+  //         type: 'success',
+  //         message: '修改成功!'
+  //       });
+  //       value = ""
+  //       form = {};
+  //     })
+  //     .catch(() => {});
+  // }
+}
+
+const title_tree_change = () => {
+  // value = ""
+  // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+  // let id = getCheckedNodes.id;
+  // let type = getCheckedNodes.value;
+  // axios
+  //   .get("/api" + "/title/search",
+  //     {
+  //       params: {
+  //         id: id
+  //       }
+  //     }).then((res) => {
+  //       if (res.data.data.length == 0) {
+  //         value = "";
+  //         form['change'] = !form['change'];
+  //         form['undef'] = true;
+  //       }
+  //       else {
+  //         let data = res.data.data[0];
+  //         value = data.content;
+  //         form['change'] = !form['change'];
+  //         form['id'] = data.id;
+  //         form['undef'] = false;
+  //       }
+  //     }
+  //   )
+}
+
+const Notice_init = () => {
+  let data;
+  let i = 0;
+  axios
+    .get("/api" + "/notice/searchAll",
+      {
+        params: {
+          pageSize: 10
+        }
+      })
+    .then((res) => {
+      data = res.data.data;
+      for (i = 0; i < data.length; i++) {
+        let date = new Date(data[i].gmtCreate);
+        let Y = date.getFullYear() + "-";
+        let M =
+          (date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1) + "-";
+        let D = date.getDate() + " ";
+        data[i].gmtCreate = Y + M + D;
+      }
+      NoticeData = data
+    })
+    .catch((err) => { });
+}
+
+const Create_Notice = () => {
+  // let params = {
+  //   title: form['title'],
+  //   content: value,
+  //   author: form['name'],
+  //   token: sessionStorage.getItem("token")
+  // };
+  // let config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  // axios
+  //   .post("/api" + "/notice/insert", params, config)
+  //   .then((res) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '添加成功!'
+  //     });
+  //     this.$refs.editor.$data.contentValue = "";
+  //     form = {};
+  //     Notice_init();
+  //   })
+  //   .catch(() => {
+  //     alert("添加失败");
+  //   });
+}
+
+const Notice_update = (i, e) => {
+  // let that = this
+  // if (i == 0) {
+  //   axios
+  //     .get("/api" + "/notice/search",
+  //       {
+  //         params: {
+  //           id: e.row.id
+  //         }
+  //       }).then((res) => {
+  //         let data = res.data.data[0];
+  //         form['id'] = data.id;
+  //         form['title'] = data.title;
+  //         value = data.content;
+  //         that.select(311)
+  //       });
+  // }
+  // else if (i == 1) {
+  //   let params = {
+  //     id: form['id'],
+  //     title: form['title'],
+  //     content: value,
+  //     author: form['name'],
+  //     token: sessionStorage.getItem("token")
+  //   };
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   axios
+  //     .post("/api" + "/notice/update", params, config)
+  //     .then((res) => {
+  //       this.$message({
+  //         type: 'success',
+  //         message: '修改成功!'
+  //       });
+  //       Notice_init();
+  //       value = ""
+  //       form = {};
+  //       setTimeout(() => {
+  //         select(31)
+  //       }, 1000);
+  //     })
+  //     .catch(() => {});
+  // }
+}
+
+const Delete_Notice = (e) => {
+  // let that = this;
+  // let params = {
+  //   id: e.row.id,
+  //   token: sessionStorage.getItem("token")
+  // };
+  // let config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  // axios
+  //   .post("/api" + "/notice/delete", params, config)
+  //   .then((res) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //     NoticeData.splice(e.$index, 1);
+  //     itemKey = Math.random()
+  //   })
+  //   .catch(() => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除失败!'
+  //     });
+  //   });
+}
+
+const Resource_init = () => {
+  let string1;
+  let data;
+  let i = 0;
+  axios
+    .get("/api" + "/resource/searchAll",
+      {
+        params: {
+          pageSize: 10
+        }
+      })
+    .then((res) => {
+      data = res.data.data;
+      for (i = 0; i < data.length; i++) {
+        let date = new Date(data[i].gmtCreate);
+        let Y = date.getFullYear() + "-";
+        let M =
+          (date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1) + "-";
+        let D = date.getDate() + " ";
+        data[i].gmtCreate = Y + M + D;
+      }
+      ResourceData = data
+    })
+    .catch((err) => {
+    });
+}
+
+const Create_Resource = () => {
+  // let params = {
+  //   title: form['title'],
+  //   content: value,
+  //   author: form['name'],
+  //   token: sessionStorage.getItem("token")
+  // };
+  // let config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  // axios
+  //   .post("/api" + "/resource/insert", params, config)
+  //   .then((res) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '添加成功!'
+  //     });
+  //     this.$refs.editor.$data.contentValue = ""
+  //     form['title'] = "";
+  //     form['name'] = "";
+  //     Resource_init();
+  //   })
+  //   .catch((err) => {
+  //     alert("添加失败");
+  //   })
+}
+
+const Delete_Resource = (e) => {
+  // axios
+  //   .post("/api" + "/resource/delete", null, {
+  //     params: {
+  //       id: e.row.id,
+  //       token: sessionStorage.getItem("token")
+  //     },
+  //   })
+  //   .then((res) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //     ResourceData.splice(e.$index, 1);
+  //     itemKey = Math.random()
+  //   })
+  //   .catch((err) => {});
+}
+
+const Resource_update = (i, e) => {
+  // let that = this
+  // if (i == 0) {
+  //   axios
+  //     .get("/api" + "/resource/search",
+  //       {
+  //         params: {
+  //           id: e.row.id
+  //         }
+  //       }).then((res) => {
+  //         let data = res.data.data[0];
+  //         form['id'] = data.id;
+  //         form['title'] = data.title;
+  //         value = data.content;
+  //         that.select(411)
+  //       })
+  // }
+  // else if (i == 1) {
+  //   let params = {
+  //     id: form['id'],
+  //     title: form['title'],
+  //     content: value,
+  //     author: form['name'],
+  //     token: sessionStorage.getItem("token")
+  //   };
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   axios
+  //     .post("/api" + "/resource/update", params, config)
+  //     .then((res) => {
+  //       this.$message({
+  //         type: 'success',
+  //         message: '更新成功!'
+  //       });
+  //       form = {};
+  //       Resource_init()
+  //       setTimeout(() => {
+  //         select(41)
+  //       }, 1000);
+  //     })
+  //     .catch(() => {});
+  // }
+}
+
+const Activities_init = () => {
+  let string1;
+  let data;
+  let i = 0;
+  axios
+    .get("/api" + "/activity/searchAll",
+      {
+        params: {
+          pageSize: 10
+        }
+      })
+    .then((res) => {
+      data = res.data.data;
+      for (i = 0; i < data.length; i++) {
+        let date = new Date(data[i].gmtCreate);
+        let Y = date.getFullYear() + "-";
+        let M =
+          (date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1) + "-";
+        let D = date.getDate() + " ";
+        data[i].gmtCreate = Y + M + D;
+      }
+      ActivitiesData = data
+    })
+    .catch((err) => {
+    });
+}
+
+const Create_Activities = () => {
+  // let params = {
+  //   title: form['title'],
+  //   content: value,
+  //   author: form['name'],
+  //   fileTmp: form['file'],
+  //   summary: form['summary'],
+  //   token: sessionStorage.getItem("token")
+  // }
+  // let config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  // axios
+  //   .post("/api" + "/activity/insert", params, config)
+  //   .then((res) => {
+  //     if (res.data.code == 200) {
+  //       this.$message({
+  //         type: 'success',
+  //         message: '添加成功!'
+  //       });
+  //       Activities_init();
+  //     }
+  //     else {
+  //       this.$message({
+  //         type: 'error',
+  //         message: '添加失败!'
+  //       });
+  //     }
+  //     this.$refs.editor.$data.contentValue = "";
+  //     form = {}
+  //   })
+  //   .catch(() => {
+  //   });
+}
+
+const Delete_Activities = (e) => {
+  // axios
+  //   .post("/api" + "/activity/delete", null, {
+  //     params: {
+  //       id: e.row.id,
+  //       token: sessionStorage.getItem("token")
+  //     },
+  //   })
+  //   .then((res) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除成功!'
+  //     });
+  //     ActivitiesData.splice(e.$index, 1);
+  //     itemKey = Math.random()
+  //   })
+  //   .catch((err) => {
+  //     this.$message({
+  //       type: 'success',
+  //       message: '删除失败!'
+  //     });
+  //   });
+}
+
+const Update_Activities = (i, e) => {
+  // let that = this
+  // if (i == 0) {
+  //   axios
+  //     .get("/api" + "/activity/search",
+  //       {
+  //         params: {
+  //           id: e.row.id
+  //         }
+  //       }).then((res) => {
+  //         let data = res.data.data[0];
+  //         form['id'] = data.id;
+  //         form['title'] = data.title;
+  //         form['summary'] = data.summary;
+  //         value = data.content;
+  //         that.select(511)
+  //       })
+  // }
+  // else if (i == 1) {
+  //   let params = {
+  //     title: form['title'],
+  //     content: value,
+  //     author: form['name'],
+  //     fileTmp: form['file'],
+  //     summary: form['summary'],
+  //     token: sessionStorage.getItem("token")
+  //   }
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   };
+  //   axios
+  //     .post("/api" + "/activity/update", params, config)
+  //     .then((res) => {
+  //       if (res.data.code == 200) {
+  //         this.$message({
+  //           type: 'success',
+  //           message: '修改成功!'
+  //         });
+  //         Activities_init();
+  //       }
+  //       else {
+  //         this.$message({
+  //           type: 'error',
+  //           message: '修改失败!'
+  //         });
+  //       }
+  //       this.$refs.editor.$data.contentValue = "";
+  //       form = {}
+  //     })
+  //     .catch(() => {
+  //     });
+  // }
+}
 
 </script>
 
@@ -2653,11 +1484,11 @@ export default {
   cursor: pointer;
   position: relative;
   /* overflow: hidden; */
-  transition: var(--el-transition-duration-fast);
+  transition: let(--el-transition-duration-fast);
 }
 
 .avatar-uploader .el-upload:hover {
-  border-color: var(--el-color-primary);
+  border-color: let(--el-color-primary);
 }
 
 .el-icon.avatar-uploader-icon {
@@ -3205,9 +2036,7 @@ export default {
   font-size: 30px;
 }
 
-:deep(.el-tree--highlight-current
-    .el-tree-node.is-current
-    > .el-tree-node__content) {
+:deep(.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content) {
   background-color: #8bcdff;
   border-radius: 20px;
 }
