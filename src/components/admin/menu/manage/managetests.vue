@@ -56,6 +56,8 @@
 </template>
 <script setup>
 
+//axios
+let axios = require("axios")
 
 let menu
 let title_options = []

@@ -20,6 +20,8 @@
 import TEditor from '@/components/TEditor.vue'
 let from={}
 
+//axios
+let axios = require("axios")
 
 
 const select = () => {

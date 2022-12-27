@@ -24,6 +24,9 @@
 let ResourceData = []
 
 
+//axios
+let axios = require("axios")
+
 const Resource_update = (i, e) => {
     // let that = this
     // if (i == 0) {

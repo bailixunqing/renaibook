@@ -31,6 +31,8 @@
 <script setup>
 
 
+//axios
+let axios = require("axios")
 
 const allowDrag = (draggingNode) => {
   return draggingNode.data.label.indexOf('三级 3-2-2') === -1;

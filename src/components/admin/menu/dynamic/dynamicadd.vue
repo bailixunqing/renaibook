@@ -21,8 +21,8 @@ const form={
     'title':'',
     'name':''
 }
-
-
+//axios
+let axios = require("axios")
 const Create_Resource = () => {
   // let params = {
   //   title: form['title'],
@@ -81,5 +81,24 @@ const Resource_init = () => {
 }
 </script>
 <style>
-
+.TAG_right_buttom {
+  margin-top: 2px;
+  margin-right: 27px;
+  text-align: right;
+}
+.TAG_main_write {
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
+.TAG_right_back {
+  padding-top: 20px !important;
+  width: 8%;
+  padding-bottom: 20px !important;
+  background-color: #c4c4c4 !important;
+}
+.TAG_right_on {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  width: 14%;
+}
 </style>

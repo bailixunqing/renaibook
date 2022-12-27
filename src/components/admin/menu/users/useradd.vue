@@ -25,6 +25,8 @@
 </template>
 <script setup>
 
+//axios
+let axios = require("axios")
 
 const User_Create = () => {
   axios

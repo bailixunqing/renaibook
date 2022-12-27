@@ -24,6 +24,9 @@
 
 
 import TEditor from '@/components/TEditor.vue'
+
+//axios
+let axios = require("axios")
 const title_tree_change = () => {
   // value = ""
   // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;

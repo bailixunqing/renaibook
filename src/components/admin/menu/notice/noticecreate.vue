@@ -19,6 +19,8 @@
 <script setup>
 import TEditor from '@/components/TEditor.vue'
 
+//axios
+let axios = require("axios")
 
 
 

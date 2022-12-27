@@ -11,11 +11,7 @@
     </div>
 </template>
 <script setup>
-const from = {
-    'account':'',
-    'passwrod':''
-}
-
+const from = {}
 </script>
 <style>
 .TAG_right_buttom {
