@@ -1,9 +1,9 @@
 <template>
     <el-form-item label="标题">
-        <el-input v-model="form['title']"></el-input>
+        <el-input v-model="title"></el-input>
     </el-form-item>
     <el-form-item label="作者">
-        <el-input v-model="form['name']"></el-input>
+        <el-input v-model="name"></el-input>
     </el-form-item>
     <div style="color: black; font-size: large; font-weight: bold">
         编辑内容
@@ -18,38 +18,39 @@
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
-
-//axios
-let axios = require("axios")
-
-
+import {ref} from 'vue'
+const title=ref('')
+const name=ref('')
+const value=ref('')
+const content_value_change=ref('')
+const axios = require("axios")
 
 const Create_Notice = () => {
-  // let params = {
-  //   title: form['title'],
-  //   content: value,
-  //   author: form['name'],
-  //   token: sessionStorage.getItem("token")
-  // };
-  // let config = {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
-  // axios
-  //   .post("/api" + "/notice/insert", params, config)
-  //   .then((res) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '添加成功!'
-  //     });
-  //     this.$refs.editor.$data.contentValue = "";
-  //     form = {};
-  //     Notice_init();
-  //   })
-  //   .catch(() => {
-  //     alert("添加失败");
-  //   });
+  let params = {
+    title: title,
+    content: value,
+    author: name,
+    token: sessionStorage.getItem("token")
+  }
+  let config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    }
+  }
+  axios
+    .post("/api" + "/notice/insert", params, config)
+    .then((res) => {
+      // this.$message({
+      //   type: 'success',
+      //   message: '添加成功!'
+      // });
+      // this.$refs.editor.$data.contentValue = "";
+      form = {};
+      Notice_init();
+    })
+    .catch(() => {
+      alert("添加失败");
+    });
 }
 const Notice_init = () => {
   let data;

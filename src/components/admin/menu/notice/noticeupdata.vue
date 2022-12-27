@@ -1,15 +1,15 @@
 <template>
     <el-form-item label="标题">
-        <el-input v-model="form['title']"></el-input>
+        <el-input v-model="title"></el-input>
     </el-form-item>
     <el-form-item label="作者">
-        <el-input v-model="form['name']"></el-input>
+        <el-input v-model="name"></el-input>
     </el-form-item>
     <div style="color: black; font-size: large; font-weight: bold">
         编辑内容
     </div>
     <div class="TAG_main_write">
-        <TEditor class="teditoy" @input="content_value_change" v-model="value" :value="value" />
+        <TEditor class="teditoy" @input="value_change" v-model="value" :value="value" />
     </div>
     <div class="TAG_right_buttom">
         <el-button type="success" round class="TAG_right_back" @click="select(31)">返回</el-button>
@@ -18,61 +18,62 @@
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
-let from={}
-
-//axios
-let axios = require("axios")
-
-
+import { ref } from 'vue'
+const title = ref('')
+const name = ref('')
+const value = ref('')
+const value_change = ref('')
+const axios = require("axios")
 const select = () => {
-
+    return
 }
 const Notice_update = (i, e) => {
-    // let that = this
-    // if (i == 0) {
-    //   axios
-    //     .get("/api" + "/notice/search",
-    //       {
-    //         params: {
-    //           id: e.row.id
-    //         }
-    //       }).then((res) => {
-    //         let data = res.data.data[0];
-    //         form['id'] = data.id;
-    //         form['title'] = data.title;
-    //         value = data.content;
-    //         that.select(311)
-    //       });
-    // }
-    // else if (i == 1) {
-    //   let params = {
-    //     id: form['id'],
-    //     title: form['title'],
-    //     content: value,
-    //     author: form['name'],
-    //     token: sessionStorage.getItem("token")
-    //   };
-    //   let config = {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   };
-    //   axios
-    //     .post("/api" + "/notice/update", params, config)
-    //     .then((res) => {
-    //       this.$message({
-    //         type: 'success',
-    //         message: '修改成功!'
-    //       });
-    //       Notice_init();
-    //       value = ""
-    //       form = {};
-    //       setTimeout(() => {
-    //         select(31)
-    //       }, 1000);
-    //     })
-    //     .catch(() => {});
-    // }
+    let that = this
+    if (i == 0) {
+        axios
+            .get("/api" + "/notice/search",
+                {
+                    params: {
+                        id: e.row.id
+                    }
+                }).then((res) => {
+                    //         let data = res.data.data[0];
+                    //         form['id'] = data.id;
+                    //         form['title'] = data.title;
+                    //         value = data.content;
+                    //         that.select(311)
+                });
+    }
+    else if (i == 1) {
+        //   let params = {
+        //     id: form['id'],
+        //     title: form['title'],
+        //     content: value,
+        //     author: form['name'],
+        //     token: sessionStorage.getItem("token")
+        //   };
+        //   let config = {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data",
+        //     },
+        //   };
+        //   axios
+        //     .post("/api" + "/notice/update", params, config)
+        //     .then((res) => {
+        //       this.$message({
+        //         type: 'success',
+        //         message: '修改成功!'
+        //       });
+        //       Notice_init();
+        //       value = ""
+        //       form = {};
+        //       setTimeout(() => {
+        //         select(31)
+        //       }, 1000);
+        //     })
+        //     .catch(() => {});
+    }
+    return
 }
 </script>
 <style>

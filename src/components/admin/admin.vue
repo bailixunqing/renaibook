@@ -8,7 +8,7 @@
             <el-collapse v-model="activeName" accordion class="TAG_left_1">
               <el-collapse-item title="超级管理" name="1">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select('usermanagement')">用户管理
+                  <el-button type="primary" round class="TAG_left_button" @click="select('usermanage')">用户管理
                   </el-button>
                   <el-button type="primary" round class="TAG_left_button" @click="select('useradd')">添加用户</el-button>
                 </el-row>
@@ -66,12 +66,12 @@
             <el-divider></el-divider>
             <AdminUpdata />
           </div>
-          <div class="TAG_rght_2" v-if="show('usermanagement')">
+          <div class="TAG_rght_2" v-if="show('usermanage')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户管理</div>
             </div>
             <el-divider></el-divider>
-            <UserManagement />
+            <UserManage />
           </div>
           <div class="TAG_rght_2" v-if="show('useredit')">
             <div class="TAG_right_admin">
@@ -204,7 +204,7 @@ import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
 import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
 
-import UserManagement from '@/components/admin/menu/users/usermanagement.vue'
+import UserManage from '@/components/admin/menu/users/usermanage.vue'
 import UserEdit from '@/components/admin/menu/users/useredit.vue'
 import UserAdd from '@/components/admin/menu/users/useradd.vue'
 
@@ -215,6 +215,7 @@ import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
 import NoticeManage from '@/components/admin/menu/notice/noticemanage.vue'
 import NoticeUpdata from '@/components/admin/menu/notice/noticeupdata.vue'
 import NoticeCreate from '@/components/admin/menu/notice/noticecreate.vue'
+
 import DynamicManage from '@/components/admin/menu/dynamic/dynamicmanage.vue'
 import DynamicUpdata from '@/components/admin/menu/dynamic/dynamicupdata.vue'
 import DynamicAdd from '@/components/admin/menu/dynamic/dynamicadd.vue'
@@ -226,7 +227,7 @@ import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
 import { ref } from 'vue'
 //vue-menu控制
-const current = ref('useradd')
+const current = ref('usermanage')
 //vue-menu选择器
 const select = (i) => {
   current.value = i;

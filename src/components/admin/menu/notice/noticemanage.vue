@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-form-item label="标题">
-            <el-input v-model="form['uers_name']" placeholder="请输入关键字"></el-input>
+            <el-input v-model="uers_name" placeholder="请输入关键字"></el-input>
         </el-form-item>
     </el-row>
     <div class="TAG_right_admin_table">
@@ -10,7 +10,7 @@
             <el-table-column prop="title" label="标题"></el-table-column>
             <el-table-column prop="author" label="作者"></el-table-column>
             <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
-            <el-table-column prop="user_operation" label="操作">
+            <el-table-column label="操作">
                 <template #default="scope">
                     {{ scope.row.date }}
                     <el-button class="button_on" type="success" round @click="Notice_update(0, scope)">修改</el-button>
@@ -22,8 +22,22 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+const uers_name = ref('')
+const itemKey = ref('')
+const NoticeData = ref([
+    {
+        "title": "不会写标题",
+        "author": "鲁迅",
+        "gmtCreate": "2022-12-27"
+    }
+])
+const Notice_update = () => {
 
-let NoticeData = []
+}
+const delete_total = () => {
+
+}
 </script>
 <style>
 .TAG_right_admin_table {
