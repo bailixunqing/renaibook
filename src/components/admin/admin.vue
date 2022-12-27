@@ -59,7 +59,6 @@
             </el-collapse>
           </div>
         </div>
-
         <div class="TAG_right">
           <div class="TAG_rght_2" v-if="show('AdminUpdata')">
             <div class="TAG_right_admin">
@@ -68,7 +67,6 @@
             <el-divider></el-divider>
             <AdminUpdata />
           </div>
-
           <div class="TAG_rght_2" v-if="show('UserManagement')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户管理</div>
@@ -76,7 +74,6 @@
             <el-divider></el-divider>
             <UserManagement />
           </div>
-
           <div class="TAG_rght_2" v-if="show(111)">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">用户编辑</div>
@@ -88,137 +85,111 @@
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">添加用户</div>
             </div>
-
             <el-divider></el-divider>
             <UserAdd />
           </div>
           <div class="TAG_rght_2" v-if="show('ManageTests')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">管理测试</div>
             </div>
             <el-divider></el-divider>
             <ManageTests />
           </div>
           <div class="TAG_rght_2" v-if="show('ManageMenu')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">目录管理</div>
             </div>
-
             <el-divider></el-divider>
             <ManageMenu />
           </div>
-
           <div class="TAG_rght_2" v-if="show('ManageCreate')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">发布文章</div>
             </div>
-
             <el-divider></el-divider>
             <ManageCreate />
           </div>
-
           <div class="TAG_rght_2" v-if="show('NoticeManage')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">公告管理</div>
             </div>
-
             <el-divider></el-divider>
             <NoticeManage />
           </div>
-
-          <div class="TAG_rght_2" v-if="show(311)">
+          <div class="TAG_rght_2" v-if="show('311')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">公告修改</div>
             </div>
-
             <el-divider></el-divider>
             <NoticeUpdata />
           </div>
-
           <div class="TAG_rght_2" v-if="show('NoticeCreate')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">新建公告</div>
             </div>
-
             <el-divider></el-divider>
             <NoticeCreate />
           </div>
-
           <div class="TAG_rght_2" v-if="show('DynamicManage')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">动态管理</div>
             </div>
-
             <el-divider></el-divider>
             <DynamicManage />
           </div>
-
-          <div class="TAG_rght_2" v-if="show(411)">
+          <div class="TAG_rght_2" v-if="show('411')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">动态修改</div>
             </div>
             <el-divider></el-divider>
             <DynamicUpdata />
           </div>
-
           <div class="TAG_rght_2" v-if="show('DynamicAdd')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">动态添加</div>
             </div>
             <el-divider></el-divider>
             <DynamicAdd />
           </div>
-
           <div class="TAG_rght_2" v-if="show('ReportManage')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道管理</div>
             </div>
-
             <el-divider></el-divider>
             <ReportManage />
           </div>
-
-          <div class="TAG_rght_2" v-if="show(511)">
+          <div class="TAG_rght_2" v-if="show('511')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">报道修改</div>
             </div>
-
             <el-divider></el-divider>
             <ReportUpdata />
           </div>
-
           <div class="TAG_rght_2" v-if="show('ReportCreate')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">新建报道</div>
             </div>
-
             <el-divider></el-divider>
             <ReportCreate />
           </div>
-
           <div class="TAG_rght_2" v-if="show('DatabaseChinese')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">中文数据库</div>
             </div>
-
             <el-divider></el-divider>
             <DatabaseChinese />
           </div>
-
           <div class="TAG_rght_2" v-if="show('DatabaseLanguage')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">外文数据库</div>
             </div>
-
             <el-divider></el-divider>
             <DatabaseLanguage />
           </div>
-
           <div class="TAG_rght_2" v-if="show('DatabaseProbation')">
             <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">报道管理</div>
+              <div class="TAG_right_admin_left">试用数据库</div>
             </div>
-
             <el-divider></el-divider>
             <DatabaseProbation />
           </div>
@@ -233,29 +204,22 @@
 <script setup>
 import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
-
 import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
-
 import UserManagement from '@/components/admin/menu/users/usermanagement.vue'
 import UserEdit from '@/components/admin/menu/users/useredit.vue'
 import UserAdd from '@/components/admin/menu/users/useradd.vue'
-
 import ManageTests from '@/components/admin/menu/manage/managetests.vue'
 import ManageMenu from '@/components/admin/menu/manage/managemenu.vue'
 import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
-
 import NoticeManage from '@/components/admin/menu/notice/noticemanage.vue'
 import NoticeUpdata from '@/components/admin/menu/notice/noticeupdata.vue'
 import NoticeCreate from '@/components/admin/menu/notice/noticecreate.vue'
-
 import DynamicManage from '@/components/admin/menu/dynamic/dynamicmanage.vue'
 import DynamicUpdata from '@/components/admin/menu/dynamic/dynamicupdata.vue'
 import DynamicAdd from '@/components/admin/menu/dynamic/dynamicadd.vue'
-
 import ReportManage from '@/components/admin/menu/report/reportmanage.vue'
 import ReportUpdata from '@/components/admin/menu/report/reportupdata.vue'
 import ReportCreate from '@/components/admin/menu/report/reportcreate.vue'
-
 import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vue'
 import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
@@ -284,30 +248,16 @@ const select = (i) => {
   }
   current = i;
 }
-
-
-
-let User_Form = {
-  idCard: "",
-  username: "",
-  password: "",
-  userPres: [0, 0, 0, 0, 0, 0, 0, 0]
-}
-let activeName = '1'
-
-
-
-
-
-let count = 3
-let form = {}
-let value = "sadasdasdasd"
 //超级管理
+let activeName = '1'
+let form = {}
+let value = "123"
 const clear = () => {
   form = {};
   value = ""
 }
 
+let count = 3
 //???
 const load = () => {
   count += 2
@@ -317,14 +267,12 @@ const handleChange = (e, i) => { }
 //???
 const handleRemove = (file, fileList) => { }
 //???
-
 let dialogImageUrl = ''
 let dialogVisible = false
 const handlePictureCardPreview = (file) => {
   dialogImageUrl = file.url;
   dialogVisible = true;
 }
-
 let UserData = []
 //???
 const User_init = () => {
@@ -339,13 +287,17 @@ const User_init = () => {
     })
     .catch((err) => { });
 }
-
+let User_Form = {
+  idCard: "",
+  username: "",
+  password: "",
+  userPres: [0, 0, 0, 0, 0, 0, 0, 0]
+}
 //???
 const pres = (i) => {
   User_Form.userPres[i] = Number(!User_Form.userPres[i]);
   console.log(User_Form.userPres);
 }
-
 </script>
 
 <style>
