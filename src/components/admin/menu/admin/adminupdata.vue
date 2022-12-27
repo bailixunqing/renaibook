@@ -1,8 +1,8 @@
 <template>
-    <el-form-item label="旧密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+    <el-form-item label="旧密码">
         <el-input></el-input>
     </el-form-item>
-    <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+    <el-form-item label="密码">
         <el-input></el-input>
     </el-form-item>
     <div class="TAG_right_buttom">

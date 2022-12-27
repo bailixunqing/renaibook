@@ -223,17 +223,18 @@ import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vu
 import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
 //vue-menu控制
-let current = 'letUserManagement'
+let current = 'UserManagement'
+//vue-menu选择器
+const select = (i) => {
+  console.log(current)
+  current = i;
+}
 //vue-menu组件显示
 const show = (i) => {
   if (current == i) {
     return true;
   }
   return false;
-}
-//vue-menu选择器
-const select = (i) => {
-  current = i;
 }
 //管理员更新密码
 const AdminUpdataPasswrod = (i) => {

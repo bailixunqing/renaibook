@@ -8,7 +8,7 @@
       <el-dropdown style="display:block;cursor: pointer;">
         <span class="el-dropdown-link">
           欢迎超级用户
-          <el-icon class="el-icon--right">
+          <el-icon >
             <arrow-down style="color: white" />
           </el-icon>
         </span>
