@@ -24,6 +24,8 @@
     </div>
 </template>
 <script setup>
+
+
 const User_Create = () => {
   axios
     .post("/api" + "/user/insert", null, {

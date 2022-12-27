@@ -18,6 +18,8 @@
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
+
+
 const Resource_update=()=>{
   
 }

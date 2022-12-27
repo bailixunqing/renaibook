@@ -263,144 +263,21 @@ import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
 //axios
 let axios = require("axios")
-
-//menu控制
+//vue-menu控制
 let current = 'letUserManagement'
-
 //管理员更新密码
 const AdminUpdataPasswrod = (i) => {
   current = i;
   show(i);
 }
-//vue组件显示
+//vue-menu组件显示
 const show = (i) => {
   if (current == i) {
     return true;
   }
   return false;
 }
-
-
-
-let id = 1000
-
-let User_Form = {
-  idCard: "",
-  username: "",
-  password: "",
-  userPres: [0, 0, 0, 0, 0, 0, 0, 0]
-}
-let activeName = '1'
-let imageUrl = ''
-let value = "sadasdasdasd"
-let form = {}
-let update_form = {}
-let author_title
-let dialogImageUrl = ''
-let dialogVisible = false
-let UserData = []
-let NoticeData = []
-let ResourceData = []
-let ActivitiesData = []
-let title = []
-let itemKey = 0
-let menu
-let title_options = []
-let filterText: ''
-let count: 3
-let value_1: ""
-let textarea: ""
-let search: ''
-let title_1: ""
-let title_2: ""
-let title_3: ""
-let input: ""
-let checkList: []
-const updatamune = (node, data) => {
-  const parent = node.parent;
-  const children = parent.data.children || parent.data;
-  const index = children.findIndex((item) => item.id === data.id);
-  children[index].label = ''
-}
-const remove = (node, data) => {
-  const parent = node.parent
-  const children = parent.data.children || parent.data
-  const index = children.findIndex(d => d.id === data.id)
-  let delete_nodes = []
-  let delete_title = []
-  children.splice(index, 1)
-  const get_leaf = (obj) => {
-    if (obj.children.length == 0) {
-      delete_nodes.push(obj.id)
-      delete_title.push(obj.id)
-      return 1
-    }
-    else {
-      delete_nodes.push(obj.id);
-      for (let i = 0; i < obj.children.length; i++) {
-        get_leaf(obj.children[i])
-      }
-    }
-  }
-  get_leaf(data)
-  let token = sessionStorage.getItem("token")
-  let params = {
-    id: delete_nodes,
-    token: token
-  }
-  let config = { headers: { "Content-Type": "application/json" } }
-  axios
-    .post("/api" + "/titleOptions/delete", params, config)
-    .then((res) => {
-      if (res.data.code == 200) {
-        // this.$message({
-        //   type: 'success',
-        //   message: '标题删除成功!'
-        // });
-      }
-    })
-    .catch(() => { });
-}
-const filterNode = (value, data) => {
-  if (!value) return true;
-  return data.label.indexOf(value) !== -1;
-}
-const allowDrop = (draggingNode, dropNode, type) => {
-  if (dropNode.data.label === '二级 3-1') {
-    return type !== 'inner';
-  } else {
-    return true;
-  }
-}
-const allowDrag = (draggingNode) => {
-  return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
-}
-const load = () => {
-  count += 2
-}
-const handleChange = (e, i) => { }
-
-
-const handleAvatarSuccess = (res, file) => {
-  imageUrl = URL.createObjectURL(file.raw);
-}
-const beforeAvatarUpload = (file) => {
-  const isJPG = file.type === 'image/jpeg';
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isJPG) {
-    // this.$message.error('上传头像图片只能是 JPG 格式!');
-  }
-  else
-    if (!isLt2M) {
-      // this.$message.error('上传头像图片大小不能超过 2MB!');
-    }
-  return isJPG && isLt2M;
-}
-const content_value_change = (e) => {
-  value = e;
-}
-
-
+//vue-menu选择器
 const select = (i) => {
   let form = {};
   if (i == 111 || i == 23 || i == 311 || i == 511 || i == 23 || i == 411) { }
@@ -409,16 +286,49 @@ const select = (i) => {
   }
   current = i;
 }
+
+
+
+let User_Form = {
+  idCard: "",
+  username: "",
+  password: "",
+  userPres: [0, 0, 0, 0, 0, 0, 0, 0]
+}
+let activeName = '1'
+
+
+
+
+
+let count: 3
+let form = {}
+let value = "sadasdasdasd"
+//超级管理
+const clear = () => {
+  form = {};
+  value = ""
+}
+
+//???
+const load = () => {
+  count += 2
+}
+///???
+const handleChange = (e, i) => { }
+//???
 const handleRemove = (file, fileList) => { }
+//???
+
+let dialogImageUrl = ''
+let dialogVisible = false
 const handlePictureCardPreview = (file) => {
   dialogImageUrl = file.url;
   dialogVisible = true;
 }
-const uploadFile = (item) => {
-  let FormDatas = new FormData()
-  FormDatas.append('file', item.file)
-  form['file'] = item.file;
-}
+
+let UserData = []
+//???
 const User_init = () => {
   axios
     .post("/api" + "/user/searchAll", null, {
@@ -431,15 +341,11 @@ const User_init = () => {
     })
     .catch((err) => { });
 }
+
+//???
 const pres = (i) => {
   User_Form.userPres[i] = Number(!User_Form.userPres[i]);
   console.log(User_Form.userPres);
-}
-
-
-const clear = () => {
-  form = {};
-  value = ""
 }
 
 </script>

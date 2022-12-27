@@ -29,6 +29,23 @@
     </div>
 </template>
 <script setup>
+
+
+
+const allowDrag = (draggingNode) => {
+  return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+}
+const allowDrop = (draggingNode, dropNode, type) => {
+  if (dropNode.data.label === '二级 3-1') {
+    return type !== 'inner';
+  } else {
+    return true;
+  }
+}
+const filterNode = (value, data) => {
+  if (!value) return true;
+  return data.label.indexOf(value) !== -1;
+}
 const addmenu = () => {
   if (menu == undefined || menu == "") {
     return;

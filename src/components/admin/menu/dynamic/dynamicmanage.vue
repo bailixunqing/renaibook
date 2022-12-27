@@ -21,6 +21,9 @@
     </div>
 </template>
 <script setup>
+let ResourceData = []
+
+
 const Resource_update = (i, e) => {
     // let that = this
     // if (i == 0) {

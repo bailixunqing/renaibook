@@ -36,6 +36,15 @@
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
+
+let imageUrl = ''
+
+
+const uploadFile = (item) => {
+  let FormDatas = new FormData()
+  FormDatas.append('file', item.file)
+  form['file'] = item.file;
+}
 const Update_Activities = (i, e) => {
   // let that = this
   // if (i == 0) {

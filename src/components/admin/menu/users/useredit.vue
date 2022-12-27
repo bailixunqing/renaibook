@@ -24,7 +24,10 @@
     </div>
 </template>
 <script setup>
-const from={}
+let from={}
+
+
+let checkList=[]
 </script>
 <style>
 

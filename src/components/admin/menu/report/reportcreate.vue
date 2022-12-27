@@ -36,6 +36,30 @@
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
+
+
+const handleAvatarSuccess = (res, file) => {
+  imageUrl = URL.createObjectURL(file.raw);
+}
+
+
+const beforeAvatarUpload = (file) => {
+  const isJPG = file.type === 'image/jpeg';
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isJPG) {
+    // this.$message.error('上传头像图片只能是 JPG 格式!');
+  }
+  else
+    if (!isLt2M) {
+      // this.$message.error('上传头像图片大小不能超过 2MB!');
+    }
+  return isJPG && isLt2M;
+}
+
+const content_value_change = (e) => {
+  value = e;
+}
+
 const Create_Activities = () => {
   // let params = {
   //   title: form['title'],

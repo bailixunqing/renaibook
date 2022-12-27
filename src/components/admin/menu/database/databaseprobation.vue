@@ -19,6 +19,9 @@
 </template>
 <script setup>
 let count=3
+
+
+
 const add = () => {
   count++;
 }

@@ -23,6 +23,7 @@
 
 <script setup>
 
+let NoticeData = []
 </script>
 <style>
 .TAG_right_admin_table {

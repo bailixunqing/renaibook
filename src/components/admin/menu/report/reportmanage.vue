@@ -24,6 +24,9 @@
     </div>
 </template>
 <script setup>
+let itemKey = 0
+let ActivitiesData = []
+
 
 </script>
 <style>
