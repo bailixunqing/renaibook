@@ -36,7 +36,71 @@
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
+const Create_Activities = () => {
+  // let params = {
+  //   title: form['title'],
+  //   content: value,
+  //   author: form['name'],
+  //   fileTmp: form['file'],
+  //   summary: form['summary'],
+  //   token: sessionStorage.getItem("token")
+  // }
+  // let config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  // axios
+  //   .post("/api" + "/activity/insert", params, config)
+  //   .then((res) => {
+  //     if (res.data.code == 200) {
+  //       this.$message({
+  //         type: 'success',
+  //         message: '添加成功!'
+  //       });
+  //       Activities_init();
+  //     }
+  //     else {
+  //       this.$message({
+  //         type: 'error',
+  //         message: '添加失败!'
+  //       });
+  //     }
+  //     this.$refs.editor.$data.contentValue = "";
+  //     form = {}
+  //   })
+  //   .catch(() => {
+  //   });
+}
 </script>
 <style>
+.TAG_right_buttom {
+  margin-top: 2px;
+  margin-right: 27px;
+  text-align: right;
+}
+.el-icon.avatar-uploader-icon {
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  font-size: 50px;
+  text-align: center;
+}
+.TAG_right_back {
+  padding-top: 20px !important;
+  width: 8%;
+  padding-bottom: 20px !important;
+  background-color: #c4c4c4 !important;
+}
 
+.TAG_right_on {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  width: 14%;
+}
+.avatar-uploader .avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
 </style>

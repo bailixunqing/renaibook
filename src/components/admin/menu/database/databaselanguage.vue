@@ -29,7 +29,6 @@ const onDelete = () => {
 }
 </script>
 <style>
-
 .database-1 {
   display: flex;
   flex-wrap: wrap;

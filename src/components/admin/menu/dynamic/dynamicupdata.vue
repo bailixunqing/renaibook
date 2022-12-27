@@ -17,9 +17,33 @@
     </div>
 </template>
 <script setup>
-
 import TEditor from '@/components/TEditor.vue'
+const Resource_update=()=>{
+  
+}
+const select=()=>{
+
+}
 </script>
 <style>
-
+.TAG_right_back {
+  padding-top: 20px !important;
+  width: 8%;
+  padding-bottom: 20px !important;
+  background-color: #c4c4c4 !important;
+}
+.TAG_right_on {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  width: 14%;
+}
+.TAG_right_buttom {
+  margin-top: 2px;
+  margin-right: 27px;
+  text-align: right;
+}
+.TAG_main_write {
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
 </style>

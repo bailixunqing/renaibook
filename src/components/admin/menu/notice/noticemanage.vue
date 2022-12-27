@@ -13,11 +13,8 @@
             <el-table-column prop="user_operation" label="操作">
                 <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 60px"
-                        @click="Notice_update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round
-                        style="width: 60px;background-color: #e27172;margin-left: 4px;font-size: 15px;"
-                        @click="delete_total(1, scope)">删除</el-button>
+                    <el-button class="button_on" type="success" round @click="Notice_update(0, scope)">修改</el-button>
+                    <el-button class="button_off" type="success" round @click="delete_total(1, scope)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -28,5 +25,18 @@
 
 </script>
 <style>
+.TAG_right_admin_table {
+    margin-top: 20px;
+}
 
+.button_on {
+    width: 60px;
+}
+
+.button_off {
+    width: 60px;
+    background-color: #e27172;
+    margin-left: 4px;
+    font-size: 15px;
+}
 </style>

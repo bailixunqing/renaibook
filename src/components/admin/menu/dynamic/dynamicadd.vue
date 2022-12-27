@@ -17,6 +17,10 @@
     </div>
 </template>
 <script setup>
+const form={
+    'title':'',
+    'name':''
+}
 const Create_Resource = () => {
   // let params = {
   //   title: form['title'],
@@ -44,6 +48,34 @@ const Create_Resource = () => {
   //   .catch((err) => {
   //     alert("添加失败");
   //   })
+}
+const Resource_init = () => {
+  let string1;
+  let data;
+  let i = 0;
+  axios
+    .get("/api" + "/resource/searchAll",
+      {
+        params: {
+          pageSize: 10
+        }
+      })
+    .then((res) => {
+      data = res.data.data;
+      for (i = 0; i < data.length; i++) {
+        let date = new Date(data[i].gmtCreate);
+        let Y = date.getFullYear() + "-";
+        let M =
+          (date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1) + "-";
+        let D = date.getDate() + " ";
+        data[i].gmtCreate = Y + M + D;
+      }
+      ResourceData = data
+    })
+    .catch((err) => {
+    });
 }
 </script>
 <style>

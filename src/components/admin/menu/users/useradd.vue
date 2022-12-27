@@ -24,7 +24,38 @@
     </div>
 </template>
 <script setup>
+const User_Create = () => {
+  axios
+    .post("/api" + "/user/insert", null, {
+      params: {
+        idCard: User_Form.idCard,
+        username: User_Form.username,
+        password: User_Form.password,
+        userPres: User_Form.userPres,
+        token: sessionStorage.getItem("token")
+      },
+    })
+    .then((res) => {
+      User_Form = {
+        idCard: "",
+        username: "",
+        password: "",
+        userPres: [],
+      }
+      alert("创建成功");
+    })
+    .catch((err) => { });
+}
 </script>
 <style>
-
+.TAG_right_buttom {
+  margin-top: 2px;
+  margin-right: 27px;
+  text-align: right;
+}
+.TAG_right_on {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  width: 14%;
+}
 </style>

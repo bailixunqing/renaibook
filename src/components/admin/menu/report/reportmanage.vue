@@ -27,5 +27,7 @@
 
 </script>
 <style>
-
+.TAG_right_admin_table {
+  margin-top: 20px;
+}
 </style>

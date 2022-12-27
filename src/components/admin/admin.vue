@@ -399,55 +399,7 @@ const beforeAvatarUpload = (file) => {
 const content_value_change = (e) => {
   value = e;
 }
-const delete_total = (i, e) => {
-  // this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-  //   confirmButtonText: '确定',
-  //   cancelButtonText: '取消',
-  //   center: true
-  // }).then(() => {
-  //   if (i == 0) //删除用户
-  //   {
-  //     Delete_User(e.row)
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //   }
-  //   if (i == 1) //删除公告
-  //   {
-  //     Delete_Notice(e)
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //   }
-  //   if (i == 2) //删除资源
-  //   {
-  //     Delete_Resource(e)
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //   }
-  //   if (i == 3) //删除活动
-  //   {
-  //     Delete_Activities(e)
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //   }
-  //   if (i == 5) //删除标题栏内容
-  //   {
-  //     //this.Total_Menu_Delete(e);
-  //   }
-  // }).catch(() => {
-  //   this.$message({
-  //     type: 'info',
-  //     message: '已取消删除'
-  //   });
-  // });
-}
+
 
 const select = (i) => {
   let form = {};
@@ -483,613 +435,12 @@ const pres = (i) => {
   User_Form.userPres[i] = Number(!User_Form.userPres[i]);
   console.log(User_Form.userPres);
 }
-const User_Create = () => {
-  axios
-    .post("/api" + "/user/insert", null, {
-      params: {
-        idCard: User_Form.idCard,
-        username: User_Form.username,
-        password: User_Form.password,
-        userPres: User_Form.userPres,
-        token: sessionStorage.getItem("token")
-      },
-    })
-    .then((res) => {
-      User_Form = {
-        idCard: "",
-        username: "",
-        password: "",
-        userPres: [],
-      }
-      alert("创建成功");
-    })
-    .catch((err) => { });
-}
-const Delete_User = (e) => {
-  axios
-    .post("/api" + "/user/delete", null, {
-      params: {
-        idCard: e.idCard,
-        token: sessionStorage.getItem("token")
-      },
-    })
-    .then((res) => {
-      location.reload()
-    })
-    .catch((err) => { });
-}
+
+
 const clear = () => {
   form = {};
   value = ""
 }
-const Menu_init = () => {
-  axios
-    .get("/api" + "/titleOptions/searchAll")
-    .then((res) => {
-      let data = res.data.data;
-      data.sort(function (a, b) {
-        if (a.type > b.type)
-          return 1;
-        else return -1;
-      })
-      let menu_test = [];
-      for (let i = 0; i < data.length; i++) {
-        let test = {};
-        if (data[i].type.length == 1) {
-          test['value'] = data[i].type;
-          test['id'] = data[i].id;
-          test['label'] = data[i].name;
-          test['children'] = [];
-          menu_test.push(test);
-        } else
-          if (data[i].type.length == 3) {
-            test['value'] = data[i].type;
-            test['id'] = data[i].id;
-            test['label'] = data[i].name;
-            test['children'] = [];
-            let j = Number(data[i].type[0]) - 1;
-            menu_test[j].children.push(test);
-          } else
-            if (data[i].type.length == 5) {
-              test['value'] = data[i].type;
-              test['id'] = data[i].id;
-              test['label'] = data[i].name;
-              test['children'] = [];
-              let j = Number(data[i].type[0]) - 1;
-              let k = Number(data[i].type[2]) - 1;
-              menu_test[j].children[k].children.push(test);
-            }
-      }
-      title_options = menu_test;
-    })
-    .catch((err) => { });
-}
-
-const addmenu = () => {
-  if (menu == undefined || menu == "") {
-    return;
-  }
-  let newmenu = {
-    label: menu,
-    children: []
-  }
-  title_options.push(newmenu);
-}
-
-const savemenu = () => {
-  let data = [];
-  let menu = title_options;
-  let length = title_options.length;
-  let type = "";
-  for (let i = 0; i < length; i++) {
-    type = String(i + 1);
-    let menu_data = {
-      type: type,
-      name: menu[i].label,
-      id: menu[i].id
-    }
-    data.push(menu_data);
-    if (menu[i].children.length) {
-      for (let j = 0; j < menu[i].children.length; j++) {
-        type = String(i + 1) + "," + (j + 1);
-        menu_data = {
-          type: type,
-          name: menu[i].children[j].label,
-          id: menu[i].children[j].id
-        }
-        data.push(menu_data);
-        if (menu[i].children[j].children.length) {
-          for (let k = 0; k < menu[i].children[j].children.length; k++) {
-            menu_data = {
-              type: String(i + 1) + "," + (j + 1) + "," + (k + 1),
-              name: menu[i].children[j].children[k].label,
-              id: menu[i].children[j].children[k].id
-            }
-            data.push(menu_data);
-          }
-        }
-      }
-    }
-  }
-  let token = sessionStorage.getItem("token");
-  let params = {
-    titleOptionsInfo: data,
-    token: token
-  };
-  let config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  axios
-    .post("/api" + "/titleOptions/update", params, config)
-    .then((res) => {
-      if (res.data.code == 200) {
-        // this.$message({
-        //   type: 'success',
-        //   message: '修改成功!'
-        // });
-        form = {};
-        Menu_init();
-      }
-    })
-    .catch(() => { });
-}
-
-const title_contents_edit = () => {
-  // let undef = form['undef']
-  // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
-  // if (undef) {
-  //   let params = {
-  //     toid: getCheckedNodes.id,
-  //     content: value,
-  //     token: sessionStorage.getItem("token")
-  //   };
-  //   let config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-  //   axios
-  //     .post("/api" + "/title/insert", params, config)
-  //     .then((res) => {
-  //       this.$message({
-  //         type: 'success',
-  //         message: '新建成功!'
-  //       });
-  //       value = ""
-  //       form = {};
-  //     })
-  //     .catch(() => {});
-  // }
-  // else {
-  //   let params = {
-  //     id: form['id'],
-  //     content: value,
-  //     token: sessionStorage.getItem("token")
-  //   };
-  //   let config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-  //   axios
-  //     .post("/api" + "/title/update", params, config)
-  //     .then((res) => {
-  //       this.$message({
-  //         type: 'success',
-  //         message: '修改成功!'
-  //       });
-  //       value = ""
-  //       form = {};
-  //     })
-  //     .catch(() => {});
-  // }
-}
-
-const title_tree_change = () => {
-  // value = ""
-  // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
-  // let id = getCheckedNodes.id;
-  // let type = getCheckedNodes.value;
-  // axios
-  //   .get("/api" + "/title/search",
-  //     {
-  //       params: {
-  //         id: id
-  //       }
-  //     }).then((res) => {
-  //       if (res.data.data.length == 0) {
-  //         value = "";
-  //         form['change'] = !form['change'];
-  //         form['undef'] = true;
-  //       }
-  //       else {
-  //         let data = res.data.data[0];
-  //         value = data.content;
-  //         form['change'] = !form['change'];
-  //         form['id'] = data.id;
-  //         form['undef'] = false;
-  //       }
-  //     }
-  //   )
-}
-
-const Notice_init = () => {
-  let data;
-  let i = 0;
-  axios
-    .get("/api" + "/notice/searchAll",
-      {
-        params: {
-          pageSize: 10
-        }
-      })
-    .then((res) => {
-      data = res.data.data;
-      for (i = 0; i < data.length; i++) {
-        let date = new Date(data[i].gmtCreate);
-        let Y = date.getFullYear() + "-";
-        let M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "-";
-        let D = date.getDate() + " ";
-        data[i].gmtCreate = Y + M + D;
-      }
-      NoticeData = data
-    })
-    .catch((err) => { });
-}
-
-const Create_Notice = () => {
-  // let params = {
-  //   title: form['title'],
-  //   content: value,
-  //   author: form['name'],
-  //   token: sessionStorage.getItem("token")
-  // };
-  // let config = {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
-  // axios
-  //   .post("/api" + "/notice/insert", params, config)
-  //   .then((res) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '添加成功!'
-  //     });
-  //     this.$refs.editor.$data.contentValue = "";
-  //     form = {};
-  //     Notice_init();
-  //   })
-  //   .catch(() => {
-  //     alert("添加失败");
-  //   });
-}
-
-const Notice_update = (i, e) => {
-  // let that = this
-  // if (i == 0) {
-  //   axios
-  //     .get("/api" + "/notice/search",
-  //       {
-  //         params: {
-  //           id: e.row.id
-  //         }
-  //       }).then((res) => {
-  //         let data = res.data.data[0];
-  //         form['id'] = data.id;
-  //         form['title'] = data.title;
-  //         value = data.content;
-  //         that.select(311)
-  //       });
-  // }
-  // else if (i == 1) {
-  //   let params = {
-  //     id: form['id'],
-  //     title: form['title'],
-  //     content: value,
-  //     author: form['name'],
-  //     token: sessionStorage.getItem("token")
-  //   };
-  //   let config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-  //   axios
-  //     .post("/api" + "/notice/update", params, config)
-  //     .then((res) => {
-  //       this.$message({
-  //         type: 'success',
-  //         message: '修改成功!'
-  //       });
-  //       Notice_init();
-  //       value = ""
-  //       form = {};
-  //       setTimeout(() => {
-  //         select(31)
-  //       }, 1000);
-  //     })
-  //     .catch(() => {});
-  // }
-}
-
-const Delete_Notice = (e) => {
-  // let that = this;
-  // let params = {
-  //   id: e.row.id,
-  //   token: sessionStorage.getItem("token")
-  // };
-  // let config = {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
-  // axios
-  //   .post("/api" + "/notice/delete", params, config)
-  //   .then((res) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //     NoticeData.splice(e.$index, 1);
-  //     itemKey = Math.random()
-  //   })
-  //   .catch(() => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除失败!'
-  //     });
-  //   });
-}
-
-const Resource_init = () => {
-  let string1;
-  let data;
-  let i = 0;
-  axios
-    .get("/api" + "/resource/searchAll",
-      {
-        params: {
-          pageSize: 10
-        }
-      })
-    .then((res) => {
-      data = res.data.data;
-      for (i = 0; i < data.length; i++) {
-        let date = new Date(data[i].gmtCreate);
-        let Y = date.getFullYear() + "-";
-        let M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "-";
-        let D = date.getDate() + " ";
-        data[i].gmtCreate = Y + M + D;
-      }
-      ResourceData = data
-    })
-    .catch((err) => {
-    });
-}
-
-
-
-const Delete_Resource = (e) => {
-  // axios
-  //   .post("/api" + "/resource/delete", null, {
-  //     params: {
-  //       id: e.row.id,
-  //       token: sessionStorage.getItem("token")
-  //     },
-  //   })
-  //   .then((res) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //     ResourceData.splice(e.$index, 1);
-  //     itemKey = Math.random()
-  //   })
-  //   .catch((err) => {});
-}
-
-const Resource_update = (i, e) => {
-  // let that = this
-  // if (i == 0) {
-  //   axios
-  //     .get("/api" + "/resource/search",
-  //       {
-  //         params: {
-  //           id: e.row.id
-  //         }
-  //       }).then((res) => {
-  //         let data = res.data.data[0];
-  //         form['id'] = data.id;
-  //         form['title'] = data.title;
-  //         value = data.content;
-  //         that.select(411)
-  //       })
-  // }
-  // else if (i == 1) {
-  //   let params = {
-  //     id: form['id'],
-  //     title: form['title'],
-  //     content: value,
-  //     author: form['name'],
-  //     token: sessionStorage.getItem("token")
-  //   };
-  //   let config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-  //   axios
-  //     .post("/api" + "/resource/update", params, config)
-  //     .then((res) => {
-  //       this.$message({
-  //         type: 'success',
-  //         message: '更新成功!'
-  //       });
-  //       form = {};
-  //       Resource_init()
-  //       setTimeout(() => {
-  //         select(41)
-  //       }, 1000);
-  //     })
-  //     .catch(() => {});
-  // }
-}
-
-const Activities_init = () => {
-  let string1;
-  let data;
-  let i = 0;
-  axios
-    .get("/api" + "/activity/searchAll",
-      {
-        params: {
-          pageSize: 10
-        }
-      })
-    .then((res) => {
-      data = res.data.data;
-      for (i = 0; i < data.length; i++) {
-        let date = new Date(data[i].gmtCreate);
-        let Y = date.getFullYear() + "-";
-        let M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "-";
-        let D = date.getDate() + " ";
-        data[i].gmtCreate = Y + M + D;
-      }
-      ActivitiesData = data
-    })
-    .catch((err) => {
-    });
-}
-
-const Create_Activities = () => {
-  // let params = {
-  //   title: form['title'],
-  //   content: value,
-  //   author: form['name'],
-  //   fileTmp: form['file'],
-  //   summary: form['summary'],
-  //   token: sessionStorage.getItem("token")
-  // }
-  // let config = {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
-  // axios
-  //   .post("/api" + "/activity/insert", params, config)
-  //   .then((res) => {
-  //     if (res.data.code == 200) {
-  //       this.$message({
-  //         type: 'success',
-  //         message: '添加成功!'
-  //       });
-  //       Activities_init();
-  //     }
-  //     else {
-  //       this.$message({
-  //         type: 'error',
-  //         message: '添加失败!'
-  //       });
-  //     }
-  //     this.$refs.editor.$data.contentValue = "";
-  //     form = {}
-  //   })
-  //   .catch(() => {
-  //   });
-}
-
-const Delete_Activities = (e) => {
-  // axios
-  //   .post("/api" + "/activity/delete", null, {
-  //     params: {
-  //       id: e.row.id,
-  //       token: sessionStorage.getItem("token")
-  //     },
-  //   })
-  //   .then((res) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除成功!'
-  //     });
-  //     ActivitiesData.splice(e.$index, 1);
-  //     itemKey = Math.random()
-  //   })
-  //   .catch((err) => {
-  //     this.$message({
-  //       type: 'success',
-  //       message: '删除失败!'
-  //     });
-  //   });
-}
-
-const Update_Activities = (i, e) => {
-  // let that = this
-  // if (i == 0) {
-  //   axios
-  //     .get("/api" + "/activity/search",
-  //       {
-  //         params: {
-  //           id: e.row.id
-  //         }
-  //       }).then((res) => {
-  //         let data = res.data.data[0];
-  //         form['id'] = data.id;
-  //         form['title'] = data.title;
-  //         form['summary'] = data.summary;
-  //         value = data.content;
-  //         that.select(511)
-  //       })
-  // }
-  // else if (i == 1) {
-  //   let params = {
-  //     title: form['title'],
-  //     content: value,
-  //     author: form['name'],
-  //     fileTmp: form['file'],
-  //     summary: form['summary'],
-  //     token: sessionStorage.getItem("token")
-  //   }
-  //   let config = {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   };
-  //   axios
-  //     .post("/api" + "/activity/update", params, config)
-  //     .then((res) => {
-  //       if (res.data.code == 200) {
-  //         this.$message({
-  //           type: 'success',
-  //           message: '修改成功!'
-  //         });
-  //         Activities_init();
-  //       }
-  //       else {
-  //         this.$message({
-  //           type: 'error',
-  //           message: '修改失败!'
-  //         });
-  //       }
-  //       this.$refs.editor.$data.contentValue = "";
-  //       form = {}
-  //     })
-  //     .catch(() => {
-  //     });
-  // }
-}
-
 
 </script>
 
@@ -1124,7 +475,6 @@ const Update_Activities = (i, e) => {
 }
 
 .screen {
-  /* overflow: hidden; */
   background: #f8f8f8bb;
   width: 100%;
 }
@@ -1168,19 +518,11 @@ const Update_Activities = (i, e) => {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
-
-
-
-
-
-
 .avatar-uploader .avatar {
   width: 178px;
   height: 178px;
   display: block;
 }
-
-
 
 .TAG_top {
   width: 80%;
@@ -1193,11 +535,6 @@ const Update_Activities = (i, e) => {
   margin-right: 233px;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-
-:deep(.el-overlay.is-message-box .el-overlay-message-box) {
-  background-color: #1a1a1a2b !important;
-  backdrop-filter: blur(14px) !important;
 }
 
 .head {
@@ -1216,13 +553,7 @@ const Update_Activities = (i, e) => {
   top: 16px;
 }
 
-:deep(.el-cascader .el-input) {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.head h5 {
-  /* Administrator */
+.head {
   position: absolute;
   width: 207px;
   height: 45px;
@@ -1237,21 +568,30 @@ const Update_Activities = (i, e) => {
   color: rgba(255, 255, 255, 0.32);
 }
 
-.TAG_serch {
-  width: 52px;
-  height: 32px;
-  margin-top: 5px;
-  font-size: 14px;
-}
-
-.TAG_top_img {
-  z-index: -1;
-  float: right;
-}
-
-
 .el-button {
   text-align: center;
+}
+
+.TAG_left_button {
+  text-align: left;
+  width: 200px;
+  height: 40px;
+  margin: 10px;
+  font-size: 15px;
+  font-family: "PingFang SC";
+  border: 0;
+  color: #00488bd5;
+  background: #ffffff00;
+}
+
+:deep(.el-overlay.is-message-box .el-overlay-message-box) {
+  background-color: #1a1a1a2b !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+:deep(.el-cascader .el-input) {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 :deep(.tox:not([dir="rtl"])) {
@@ -1283,20 +623,13 @@ const Update_Activities = (i, e) => {
   background-color: #0c57ad;
 }
 
-.TAG_right_buttom {
-  margin-top: 2px;
-  margin-right: 27px;
-  text-align: right;
-}
+
 
 :deep(.el-cascader) {
   width: 39%;
 }
 
-.TAG_main_write {
-  margin-top: 26px;
-  margin-bottom: 26px;
-}
+
 
 :deep(.el-collapse) {
   background: #ffffff;
@@ -1350,17 +683,7 @@ const Update_Activities = (i, e) => {
   border-radius: 20px;
 }
 
-.TAG_left_button {
-  text-align: left;
-  width: 200px;
-  height: 40px;
-  margin: 10px;
-  font-size: 15px;
-  font-family: "PingFang SC";
-  border: 0;
-  color: #00488bd5;
-  background: #ffffff00;
-}
+
 
 
 :deep(.el-button--primary) {
@@ -1531,158 +854,5 @@ const Update_Activities = (i, e) => {
 :deep(.el-tree-node__content) {
   height: 42px;
   margin: 5px;
-}
-
-
-.TAG_right_adminpower_top {
-  padding-top: 27px;
-}
-
-.TAG_right_adminpower_bottom {
-  padding-bottom: 27px;
-}
-
-.TAG_right_back {
-  padding-top: 20px !important;
-  width: 8%;
-  padding-bottom: 20px !important;
-  background-color: #c4c4c4 !important;
-}
-
-.TAG_right_on {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-  width: 14%;
-}
-
-.TAG_right_admin {
-  margin-bottom: 50px;
-}
-
-.TAG_right_admin_left {
-  font-size: 28px;
-  font-family: "PingFang SC";
-  float: left;
-  color: #0c57ad;
-}
-
-.TAG_right_admin_right {
-  font-size: 25px;
-  font-family: "PingFang SC";
-  float: right;
-  color: #0c57ad;
-}
-
-.TAG_right_button {
-  margin-top: 10px;
-}
-
-.TAG_right_admin_table {
-  margin-top: 20px;
-}
-
-.TAG_buttom {
-  position: absolute;
-  width: 100%;
-  height: 235px;
-  bottom: 0px;
-  background: #0c57ad;
-}
-
-.TAG_buttom_size {
-  width: 1200px;
-  margin: 0 auto;
-}
-
-.TAG_buttom_left {
-  float: left;
-}
-
-.school {
-  position: absolute;
-  left: -57px;
-}
-
-.ArtFont {
-  width: 325px;
-  margin: 11px;
-}
-
-.TAG_link {
-  color: #ffffff;
-  margin: 15px;
-}
-
-.TAG_renai {
-  color: #ffffff;
-  margin: 15px;
-}
-
-.TAG_buttom_right {
-  float: right;
-}
-
-.QRcode {
-  width: 122px;
-  height: 122px;
-  background: #ffffff;
-  box-shadow: 0px 10px 26px -6px rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
-  margin: 50px;
-  float: right;
-}
-
-.database-1 {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.database-button {
-  margin: 2px;
-  width: 80px;
-  background-color: #0c57ad;
-  color: white;
-  border-radius: 12px;
-}
-
-.database-css {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  width: 41%;
-  height: 150px;
-  margin: 8px;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-}
-
-
-
-.menu {
-  padding-top: 5px;
-}
-
-.menu1 {
-  display: grid;
-  grid-template-columns: auto auto;
-  margin: 30px;
-}
-
-.menu2 {
-  display: grid;
-  grid-template-columns: auto auto;
-  margin-left: 30px;
-  margin-right: 80px;
-}
-
-.custom-tree-node {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 8px;
-  font-size: 25px;
 }
 </style>

@@ -48,15 +48,50 @@
                 </el-form-item>
             </div>
             <div style="margin-left: auto">
-                <el-button class="button_on" style="height: 40px" type="success" round @click="savemenu()">保存修改
+                <el-button class="button_on" type="success" round @click="savemenu()">保存修改
                 </el-button>
             </div>
         </div>
     </div>
 </template>
 <script setup>
-
+const addmenu = () => {
+  if (menu == undefined || menu == "") {
+    return;
+  }
+  let newmenu = {
+    label: menu,
+    children: []
+  }
+  title_options.push(newmenu);
+}
 </script>
 <style>
+.menu {
+    padding-top: 5px;
+}
 
+.menu1 {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 30px;
+}
+
+.menu2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 30px;
+    margin-right: 80px;
+}
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 8px;
+  font-size: 25px;
+}
+.button_on {
+    height: 40px;
+}
 </style>
