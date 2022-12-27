@@ -4,7 +4,7 @@
       天津仁爱学院图书馆首页
     </div>
     <div class="head">
-      <img src="../../assets/images/reaai.svg" />
+      <img src="@/assets/images/reaai.svg" />
       <el-dropdown style="display:block;cursor: pointer;">
         <span class="el-dropdown-link">
           欢迎超级用户

@@ -4,10 +4,10 @@
     </div>
     <el-divider></el-divider>
     <el-form-item label="旧密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-        <el-input v-model="form['user_name']"></el-input>
+        <el-input v-model="form.account"></el-input>
     </el-form-item>
     <el-form-item label="密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
-        <el-input v-model="form['user_password']"></el-input>
+        <el-input v-model="form.passwrod"></el-input>
     </el-form-item>
     <div class="TAG_right_buttom">
         <el-button type="success" round class="TAG_right_back">返回</el-button>
@@ -15,7 +15,10 @@
     </div>
 </template>
 <script setup>
-let from = {}
+const from = {
+    'account':'',
+    'passwrod':''
+}
 </script>
 <style>
 .TAG_right_admin {

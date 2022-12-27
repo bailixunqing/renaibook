@@ -22,5 +22,47 @@
     </div>
 </template>
 <script setup>
-
+let count=3
+const add = () => {
+  count++;
+}
+const onDelete = () => {
+  if (count > 0) {
+    count--;
+  }
+}
 </script>
+<style>
+.TAG_right_admin_table {
+  margin-top: 20px;
+}
+.TAG_right_admin_left {
+  font-size: 28px;
+  font-family: "PingFang SC";
+  float: left;
+  color: #0c57ad;
+}
+.database-1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.database-css {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 41%;
+  height: 150px;
+  margin: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+}
+.database-button {
+  margin: 2px;
+  width: 80px;
+  background-color: #0c57ad;
+  color: white;
+  border-radius: 12px;
+}
+</style>

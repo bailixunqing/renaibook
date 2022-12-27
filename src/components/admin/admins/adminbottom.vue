@@ -3,8 +3,8 @@
     <div class="TAG_buttom_size">
       <div class="TAG_buttom_left">
         <div class="TAG_buttom_img">
-          <img class="school" src="../../assets/images/school.svg" />
-          <img class="ArtFont" src="../../assets/images/Artfont.svg" />
+          <img class="school" src="@/assets/images/school.svg" />
+          <img class="ArtFont" src="@/assets/images/Artfont.svg" />
         </div>
         <div class="TAG_link">
           <a class="TAG_link" href="http://www.tjrac.edu.cn/">天津仁爱学院</a>

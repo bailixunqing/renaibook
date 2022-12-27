@@ -189,7 +189,10 @@ const show = (i) => {
   return false;
 }
 
+
+
 let id = 1000
+
 let User_Form = {
   idCard: "",
   username: "",
@@ -285,14 +288,8 @@ const load = () => {
   count += 2
 }
 const handleChange = (e, i) => { }
-const add = () => {
-  count++;
-}
-const onDelete = () => {
-  if (count > 0) {
-    count--;
-  }
-}
+
+
 const handleAvatarSuccess = (res, file) => {
   imageUrl = URL.createObjectURL(file.raw);
 }
@@ -360,8 +357,6 @@ const delete_total = (i, e) => {
   //   });
   // });
 }
-
-
 
 const select = (i) => {
   let form = {};
@@ -1058,12 +1053,6 @@ const Update_Activities = (i, e) => {
 </style>
 
 <style  scoped >
-.avatar-uploader .avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-
 .new {
   justify-content: space-between;
   display: flex;
@@ -1075,6 +1064,59 @@ const Update_Activities = (i, e) => {
   background: #f8f8f8bb;
   width: 100%;
 }
+
+.TAG {
+  width: 70%;
+  height: 1400px;
+  margin: 0 auto;
+}
+
+.TAG_left {
+  width: 18%;
+  height: 450px;
+  float: left;
+  border-radius: 50px;
+  margin-top: 62px;
+}
+
+.TAG_left_1 {
+  margin-top: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+
+.TAG_right {
+  width: 81%;
+  margin-top: 62px;
+  float: right;
+}
+
+.TAG_rght_2 {
+  height: 100%;
+  margin-bottom: 500px;
+  margin-left: 15px;
+  margin-right: 25px;
+  padding: 42px;
+  padding-top: 23px;
+  padding-bottom: 80px;
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+.avatar-uploader .avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
+
 
 .TAG_top {
   width: 80%;
@@ -1143,25 +1185,6 @@ const Update_Activities = (i, e) => {
   float: right;
 }
 
-.TAG {
-  width: 70%;
-  height: 1400px;
-  margin: 0 auto;
-}
-
-.TAG_left {
-  width: 18%;
-  height: 450px;
-  float: left;
-  border-radius: 50px;
-  margin-top: 62px;
-}
-
-.TAG_left_1 {
-  margin-top: 0px;
-  border-top-width: 0px;
-  border-bottom-width: 0px;
-}
 
 .el-button {
   text-align: center;
@@ -1275,26 +1298,6 @@ const Update_Activities = (i, e) => {
   background: #ffffff00;
 }
 
-.TAG_right_adminpower_top {
-  padding-top: 27px;
-}
-
-.TAG_right_adminpower_bottom {
-  padding-bottom: 27px;
-}
-
-.TAG_right_back {
-  padding-top: 20px !important;
-  width: 8%;
-  padding-bottom: 20px !important;
-  background-color: #c4c4c4 !important;
-}
-
-.TAG_right_on {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-  width: 14%;
-}
 
 :deep(.el-button--primary) {
   --el-button-hover-bg-color: #0d52a1;
@@ -1334,43 +1337,6 @@ const Update_Activities = (i, e) => {
 :deep(.el-checkbox__input.is-checked .el-checkbox__inner) {
   background-color: #0d52a1;
   border-color: #0d52a1;
-}
-
-.TAG_right {
-  width: 81%;
-  margin-top: 62px;
-  float: right;
-}
-
-.TAG_rght_2 {
-  height: 100%;
-  margin-bottom: 500px;
-  margin-left: 15px;
-  margin-right: 25px;
-  padding: 42px;
-  padding-top: 23px;
-  padding-bottom: 80px;
-  background: #ffffff;
-  border-radius: 26px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.TAG_right_admin {
-  margin-bottom: 50px;
-}
-
-.TAG_right_admin_left {
-  font-size: 28px;
-  font-family: "PingFang SC";
-  float: left;
-  color: #0c57ad;
-}
-
-.TAG_right_admin_right {
-  font-size: 25px;
-  font-family: "PingFang SC";
-  float: right;
-  color: #0c57ad;
 }
 
 :deep(.el-form-item) {
@@ -1461,17 +1427,94 @@ const Update_Activities = (i, e) => {
   height: 46px;
 }
 
+
+:deep(.el-table--fit) {
+  width: 100%;
+  border-radius: 25px;
+}
+
+:deep(.el-scrollbar__wrap--hidden-default) {
+  max-height: 100% !important;
+}
+
+
+:deep(.el-tree) {
+  --el-tree-text-color: #606266;
+  background: #ffffff00;
+  width: 100%;
+}
+
+:deep(el-tree-node) {
+  margin: 5px;
+}
+
+:deep(.el-tree-node__label) {
+  font-size: 30px !important;
+  margin-left: 50px;
+}
+
+:deep(.el-tree__empty-text) {
+  color: #000000;
+  display: contents;
+  font-size: 30px;
+}
+
+:deep(.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content) {
+  background-color: #8bcdff;
+  border-radius: 20px;
+}
+
+:deep(.el-tree-node__content) {
+  height: 42px;
+  margin: 5px;
+}
+
+
+.TAG_right_adminpower_top {
+  padding-top: 27px;
+}
+
+.TAG_right_adminpower_bottom {
+  padding-bottom: 27px;
+}
+
+.TAG_right_back {
+  padding-top: 20px !important;
+  width: 8%;
+  padding-bottom: 20px !important;
+  background-color: #c4c4c4 !important;
+}
+
+.TAG_right_on {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  width: 14%;
+}
+
+.TAG_right_admin {
+  margin-bottom: 50px;
+}
+
+.TAG_right_admin_left {
+  font-size: 28px;
+  font-family: "PingFang SC";
+  float: left;
+  color: #0c57ad;
+}
+
+.TAG_right_admin_right {
+  font-size: 25px;
+  font-family: "PingFang SC";
+  float: right;
+  color: #0c57ad;
+}
+
 .TAG_right_button {
   margin-top: 10px;
 }
 
 .TAG_right_admin_table {
   margin-top: 20px;
-}
-
-:deep(.el-table--fit) {
-  width: 100%;
-  border-radius: 25px;
 }
 
 .TAG_buttom {
@@ -1551,9 +1594,7 @@ const Update_Activities = (i, e) => {
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 }
 
-:deep(.el-scrollbar__wrap--hidden-default) {
-  max-height: 100% !important;
-}
+
 
 .menu {
   padding-top: 5px;
@@ -1570,37 +1611,6 @@ const Update_Activities = (i, e) => {
   grid-template-columns: auto auto;
   margin-left: 30px;
   margin-right: 80px;
-}
-
-:deep(.el-tree) {
-  --el-tree-text-color: #606266;
-  background: #ffffff00;
-  width: 100%;
-}
-
-:deep(el-tree-node) {
-  margin: 5px;
-}
-
-:deep(.el-tree-node__label) {
-  font-size: 30px !important;
-  margin-left: 50px;
-}
-
-:deep(.el-tree__empty-text) {
-  color: #000000;
-  display: contents;
-  font-size: 30px;
-}
-
-:deep(.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content) {
-  background-color: #8bcdff;
-  border-radius: 20px;
-}
-
-:deep(.el-tree-node__content) {
-  height: 42px;
-  margin: 5px;
 }
 
 .custom-tree-node {
