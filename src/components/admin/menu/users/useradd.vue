@@ -16,7 +16,7 @@
     </el-checkbox-group>
   </el-form-item>
   <div class="buttom">
-    <el-button type="success" round class="buttom_on" @click="User_Create()">保存并返回</el-button>
+    <el-button type="success" round class="buttom_on" @click="userCreate()">保存并返回</el-button>
   </div>
 </template>
 <script setup>
@@ -24,32 +24,30 @@ import { ref } from 'vue'
 const idCard = ref('')
 const username = ref('')
 const password = ref('')
+const userPres = ref([])
 const checkedCities = ref(['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库'])
-
-//axios
 const axios = require("axios")
-
-const User_Create = () => {
+const userCreate = () => {
   axios
     .post("/api" + "/user/insert", null, {
       params: {
-        idCard: User_Form.idCard,
-        username: User_Form.username,
-        password: User_Form.password,
-        userPres: User_Form.userPres,
+        idCard: idCard,
+        username: username,
+        password: password,
+        userPres: userPres,
         token: sessionStorage.getItem("token")
       },
     })
     .then((res) => {
-      User_Form = {
-        idCard: "",
-        username: "",
-        password: "",
-        userPres: [],
-      }
-      alert("创建成功");
+      idCard.value = ''
+      username.value = ''
+      password.value = ''
+      userPres.value = []
+      alert("创建成功")
     })
-    .catch((err) => { });
+    .catch((err) => { 
+      
+    })
 }
 </script>
 <style>

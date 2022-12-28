@@ -8,7 +8,7 @@
   <div style="color: black; font-size: large; font-weight: bold">
     报道概述
   </div>
-  <div class="TAG_main_write">
+  <div class="main_write">
     <div style="margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%); border-radius: 20px;">
       <el-input v-model="summary" clearable />
     </div>
@@ -16,7 +16,7 @@
   <div style="color: black; font-size: large; font-weight: bold">
     编辑内容
   </div>
-  <div class="TAG_main_write">
+  <div class="main_write">
     <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" />
   </div>
   <div style="text-align: left">
@@ -29,10 +29,10 @@
     </el-upload>
   </div>
   <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
-  <div class="TAG_right_buttom">
-    <el-button type="success" round class="TAG_right_back"
+  <div class="buttom">
+    <el-button type="success" round class="buttom_back"
       @click="$emit('selectReportBack', 'ReportBack')">返回</el-button>
-    <el-button type="success" round class="TAG_right_on" @click="updataActivities(1, 1)">保存并返回</el-button>
+    <el-button type="success" round class="buttom_on" @click="updataActivities(1, 1)">保存并返回</el-button>
   </div>
 </template>
 <script setup>
@@ -126,16 +126,15 @@ const Activities_init = () => {
     })
     .catch((err) => { });
 }
-
 </script>
 <style>
-.TAG_right_buttom {
+.buttom {
   margin-top: 2px;
   margin-right: 27px;
   text-align: right;
 }
 
-.TAG_main_write {
+.main_write {
   margin-top: 26px;
   margin-bottom: 26px;
 }
@@ -148,14 +147,14 @@ const Activities_init = () => {
   text-align: center;
 }
 
-.TAG_right_back {
+.buttom_back {
   padding-top: 20px !important;
   width: 8%;
   padding-bottom: 20px !important;
   background-color: #c4c4c4 !important;
 }
 
-.TAG_right_on {
+.buttom_on {
   padding-top: 20px !important;
   padding-bottom: 20px !important;
   width: 14%;

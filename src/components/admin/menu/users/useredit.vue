@@ -15,7 +15,7 @@
         </el-checkbox-group>
     </el-form-item>
     <div class="buttom">
-        <el-button type="success" round class="buttom_back">返回</el-button>
+        <el-button type="success" round class="buttom_back" @click="$emit('selectUserBack', 'UserBack')">返回</el-button>
         <el-button type="success" round class="buttom_on">保存并返回</el-button>
     </div>
 </template>
@@ -25,7 +25,6 @@ const uers_id = ref('')
 const user_name = ref('')
 const user_password = ref('')
 const checkedCities = ref(['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库'])
-
 </script>
 <style>
 .buttom {

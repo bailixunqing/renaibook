@@ -4,7 +4,7 @@
             <el-input v-model="title" placeholder="请输入关键字"></el-input>
         </el-form-item>
     </el-row>
-    <div class="TAG_right_admin_table">
+    <div class="admin_table">
         <el-table :data="ActivitiesData" :key="itemKey">
             <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
             <el-table-column prop="title" label="标题"></el-table-column>
@@ -43,7 +43,7 @@ const deleteTotal = (a, b) => {
 }
 </script>
 <style>
-.TAG_right_admin_table {
+.admin_table {
     margin-top: 20px;
 }
 </style>
