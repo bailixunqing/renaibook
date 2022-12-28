@@ -7,7 +7,7 @@
                 </el-form-item>
             </div>
             <div>
-                <el-button  type="success" round @click="addmenu()">添加目录
+                <el-button   type="success" class="add_menu"   round @click="addmenu()">添加目录
                 </el-button>
             </div>
             <div>
@@ -16,7 +16,7 @@
                 </el-form-item>
             </div>
             <div>
-                <el-button  type="success" round @click="savemenu()">保存修改</el-button>
+                <el-button  type="success" class="add_menu"  round @click="savemenu()">保存修改</el-button>
             </div>
         </div>
         <div>
@@ -177,5 +177,9 @@ const Menu_init = () => {
   grid-template-columns: auto auto;
   margin-left: 30px;
   margin-right: 80px;
+}
+.add_menu{
+  font-size: 21px !important;
+  height: 40px !important;
 }
 </style>

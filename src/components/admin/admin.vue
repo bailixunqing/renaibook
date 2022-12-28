@@ -349,7 +349,9 @@ const activeName = ref('1')
   background: #ffffff00;
 }
 
-
+.TAG_right_admin_left{
+  font-size: 25px;
+}
 
 
 
@@ -553,7 +555,7 @@ const activeName = ref('1')
 }
 
 :deep(.el-checkbox-group) {
-  margin-top: 20px;
+  margin: 10px;
   display: grid;
   background: #f7fafc;
   border-radius: 20px;
