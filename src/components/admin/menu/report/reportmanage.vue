@@ -13,11 +13,13 @@
             <el-table-column label="操作">
                 <template #default="scope">
                     {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round style="width: 40px"
-                        @click="updateActivities(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round
-                        style="width: 40px; background-color: #e27172; margin-left: 4px;font-size: 15px;"
-                        @click="deleteTotal(3, scope)">删除</el-button>
+                    <div>
+                        <el-button class="button_on" type="success" round style="width: 40px"
+                            @click="updateActivities(0, scope)">修改</el-button>
+                        <el-button class="button_off" type="success" round
+                            style="width: 40px; background-color: #e27172; margin-left: 4px;font-size: 15px;"
+                            @click="deleteTotal(3, scope)">删除</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -45,5 +47,18 @@ const deleteTotal = (a, b) => {
 <style>
 .admin_table {
     margin-top: 20px;
+}
+.button_on {
+    width: 60px !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
+}
+.button_off {
+    width: 60px !important;
+    background-color: #e27172 !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
 }
 </style>

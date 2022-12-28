@@ -4,7 +4,7 @@
             <el-input v-model="uers_name" placeholder="请输入关键字"></el-input>
         </el-form-item>
     </el-row>
-    <div class="TAG_right_admin_table">
+    <div class="amin_table">
         <el-table :data="NoticeData" :key="itemKey">
             <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
             <el-table-column prop="title" label="标题"></el-table-column>
@@ -12,9 +12,11 @@
             <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
             <el-table-column label="操作">
                 <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button class="button_on" type="success" round @click="Notice_update(0, scope)">修改</el-button>
-                    <el-button class="button_off" type="success" round @click="delete_total(1, scope)">删除</el-button>
+                    <div>
+                        {{ scope.row.date }}
+                        <el-button class="button_on" type="success" round @click="noticeUpdate(0, scope)">修改</el-button>
+                        <el-button class="button_off" type="success" round @click="deleteTotal(1, scope)">删除</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -32,26 +34,30 @@ const NoticeData = ref([
         "gmtCreate": "2022-12-27"
     }
 ])
-const Notice_update = () => {
+const noticeUpdate = () => {
 
 }
-const delete_total = () => {
+const deleteTotal = () => {
 
 }
 </script>
 <style>
-.TAG_right_admin_table {
+.amin_table {
     margin-top: 20px;
 }
 
 .button_on {
-    width: 60px;
+    width: 60px !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
 }
 
 .button_off {
-    width: 60px;
-    background-color: #e27172;
-    margin-left: 4px;
-    font-size: 15px;
+    width: 60px !important;
+    background-color: #e27172 !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
 }
 </style>

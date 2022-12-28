@@ -32,9 +32,6 @@
 import { ref } from 'vue'
 const menu=ref('')
 const axios = require("axios")
-
-
-
 const allowDrag = (draggingNode) => {
   return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
 }

@@ -4,7 +4,7 @@
       <el-input v-model="uers_name" placeholder="请输入关键字"></el-input>
     </el-form-item>
   </el-row>
-  <div class="TAG_right_admin_table">
+  <div class="amin_table">
     <el-table :data="ResourceData" :key="itemKey">
       <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
       <el-table-column prop="title" label="标题"></el-table-column>
@@ -241,18 +241,22 @@ const Delete_User = (e) => {
 }
 </script>
 <style>
-.TAG_right_admin_table {
+.amin_table {
   margin-top: 20px;
 }
 
-.button_off {
-  width: 60px;
-  background-color: #e27172;
-  margin-left: 4px;
-  font-size: 15px;
+.button_on {
+    width: 60px !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
 }
 
-.button_on {
-  width: 60px;
+.button_off {
+    width: 60px !important;
+    background-color: #e27172 !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
 }
 </style>

@@ -12,12 +12,13 @@
             <el-table-column prop="username" label="姓名"></el-table-column>
             <el-table-column label="操作">
                 <template #default="scope">
-                    {{ scope.row.date }}
-                    <el-button type="success" round style="width: 60px" @click="$emit('selectUserEdit', 'useredit')">修改
+                    <div>
+                        {{ scope.row.date }}
+                    <el-button type="success" round class="buttom_updata"
+                        @click="$emit('selectUserEdit', 'useredit')">修改
                     </el-button>
-                    <el-button type="success" round
-                        style="width: 60px;background-color: #e27172; margin-left: 4px;font-size: 15px;"
-                        @click="deleteTotal(0, scope)">删除</el-button>
+                    <el-button type="success" round class="buttom_delete" @click="deleteTotal(0, scope)">删除</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -37,5 +38,20 @@ const deleteTotal = (i, e) => {
 <style>
 .admin_tatle {
     margin-top: 20px;
+}
+
+.buttom_updata {
+    width: 60px !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
+}
+
+.buttom_delete {
+    width: 60px !important;
+    background-color: #e27172 !important;
+    height: 40px !important;
+    font-size: 19px !important;
+    margin: auto !important;
 }
 </style>
