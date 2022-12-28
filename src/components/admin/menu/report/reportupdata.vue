@@ -1,16 +1,16 @@
 <template>
   <el-form-item label="标题">
-    <el-input v-model="form['title']"></el-input>
+    <el-input v-model="title"></el-input>
   </el-form-item>
   <el-form-item label="作者">
-    <el-input v-model="form['name']"></el-input>
+    <el-input v-model="name"></el-input>
   </el-form-item>
   <div style="color: black; font-size: large; font-weight: bold">
     报道概述
   </div>
   <div class="TAG_main_write">
     <div style="margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%); border-radius: 20px;">
-      <el-input v-model="form['summary']" clearable />
+      <el-input v-model="summary" clearable />
     </div>
   </div>
   <div style="color: black; font-size: large; font-weight: bold">
@@ -30,52 +30,53 @@
   </div>
   <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
   <div class="TAG_right_buttom">
-    <el-button type="success" round class="TAG_right_back">返回</el-button>
-    <el-button type="success" round class="TAG_right_on" @click="Update_Activities(1, 1)">保存并返回</el-button>
+    <el-button type="success" round class="TAG_right_back"
+      @click="$emit('selectReportBack', 'ReportBack')">返回</el-button>
+    <el-button type="success" round class="TAG_right_on" @click="updataActivities(1, 1)">保存并返回</el-button>
   </div>
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
-
-//axios
-let axios = require("axios")
-
-let imageUrl = ''
-
-
+import { ref } from 'vue'
+const title = ref('')
+const name = ref('')
+const summary = ref('')
+const value = ref('')
+const imageUrl = ref('')
+const file = ref('')
+const id = ref('')
+const ActivitiesData = ref('')
+const axios = require("axios")
 const uploadFile = (item) => {
   let FormDatas = new FormData()
   FormDatas.append('file', item.file)
-  form['file'] = item.file;
+  file.value = item.file;
 }
-const Update_Activities = (i, e) => {
-  let that = this
+const updataActivities = (i, e) => {
+  const that = this
   if (i == 0) {
-    axios
-      .get("/api" + "/activity/search",
-        {
-          params: {
-            id: e.row.id
-          }
-        }).then((res) => {
-          // let data = res.data.data[0];
-          // form['id'] = data.id;
-          // form['title'] = data.title;
-          // form['summary'] = data.summary;
-          // value = data.content;
-          // that.select(511)
-        })
-  }
-  else if (i == 1) {
-    let params = {
-      title: form['title'],
+    axios.get("/api" + "/activity/search", {
+      params: {
+        id: e.row.id
+      }
+    }).then((res) => {
+      const data = res.data.data[0];
+      id.value = data.id;
+      title.value = data.title;
+      summary.value = data.summary;
+      value.value = data.content;
+      that.select(511)
+    })
+  } else if (i == 1) {
+    const params = {
+      title: title,
       content: value,
-      author: form['name'],
-      fileTmp: form['file'],
-      summary: form['summary'],
+      author: name,
+      fileTmp: file,
+      summary: summary,
       token: sessionStorage.getItem("token")
     }
-    let config = {
+    const config = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -83,30 +84,25 @@ const Update_Activities = (i, e) => {
     axios
       .post("/api" + "/activity/update", params, config)
       .then((res) => {
-        // if (res.data.code == 200) {
-        //   this.$message({
-        //     type: 'success',
-        //     message: '修改成功!'
-        //   });
-        //   Activities_init();
-        // }
-        // else {
-        //   this.$message({
-        //     type: 'error',
-        //     message: '修改失败!'
-        //   });
-        // }
-        // this.$refs.editor.$data.contentValue = "";
-        // form = {}
+        if (res.data.code == 200) {
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
+          });
+          Activities_init();
+        }
+        else {
+          this.$message({
+            type: 'error',
+            message: '修改失败!'
+          });
+        }
+        this.$refs.editor.$data.contentValue = "";
       })
-      .catch(() => {
-      });
+      .catch(() => { });
   }
 }
 const Activities_init = () => {
-  let string1;
-  let data;
-  let i = 0;
   axios
     .get("/api" + "/activity/searchAll",
       {
@@ -115,21 +111,20 @@ const Activities_init = () => {
         }
       })
     .then((res) => {
-      data = res.data.data;
-      for (i = 0; i < data.length; i++) {
-        let date = new Date(data[i].gmtCreate);
-        let Y = date.getFullYear() + "-";
-        let M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "-";
-        let D = date.getDate() + " ";
-        data[i].gmtCreate = Y + M + D;
+      const data = res.data.data;
+      for (let i = 0; i < data.length; i++) {
+        const newdate = new Date(data[i].gmtCreate);
+        const Y = newdate.getFullYear() + "-";
+        const M =
+          (newdate.getMonth() + 1 < 10
+            ? "0" + (newdate.getMonth() + 1)
+            : newdate.getMonth() + 1) + "-";
+        const D = newdate.getDate() + " ";
+        newdate[i].gmtCreate = Y + M + D;
       }
       ActivitiesData = data
     })
-    .catch((err) => {
-    });
+    .catch((err) => { });
 }
 
 </script>

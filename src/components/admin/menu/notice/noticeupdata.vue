@@ -12,7 +12,7 @@
         <TEditor class="teditoy" @input="value_change" v-model="value" :value="value" />
     </div>
     <div class="TAG_right_buttom">
-        <el-button type="success" round class="TAG_right_back" @click="select(31)">返回</el-button>
+        <el-button type="success" round class="TAG_right_back" @click="$emit('selectNoticeBack', 'NoticeBack')">返回</el-button>
         <el-button type="success" round class="TAG_right_on" @click="Notice_update(1, 1)">保存并返回</el-button>
     </div>
 </template>
@@ -24,9 +24,6 @@ const name = ref('')
 const value = ref('')
 const value_change = ref('')
 const axios = require("axios")
-const select = () => {
-    return
-}
 const Notice_update = (i, e) => {
     let that = this
     if (i == 0) {

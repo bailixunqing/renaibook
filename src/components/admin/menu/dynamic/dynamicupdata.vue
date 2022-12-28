@@ -9,10 +9,10 @@
     编辑内容
   </div>
   <div class="TAG_main_write">
-    <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" @input="content_value_change" />
+    <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" @input="valueChange" />
   </div>
   <div class="TAG_right_buttom">
-    <el-button type="success" round class="TAG_right_back" @click="select(41)">返回</el-button>
+    <el-button type="success" round class="TAG_right_back" @click="$emit('selectDynamicBack', 'DynamicBack')">返回</el-button>
     <el-button type="success" round class="TAG_right_on" @click="Resource_update(1, 1)">保存并返回</el-button>
   </div>
 </template>
@@ -22,11 +22,8 @@ import { ref } from 'vue'
 const title = ref('')
 const name = ref('')
 const value = ref('')
-const content_value_change = ref('')
+const valueChange = ref('')
 const Resource_update = () => {
-  return
-}
-const select = () => {
   return
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop />
+      <AdminTop @selectUpdata="selectUpdata"  />
       <div class="TAG">
         <div class="TAG_left">
           <div class="TAG_left_border">
@@ -239,6 +239,11 @@ const show = (i) => {
     return true;
   }
   return false;
+}
+//admin-select-updata
+const selectUpdata=(e)=>{
+  current.value = e;
+  return
 }
 //菜单
 const activeName = ref('1')

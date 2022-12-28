@@ -10,7 +10,7 @@
     编辑内容
   </div>
   <div class="TAG_main_write">
-    <TEditor style="height: 400px" ref="editor" @input="content_value_change" v-model="value" :key="form.change"
+    <TEditor style="height: 400px" ref="editor" @input="valueChange" v-model="value" :key="form.change"
       :value="value" />
   </div>
   <div class="TAG_right_buttom">
@@ -27,7 +27,7 @@ const form = ref({
   "cascader": "",
   "change": ""
 })
-const content_value_change = ref('')
+const valueChange = ref('')
 const value = ref('')
 //报错多多
 

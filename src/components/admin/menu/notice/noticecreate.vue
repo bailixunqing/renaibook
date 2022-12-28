@@ -9,10 +9,10 @@
         编辑内容
     </div>
     <div class="TAG_main_write">
-        <TEditor style="height: 400px" ref="editor" v-model="value" @input="content_value_change" :value="value" />
+        <TEditor style="height: 400px" ref="editor" v-model="value" @input="valueChange" :value="value" />
     </div>
     <div class="TAG_right_buttom">
-        <el-button type="success" round class="TAG_right_back">返回</el-button>
+        <el-button type="success" round class="TAG_right_back" @click="$emit('selectNoticeBack', 'NoticeBack')">返回</el-button>
         <el-button type="success" round class="TAG_right_on" @click="Create_Notice()">保存并返回</el-button>
     </div>
 </template>
@@ -22,7 +22,7 @@ import {ref} from 'vue'
 const title=ref('')
 const name=ref('')
 const value=ref('')
-const content_value_change=ref('')
+const valueChange=ref('')
 const axios = require("axios")
 
 const Create_Notice = () => {

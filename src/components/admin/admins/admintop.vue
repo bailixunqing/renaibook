@@ -14,7 +14,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="select('AdminUpdata')"> 修改密码</el-dropdown-item>
+            <el-dropdown-item @click="$emit('selectUpdata', 'adminupdata')"> 修改密码</el-dropdown-item>
             <el-dropdown-item @click="exit()">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -23,10 +23,6 @@
   </div>
 </template>
 <script setup>
-const select = (i) => {
-  console.log(i)
-  return
-}
 const exit = () => {
   sessionStorage.clear()
   location.reload()
