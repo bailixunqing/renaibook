@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <div class="menu_title">
+    <div >
       <el-form-item label="搜索目录" style="font-size: 35px">
         <el-input v-model="filterText" placeholder="输入关键字进行过滤"></el-input>
       </el-form-item>
@@ -137,15 +137,10 @@ const allowDrop = (draggingNode, dropNode, type) => {
   padding-top: 5px;
 }
 
-.menu_title {
-  margin: 30px;
-}
 
 .menu_body {
   display: grid;
   grid-template-columns: auto auto;
-  margin-left: 30px;
-  margin-right: 80px;
 }
 
 .custom-tree-node {

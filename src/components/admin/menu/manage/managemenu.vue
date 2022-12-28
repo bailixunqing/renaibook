@@ -166,7 +166,6 @@ const Menu_init = () => {
 .menu1 {
   display: grid;
   grid-template-columns: auto auto;
-  margin: 30px;
 }
 
 .menu2 {

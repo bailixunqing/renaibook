@@ -62,4 +62,7 @@ const userCreate = () => {
   padding-bottom: 20px !important;
   width: 14%;
 }
+.el-form-item__label{
+  width: 100px;
+}
 </style>
