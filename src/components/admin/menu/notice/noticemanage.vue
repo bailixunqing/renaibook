@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-form-item label="标题">
+        <el-form-item label="公告标题">
             <el-input v-model="uers_name" placeholder="请输入关键字"></el-input>
         </el-form-item>
     </el-row>

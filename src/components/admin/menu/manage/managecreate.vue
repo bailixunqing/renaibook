@@ -1,12 +1,12 @@
 <template>
-  <div style="color: black; font-size: large; font-weight: bold">
+  <div class="admin_menu_title">
     选择目录
   </div>
   <div class="block">
     <el-cascader v-model="form.cascader"  ref="cascader" @change="title_tree_change()">
     </el-cascader>
   </div>
-  <div style="color: black; font-size: large; font-weight: bold">
+  <div class="admin_menu_title">
     编辑内容
   </div>
   <div class="amin_write">
@@ -132,5 +132,10 @@ const title_contents_edit = () => {
   padding-top: 20px !important;
   padding-bottom: 20px !important;
   width: 14%;
+}
+.admin_menu_title{
+  color: black; 
+  font-size: 25px; 
+  font-weight: bold;
 }
 </style>

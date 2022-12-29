@@ -1,18 +1,13 @@
 <template>
-  <el-form-item label="标题">
+  <el-form-item label="报道标题">
     <el-input v-model="title"></el-input>
   </el-form-item>
-  <el-form-item label="作者">
+  <el-form-item label="报道作者">
     <el-input v-model="name"></el-input>
   </el-form-item>
-  <div style="color: black; font-size: large; font-weight: bold">
-    报道概述
-  </div>
-  <div class="main_write">
-    <div style="margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%); border-radius: 20px;">
-      <el-input v-model="summary" clearable />
-    </div>
-  </div>
+  <el-form-item label="报道作者">
+    <el-input v-model="summary"></el-input>
+  </el-form-item>
   <div style="color: black; font-size: large; font-weight: bold">
     编辑内容
   </div>
@@ -30,8 +25,7 @@
   </div>
   <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
   <div class="buttom">
-    <el-button type="success" round class="buttom_back"
-      @click="$emit('selectReportBack', 'ReportBack')">返回</el-button>
+    <el-button type="success" round class="buttom_back" @click="$emit('selectReportBack', 'ReportBack')">返回</el-button>
     <el-button type="success" round class="buttom_on" @click="updataActivities(1, 1)">保存并返回</el-button>
   </div>
 </template>

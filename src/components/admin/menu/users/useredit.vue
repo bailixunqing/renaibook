@@ -1,11 +1,11 @@
 <template>
-    <el-form-item label="工号ID">
+    <el-form-item label="用户工号">
         <el-input v-model="uers_id"></el-input>
     </el-form-item>
-    <el-form-item label="姓名">
+    <el-form-item label="用户姓名">
         <el-input v-model="user_name"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
+    <el-form-item label="用户密码">
         <el-input v-model="user_password"></el-input>
     </el-form-item>
     <el-form-item label="用户权限">

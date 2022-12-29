@@ -14,7 +14,7 @@
     </div>
     <div class="database-css">
       <el-button @click="add" class="database-button" style="width: 160px">添加显示</el-button>
-    </div>
+    </div>  
   </div>
 </template>
 

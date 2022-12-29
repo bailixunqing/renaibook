@@ -1,19 +1,14 @@
 <template>
-  <el-form-item label="标题">
+  <el-form-item label="报道标题">
     <el-input v-model="title"></el-input>
   </el-form-item>
-  <el-form-item label="作者">
+  <el-form-item label="报道作者">
     <el-input v-model="name"></el-input>
   </el-form-item>
-  <div style="color: black; font-size: large; font-weight: bold">
-    报道概述
-  </div>
-  <div class="admin_write">
-    <div style=" margin-right: 18px !important; box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);border-radius: 20px;">
-      <el-input v-model="summary" clearable />
-    </div>
-  </div>
-  <div style="color: black; font-size: large; font-weight: bold">
+  <el-form-item label="报道概述">
+    <el-input v-model="summary"></el-input>
+  </el-form-item>
+  <div class="admin_title">
     编辑内容
   </div>
   <div class="admin_write">
@@ -133,5 +128,12 @@ const createActivities = () => {
   width: 178px;
   height: 178px;
   display: block;
+}
+.admin_title{
+  color: black; 
+  font-size: 25px; 
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>

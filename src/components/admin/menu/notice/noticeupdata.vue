@@ -1,8 +1,8 @@
 <template>
-    <el-form-item label="标题">
+    <el-form-item label="公告标题">
         <el-input v-model="title"></el-input>
     </el-form-item>
-    <el-form-item label="作者">
+    <el-form-item label="公告作者">
         <el-input v-model="name"></el-input>
     </el-form-item>
     <div style="color: black; font-size: large; font-weight: bold">

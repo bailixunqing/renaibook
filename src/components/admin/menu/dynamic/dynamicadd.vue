@@ -1,11 +1,11 @@
 <template>
-  <el-form-item label="标题">
+  <el-form-item label="动态标题">
     <el-input v-model="title"></el-input>
   </el-form-item>
-  <el-form-item label="作者">
+  <el-form-item label="动态作者">
     <el-input v-model="name"></el-input>
   </el-form-item>
-  <div style="color: black; font-size: large; font-weight: bold">
+  <div class="admin_title" >
     编辑内容
   </div>
   <div class="amin_write">
@@ -103,5 +103,10 @@ const Resource_init = () => {
   padding-top: 20px !important;
   padding-bottom: 20px !important;
   width: 14%;
+}
+.admin_title{
+  color: black; 
+  font-size: 26px; 
+  font-weight: bold;
 }
 </style>

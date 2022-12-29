@@ -4,12 +4,18 @@ import '@/assets/styles/font.css'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import locale from 'element-plus/lib/locale/lang/zh-cn'
+import AdminBottom from '@/components/admin/admins/adminbottom.vue'
+//富文本
+import TEditor from '@/components/TEditor.vue'
+//element组件库
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
-import locale from 'element-plus/lib/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import TEditor from '@/components/TEditor.vue'
-import AdminBottom from '@/components/admin/admins/adminbottom.vue'
+//design-vue 组件库：企业级
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+
 //import  {detectZoom}  from '@/utils/detectZoom.js';
 
 //const m = detectZoom();
@@ -17,6 +23,7 @@ import AdminBottom from '@/components/admin/admins/adminbottom.vue'
 //document.body.style.zoom = 100 / Number(m);
 const app = createApp(App)
     .use(router)
+    .use(Antd)
     .use(ElementPlus, { locale })
     .use(VueAxios, axios)
     .component('TEditor', TEditor)
