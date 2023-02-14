@@ -16,8 +16,6 @@
               </el-collapse-item>
               <el-collapse-item title="图书指南" name="2">
                 <el-row>
-                  <el-button type="primary" round class="TAG_left_button" @click="select('ManageTests')">目录管理
-                  </el-button>
                   <el-button type="primary" round class="TAG_left_button" @click="select('ManageCreate')">发布文章
                   </el-button>
                 </el-row>
@@ -88,13 +86,6 @@
             </div>
             <el-divider></el-divider>
             <UserAdd />
-          </div>
-          <div class="TAG_rght_2" v-if="show('ManageTests')">
-            <div class="TAG_right_admin">
-              <div class="TAG_right_admin_left">目录管理</div>
-            </div>
-            <el-divider></el-divider>
-            <ManageTests />
           </div>
           <div class="TAG_rght_2" v-if="show('ManageCreate')">
             <div class="TAG_right_admin">
@@ -204,7 +195,6 @@ import UserManage from '@/components/admin/menu/users/usermanage.vue'
 import UserEdit from '@/components/admin/menu/users/useredit.vue'
 import UserAdd from '@/components/admin/menu/users/useradd.vue'
 
-import ManageTests from '@/components/admin/menu/manage/managetests.vue'
 import ManageCreate from '@/components/admin/menu/manage/managecreate.vue'
 
 import NoticeManage from '@/components/admin/menu/notice/noticemanage.vue'
@@ -369,7 +359,6 @@ const activeName = ref('1')
   border-radius: 20px;
   border-color: #0c57ad;
   height: 100% !important;
-  margin-right: 20px;
 }
 
 :deep(.el-table__empty-block) {

@@ -28,7 +28,7 @@ const UserData = ref({
     'user_password': '',
     'user_pres': []
 })
-const user_pres = ref(['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库'])
+const user_pres = ['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库']
 const userCreate = () => {
     console.log(UserData.value.user_pres)
     console.log('你正在请求更改用户数据...')
