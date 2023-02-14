@@ -16,7 +16,7 @@
     </el-checkbox-group>
   </el-form-item>
   <div class="buttom">
-    <el-button type="success" round class="buttom_on" @click="userCreate()">保存并返回</el-button>
+    <el-button type="success" round class="buttom_on" @click="userCreate()">确定提交</el-button>
   </div>
 </template>
 <script setup>
@@ -33,7 +33,7 @@ const user_pres = ref(['系统管理', '活动报道', '通知公告', '资源�
 const userCreate = () => {
   console.log(UserData.value.user_pres)
   console.log('你正在请求添加用户...')
-  axios.post("/api" + "/user/insert", null, {
+  axios.post(`/api/user/insert`, null, {
     params: {
       idCard: UserData.value.user_card,
       username: UserData.value.user_name,

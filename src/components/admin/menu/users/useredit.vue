@@ -1,30 +1,51 @@
 <template>
     <el-form-item label="用户工号">
-        <el-input v-model="uers_id"></el-input>
+        <el-input v-model="UserData.user_card"></el-input>
     </el-form-item>
     <el-form-item label="用户姓名">
-        <el-input v-model="user_name"></el-input>
+        <el-input v-model="UserData.user_name"></el-input>
     </el-form-item>
     <el-form-item label="用户密码">
-        <el-input v-model="user_password"></el-input>
+        <el-input v-model="UserData.user_password"></el-input>
     </el-form-item>
     <el-form-item label="用户权限">
-        <el-checkbox-group v-model="checkedCities" :min="1" :max="2">
-            <el-checkbox v-for="city in checkedCities" :key="city" :label="city">{{ city }}
+        <el-checkbox-group v-model="UserData.user_pres" :min="0" :max="2">
+            <el-checkbox v-for="city in user_pres" :key="city" :label="city">{{ city }}
             </el-checkbox>
         </el-checkbox-group>
     </el-form-item>
     <div class="buttom">
-        <el-button type="success" round class="buttom_back" @click="$emit('selectUserBack', 'UserBack')">返回</el-button>
-        <el-button type="success" round class="buttom_on">保存并返回</el-button>
+        <el-button type="success" round class="buttom_on" @click="userCreate">确定提交</el-button>
     </div>
 </template>
 <script setup>
 import { ref } from 'vue'
-const uers_id = ref('')
-const user_name = ref('')
-const user_password = ref('')
-const checkedCities = ref(['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库'])
+import axios from 'axios'
+/* 前端不建议使用require() */
+const UserData = ref({
+    'user_card': '',
+    'user_name': '',
+    'user_password': '',
+    'user_pres': []
+})
+const user_pres = ref(['系统管理', '活动报道', '通知公告', '资源动态', '菜单管理', '合作数据库'])
+const userCreate = () => {
+    console.log(UserData.value.user_pres)
+    console.log('你正在请求更改用户数据...')
+    axios.post(`/api/user/insert`, null, {
+        params: {
+            idCard: UserData.value.user_card,
+            username: UserData.value.user_name,
+            password: UserData.value.user_password,
+            userPres: UserData.value.user_pres,
+            token: sessionStorage.getItem("token")
+        },
+    })
+        .then((res) => {
+            alert("修改成功")
+        })
+        .catch((err) => { })
+}
 </script>
 <style>
 .buttom {

@@ -19,12 +19,7 @@
       <div class="right">
         <div class="mains" v-if="show(1)">
           <div class="tit">通知公告</div>
-          <div
-            class="content"
-            v-for="item in Notice.content"
-            :key="item"
-            @click="jump(item, 0)"
-          >
+          <div class="content" v-for="item in Notice.content" :key="item" @click="jump(item, 0)">
             <div class="major">
               <text class="mainly">{{ item.title }}</text>
               <text class="time">{{ item.gmtCreate }}</text>
@@ -34,18 +29,12 @@
             <div class="last" @click="Notice_page_last()">上一页</div>
             <div class="next" @click="Notice_page_next()">下一页</div>
             <div class="pages">
-              页码 :  
+              页码 :
               <div v-show="Notice_is_edit" @click="Notice_no_edit()" class="sel_span">
                 {{ Notice.page }}
               </div>
-              <input
-                v-show="!Notice_is_edit"
-                class="sel_input"
-                @blur="Notice_edit($event)"
-                type="text"
-                :value="Notice.page"
-                ref="inputvalue"
-              /> /32
+              <input v-show="!Notice_is_edit" class="sel_input" @blur="Notice_edit($event)" type="text"
+                :value="Notice.page" ref="inputvalue" /> /32
             </div>
             <div class="select" @click="Notice_page_jump()">跳转</div>
           </div>
@@ -54,12 +43,7 @@
 
         <div class="mains" v-if="show(2)">
           <div class="tit">资源动态</div>
-          <div
-            class="content"
-            v-for="item in Resource.content"
-            :key="item"
-            @click="jump(item, 1)"
-          >
+          <div class="content" v-for="item in Resource.content" :key="item" @click="jump(item, 1)">
             <div class="major">
               <text class="mainly">{{ item.title }}</text>
               <text class="time">{{ item.gmtCreate }}</text>
@@ -73,14 +57,8 @@
               <div v-show="Resource_is_edit" @click="Resource_no_edit()" class="sel_span">
                 {{ Resource.page }}
               </div>
-              <input
-                v-show="!Resource_is_edit"
-                class="sel_input"
-                @blur="Resource_edit($event)"
-                type="text"
-                :value="Resource.page"
-                ref="inputvalue"
-              /> /32
+              <input v-show="!Resource_is_edit" class="sel_input" @blur="Resource_edit($event)" type="text"
+                :value="Resource.page" ref="inputvalue" /> /32
             </div>
             <div class="select" @click="Resource_page_jump()">跳转</div>
           </div>
@@ -89,12 +67,7 @@
 
         <div class="mains" v-if="show(3)">
           <div class="tit">活动报告</div>
-          <div
-            class="content"
-            v-for="item in Activity.content"
-            :key="item"
-            @click="jump(item, 2)"
-          >
+          <div class="content" v-for="item in Activity.content" :key="item" @click="jump(item, 2)">
             <div class="major">
               <text class="mainly">{{ item.title }}</text>
               <text class="time">{{ item.gmtCreate }}</text>
@@ -108,14 +81,8 @@
               <div v-show="Activity_is_edit" @click="Activity_no_edit()" class="sel_span">
                 {{ Activity.page }}
               </div>
-              <input
-                v-show="!Activity_is_edit"
-                class="sel_input"
-                @blur="Activity_edit($event)"
-                type="text"
-                :value="Activity.page"
-                ref="inputvalue"
-              />/32
+              <input v-show="!Activity_is_edit" class="sel_input" @blur="Activity_edit($event)" type="text"
+                :value="Activity.page" ref="inputvalue" />/32
             </div>
             <div class="select" @click="Activity_page_jump()">跳转</div>
           </div>
@@ -136,9 +103,9 @@ const axios = require("axios");
 export default {
   name: "more",
   data() {
-    let npage=1;
+    let npage = 1;
     let apage = 1;
-    let rpage=1;
+    let rpage = 1;
     let page_select = 1;
     // let major = [
     //   {
@@ -174,7 +141,7 @@ export default {
       apage,
       rpage,
       Notice,
-     
+
       Activity,
       Resource,
     };
@@ -383,25 +350,25 @@ export default {
       this.apage = e.target.value;
     },
     Notice_page_jump() {
-      if(this.Notice_is_edit==false){
+      if (this.Notice_is_edit == false) {
         this.Notice_is_edit = true;
-      this.Notice.page = this.npage;
+        this.Notice.page = this.npage;
       }
-      
+
     },
     Resource_page_jump() {
-      if(this.Resource_is_edit==false){
+      if (this.Resource_is_edit == false) {
         this.Resource_is_edit = true;
-      this.Resource.page = this.rpage;
+        this.Resource.page = this.rpage;
       }
-      
+
     },
     Activity_page_jump() {
-      if(this.Activity_is_edit==false){
+      if (this.Activity_is_edit == false) {
         this.Activity_is_edit = true;
-      this.Activity.page = this.apage;
+        this.Activity.page = this.apage;
       }
-      
+
     },
     jump(e, type) {
       this.$router.push({
@@ -436,8 +403,8 @@ export default {
           data[i].time = data[i].gmtCreate.replace("-", ".").substring(0, 7);
           data[i].day = data[i].gmtCreate.substring(8, 10);
         }
-        this.Notice.content= data;
-        
+        this.Notice.content = data;
+
         console.log(this.Notice);
       })
       .catch((err) => {
@@ -453,6 +420,7 @@ export default {
   text-decoration: none;
   list-style: none;
 }
+
 .screen {
   overflow: hidden;
   display: flex;
@@ -463,6 +431,7 @@ export default {
   align-items: center;
   overflow: hidden;
 }
+
 .background {
   background-image: url("../assets/images/index.png");
   background-size: 100%;
@@ -470,6 +439,7 @@ export default {
 
   width: 100%;
 }
+
 .left {
   width: 291px;
   height: 459px;
@@ -529,6 +499,7 @@ export default {
 :deep(.tox .tox-mbtn__select-labe)l {
   color: rgb(255, 255, 255);
 }
+
 :deep(.tox .tox-statusbar__wordcount) {
   color: rgb(255, 255, 255);
   margin-right: 50px;
@@ -615,6 +586,7 @@ export default {
 .TAG_right_adminpower_top {
   padding-top: 27px;
 }
+
 .TAG_right_adminpower_bottom {
   padding-bottom: 27px;
 }
@@ -637,15 +609,15 @@ export default {
 }
 
 :deep(.el-button--success) {
-  background-color: #0d52a1;
-  --el-button-border-color: #ffffff;
-  --el-button-active-color: #5ca695;
-  --el-button-hover-bg-color: #0d52a1;
+  background-color: #0d52a1cf;
+  --el-button-border-color: #fefefebf;
+  --el-button-active-color: #ffffff;
+  --el-button-hover-bg-color: #0d52a1b5;
   --el-button-disabled-bg-color: #ffffff;
   --el-button-hover-border-color: #ffffff;
-  --el-button-active-bg-color: #6edbff;
+  --el-button-active-bg-color: #0d4d9bb5;
   --el-button-disabled-border-color: #ffffff;
-  --el-button-active-border-color: #122bcb;
+  --el-button-active-border-color: #0d52a1b5;
 }
 
 :deep(.el-input__wrapper.is-focus) {
@@ -690,9 +662,11 @@ export default {
   border-radius: 26px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
+
 .TAG_right_admin {
   margin-bottom: 50px;
 }
+
 .TAG_right_admin_left {
   font-size: 28px;
   font-family: "PingFang SC";
@@ -770,9 +744,11 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 :deep(.el-checkbox__label) {
   font-size: 20px;
 }
+
 :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
   color: #00478b;
 }
@@ -804,6 +780,7 @@ export default {
   width: 100%;
   border-radius: 25px;
 }
+
 .top_text1 {
   position: absolute;
   width: 96px;
@@ -818,6 +795,7 @@ export default {
   margin: 0 0 0 0;
   color: #ffffff;
 }
+
 .top_text2 {
   position: absolute;
   width: 96px;
@@ -844,6 +822,7 @@ export default {
   color: #00478b;
   display: block;
 }
+
 .navlist a:hover {
   background: #e7e7e7;
   /* 大块投影 */
@@ -877,6 +856,7 @@ export default {
   margin-bottom: 40px;
   /* position: relative; */
 }
+
 .tit {
   padding-bottom: 10px;
   /* background-color: #5ca695; */
@@ -902,21 +882,26 @@ export default {
   cursor: pointer;
   /* background-color: #2fb163; */
 }
+
 .major:hover {
   color: #0d52a1;
 }
+
 .content {
   margin-top: 10px;
 }
+
 .pages {
   display: flex;
 }
+
 .select_page {
   display: flex;
   position: absolute;
-  left:620px;
+  left: 620px;
   bottom: 0;
 }
+
 .last,
 .next,
 .select {
@@ -926,26 +911,31 @@ export default {
   background-color: rgb(255, 255, 255);
   color: #0c57ad;
 }
+
 .last:hover,
 .next:hover,
 .select:hover {
   cursor: pointer;
   color: #1f8ef6;
 }
+
 .sel_span {
   margin: 0 6px;
   width: 15px;
   text-align: center;
-  background-color: 
-#EFEFEF;
+  background-color:
+    #EFEFEF;
 }
+
 .sel_input {
   width: 20px;
 }
+
 .TAG_5 {
   width: 100%;
   background-size: 100% auto;
 }
+
 /*开片样式*/
 </style>
 

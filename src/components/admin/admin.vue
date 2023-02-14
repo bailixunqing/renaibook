@@ -1,7 +1,7 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop @selectUpdata="selectUpdata"  />
+      <AdminTop @selectUpdata="selectUpdata" />
       <div class="TAG">
         <div class="TAG_left">
           <div class="TAG_left_border">
@@ -235,7 +235,7 @@ const show = (i) => {
   return false;
 }
 //admin-select-updata
-const selectUpdata=(e)=>{
+const selectUpdata = (e) => {
   current.value = e;
   return
 }
@@ -343,7 +343,7 @@ const activeName = ref('1')
   background: #ffffff00;
 }
 
-.TAG_right_admin_left{
+.TAG_right_admin_left {
   font-size: 25px;
   color: #00478b;
 }
@@ -465,15 +465,15 @@ const activeName = ref('1')
 }
 
 :deep(.el-button--success) {
-  background-color: #0d52a1;
-  --el-button-border-color: #ffffff;
-  --el-button-active-color: #5ca695;
-  --el-button-hover-bg-color: #0d52a1;
+  background-color: #0d52a1cf;
+  --el-button-border-color: #fefefebf;
+  --el-button-active-color: #ffffff;
+  --el-button-hover-bg-color: #0d52a1b5;
   --el-button-disabled-bg-color: #ffffff;
   --el-button-hover-border-color: #ffffff;
-  --el-button-active-bg-color: #6edbff;
+  --el-button-active-bg-color: #0d4d9bb5;
   --el-button-disabled-border-color: #ffffff;
-  --el-button-active-border-color: #122bcb;
+  --el-button-active-border-color: #0d52a1b5;
 }
 
 :deep(.el-input__wrapper.is-focus) {

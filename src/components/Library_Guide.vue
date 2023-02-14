@@ -1,5 +1,5 @@
 <template>
-  <div v-if="load"  class="screen">
+  <div v-if="load" class="screen">
     <div class="background">
 
     </div>
@@ -9,14 +9,16 @@
     <div class="main">
       <div class="left">
         <el-collapse v-model="activeName" accordion class="TAG_left_1">
-          
-          <el-collapse-item v-for="item in Menu" :key="item" :title="item.label"  :name="item.value" @click="select(item)">
+
+          <el-collapse-item v-for="item in Menu" :key="item" :title="item.label" :name="item.value"
+            @click="select(item)">
             <el-row>
-                  <el-button type="primary" v-for="item2 in item.children" :key="item2" round class="TAG_left_button" @click.stop="select(item2.id)">{{item2.label}}</el-button>
-                  
-                </el-row>
+              <el-button type="primary" v-for="item2 in item.children" :key="item2" round class="TAG_left_button"
+                @click.stop="select(item2.id)">{{ item2.label }}</el-button>
+
+            </el-row>
           </el-collapse-item>
-         
+
         </el-collapse>
       </div>
       <div class="right">
@@ -39,13 +41,13 @@ export default {
   name: "Library_Guide",
   components: { DropMenu, BottomFooter },
   data() {
-    let load=false;
+    let load = false;
     let activeName = "1";
     let current = 1;
     var value = 0;
-    let content=""
+    let content = ""
     const Menu = "";
-    return { value, current, Menu, activeName,content,load };
+    return { value, current, Menu, activeName, content, load };
   },
   methods: {
     show(i) {
@@ -54,36 +56,33 @@ export default {
     },
     select(e) {
       console.log(e)
-      var index=this.Menu.findIndex(item=>item.id==e.id)
+      var index = this.Menu.findIndex(item => item.id == e.id)
       console.log(index)
-        if(this.Menu[index].content==null)
-        {
-          axios
-        .get("/api" + "/title/search",
-        {
-          params:{
-              id:e.id
-          }
-        }).then((res)=>{
-          
-          if(res.data.data.length!= 0)
-          {
-            
-            this.Menu[index].content=res.data.data[0].content;
-         this.content= this.Menu[index].content;
-          }
-          else
-          {
-            this.content= "";
-          }
-         this.load=true;
-        }
-        );
-        }
-        else{
-          this.content=this.Menu[index].content,
-          this.load=true;
-        }
+      if (this.Menu[index].content == null) {
+        axios
+          .get("/api" + "/title/search",
+            {
+              params: {
+                id: e.id
+              }
+            }).then((res) => {
+
+              if (res.data.data.length != 0) {
+
+                this.Menu[index].content = res.data.data[0].content;
+                this.content = this.Menu[index].content;
+              }
+              else {
+                this.content = "";
+              }
+              this.load = true;
+            }
+            );
+      }
+      else {
+        this.content = this.Menu[index].content,
+          this.load = true;
+      }
 
 
     },
@@ -93,21 +92,21 @@ export default {
 
   mounted: function () {
     let data = this.$route.query;
-    
+
     console.log(data)
-    this.Menu=JSON.parse(sessionStorage.getItem("Menu_options"));
+    this.Menu = JSON.parse(sessionStorage.getItem("Menu_options"));
     // if(data.type[0]=='1')
-    this.Menu=this.Menu[Number(data.type[0])-1].children;
-    
+    this.Menu = this.Menu[Number(data.type[0]) - 1].children;
+
     this.activeName = data.type;
- 
+
     // this.select(data.id);
 
     this.select(data);
     // this.init();
     window.scroll(0, 0);
   },
-  message() {},
+  message() { },
 };
 </script>
 
@@ -119,8 +118,9 @@ export default {
   text-decoration: none;
   list-style: none;
 }
+
 .screen {
-  overflow:hidden;
+  overflow: hidden;
   display: flex;
   width: 100%;
   height: 100%;
@@ -129,6 +129,7 @@ export default {
   align-items: center;
   overflow: hidden;
 }
+
 .background {
   background-image: url("../assets/images/index.png");
   background-size: 100%;
@@ -136,6 +137,7 @@ export default {
 
   width: 100%;
 }
+
 .left {
   width: 291px;
   height: 459px;
@@ -196,6 +198,7 @@ export default {
 :deep(.tox .tox-mbtn__select-labe)l {
   color: rgb(255, 255, 255);
 }
+
 :deep(.tox .tox-statusbar__wordcount) {
   color: rgb(255, 255, 255);
   margin-right: 50px;
@@ -282,6 +285,7 @@ export default {
 .TAG_right_adminpower_top {
   padding-top: 27px;
 }
+
 .TAG_right_adminpower_bottom {
   padding-bottom: 27px;
 }
@@ -304,15 +308,15 @@ export default {
 }
 
 :deep(.el-button--success) {
-  background-color: #0d52a1;
-  --el-button-border-color: #ffffff;
-  --el-button-active-color: #5ca695;
-  --el-button-hover-bg-color: #0d52a1;
+  background-color: #0d52a1cf;
+  --el-button-border-color: #fefefebf;
+  --el-button-active-color: #ffffff;
+  --el-button-hover-bg-color: #0d52a1b5;
   --el-button-disabled-bg-color: #ffffff;
   --el-button-hover-border-color: #ffffff;
-  --el-button-active-bg-color: #6edbff;
+  --el-button-active-bg-color: #0d4d9bb5;
   --el-button-disabled-border-color: #ffffff;
-  --el-button-active-border-color: #122bcb;
+  --el-button-active-border-color: #0d52a1b5;
 }
 
 :deep(.el-input__wrapper.is-focus) {
@@ -357,9 +361,11 @@ export default {
   border-radius: 26px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
+
 .TAG_right_admin {
   margin-bottom: 50px;
 }
+
 .TAG_right_admin_left {
   font-size: 28px;
   font-family: "PingFang SC";
@@ -437,9 +443,11 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 :deep(.el-checkbox__label) {
   font-size: 20px;
 }
+
 :deep(.el-checkbox__input.is-checked + .el-checkbox__label) {
   color: #00478b;
 }
@@ -471,6 +479,7 @@ export default {
   width: 100%;
   border-radius: 25px;
 }
+
 .top_text1 {
   position: absolute;
   width: 96px;
@@ -485,6 +494,7 @@ export default {
   margin: 0 0 0 0;
   color: #ffffff;
 }
+
 .top_text2 {
   position: absolute;
   width: 96px;
@@ -511,6 +521,7 @@ export default {
   color: #00478b;
   display: block;
 }
+
 .navlist a:hover {
   background: #e7e7e7;
   /* 大块投影 */
@@ -532,7 +543,7 @@ export default {
 }
 
 .right {
-  width:1000px;
+  width: 1000px;
 
   background: #ffffff;
   /* 大块投影 */
@@ -543,17 +554,20 @@ export default {
   margin-left: 27px;
   margin-bottom: 40px;
 }
+
 .text {
   width: 940px;
   height: 100%;
   margin: 30px 30px 30px 30px;
   margin-bottom: 40px;
 }
+
 .TAG_5 {
   width: 100%;
 
   background-size: 100% auto;
 }
+
 /*开片样式*/
 </style>
 
