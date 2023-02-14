@@ -27,6 +27,7 @@
 </template>
 <script  setup>
 import { computed, ref } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 /* 观察数据 */
 const search = ref('')
 /* 观察数据 */
@@ -58,12 +59,40 @@ const filterTableData = computed(() =>
             data.user_card.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+
+const open = (i, e) => {
+    ElMessageBox.confirm(
+        '是否确定删除该用户？',
+        '删除用户提示',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            /* 此处请求api,若相应正常,则两边同步删除,无需再重赋值filterTableData */
+            UserData.value.splice(i, 1)
+            /*  成功 */
+            ElMessage({
+                type: 'success',
+                message: '删除成功',
+            })
+
+        })
+        .catch(() => {
+            /* 失败 */
+            ElMessage({
+                type: 'info',
+                message: '取消操作',
+            })
+        })
+}
 const deleteTotal = (i, e) => {
     console.log(`你点击了第${i + 1}位用户UserData[${i}]`)
     const { user_card, user_name } = e.row
     console.log(user_card, user_name)
-    UserData.value.splice(i, 1)
-    console.log(UserData.value)
+    open(i, e)
     return
 }
 </script>
