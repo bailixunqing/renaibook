@@ -1,7 +1,8 @@
 <template>
   <div class="new">
     <div class="screen">
-      <AdminTop @selectUpdata="selectUpdata" />
+      <!--监听子组件-->
+      <AdminTop @select="select" />
       <div class="TAG">
         <div class="TAG_left">
           <div class="TAG_left_border">
@@ -72,7 +73,7 @@
               <div class="TAG_right_admin_left">用户管理</div>
             </div>
             <el-divider></el-divider>
-            <UserManage />
+            <UserManage @select="select" />
           </div>
           <div class="TAG_rght_2" v-if="show('useredit')">
             <div class="TAG_right_admin">
@@ -221,23 +222,19 @@ import DatabaseChinese from '@/components/admin/menu/database/databasechinese.vu
 import DatabaseLanguage from '@/components/admin/menu/database/databaselanguage.vue'
 import DatabaseProbation from '@/components/admin/menu/database/databaseprobation.vue'
 import { ref } from 'vue'
-//vue-menu控制
+//默认展示页
 const current = ref('usermanage')
 //vue-menu选择器
-const select = (i) => {
-  current.value = i;
+const select = (data) => {
+  current.value = data;
 }
-//vue-menu组件显示
+//vue-menu显示
 const show = (i) => {
+  /*show监听 */
   if (current.value == i) {
     return true;
   }
   return false;
-}
-//admin-select-updata
-const selectUpdata = (e) => {
-  current.value = e;
-  return
 }
 //菜单
 const activeName = ref('1')
@@ -473,7 +470,7 @@ const activeName = ref('1')
   --el-button-hover-border-color: #ffffff;
   --el-button-active-bg-color: #0d4d9bb5;
   --el-button-disabled-border-color: #ffffff;
-  --el-button-active-border-color: #0d52a1b5;
+  --el-button-active-border-color: #ffffff;
 }
 
 :deep(.el-input__wrapper.is-focus) {

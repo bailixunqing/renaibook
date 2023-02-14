@@ -15,7 +15,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <!--   -->
-            <el-dropdown-item @click="$emit('selectUpdata', 'adminupdata')"> 修改密码</el-dropdown-item>
+            <el-dropdown-item @click="$emit('select', 'adminupdata')"> 修改密码</el-dropdown-item>
             <el-dropdown-item @click="exit()">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>

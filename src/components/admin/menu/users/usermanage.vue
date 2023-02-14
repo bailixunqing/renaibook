@@ -1,28 +1,30 @@
 <template>
-    <el-row>
-        <el-form-item label="工号姓名">
-            <el-input v-model="search" placeholder="请输入关键字进行顺序查询"></el-input>
-        </el-form-item>
-    </el-row>
-    <div class="admin_tatle">
-        <el-table :data="filterTableData">
-            <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
-            <el-table-column prop="user_card" label="工号(card)"></el-table-column>
-            <el-table-column prop="user_name" label="姓名(name)"></el-table-column>
-            <el-table-column label="操作(action)">
-                <template #default="scope">
-                    <div>
-                        {{ scope.row.date }}
-                        <!--点击按钮后传值给admin-v-show-->
-                        <el-button type="success" round class="buttom_updata"
-                            @click="$emit('selectUserEdit', 'useredit')">修改
-                        </el-button>
-                        <el-button type="success" round class="buttom_delete"
-                            @click="deleteTotal(0, scope)">删除</el-button>
-                    </div>
-                </template>
-            </el-table-column>
-        </el-table>
+    <div>
+        <el-row>
+            <el-form-item label="工号姓名">
+                <el-input v-model="search" placeholder="请输入关键字进行顺序查询"></el-input>
+            </el-form-item>
+        </el-row>
+        <div class="admin_tatle">
+            <el-table :data="filterTableData">
+                <el-table-column type="index" label="#" style="width: 83px"></el-table-column>
+                <el-table-column prop="user_card" label="工号(card)"></el-table-column>
+                <el-table-column prop="user_name" label="姓名(name)"></el-table-column>
+                <el-table-column label="操作(action)">
+                    <template #default="scope">
+                        <div>
+                            {{ scope.row.date }}
+                            <!--点击按钮后传值给admin-v-show-->
+                            <el-button type="success" round class="buttom_updata"
+                                @click="$emit('select', 'useredit')">修改
+                            </el-button>
+                            <el-button type="success" round class="buttom_delete"
+                                @click="deleteTotal(0, scope)">删除</el-button>
+                        </div>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
     </div>
 </template>
 <script  setup>
@@ -93,6 +95,7 @@ const deleteTotal = (i, e) => {
     const { user_card, user_name } = e.row
     console.log(user_card, user_name)
     open(i, e)
+    console.log(UserData.value)
     return
 }
 </script>

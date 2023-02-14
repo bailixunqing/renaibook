@@ -316,7 +316,7 @@ export default {
   --el-button-hover-border-color: #ffffff;
   --el-button-active-bg-color: #0d4d9bb5;
   --el-button-disabled-border-color: #ffffff;
-  --el-button-active-border-color: #0d52a1b5;
+  --el-button-active-border-color: #ffffff;
 }
 
 :deep(.el-input__wrapper.is-focus) {
