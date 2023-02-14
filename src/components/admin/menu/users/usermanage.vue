@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-form-item label="用户姓名">
+        <el-form-item label="工号姓名">
             <el-input v-model="search" placeholder="请输入关键字进行顺序查询"></el-input>
         </el-form-item>
     </el-row>
@@ -27,9 +27,10 @@
 </template>
 <script  setup>
 import { computed, ref } from 'vue'
+/* 观察数据 */
 const search = ref('')
-/* 该数组不能用ref进行修饰 */
-let UserData = [{
+/* 观察数据 */
+const UserData = ref([{
     'user_card': '6020203120',
     'user_name': 'xiejihuang'
 },
@@ -44,10 +45,14 @@ let UserData = [{
 {
     'user_card': '6020203123',
     'user_name': 'zhangdaqian'
-}]
+}])
+/* 观察数据 */
 const filterTableData = computed(() =>
-    UserData.filter(
+    UserData.value.filter(
         (data) =>
+            /* 观察 */
+            !UserData.value ||
+            /* 观察 */
             !search.value ||
             data.user_name.toLowerCase().includes(search.value.toLowerCase()) ||
             data.user_card.toLowerCase().includes(search.value.toLowerCase())
@@ -57,8 +62,8 @@ const deleteTotal = (i, e) => {
     console.log(`你点击了第${i + 1}位用户UserData[${i}]`)
     const { user_card, user_name } = e.row
     console.log(user_card, user_name)
-    /* 删除数组位 */
-
+    UserData.value.splice(i, 1)
+    console.log(UserData.value)
     return
 }
 </script>
