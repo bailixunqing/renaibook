@@ -14,6 +14,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
+            <!--   -->
             <el-dropdown-item @click="$emit('selectUpdata', 'adminupdata')"> 修改密码</el-dropdown-item>
             <el-dropdown-item @click="exit()">退出</el-dropdown-item>
           </el-dropdown-menu>
@@ -24,6 +25,8 @@
 </template>
 <script setup>
 const exit = () => {
+  /* 删除该账号taken */
+  /* 跳转至admin登录界面 */
   sessionStorage.clear()
   location.reload()
 }

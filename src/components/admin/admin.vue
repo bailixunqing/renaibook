@@ -58,11 +58,13 @@
           </div>
         </div>
         <div class="TAG_right">
+          <!--超级管理员账户信息更改-->
           <div class="TAG_rght_2" v-if="show('adminupdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">更改密码</div>
             </div>
             <el-divider></el-divider>
+            <!--账户信息更改-->
             <AdminUpdata />
           </div>
           <div class="TAG_rght_2" v-if="show('usermanage')">
@@ -194,6 +196,7 @@
 <script setup>
 import AdminTop from '@/components/admin/admins/admintop.vue'
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
+/* 超级管理员 */
 import AdminUpdata from '@/components/admin/menu/admin/adminupdata.vue'
 
 import UserManage from '@/components/admin/menu/users/usermanage.vue'
@@ -342,6 +345,7 @@ const activeName = ref('1')
 
 .TAG_right_admin_left{
   font-size: 25px;
+  color: #00478b;
 }
 
 
