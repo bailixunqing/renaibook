@@ -78,21 +78,21 @@
               <div class="TAG_right_admin_left">用户编辑</div>
             </div>
             <el-divider></el-divider>
-            <UserEdit />
+            <UserEdit @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('useradd')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">添加用户</div>
             </div>
             <el-divider></el-divider>
-            <UserAdd />
+            <UserAdd @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('ManageCreate')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">发布文章</div>
             </div>
             <el-divider></el-divider>
-            <ManageCreate />
+            <ManageCreate @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('NoticeManage')">
             <div class="TAG_right_admin">
@@ -106,77 +106,77 @@
               <div class="TAG_right_admin_left">公告修改</div>
             </div>
             <el-divider></el-divider>
-            <NoticeUpdata />
+            <NoticeUpdata @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('NoticeCreate')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">新建公告</div>
             </div>
             <el-divider></el-divider>
-            <NoticeCreate />
+            <NoticeCreate @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('DynamicManage')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">动态管理</div>
             </div>
             <el-divider></el-divider>
-            <DynamicManage />
+            <DynamicManage @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('DynamicUpdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">动态修改</div>
             </div>
             <el-divider></el-divider>
-            <DynamicUpdata />
+            <DynamicUpdata @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('DynamicAdd')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">动态添加</div>
             </div>
             <el-divider></el-divider>
-            <DynamicAdd />
+            <DynamicAdd @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('ReportManage')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道管理</div>
             </div>
             <el-divider></el-divider>
-            <ReportManage />
+            <ReportManage @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('ReportUpdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">报道修改</div>
             </div>
             <el-divider></el-divider>
-            <ReportUpdata />
+            <ReportUpdata @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('ReportCreate')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">新建报道</div>
             </div>
             <el-divider></el-divider>
-            <ReportCreate />
+            <ReportCreate @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('DatabaseChinese')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">中文数据库</div>
             </div>
             <el-divider></el-divider>
-            <DatabaseChinese />
+            <DatabaseChinese @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('DatabaseLanguage')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">外文数据库</div>
             </div>
             <el-divider></el-divider>
-            <DatabaseLanguage />
+            <DatabaseLanguage @select="select"/>
           </div>
           <div class="TAG_rght_2" v-if="show('DatabaseProbation')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">试用数据库</div>
             </div>
             <el-divider></el-divider>
-            <DatabaseProbation />
+            <DatabaseProbation @select="select"/>
           </div>
         </div>
       </div>

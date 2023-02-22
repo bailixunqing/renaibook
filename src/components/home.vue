@@ -4,7 +4,7 @@
       <!-- <drop-menu /> -->
       <div class="TAG_0">
         <div class="ArtFont">
-          <img src="../assets/images/Artfont.svg" />
+          <img src="@/assets/images/Artfont.svg" />
         </div>
         <div class="Search_TAG">
           <div class="search_text">
@@ -53,7 +53,7 @@
               v-model="value"
             />
             <img
-              src="../assets/images/search.svg"
+              src="@/assets/images/search.svg"
               @click="search()"
               style="cursor: pointer"
             />
@@ -275,20 +275,20 @@
 
           <div class="line_2"></div>
           <div class="ad" v-if="show_1(0)">
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
           </div>
           <div class="ad" v-if="show_1(1)">
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
           </div>
           <div class="ad" v-if="show_1(2)">
-            <img src="../assets/images/ad.png" />
-            <img src="../assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
+            <img src="@/assets/images/ad.png" />
           </div>
         </div>
       </div>
@@ -403,35 +403,35 @@
             class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 2 } })"
           >
-            <img class="tap_icon" src="../assets/images/icon6.svg" />
+            <img class="tap_icon" src="@/assets/images/icon6.svg" />
             <h1 class="tap_txt">本馆简介</h1>
           </div>
           <div
             class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 3 } })"
           >
-            <img class="tap_icon" src="../assets/images/icon7.svg" />
+            <img class="tap_icon" src="@/assets/images/icon7.svg" />
             <h1 class="tap_txt">馆藏分布</h1>
           </div>
           <div
             class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 4 } })"
           >
-            <img class="tap_icon" src="../assets/images/icon8.svg" />
+            <img class="tap_icon" src="@/assets/images/icon8.svg" />
             <h1 class="tap_txt">开放时间</h1>
           </div>
           <div
             class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 5 } })"
           >
-            <img class="tap_icon" src="../assets/images/icon9.svg" />
+            <img class="tap_icon" src="@/assets/images/icon9.svg" />
             <h1 class="tap_txt">入馆须知</h1>
           </div>
           <div
             class="tap_1"
             @click="$router.push({ path: '/Library_Guide', query: { id: 6 } })"
           >
-            <img class="tap_icon" src="../assets/images/icon10.svg" />
+            <img class="tap_icon" src="@/assets/images/icon10.svg" />
             <h1 class="tap_txt">组织机构</h1>
           </div> -->
         </div>
@@ -466,23 +466,23 @@ export default {
     let library_guide=[];
     const card = [
       {
-        icon: require("../assets/images/icon1.svg"),
-        img: require("../assets/images/picture1.png"),
+        icon: require("@/assets/images/icon1.svg"),
+        img: require("@/assets/images/picture1.png"),
         text: ["图书借阅", "馆记互借", "证卡管理"],
       },
       {
-        icon: require("../assets/images/icon2.svg"),
-        img: require("../assets/images/picture2.png"),
+        icon: require("@/assets/images/icon2.svg"),
+        img: require("@/assets/images/picture2.png"),
         text: ["影音空间", "研修间", "多媒体阅览区", "空间预约", "空中课堂"],
       },
       {
-        icon: require("../assets/images/icon3.svg"),
-        img: require("../assets/images/picture3.png"),
+        icon: require("@/assets/images/icon3.svg"),
+        img: require("@/assets/images/picture3.png"),
         text: ["知识产权", "论文提交", "用户教育"],
       },
       {
-        icon: require("../assets/images/icon4.svg"),
-        img: require("../assets/images/picture4.png"),
+        icon: require("@/assets/images/icon4.svg"),
+        img: require("@/assets/images/picture4.png"),
         text: ["学科服务", "机构知识库", "学科分析报告"],
       },
     ];
@@ -643,12 +643,9 @@ this.$router.push({
       let i = 0;
       let j = 0;
       let string = "";
-      if (sessionStorage.getItem("activities") != null) {
-        this.activities = JSON.parse(sessionStorage.getItem("activities"));
-        console.log("非空", JSON.stringify(this.activities));
-      } else {
+    
         axios
-          .get("/api" + "/resource/searchAll", {
+          .get("/api" + "/activity/searchAll", {
             params: {
               pageSize: 3,
             },
@@ -683,23 +680,18 @@ this.$router.push({
               //   break;
               // }
               console.log("normal image");
-              data[i].picture = require("@/assets/source_images/" + string);
+              data[i].picture = "pictures/"+"1.d62eb30c.jpeg";
               console.log(data);
             }
             this.activities = data;
-            sessionStorage.setItem(
-              "activities",
-              JSON.stringify(this.activities)
-            );
+          
           })
           .catch((err) => {
             console.log(err);
           });
-      }
+      
 
-      if (sessionStorage.getItem("Notice") != null) {
-        this.Notice = JSON.parse(sessionStorage.getItem("Notice"));
-      } else {
+      
         axios
           .get("/api" + "/notice/searchAll", {
             params: {
@@ -732,12 +724,7 @@ this.$router.push({
           .catch((err) => {
             console.log(err);
           });
-      }
-
-      if (sessionStorage.getItem("Resource") != null) {
-        this.Resource = JSON.parse(sessionStorage.getItem("Resource"));
-      } else {
-        
+     
         axios
           .get("/api" + "/resource/searchAll", {
             params: {
@@ -771,7 +758,7 @@ this.$router.push({
           .catch((err) => {
             console.log(err);
           });
-      }
+      
     },
     jump_notice(e, type) {
       this.$router.push({
@@ -840,7 +827,7 @@ this.$router.push({
     this.library_guide =this.library_guide[0].children
     for(let i=0;i<this.library_guide.length;i++)
     {
-      this.library_guide[i].img=require("../assets/images/icon"+(i+5)+".svg");
+      this.library_guide[i].img=require("@/assets/images/icon"+(i+5)+".svg");
     }
     console.log(this.library_guide)
     // axios

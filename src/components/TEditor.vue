@@ -154,19 +154,21 @@ const init = reactive({
     if (meta.filetype == 'media') {
       callback('movie.mp4', { source2: 'alt.ogg', poster: 'image.jpg' });
     }
-  }
+  } 
 })
 //监听外部传递进来的的数据变化
 watch(
   () => props.value,
   () => {
     myValue.value = props.value
+   
     emits("getContent", myValue.value)
   }
 )
 //监听富文本中的数据变化
 watch(
   () => myValue.value,
+ 
   () => {
     emits("getContent", myValue.value)
   }

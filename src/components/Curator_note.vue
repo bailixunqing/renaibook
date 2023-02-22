@@ -61,6 +61,10 @@ export default {
           })
           
           .then((res) => {
+          
+
+
+
             let data = res.data.data[0];
             var date = new Date(data.gmtCreate);
             let Y = date.getFullYear() + "-";
@@ -125,6 +129,7 @@ export default {
             },
           })
           .then((res) => {
+              console.log(res)
            let data = res.data.data[0];
             var date = new Date(data.gmtCreate);
             let Y = date.getFullYear() + "-";
@@ -188,7 +193,7 @@ export default {
   background-color: #e7e7e7;
 }
 .background {
-  background-image: url("../assets/images/background_2.png");
+  background-image: url("@/assets/images/background_2.png");
   background-size: 100%;
   z-index: 0;
   display: flex;

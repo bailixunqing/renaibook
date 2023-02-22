@@ -14,7 +14,7 @@
               <a href="">首页</a>
             </li>
             <li v-for="item in Menu_options" :key="item.id" class="btli">
-              <a href="">{{ item.label }}</a>
+              <a >{{ item.label }}</a>
               <ul class="droplist">
                 <li v-for="item2 in item.children" :key="item2.id">
                   <a href="" @click="jump(item2)">{{ item2.label }}</a>
