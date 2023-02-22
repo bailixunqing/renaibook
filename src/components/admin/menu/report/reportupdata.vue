@@ -25,13 +25,16 @@
   </div>
   <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
   <div class="buttom">
-    <el-button type="success" round class="buttom_back" @click="$emit('selectReportBack', 'ReportBack')">返回</el-button>
-    <el-button type="success" round class="buttom_on" @click="updataActivities(1, 1)">保存并返回</el-button>
+    <el-button type="success" round class="buttom_back" @click="()=>$emit('selectReportBack', 'ReportBack')">返回</el-button>
+    <el-button type="success" round class="buttom_on" @click="()=>updataActivities(1, 1)">保存并返回</el-button>
   </div>
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
 import { ref } from 'vue'
+import axios from 'axios'
+
+
 const title = ref('')
 const name = ref('')
 const summary = ref('')
@@ -39,8 +42,6 @@ const value = ref('')
 const imageUrl = ref('')
 const file = ref('')
 const id = ref('')
-const ActivitiesData = ref('')
-const axios = require("axios")
 const uploadFile = (item) => {
   let FormDatas = new FormData()
   FormDatas.append('file', item.file)

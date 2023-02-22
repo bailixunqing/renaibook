@@ -9,7 +9,7 @@
     编辑内容
   </div>
   <div class="amin_write">
-    <TEditor style="height: 400px" ref="editor" v-model="value" @input="valueChange" :value="value" />
+    <TEditor style="height: 400px" ref="editor" v-model="value" @getContent="valueChange" :value="value" />
   </div>
   <div class="buttom">
     <el-button type="success" round class="buttom_back" @click="() => chooseBack()">返回</el-button>

@@ -56,7 +56,7 @@
     </div>
   </div>
   <div class="amin_write">
-    <TEditor style="height: 400px" ref="editor" @input="valueChange" v-model="contentValue" :key="keyValue"
+    <TEditor style="height: 400px" ref="editor" @getContent="valueChange" v-model="contentValue" :key="keyValue"
       :value="value" />
   </div>
   <div class="buttom">
