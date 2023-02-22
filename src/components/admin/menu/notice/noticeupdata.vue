@@ -9,39 +9,55 @@
         编辑内容
     </div>
     <div class="amin_write">
-        <TEditor class="teditoy" @input="value_change" v-model="value" :value="value" />
+        <TEditor class="teditor" @input="value_change" v-model="value_content"  :value="value_content" />
     </div>
     <div class="buttom">
         <el-button type="success" round class="buttom_back" @click="$emit('selectNoticeBack', 'NoticeBack')">返回</el-button>
-        <el-button type="success" round class="buttom_on" @click="Notice_update(1, 1)">保存并返回</el-button>
+        <el-button type="success" round class="buttom_on" @click="Notice_update()">保存并返回</el-button>
     </div>
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 const title = ref('')
 const name = ref('')
-const value = ref('')
-const value_change = ref('')
+const id = ref('')
+
+
+const value_content = ref('')
+const value_change=(e)=>{
+    value_content.value=e
+    console.log(value_content.value)
+}
 const axios = require("axios")
-const Notice_update = (i, e) => {
-    let that = this
-    if (i == 0) {
-        axios
-            .get("/api" + "/notice/search",
+const props = defineProps({
+  //子组件接收父组件传递过来的值
+  update_id: Number,
+})
+onMounted(()=>{
+    console.log(props.update_id)
+    axios
+        .get("/api" + "/notice/search",
                 {
                     params: {
-                        id: e.row.id
+                        id: props.update_id
                     }
                 }).then((res) => {
-                    //         let data = res.data.data[0];
-                    //         form['id'] = data.id;
-                    //         form['title'] = data.title;
-                    //         value = data.content;
-                    //         that.select(311)
+                    console.log(res)
+                            let data = res.data.data[0];
+                            id.value = data.id;
+                            title.value= data.title;
+                            value_content.value=data.content;
+                            console.log(value_content)
+                            
+                    
                 });
-    }
-    else if (i == 1) {
+
+})
+
+const Notice_update = () => {
+        console.log(value_content.value)
+   
         //   let params = {
         //     id: form['id'],
         //     title: form['title'],
@@ -69,9 +85,10 @@ const Notice_update = (i, e) => {
         //       }, 1000);
         //     })
         //     .catch(() => {});
-    }
-    return
+  
 }
+
+
 </script>
 <style>
 .teditor {

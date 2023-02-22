@@ -99,14 +99,14 @@
               <div class="TAG_right_admin_left">公告管理</div>
             </div>
             <el-divider></el-divider>
-            <NoticeManage />
+            <NoticeManage @select="update"/>
           </div>
           <div class="TAG_rght_2" v-if="show('NoticeUpdata')">
             <div class="TAG_right_admin">
               <div class="TAG_right_admin_left">公告修改</div>
             </div>
             <el-divider></el-divider>
-            <NoticeUpdata />
+            <NoticeUpdata :update_id="update_id"/>
           </div>
           <div class="TAG_rght_2" v-if="show('NoticeCreate')">
             <div class="TAG_right_admin">
@@ -214,9 +214,18 @@ import DatabaseProbation from '@/components/admin/menu/database/databaseprobatio
 import { ref } from 'vue'
 //默认展示页
 const current = ref('usermanage')
+const update_id=ref('')
 //vue-menu选择器
 const select = (data) => {
   current.value = data;
+}
+const update =(value) =>{
+  console.log(value)
+  const {data,i}=value;
+  update_id.value=value.i
+  console.log(update_id.value)
+  current.value=data;
+
 }
 //vue-menu显示
 const show = (i) => {

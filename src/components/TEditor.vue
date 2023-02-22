@@ -1,15 +1,10 @@
 <template>
   <div class="tinymce-box">
-    <Editor
-      v-model="contentValue"
-      :init="init"
-      :disabled="disabled"
-      @onClick="onClick"
-    />
+    <Editor v-model="myValue" :init="init" :disabled="disabled"  />
   </div>
 </template>
 
-<script>
+<script setup>
 // import api from "@/services/rootapi/api.js";
 //这里的api是我定义的接口文件(一般情况下你只需要引入你的接口配置文件就可以了)
 //如果不懂看下面代码，我附上了我的api文件
@@ -61,130 +56,125 @@ import "tinymce/plugins/toc"; //目录生成器
 import "tinymce/plugins/visualblocks"; //显示元素范围
 import "tinymce/plugins/visualchars"; //显示不可见字符
 import "tinymce/plugins/wordcount"; //字数统计
-  const axios = require("axios");
-export default {
-
-  name: "TEditor",
-  
-
-  components: {
-    Editor,
-  },
-  props: {
-    value: {
-      type: String,
-      default: "",
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    plugins: {
-      type: [String, Array],
-      default:
-        "print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount textpattern autosave ",
-    },
-    toolbar: {
-      type: [String, Array],
-      default:
-        "fullscreen undo redo restoredraft | cut copy paste pastetext | forecolor backcolor bold italic underline strikethrough link anchor | alignleft aligncenter alignright alignjustify outdent indent | \
-                styleselect formatselect fontselect fontsizeselect | bullist numlist | blockquote subscript superscript removeformat | \
-                table image media charmap hr pagebreak insertdatetime print preview | code selectall searchreplace visualblocks | indent2em lineheight formatpainter axupimgs",
+import axios from 'axios'
+import { reactive, ref, onMounted, watch } from 'vue'
+const emits = defineEmits(["getContent"])
+const props = defineProps({
+  value: {
+    type: String,
+    default: () => {
+      return ""
     },
   },
-  data() {
-    
-    var contentValue="";
-    return {
-      init: {
-        language_url: "/tinymce/langs/zh_CN.js", //引入语言包文件
-        language: "zh_CN", //语言类型
-
-        skin_url: "/tinymce/skins/ui/oxide", //皮肤：浅色
-        // skin_url: '/tinymce/skins/ui/oxide-dark',//皮肤：暗色
-
-        plugins: this.plugins, //插件配置
-        toolbar: this.toolbar, //工具栏配置，设为false则隐藏
-        // menubar: 'file edit',  //菜单栏配置，设为false则隐藏，不配置则默认显示全部菜单，也可自定义配置--查看 http://tinymce.ax-z.cn/configure/editor-appearance.php --搜索“自定义菜单”
-
-        fontsize_formats:
-          "12px 14px 16px 18px 20px 22px 24px 28px 32px 36px 48px 56px 72px", //字体大小
-        font_formats:
-          "微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif;仿宋体=FangSong,serif;黑体=SimHei,sans-serif;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;", //字体样式
-        lineheight_formats: "0.5 0.8 1 1.2 1.5 1.75 2 2.5 3 4 5", //行高配置，也可配置成"12px 14px 16px 20px"这种形式
-
-        height: 400, //注：引入autoresize插件时，此属性失效
-        placeholder: "在这里输入文字",
-        branding: false, //tiny技术支持信息是否显示
-        resize: false, //编辑器宽高是否可变，false-否,true-高可变，'both'-宽高均可，注意引号
-        // statusbar: false,  //最下方的元素路径和字数统计那一栏是否显示
-        elementpath: false, //元素路径是否显示
-
-        //content_style: "img {max-width:100%;}",  //直接自定义可编辑区域的css样式
-        content_css: "/tinymce/tinycontent.css", //以css文件方式自定义可编辑区域的css样式，css文件需自己创建并引入
-
-        // images_upload_url: '/apib/api-upload/uploadimg',  //后端处理程序的url，建议直接自定义上传函数image_upload_handler，这个就可以不用了
-        // images_upload_base_path: '/demo',  //相对基本路径--关于图片上传建议查看--http://tinymce.ax-z.cn/general/upload-images.php
-        paste_data_images: true, //图片是否可粘贴
-        images_upload_handler: (blobInfo, success, failure) => {
-          if (blobInfo.blob().size / 1024 / 1024 > 2) {
-            failure("上传失败，图片大小请控制在 2M 以内");
-          } else {
-            let params = new FormData();
-            params.append("file", blobInfo.blob());
-            console.log(blobInfo.blob())
-            let config = {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            };
-            // axios
-            //   .post(`api/fileTemp`, params, config)
-            //   .then((res) => {
-            //     console.log(res)
-            //     if (res.data.code == 200) {
-            //       console.log(res.data)
-            //       success(res.data.msg); //上传成功，在成功函数里填入图片路径
-                  
-            //     } else {
-            //       failure("上传失败");
-            //     }
-            //   })
-            //   .catch(() => {
-            //     failure("上传出错，服务器开小差了呢");
-            //   });
-          }
-        },
-      },
-      contentValue: "",
-    };
+  baseUrl: {
+    type: String,
+    default: "",
   },
-  watch: {
-    contentValue(newValue) {
-      this.contentValue = newValue;
-      // console.log(newValue);
-      this.$emit("input",this.contentValue);
-    },
-   
+  disabled: {
+    type: Boolean,
+    default: false,
   },
-  created() {},
-  mounted() {
-    tinymce.init({});
-    this.contentValue=this.value;
-  },
-  methods: {
-    // 添加相关的事件，可用的事件参照文档=> https://github.com/tinymce/tinymce-vue => All available events
-    onClick(e) {
-      this.$emit("onClick", e, tinymce);
-    },
-    //清空内容
-    clear() {
-      this.contentValue = "";
-    },
-  },
-};
+  plugins: {
+    type: [String, Array],
+    default: "lists  table",
+  },//必填
+  toolbar: {
+    type: [String, Array],
+    default:
+      "codesample bold italic underline alignleft aligncenter alignright alignjustify | undo redo | formatselect | fontselect | fontsizeselect | forecolor backcolor | bullist numlist outdent indent | lists link table code | removeformat ",
+  },//必填
+})
+//用于接收外部传递进来的富文本
+const myValue = ref(props.value)
+const tinymceId = ref("vue-tinymce-" + +new Date() + ((Math.random() * 1000).toFixed(0) + ""))
+//定义一个对象 init初始化
+const init = reactive({
+  selector: '#' + tinymceId.value, //富文本编辑器的id,
+  language_url: "/tinymce/langs/zh_CN.js", // 语言包的路径，具体路径看自己的项目，文档后面附上中文js文件
+  language: "zh_CN", //语言
+  skin_url: "/tinymce/skins/ui/oxide", // skin路径，具体路径看自己的项目
+  height: 400, //编辑器高度
+  branding: false, //是否禁用“Powered by TinyMCE”
+  menubar: true, //顶部菜单栏显示
+  image_dimensions: false, //去除宽高属性
+  plugins: props.plugins,  //这里的数据是在props里面就定义好了的
+  toolbar: props.toolbar, //这里的数据是在props里面就定义好了的
+  font_formats: 'Arial=arial,helvetica,sans-serif; 宋体=SimSun; 微软雅黑=Microsoft Yahei; Impact=impact,chicago;', //字体
+  fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px 64px 72px', //文字大小
+  // paste_convert_word_fake_lists: false, // 插入word文档需要该属性
+  paste_webkit_styles: "all",
+  paste_merge_formats: true,
+  nonbreaking_force_tab: false,
+  paste_auto_cleanup_on_paste: false,
+  file_picker_types: 'file',
+  content_css: '/tinymce/skins/content/default/content.css', //以css文件方式自定义可编辑区域的css样式，css文件需自己创建并引入
+  //图片上传
+  images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
+
+    if (blobInfo.blob().size / 1024 / 1024 > 2) {
+      reject({ message: '上传失败，图片大小请控制在 2M 以内', remove: true })
+      return
+    } else {
+      const ph = import.meta.env.VITE_BASE_PATH + ":" + import.meta.env.VITE_SERVER_PORT + "/"
+      let params = new FormData()
+      params.append('file', blobInfo.blob())
+
+      let config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+
+        }
+      }
+      axios.post('xxxx', params, config).then(res => {
+        if (res.data.code == 200) {
+          resolve(ph + res.data.msg)  //上传成功，在成功函数里填入图片路径
+        } else {
+          reject('HTTP Error: 上传失败' + res.data.code);
+          return
+        }
+      }).catch(() => {
+        reject('上传出错，服务器开小差了呢')
+        return
+      })
+    }
+  }),
+  // 文件上传
+  file_picker_callback: (callback, value, meta) => {
+    // Provide file and text for the link dialog
+    if (meta.filetype == 'file') {
+      callback('mypage.html', { text: 'My text' });
+    }
+
+    // Provide image and alt text for the image dialog
+    if (meta.filetype == 'image') {
+      callback('myimage.jpg', { alt: 'My alt text' });
+    }
+
+    // Provide alternative source and posted for the media dialog
+    if (meta.filetype == 'media') {
+      callback('movie.mp4', { source2: 'alt.ogg', poster: 'image.jpg' });
+    }
+  }
+})
+//监听外部传递进来的的数据变化
+watch(
+  () => props.value,
+  () => {
+    myValue.value = props.value
+    emits("getContent", myValue.value)
+  }
+)
+//监听富文本中的数据变化
+watch(
+  () => myValue.value,
+  () => {
+    emits("getContent", myValue.value)
+  }
+)
+//在onMounted中初始化编辑器
+onMounted(() => {
+  tinymce.init({})
+})
 </script>
 
-<style lang="less">
-</style>
-
+<style lang="less"></style>
