@@ -1,22 +1,28 @@
 <template>
   <div class="menu">
     <div class="menu_body_lfet">
-      <a-tree v-model:expandedKeys="expandedKeys" draggable :tree-data="gData" :show-line="true"
-        @drop="onDrop">
-        <template #title="{ key: treeKey, label }">
-          <a-dropdown :trigger="['contextmenu']">
-            <span>{{ label }}</span>
-            <template #overlay>
-              <a-menu @click="
-                ({ key: menuKey }) => onContextMenuClick(treeKey, menuKey)
-              ">
-                <a-menu-item key="add">添加</a-menu-item>
-                <a-menu-item key="delete">删除</a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown>
+            <el-tree :data="gData" node-key="id" ref="tree" draggable :filter-node-method="filterNode" accordion
+        :allow-drop="allowDrop" :allow-drag="allowDrag" :props="defaultProps" :highlight-current="false"
+        :expand-on-click-node="false">
+        <!--点击头部才能打开-->
+        <!--是否高亮-->
+        <template #default="{ node}">
+          <span class="custom-tree-node">
+            <span>{{ node.label }}</span>
+            <span>
+              <el-icon :size="26" style="margin-right: 15px;">
+                <CirclePlus />
+              </el-icon>
+              <el-icon :size="26" style="margin-right: 15px;">
+                <Delete />
+              </el-icon>
+              <el-icon :size="26" style="margin-right: 15px;">
+                <Edit />
+              </el-icon>
+            </span>
+          </span>
         </template>
-      </a-tree>
+      </el-tree>
       <!--
       <el-tree :data="gData" node-key="id" empty-text="找不到该目录" draggable :filter-node-method="filterNode"
         :props="defaultProps" :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree" :highlight-current="true"
@@ -172,6 +178,26 @@ const onDrop = (info) => {
   }
   gData.value = data;
 };
+const allowDrag = (draggingNode) => {
+  return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+}
+
+const allowDrop = (draggingNode, dropNode, type) => {
+  if (dropNode.data.label === '二级 3-1') {
+    return type !== 'inner';
+  } else {
+    return true;
+  }
+}
+const filterNode = (value, data) => {
+  if (!value) return true
+  return data.label.includes(value)
+}
+
+const defaultProps = {
+  children: 'children',
+  label: 'label',
+}
 
 /*富文本*/
 const undef = ref(false);
@@ -428,5 +454,8 @@ onMounted(() => {
   width: 80% !important;
   margin: 20px;
   margin-top: 10px;
+}
+.el-tree-node__content>.el-tree-node__expand-icon {
+  font-size: 32px;
 }
 </style>
