@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div class="menu_body_lfet">
-      <a-tree v-model:expandedKeys="expandedKeys" draggable :tree-data="gData" :show-line="true" @select="treeSelect"
+      <a-tree v-model:expandedKeys="expandedKeys" draggable :tree-data="gData" :show-line="true"
         @drop="onDrop">
         <template #title="{ key: treeKey, label }">
           <a-dropdown :trigger="['contextmenu']">
@@ -51,8 +51,13 @@
     -->
     </div>
     <div class="menu_body_right">
-      <el-button type="success" round class="buttom_on_menu" @click="() => preserveMenu()">保存目录</el-button>
-      <el-cascader :options="gData" ref="cascader" @change="() => title_tree_change()"></el-cascader>
+      <div class="menu_body_right_button">
+        <el-button type="success" round class="buttom_on_menu" @click="() => preserveMenu()">保存目录</el-button>
+      </div>
+      <div class="menu_body_right_cascader">
+        <el-cascader class="el-cascader" v-model="valueCascader" :options="gData" ref="cascader"
+          @change="() => title_tree_change()"></el-cascader>
+      </div>
     </div>
   </div>
   <div class="amin_write">
@@ -70,6 +75,7 @@ import { watch, ref, onMounted } from "vue";
 import axios from "axios";
 
 const gData = ref([]);
+const valueCascader = ref([])
 
 /*  右键选择事件 */
 const onContextMenuClick = (treeKey, menuKey) => {
@@ -99,10 +105,10 @@ watch(expandedKeys, () => {
 });
 
 /* 点击事件 可以知道当前选择的是什么目录 */
-const treeSelect = (data, data2) => {
-  console.log("select:", data);
-  console.log("title", data2.node.dataRef);
-};
+// const treeSelect = (data, data2) => {
+//   console.log("select:", data);
+//   console.log("title", data2.node.dataRef);
+// };
 
 /* 拖动事件 */
 const onDrop = (info) => {
@@ -227,7 +233,7 @@ const contentsEdit = () => {
 
 const title_tree_change = () => {
 
-  let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+  // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
   // let id=getCheckedNodes.id;
   // let type=getCheckedNodes.value;
   //  axios
@@ -327,7 +333,6 @@ onMounted(() => {
   background-color: #f7fafc;
   box-shadow: 0 0 0 1px #0d52a17d inset;
   border-radius: 20px;
-  margin-left: 20px;
 }
 
 .amin_write {
@@ -389,9 +394,21 @@ onMounted(() => {
 }
 
 .buttom_on_menu {
-  margin: 30px;
   width: 50%;
   font-size: 21px !important;
   height: 42px !important;
+}
+.menu_body_right_button{
+  margin: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.menu_body_right_cascader{
+  text-align: center;
+}
+.el-cascader{
+  width: 80% !important;
+  margin: 20px;
+  margin-top: 10px;
 }
 </style>
