@@ -61,8 +61,8 @@
     </div>
   </div>
   <div class="amin_write">
-    <TEditor style="height: 400px" ref="editor" @getContent="valueChange" v-model="contentValue" :key="keyValue"
-      :value="value" />
+    <TEditor style="height: 400px" ref="editor" @getContent="valueChange" v-model="contentValue" :key="contentValue"
+      :value="contentValue" />
   </div>
   <div class="buttom">
     <el-button type="success" round class="buttom_on" @click="() => contentsEdit()">发布文章
@@ -73,10 +73,13 @@
 import TEditor from "@/components/TEditor.vue";
 import { watch, ref, onMounted } from "vue";
 import axios from "axios";
-
+import { getCurrentInstance } from '@vue/runtime-core';
 const gData = ref([]);
 const valueCascader = ref([])
-
+const currentInstance = getCurrentInstance()
+let from={
+  content:''
+} //标题文本更新表单
 /*  右键选择事件 */
 const onContextMenuClick = (treeKey, menuKey) => {
   console.log(`treeKey: ${treeKey}`);
@@ -233,39 +236,54 @@ const contentsEdit = () => {
 
 const title_tree_change = () => {
 
-  // let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
-  // let id=getCheckedNodes.id;
-  // let type=getCheckedNodes.value;
-  //  axios
-  //   .get("/api" + "/title/search",
-  //   {
-  //     params:{
-  //         id:id
-  //     }
-  //   }).then((res)=>{
-  //     console.log(res)
-  //     if(res.data.data.length==0)
-  //     {
-  //     this.value="";
-  //     this.form.change=!this.form.change;
-  //     this.form.undef=true;
-  //     console.log("form::")
-  //     console.log(this.form);
-  //     }
-  //     else
-  //     {
-  //     let data=res.data.data[0];
-  //     this.value=data.content;
-  //     this.form.change=!this.form.change;
-  //     this.form.id=data.id;
-  //     this.form.undef=false;
-  //     console.log(this.value);
-  //     }
-  //   // console.log(res.data.data[0].content)
-  //   //  this.content=res.data.data[0].content
-  //   }
-  //   );
-  //console.log(getCheckedNodes)
+  let tree_data=currentInstance.ctx.$refs.cascader.getCheckedNodes()[0].data
+  console.log(tree_data)
+  let id=tree_data.id
+
+  console.log("id",id)
+
+   axios
+    .get("/api" + "/title/search",
+    {
+      params:{
+          id:id
+      }
+    }).then((res)=>{
+      console.log(res)
+      if(res.data.data.length==0)
+      {
+        contentValue.value=''
+
+
+
+
+        //处理无文章问题
+      // this.value="";
+      // this.form.change=!this.form.change;
+      // this.form.undef=true;
+      // console.log("form::")
+      // console.log(this.form);
+      }
+      else
+      {
+      let data=res.data.data[0];
+      contentValue.value=data.content;
+
+
+
+
+
+
+      // this.form.change=!this.form.change;
+      // this.form.id=data.id;
+      // this.form.undef=false;
+      console.log(contentValue.value);
+      }
+    // // console.log(res.data.data[0].content)
+    // //  this.content=res.data.data[0].content
+    }
+    );
+
 };
 
 onMounted(() => {
