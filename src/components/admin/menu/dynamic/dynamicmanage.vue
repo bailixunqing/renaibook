@@ -7,10 +7,10 @@
   <div class="amin_table">
     <el-table :data="ResourceData" :key="itemKey">
       <el-table-column type="index" style="width: 83px" label="#"></el-table-column>
-      <el-table-column prop="title" label="标题"></el-table-column>
-      <el-table-column prop="author" label="作者"></el-table-column>
-      <el-table-column prop="gmtCreate" label="发布时间"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column prop="title" label="标题(title)"></el-table-column>
+      <el-table-column prop="author" label="作者(author)"></el-table-column>
+      <el-table-column prop="gmtCreate" label="发布时间(time)"></el-table-column>
+      <el-table-column label="操作(action)">
         <template #default="scope">
           {{ scope.row.date }}
           <el-button class="button_on" type="success" round @click="() => chooseUpdata()">修改</el-button>

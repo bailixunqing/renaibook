@@ -33,12 +33,10 @@
 import TEditor from '@/components/TEditor.vue'
 import { ref } from 'vue'
 import axios from 'axios'
-
 const emits = defineEmits(["select"]);
 const chooseBack = () => {
-  emits("select", "ReportBack");
+  emits("select", "ReportManage");
 };
-
 
 const title = ref('')
 const name = ref('')

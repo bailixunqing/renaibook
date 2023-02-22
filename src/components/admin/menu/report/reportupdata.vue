@@ -22,18 +22,22 @@
         <Plus />
       </el-icon>
     </el-upload>
+
   </div>
   <el-checkbox label="显示图片" name="type" style="font-weight: bold"></el-checkbox>
   <div class="buttom">
-    <el-button type="success" round class="buttom_back" @click="()=>$emit('selectReportBack', 'ReportBack')">返回</el-button>
-    <el-button type="success" round class="buttom_on" @click="()=>updataActivities(1, 1)">保存并返回</el-button>
+    <el-button type="success" round class="buttom_back" @click="() => chooseBack()">返回</el-button>
+    <el-button type="success" round class="buttom_on" @click="() => updataActivities(1, 1)">保存并返回</el-button>
   </div>
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
 import { ref } from 'vue'
 import axios from 'axios'
-
+const emits = defineEmits(["select"]);
+const chooseBack = () => {
+  emits("select", "ReportManage");
+};
 
 const title = ref('')
 const name = ref('')
@@ -42,11 +46,14 @@ const value = ref('')
 const imageUrl = ref('')
 const file = ref('')
 const id = ref('')
+
+
 const uploadFile = (item) => {
   let FormDatas = new FormData()
   FormDatas.append('file', item.file)
   file.value = item.file;
 }
+
 const updataActivities = (i, e) => {
   const that = this
   if (i == 0) {
@@ -97,6 +104,7 @@ const updataActivities = (i, e) => {
       .catch(() => { });
   }
 }
+
 const Activities_init = () => {
   axios
     .get("/api" + "/activity/searchAll",
@@ -121,6 +129,7 @@ const Activities_init = () => {
     })
     .catch((err) => { });
 }
+
 </script>
 <style>
 .buttom {
