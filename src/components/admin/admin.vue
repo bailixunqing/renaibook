@@ -244,7 +244,7 @@ const activeName = ref('1')
 
 .TAG {
   width: 70%;
-  height: 1400px;
+  height: 90%;
   margin: 0 auto;
 }
 
