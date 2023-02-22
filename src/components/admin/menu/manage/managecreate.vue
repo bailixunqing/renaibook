@@ -1,23 +1,15 @@
 <template>
   <div class="menu">
     <div class="menu_body_lfet">
-      <a-tree
-        v-model:expandedKeys="expandedKeys"
-        draggable
-        :tree-data="gData"
-        :show-line="true"
-        @select="select"
-        @drop="onDrop"
-      >
+      <a-tree v-model:expandedKeys="expandedKeys" draggable :tree-data="gData" :show-line="true" @select="treeSelect"
+        @drop="onDrop">
         <template #title="{ key: treeKey, label }">
           <a-dropdown :trigger="['contextmenu']">
             <span>{{ label }}</span>
             <template #overlay>
-              <a-menu
-                @click="
-                  ({ key: menuKey }) => onContextMenuClick(treeKey, menuKey)
-                "
-              >
+              <a-menu @click="
+                ({ key: menuKey }) => onContextMenuClick(treeKey, menuKey)
+              ">
                 <a-menu-item key="add">添加</a-menu-item>
                 <a-menu-item key="delete">删除</a-menu-item>
               </a-menu>
@@ -25,87 +17,50 @@
           </a-dropdown>
         </template>
       </a-tree>
-      <!-- <el-tree
-                      :data="gData"
-                      node-key="id"
-                      empty-text="找不到该目录"
-                      draggable
-                      :filter-node-method="filterNode"
-                      :props="defaultProps"
-                      :allow-drop="allowDrop"
-                      :allow-drag="allowDrag"
-                      ref="tree"
-                      :highlight-current="true"
-                      :default-expand-all="true"
-                      :expand-on-click-node="false"
-                    >
-                      <template #default="{ node, data }">
-                        <span class="custom-tree-node">
-                          <span>{{ node.label }}</span>
-                          <span>
-                            <el-popover placement="right" :width="400">
-                              <div
-                                style="
-                                  display: grid;
-                                  grid-template-columns: auto auto;
-                                "
-                              >
-                                <el-input
-                                  v-model="input"
-                                  placeholder="Please input"
-                                />
-                                <el-button
-                                  type="success"
-                                  @click="updatamune(node, data)"
-                                  round
-                                  style="height: 40px"
-                                  >修改
-                                </el-button>
+      <!--
+      <el-tree :data="gData" node-key="id" empty-text="找不到该目录" draggable :filter-node-method="filterNode"
+        :props="defaultProps" :allow-drop="allowDrop" :allow-drag="allowDrag" ref="tree" :highlight-current="true"
+        :default-expand-all="true" :expand-on-click-node="false">
+        <template #default="{ node, data }">
+          <span class="custom-tree-node">
+            <span>{{ node.label }}</span>
+            <span>
+              <el-popover placement="right" :width="400">
+                <div style="
+                                    display: grid;
+                                    grid-template-columns: auto auto;
+                                  ">
+                  <el-input v-model="input" placeholder="Please input" />
+                  <el-button type="success" @click="updatamune(node, data)" round style="height: 40px">修改
+                  </el-button>
 
-                                <div></div>
-                                <el-button
-                                  type="success"
-                                  @click="remove(node, data)"
-                                  round
-                                  style="height: 40px"
-                                  >删除
-                                </el-button>
-                              </div>
-                              <template #reference>
-                                <el-icon :size="20">
-                                  <Edit />
-                                </el-icon>
-                              </template>
-                            </el-popover>
-                          </span>
-                        </span>
-                      </template>
-                    </el-tree> -->
+                  <div></div>
+                  <el-button type="success" @click="remove(node, data)" round style="height: 40px">删除
+                  </el-button>
+                </div>
+                <template #reference>
+                  <el-icon :size="20">
+                    <Edit />
+                  </el-icon>
+                </template>
+              </el-popover>
+            </span>
+          </span>
+        </template>
+      </el-tree>
+    -->
     </div>
     <div class="menu_body_right">
-      <!-- <el-button type="success" round class="buttom_on_menu" @click="() => preserveMenu()">保存目录</el-button> -->
-
-      <el-cascader
-        
-        :options="gData"
-        ref="cascader"
-        @change="title_tree_change()"
-      ></el-cascader>
+      <el-button type="success" round class="buttom_on_menu" @click="() => preserveMenu()">保存目录</el-button>
+      <el-cascader :options="gData" ref="cascader" @change="() => title_tree_change()"></el-cascader>
     </div>
   </div>
   <div class="amin_write">
-    <TEditor
-      style="height: 400px"
-      ref="editor"
-      @input="valueChange"
-      v-model="contentValue"
-      :key="keyValue"
-      :value="value"
-    />
+    <TEditor style="height: 400px" ref="editor" @input="valueChange" v-model="contentValue" :key="keyValue"
+      :value="value" />
   </div>
   <div class="buttom">
-    <el-button type="success" round class="buttom_on" @click="contentsEdit()"
-      >发布文章
+    <el-button type="success" round class="buttom_on" @click="() => contentsEdit()">发布文章
     </el-button>
   </div>
 </template>
@@ -144,9 +99,9 @@ watch(expandedKeys, () => {
 });
 
 /* 点击事件 可以知道当前选择的是什么目录 */
-const select = (data, data2) => {
+const treeSelect = (data, data2) => {
   console.log("select:", data);
-  console.log(data2.node.dataRef);
+  console.log("title", data2.node.dataRef);
 };
 
 /* 拖动事件 */
@@ -270,43 +225,42 @@ const contentsEdit = () => {
   }
 };
 
-const title_tree_change=()=>
-     {
-      
-      let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
-      // let id=getCheckedNodes.id;
-      // let type=getCheckedNodes.value;
-      //  axios
-      //   .get("/api" + "/title/search",
-      //   {
-      //     params:{
-      //         id:id
-      //     }
-      //   }).then((res)=>{
-      //     console.log(res)
-      //     if(res.data.data.length==0)
-      //     {
-      //     this.value="";
-      //     this.form.change=!this.form.change;
-      //     this.form.undef=true;
-      //     console.log("form::")
-      //     console.log(this.form);
-      //     }
-      //     else
-      //     {
-      //     let data=res.data.data[0];
-      //     this.value=data.content;
-      //     this.form.change=!this.form.change;
-      //     this.form.id=data.id;
-      //     this.form.undef=false;
-      //     console.log(this.value);
-      //     }
-      //   // console.log(res.data.data[0].content)
-      //   //  this.content=res.data.data[0].content
-      //   }
-      //   );
-      //console.log(getCheckedNodes)
-     };
+const title_tree_change = () => {
+
+  let getCheckedNodes = this.$refs.cascader.getCheckedNodes()[0].data;
+  // let id=getCheckedNodes.id;
+  // let type=getCheckedNodes.value;
+  //  axios
+  //   .get("/api" + "/title/search",
+  //   {
+  //     params:{
+  //         id:id
+  //     }
+  //   }).then((res)=>{
+  //     console.log(res)
+  //     if(res.data.data.length==0)
+  //     {
+  //     this.value="";
+  //     this.form.change=!this.form.change;
+  //     this.form.undef=true;
+  //     console.log("form::")
+  //     console.log(this.form);
+  //     }
+  //     else
+  //     {
+  //     let data=res.data.data[0];
+  //     this.value=data.content;
+  //     this.form.change=!this.form.change;
+  //     this.form.id=data.id;
+  //     this.form.undef=false;
+  //     console.log(this.value);
+  //     }
+  //   // console.log(res.data.data[0].content)
+  //   //  this.content=res.data.data[0].content
+  //   }
+  //   );
+  //console.log(getCheckedNodes)
+};
 
 onMounted(() => {
   axios
@@ -353,7 +307,7 @@ onMounted(() => {
       gData.value = menu_test;
       console.log(gData.value);
     })
-    .catch((err) => {});
+    .catch((err) => { });
 });
 </script>
 <style>
@@ -433,6 +387,7 @@ onMounted(() => {
   margin-left: 20px !important;
   margin-top: 10px !important;
 }
+
 .buttom_on_menu {
   margin: 30px;
   width: 50%;

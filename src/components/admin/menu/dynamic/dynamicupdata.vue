@@ -12,13 +12,17 @@
     <TEditor style="height: 400px" ref="editor" v-model="value" :value="value" @input="valueChange" />
   </div>
   <div class="buttom">
-    <el-button type="success" round class="buttom_back" @click="$emit('selectDynamicBack', 'DynamicBack')">返回</el-button>
+    <el-button type="success" round class="buttom_back" @click="() => chooseBack()">返回</el-button>
     <el-button type="success" round class="buttom_on" @click="Resource_update(1, 1)">保存并返回</el-button>
   </div>
 </template>
 <script setup>
 import TEditor from '@/components/TEditor.vue'
 import { ref } from 'vue'
+const emits = defineEmits(["select"]);
+const chooseBack = () => {
+  emits("select", "DynamicManage");
+};
 const title = ref('')
 const name = ref('')
 const value = ref('')

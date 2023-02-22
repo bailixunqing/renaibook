@@ -34,7 +34,7 @@
 <script setup>
 import TEditor from "@/components/TEditor.vue";
 import axios from "axios";
-import { ElMessage,ElNotification } from 'element-plus'
+import { ElNotification } from 'element-plus'
 import { ref, onMounted } from "vue";
 /* pinia */
 import { storeToRefs } from "pinia";

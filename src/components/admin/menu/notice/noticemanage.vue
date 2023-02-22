@@ -41,8 +41,8 @@
 </template>
 
 <script setup>
-import { ElMessage,ElNotification } from 'element-plus'
-import { ref, onMounted, onUpdated, onActivated } from "vue";
+import { ElNotification } from 'element-plus'
+import { ref, onMounted,  onActivated } from "vue";
 import axios from "axios";
 /* 引入实例 */
 import useDemoStore from "@/store/modules/demo.js";

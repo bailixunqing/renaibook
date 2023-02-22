@@ -13,8 +13,8 @@
       <el-table-column label="操作">
         <template #default="scope">
           {{ scope.row.date }}
-          <el-button class="button_on" type="success" round @click="Resource_update(0, scope)">修改</el-button>
-          <el-button class="button_off" type="success" round @click="delete_total(2, scope)">删除</el-button>
+          <el-button class="button_on" type="success" round @click="() => chooseUpdata()">修改</el-button>
+          <el-button class="button_off" type="success" round @click="() => delete_total(2, scope)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -22,6 +22,12 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios'
+const emits = defineEmits(['select']);
+const chooseUpdata = () => {
+  emits("select", "DynamicUpdata");
+};
+
 const uers_name = ref('')
 const itemKey = ref('')
 const ResourceData = ref([
@@ -31,40 +37,35 @@ const ResourceData = ref([
     "gmtCreate": "gmtCreate"
   }
 ])
-const axios = require("axios")
 
 const Resource_update = (i, e) => {
   let that = this
   if (i == 0) {
-    axios
-      .get("/api" + "/resource/search",
-        {
-          params: {
-            id: e.row.id
-          }
-        }).then((res) => {
-          // let data = res.data.data[0];
-          // form['id'] = data.id;
-          // form['title'] = data.title;
-          // value = data.content;
-          // that.select(411)
-        })
+    axios.get("/api" + "/resource/search",
+      {
+        params: {
+          id: e.row.id
+        }
+      }).then((res) => {
+        // let data = res.data.data[0];
+        // form['id'] = data.id;
+        // form['title'] = data.title;
+        // value = data.content;
+        // that.select(411)
+      })
   }
   else if (i == 1) {
-    let params = {
+    axios.post("/api" + "/resource/update", {
       id: '',
       title: '',
       content: '',
       author: '',
       token: sessionStorage.getItem("token")
-    };
-    let config = {
+    }, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    };
-    axios
-      .post("/api" + "/resource/update", params, config)
+    })
       .then((res) => {
         // this.$message({
         //   type: 'success',
@@ -83,13 +84,12 @@ const Resource_init = () => {
   let string1;
   let data;
   let i = 0;
-  axios
-    .get("/api" + "/resource/searchAll",
-      {
-        params: {
-          pageSize: 10
-        }
-      })
+  axios.get("/api" + "/resource/searchAll",
+    {
+      params: {
+        pageSize: 10
+      }
+    })
     .then((res) => {
       // data = res.data.data;
       // for (i = 0; i < data.length; i++) {
@@ -186,13 +186,12 @@ const Delete_Notice = (e) => {
   //   });
 }
 const Delete_Resource = (e) => {
-  axios
-    .post("/api" + "/resource/delete", null, {
-      params: {
-        id: e.row.id,
-        token: sessionStorage.getItem("token")
-      },
-    })
+  axios.post("/api" + "/resource/delete", null, {
+    params: {
+      id: e.row.id,
+      token: sessionStorage.getItem("token")
+    },
+  })
     .then((res) => {
       // this.$message({
       //   type: 'success',
@@ -201,16 +200,15 @@ const Delete_Resource = (e) => {
       // ResourceData.splice(e.$index, 1);
       // itemKey = Math.random()
     })
-    .catch((err) => {});
+    .catch((err) => { });
 }
 const Delete_Activities = (e) => {
-  axios
-    .post("/api" + "/activity/delete", null, {
-      params: {
-        id: e.row.id,
-        token: sessionStorage.getItem("token")
-      },
-    })
+  axios.post("/api" + "/activity/delete", null, {
+    params: {
+      id: e.row.id,
+      token: sessionStorage.getItem("token")
+    },
+  })
     .then((res) => {
       this.$message({
         type: 'success',
@@ -227,13 +225,12 @@ const Delete_Activities = (e) => {
     });
 }
 const Delete_User = (e) => {
-  axios
-    .post("/api" + "/user/delete", null, {
-      params: {
-        idCard: e.idCard,
-        token: sessionStorage.getItem("token")
-      },
-    })
+  axios.post("/api" + "/user/delete", null, {
+    params: {
+      idCard: e.idCard,
+      token: sessionStorage.getItem("token")
+    },
+  })
     .then((res) => {
       // location.reload()
     })
@@ -246,17 +243,17 @@ const Delete_User = (e) => {
 }
 
 .button_on {
-    width: 60px !important;
-    height: 40px !important;
-    font-size: 19px !important;
-    margin: auto !important;
+  width: 60px !important;
+  height: 40px !important;
+  font-size: 19px !important;
+  margin: auto !important;
 }
 
 .button_off {
-    width: 60px !important;
-    background-color: #e27172 !important;
-    height: 40px !important;
-    font-size: 19px !important;
-    margin: auto !important;
+  width: 60px !important;
+  background-color: #e27172 !important;
+  height: 40px !important;
+  font-size: 19px !important;
+  margin: auto !important;
 }
 </style>

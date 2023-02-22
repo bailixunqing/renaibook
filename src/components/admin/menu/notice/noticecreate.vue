@@ -7,28 +7,16 @@
   </el-form-item>
   <div class="admin_title">编辑内容</div>
   <div class="amin_write">
-    <TEditor
-      style="height: 400px"
-      ref="editor"
-   
-      @getContent="teChange"
-      v-model="value_content"
-      :value="value_content"
-      
-    />
+    <TEditor style="height: 400px" ref="editor" @getContent="teChange" v-model="value_content" :value="value_content" />
   </div>
   <div class="buttom">
-    <el-button type="success" round class="buttom_back" @click="noticeBack()"
-      >返回</el-button
-    >
-    <el-button type="success" round class="buttom_on" @click="Create_Notice()"
-      >保存并返回</el-button
-    >
+    <el-button type="success" round class="buttom_back" @click="() => noticeBack()">返回</el-button>
+    <el-button type="success" round class="buttom_on" @click="() => Create_Notice()">保存并返回</el-button>
   </div>
 </template>
 <script setup>
 import TEditor from "@/components/TEditor.vue";
-import { ElMessage, ElNotification } from "element-plus";
+import { ElNotification } from "element-plus";
 import { ref } from "vue";
 import axios from "axios";
 const title = ref("");
@@ -86,6 +74,7 @@ const Create_Notice = () => {
   margin-right: 27px;
   text-align: right;
 }
+
 .buttom_back {
   padding-top: 20px !important;
   width: 8%;
@@ -98,6 +87,7 @@ const Create_Notice = () => {
   padding-bottom: 20px !important;
   width: 14%;
 }
+
 .admin_title {
   color: black;
   font-size: 25px;

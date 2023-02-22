@@ -15,11 +15,10 @@
                         <div>
                             {{ scope.row.date }}
                             <!--点击按钮后传值给admin-v-show-->
-                            <el-button type="success" round class="buttom_updata"
-                                @click="$emit('select', 'useredit')">修改
+                            <el-button type="success" round class="buttom_updata" @click="() => choose()">修改
                             </el-button>
                             <el-button type="success" round class="buttom_delete"
-                                @click="deleteTotal(0, scope)">删除</el-button>
+                                @click="() => deleteTotal(0, scope)">删除</el-button>
                         </div>
                     </template>
                 </el-table-column>
@@ -30,6 +29,10 @@
 <script  setup>
 import { computed, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+const emits = defineEmits(["select"]);
+const choose = () => {
+    emits("select", "useredit");
+};
 /* 观察数据 */
 const search = ref('')
 /* 观察数据 */
