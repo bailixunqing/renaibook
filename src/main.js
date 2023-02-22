@@ -1,20 +1,26 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import '@/assets/styles/font.css'
+/*  */
 import router from './router'
+/*  */
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+/*  */
 import locale from 'element-plus/lib/locale/lang/zh-cn'
+import '@/assets/styles/font.css'
+/*  */
 import AdminBottom from '@/components/admin/admins/adminbottom.vue'
-//富文本
+/*富文本*/
 import TEditor from '@/components/TEditor.vue'
-//element组件库
+/*element组件库*/
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-//design-vue 组件库：企业级
+/*design-vue 组件库：企业级*/
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
+/* vue-x */
+import pinia from '@/store'
 
 //import  {detectZoom}  from '@/utils/detectZoom.js';
 
@@ -23,6 +29,7 @@ import 'ant-design-vue/dist/antd.css'
 //document.body.style.zoom = 100 / Number(m);
 const app = createApp(App)
     .use(router)
+    .use(pinia)
     .use(Antd)
     .use(ElementPlus, { locale })
     .use(VueAxios, axios)
@@ -31,16 +38,11 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
-
 app.mount('#app')
-
 //ads
 //测试
 router.beforeEach((to, from, next) => {
-
-
     const token = sessionStorage.getItem("token");
-
     if (to.name == "admin") {
         /*
         if (token != null) {
@@ -71,10 +73,4 @@ router.beforeEach((to, from, next) => {
         // }
     }
     next()
-
 });
-
-
-
-
-

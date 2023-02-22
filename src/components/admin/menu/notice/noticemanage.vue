@@ -13,19 +13,13 @@
             <el-table-column label="操作">
                 <template #default="scope">
                     <div>
-                            {{ scope.row.date }}
-                            <!--点击按钮后传值给admin-v-show-->
-                            <el-button type="success" round class="button_on"
-                                @click="$emit('select', {data:'NoticeUpdata',i:scope.row.id})">修改
-                            </el-button>
-                            <el-button type="success" round class="button_off"
-                                @click="deleteTotal(0, scope)">删除</el-button>
-                        </div>
-                    <!-- <div>
                         {{ scope.row.date }}
-                        <el-button class="button_on" type="success" round @click="noticeUpdate(0, scope)">修改</el-button>
-                        <el-button class="button_off" type="success" round @click="deleteTotal(1, scope)">删除</el-button>
-                    </div> -->
+                        <!--点击按钮后传值给admin-v-show-->
+                        <el-button type="success" round class="button_on" @click="() => noticeUpdate(scope.row.id)">修改
+                        </el-button>
+                        <el-button type="success" round class="button_off"
+                            @click="() => deleteTotal(0, scope)">删除</el-button>
+                    </div>
                 </template>
             </el-table-column>
         </el-table>
@@ -33,53 +27,50 @@
 </template>
 
 <script setup>
-import { ref,onMounted } from 'vue'
-const axios = require("axios")
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+/* 引入实例 */
+import useDemoStore from '@/store/modules/demo.js'
+/* 实例化方法 */
+const demoStore = useDemoStore()
+const emits = defineEmits(["select"])
+const noticeUpdate = (i) => {
+    /* 传入对象 */
+    demoStore.setCounter({ i })
+    /* 并跳转页面 */
+    emits('select', 'NoticeUpdata')
+}
 const uers_name = ref('')
-defineEmits(["select"])
 const itemKey = ref('')
-const NoticeData = ref([
-    {
-        "title": "不会写标题",
-        "author": "鲁迅",
-        "gmtCreate": "2022-12-27"
-    }
-])
-
-const deleteTotal = () => {
-
-}
+const NoticeData = ref([])
+const deleteTotal = () => { }
 const Notice_init = () => {
-  let data;
-  let i = 0;
-  axios
-    .get("/api" + "/notice/searchAll",
-      {
-        params: {
-          pageSize: 10
-        }
-      })
-    .then((res) => {
-      data = res.data.data;
-      console.log(res)
-      for (i = 0; i < data.length; i++) {
-        let date = new Date(data[i].gmtCreate);
-        let Y = date.getFullYear() + "-";
-        let M =
-          (date.getMonth() + 1 < 10
-            ? "0" + (date.getMonth() + 1)
-            : date.getMonth() + 1) + "-";
-        let D = date.getDate() + " ";
-        data[i].gmtCreate = Y + M + D;
-      }
-      NoticeData.value = data
-      console.log(NoticeData.value)
-    })
-    .catch((err) => { });
+    axios.get('/api/notice/searchAll',
+        {
+            params: {
+                pageSize: 10
+            }
+        })
+        .then((res) => {
+            console.log(res)
+            let data = res.data.data;
+            for (let i = 0; i < data.length; i++) {
+                let date = new Date(data[i].gmtCreate);
+                let Y = date.getFullYear() + "-";
+                let M =
+                    (date.getMonth() + 1 < 10
+                        ? "0" + (date.getMonth() + 1)
+                        : date.getMonth() + 1) + "-";
+                let D = date.getDate() + " ";
+                data[i].gmtCreate = Y + M + D;
+            }
+            NoticeData.value = data
+            console.log(NoticeData.value)
+        })
+        .catch((err) => { });
 }
-onMounted(()=>{
+onMounted(() => {
     Notice_init()
-
 })
 </script>
 <style>

@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "element-plus": "^2.2.15",
     "postcss-loader": "^6.2.1",
+    "pinia": "^2.0.32",
     "tinymce": "^5.10.5",
     "vue": "^3.2.13",
     "vue-axios": "^3.4.1",

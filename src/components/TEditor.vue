@@ -1,6 +1,6 @@
 <template>
   <div class="tinymce-box">
-    <Editor v-model="myValue" :init="init" :disabled="disabled"  />
+    <Editor v-model="myValue" :init="init" :disabled="disabled"  :id="tinymceId" />
   </div>
 </template>
 
@@ -176,5 +176,3 @@ onMounted(() => {
   tinymce.init({})
 })
 </script>
-
-<style lang="less"></style>
