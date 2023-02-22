@@ -41,7 +41,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUpdated,onActivated } from "vue";
+import { ElMessage,ElNotification } from 'element-plus'
+import { ref, onMounted, onUpdated, onActivated } from "vue";
 import axios from "axios";
 /* 引入实例 */
 import useDemoStore from "@/store/modules/demo.js";
@@ -58,20 +59,23 @@ const uers_name = ref("");
 const itemKey = ref("");
 const NoticeData = ref([]);
 const deleteTotal = (i) => {
-    
-axios
-    .post("/api/notice/delete", {
-      params: {
-        id: i,
-        token: sessionStorage.getItem("token"),
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      
-    });
-
-
+  let params = {
+    id: i,
+    token: sessionStorage.getItem("token"),
+  };
+  let config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  axios.post("/api/notice/delete", params, config).then((res) => {
+     ElNotification({
+        title: "删除成功",
+        message: "已成功删除公告",
+        type: "success",
+      });
+    Notice_init();
+  });
 };
 const Notice_init = () => {
   axios
@@ -81,7 +85,6 @@ const Notice_init = () => {
       },
     })
     .then((res) => {
-      console.log(res);
       let data = res.data.data;
       for (let i = 0; i < data.length; i++) {
         let date = new Date(data[i].gmtCreate);
@@ -94,7 +97,6 @@ const Notice_init = () => {
         data[i].gmtCreate = Y + M + D;
       }
       NoticeData.value = data;
-      console.log(NoticeData.value);
     })
     .catch((err) => {});
 };
@@ -102,7 +104,7 @@ onMounted(() => {
   Notice_init();
 });
 onActivated(() => {
-//   Notice_init();
+  //   Notice_init();
 });
 </script>
 <style>
